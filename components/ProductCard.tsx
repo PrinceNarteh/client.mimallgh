@@ -18,7 +18,7 @@ export const ProductCard = ({ image }: { image: string }) => {
         </div>
         <div className="px-2 py-1">
           <p className="text-sm line-clamp-1">Lorem ipsum dolor sit amet.</p>
-          <p className="font-semibold">GH¢ 1234.00</p>
+          <p className="font-semibold text-center">GH¢ 1234.00</p>
         </div>
       </div>
     </div>
