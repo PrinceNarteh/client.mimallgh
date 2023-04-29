@@ -1,7 +1,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import Container from "../../components/Container";
-import { topDeals } from "../../utils/data";
+import { Container } from "@/components";
+import { topDeals } from "@/utils/data";
 import Image from "next/image";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 

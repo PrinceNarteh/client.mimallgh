@@ -1,8 +1,7 @@
+import { Container, ProductCard } from "@/components";
+import { CustomLinks } from "@/components/layout";
+import { topDeals } from "@/utils/data";
 import Image from "next/image";
-import Container from "../../components/Container";
-import CustomLinks from "../../components/layout/CustomLinks";
-import ProductCard from "../../components/ProductCard";
-import { topDeals } from "../../utils/data";
 
 const WebStore = () => {
   return (

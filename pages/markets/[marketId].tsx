@@ -1,11 +1,10 @@
+import { Container, TopDeals } from "@/components";
+import { categories, sections, topDeals } from "@/utils/data";
+import { capitalize } from "@/utils/utilities";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Container from "../../components/Container";
-import TopDeals from "../../components/TopDeals";
-import { categories, sections, topDeals } from "../../utils/data";
-import { capitalize } from "../../utils/utilities";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 const Markets = () => {

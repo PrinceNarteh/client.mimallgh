@@ -1,5 +1,5 @@
 import { BsCheckCircleFill } from "react-icons/bs";
-import CheckoutContainer from "../../components/CheckoutContainer";
+import { CheckoutContainer } from "@/components";
 
 const Payment = () => {
   return (

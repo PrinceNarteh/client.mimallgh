@@ -1,6 +1,5 @@
 import Link from "next/link";
-import Container from "../../components/Container";
-import ProductCard from "../../components/ProductCard";
+import { Container, ProductCard } from "../../components";
 import { sections } from "../../utils/data";
 
 const TopDeals = () => {

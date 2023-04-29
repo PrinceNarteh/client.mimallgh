@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Container from "../../components/Container";
-import { capitalize } from "../../utils/utilities";
+import { Container } from "@/components";
+import { capitalize } from "@/utils/utilities";
 
 const ProductByCategory = () => {
   const { query } = useRouter();

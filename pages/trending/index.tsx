@@ -1,7 +1,5 @@
 import React from "react";
-import Container from "../../components/Container";
-import MovieCard from "../../components/MovieCard";
-import TopDeals from "../../components/TopDeals";
+import { Container, MovieCard, TopDeals } from "@/components";
 import { topDeals } from "../../utils/data";
 
 const Trending = () => {

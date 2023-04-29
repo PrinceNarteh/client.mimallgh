@@ -15,12 +15,11 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
-import Container from "../../components/Container";
-import ProductCard from "../../components/ProductCard";
-import { addToCart } from "../../features/cart/cartSlice";
-import { topDeals } from "../../utils/data";
-import { useAppDispatch } from "../../store";
-import { api } from "../../utils/api";
+import { Container, ProductCard } from "@/components";
+// import { addToCart } from "@/features/cart/cartSlice";
+import { topDeals } from "@/utils/data";
+// import { useAppDispatch } from "@/store";
+import { api } from "@/utils/api";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 const images = [
@@ -46,14 +45,14 @@ const ProductDetails = () => {
 
   const handleAddToCart = (product: Product) => {
     console.log(product);
-    dispatch(
-      addToCart({
-        id: "123",
-        title: "Sample Product",
-        price: 20,
-        qty: 1,
-      })
-    );
+    // dispatch(
+    //   addToCart({
+    //     id: "123",
+    //     title: "Sample Product",
+    //     price: 20,
+    //     qty: 1,
+    //   })
+    // );
   };
 
   return (
