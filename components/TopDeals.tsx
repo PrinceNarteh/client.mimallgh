@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Section from "./Section";
+import { Section } from "./Section";
 
 export const TopDeals = ({ topDeals }: { topDeals: { image: string }[] }) => {
   return (

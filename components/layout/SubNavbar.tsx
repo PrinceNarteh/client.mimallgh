@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { CgMenuRightAlt } from "react-icons/cg";
-import { locations } from "../../utils/menus";
-import NavItem from "./NavItem";
+import { locations } from "@/utils/menus";
+import { NavItem } from "./index";
 
 const menus = [
   {

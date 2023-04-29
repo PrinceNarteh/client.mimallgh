@@ -1,5 +1,5 @@
 import React from "react";
-import SectionHeader from "../components/layout/SectionHeader";
+import { SectionHeader } from "@/components/layout";
 
 interface ISection {
   label: string;

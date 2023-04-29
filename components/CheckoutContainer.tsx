@@ -1,6 +1,5 @@
 import React from "react";
-import Container from "./Container";
-import OrderSummary from "./OrderSummary";
+import { Container, OrderSummary } from "./index";
 
 export const CheckoutContainer = ({
   children,

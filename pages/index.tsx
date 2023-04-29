@@ -1,38 +1,35 @@
+import { Banner, ProductCard, TopDeals } from "@/components";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import Banner from "../components/Banner";
-import ProductCard from "../components/ProductCard";
-import TopDeals from "../components/TopDeals";
-import { api } from "../utils/api";
-import { categories, sections, topDeals } from "../utils/data";
-import { locations } from "../utils/menus";
-import { useEffect, useState } from "react";
+
+import { categories, sections, topDeals } from "@/utils/data";
 import _ from "lodash";
-import type { Image as ProductImage, Product } from "@prisma/client";
+import { useEffect, useState } from "react";
+import { locations } from "@/utils/menus";
+import { Product } from "@/types";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 type IProduct = {
   category: string;
-  data: (Product & { shop: { name: string }; images: ProductImage[] })[];
+  data: Product[];
 };
 
-const Home = () => {
-  const [state, setState] = useState<IProduct[]>([]);
-  const { data } = api.products.getAllProducts.useQuery();
+const Home = ({ products }: { products: Product[] }) => {
+  const [state, setState] = useState<IProduct[] | null>(null);
 
   useEffect(() => {
-    if (data) {
-      const products = _.chain(data)
+    if (products) {
+      const productArr = _.chain(products)
         .groupBy("category")
         .map((value, key) => ({
           category: key,
           data: value,
         }))
         .value();
-      setState(products);
+      setState(productArr);
     }
-  }, [data]);
+  }, [products]);
 
   console.log(state);
 
