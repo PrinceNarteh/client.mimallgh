@@ -2,12 +2,12 @@ import { Banner, ProductCard, TopDeals } from "@/components";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-
 import { getProducts } from "@/services/products";
 import { Product } from "@/types";
 import { categories, topDeals } from "@/utils/data";
 import { locations } from "@/utils/menus";
 import { GetServerSideProps } from "next";
+import { capitalize } from "@/utils/utilities";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 type IProduct = {
@@ -26,6 +26,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 const Home = ({ products }: { products: IProduct }) => {
+  console.log(products);
   return (
     <div className="">
       <Banner />
@@ -100,7 +101,7 @@ const Home = ({ products }: { products: IProduct }) => {
                 <div className="relative mb-10 bg-white">
                   <div className="flex h-full flex-col items-start justify-between border-r-2 p-7 sm:flex-row">
                     <h3 className="sh-underline mb-2 text-2xl font-semibold md:text-4xl">
-                      {product.category}
+                      {capitalize(product.category, "_")}
                     </h3>
                     <Link
                       href={`/category/${product.category}`}

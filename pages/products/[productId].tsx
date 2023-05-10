@@ -1,4 +1,4 @@
-import type { Product } from "@prisma/client";
+import { Container } from "@/components";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -15,52 +15,60 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
-import { Container, ProductCard } from "@/components";
 // import { addToCart } from "@/features/cart/cartSlice";
 import { topDeals } from "@/utils/data";
+import { Product } from "@/types";
+import { GetServerSideProps } from "next";
+import { getProduct } from "@/services/products";
+import Link from "next/link";
 // import { useAppDispatch } from "@/store";
-import { api } from "@/utils/api";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
-const images = [
-  "/images/grocery-and-general-1.jpg",
-  "/images/grocery-and-general-2.jpg",
-  "/images/grocery-and-general-3.jpg",
-  "/images/grocery-and-general-4.jpg",
-];
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { productId } = context.query;
+  const data = await getProduct(productId as string);
 
-const ProductDetails = () => {
+  return {
+    props: {
+      product: data,
+    },
+  };
+};
+
+const ProductDetails = ({ product }: { product: Product }) => {
   const [currentImg, setCurrentImg] = useState(0);
   const { asPath } = useRouter();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const origin =
     typeof window !== "undefined" && window.location.origin
       ? window.location.origin
       : "";
 
   const url = `${origin}${asPath}`;
-  const { data } = api.products.getProductById.useQuery({
-    id: "clfmq8mfe0001tckovhyp77us",
-  });
 
-  const handleAddToCart = (product: Product) => {
-    console.log(product);
-    // dispatch(
-    //   addToCart({
-    //     id: "123",
-    //     title: "Sample Product",
-    //     price: 20,
-    //     qty: 1,
-    //   })
-    // );
-  };
+  // const handleAddToCart = (product: Product) => {
+  //   console.log(product);
+  //   // dispatch(
+  //   //   addToCart({
+  //   //     id: "123",
+  //   //     title: "Sample Product",
+  //   //     price: 20,
+  //   //     qty: 1,
+  //   //   })
+  //   // );
+  // };
+
+  console.log(product);
 
   return (
     <Container>
       <div className="mx-auto mb-10 w-11/12 pt-5">
-        <h3 className="sh-underline mb-5 pl-2 text-2xl font-semibold md:text-4xl">
-          Mosco Mart
-        </h3>
+        <Link
+          href={`/web-store/${product.shop.id}`}
+          className="sh-underline mb-5 pl-2 text-2xl font-semibold md:text-4xl cursor-pointer"
+        >
+          {product.shop.name}
+        </Link>
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
           <div className="relative col-span-9 flex flex-col gap-5 md:flex-row">
             <div className="">
@@ -68,17 +76,18 @@ const ProductDetails = () => {
                 <div className=" h-fit w-[400px] shrink-0 gap-5 ">
                   <div className="flex justify-between gap-5">
                     <div className="flex flex-col justify-center gap-3">
-                      {images.map((image, idx) => (
+                      {product.images.map((image, idx) => (
                         <div
                           key={idx}
                           className="relative h-20 w-20 cursor-pointer rounded border border-gray-400"
                           onMouseEnter={() => setCurrentImg(idx)}
                         >
                           <Image
-                            src={image}
+                            src={image.secure_url}
                             alt="product-one"
                             fill
-                            style={{ objectFit: "contain" }}
+                            style={{ objectFit: "cover" }}
+                            sizes="48,56"
                           />
                         </div>
                       ))}
@@ -89,10 +98,10 @@ const ProductDetails = () => {
                           smallImage: {
                             alt: "Wristwatch by Ted Baker London",
                             isFluidWidth: true,
-                            src: images[currentImg] as string,
+                            src: product.images[currentImg].secure_url,
                           },
                           largeImage: {
-                            src: images[currentImg] as string,
+                            src: product.images[currentImg].secure_url,
                             width: 1200,
                             height: 1800,
                           },
@@ -133,7 +142,7 @@ const ProductDetails = () => {
                 <div className="mb-4 flex justify-end">
                   <button
                     className="rounded-lg border border-pink-500 px-5 py-2 text-pink-500 duration-200 hover:bg-pink-500 hover:text-white"
-                    onClick={() => handleAddToCart(data as Product)}
+                    // onClick={() => handleAddToCart(data as Product)}
                   >
                     Add to Cart
                   </button>
@@ -156,23 +165,17 @@ const ProductDetails = () => {
             </div>
             <div className="min-h-96">
               <h3 className="border-b border-b-gray-400 pb-3 text-2xl font-semibold text-gray-700">
-                Coca Cola Plastic bottle 1.5L No Sugar
+                {product.title}
               </h3>
               <p className="mt-2 flex items-start tracking-widest">
                 <span className="text-xl">¢</span>
-                <span className="text-4xl">123</span>
-                <span className="text-xl">50</span>
+                <span className="text-4xl">{product.price}</span>
               </p>
               <span className="mb-2 block text-gray-500">
                 Store Price: GH¢122.00
               </span>
               <div className="text-gray-500">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Minus fugiat, labore voluptatum quidem id quia qui molestias
-                  enim magnam reiciendis aut eligendi corporis temporibus beatae
-                  placeat! Consequatur eum nemo aperiam?
-                </p>
+                <p>{product.description}</p>
                 <div className="pl-5">
                   <div className="my-5">
                     <h3 className="font-bold">About This Item</h3>
@@ -236,9 +239,9 @@ const ProductDetails = () => {
           </h3>
           <div className="w-full overflow-x-auto">
             <div className="flex justify-start gap-5 py-4 pt-5">
-              {topDeals.map((topDeal, idx) => (
+              {/* {topDeals.map((topDeal, idx) => (
                 <ProductCard key={idx} image={topDeal.image} />
-              ))}
+              ))} */}
             </div>
           </div>
         </div>

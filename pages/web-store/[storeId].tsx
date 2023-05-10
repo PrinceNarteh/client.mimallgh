@@ -74,14 +74,14 @@ const WebStore = () => {
               <h4 className="sh-underline relative md:text-3xl">FOOD</h4>
             </div>
             <div className="flex flex-wrap justify-center gap-5">
-              {Array(8)
+              {/* {Array(8)
                 .fill(null)
                 .map((_, idx) => (
                   <ProductCard
                     image={`/images/food-${idx + 1}.jpg`}
                     key={idx}
                   />
-                ))}
+                ))} */}
             </div>
           </div>
           <div className="grid-col-12 lg:col-span-4">
@@ -89,9 +89,9 @@ const WebStore = () => {
               <h4 className="sh-underline relative md:text-3xl">Top Deals</h4>
             </div>
             <div className="grid place-items-center justify-center grid-auto-fit-xs">
-              {topDeals.map((topDeal, idx) => (
+              {/* {topDeals.map((topDeal, idx) => (
                 <ProductCard image={topDeal.image} key={idx} />
-              ))}
+              ))} */}
             </div>
           </div>
         </div>

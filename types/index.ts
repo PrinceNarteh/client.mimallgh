@@ -10,6 +10,7 @@ export enum CategoryType {
 }
 
 export type Product = {
+  id: string;
   title: string;
   description: string;
   price: number;
@@ -22,4 +23,9 @@ export type Product = {
     public_id: string;
     secure_url: string;
   }[];
+  shop: {
+    id: string;
+    name: string;
+    shopCode: string;
+  };
 };

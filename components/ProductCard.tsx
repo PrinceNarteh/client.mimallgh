@@ -9,11 +9,11 @@ export const ProductCard = ({ product }: { product: Product }) => {
         href={`/web-store/1`}
         className="mb-1 px-1 text-xs font-bold tracking-widest text-pink-500 line-clamp-1"
       >
-        Lorem ipsum dolor sit amet.
+        {product.shop.name}
       </Link>
       <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
         <div className="relative h-[190px] w-[190px]">
-          <Link href={`/products/1`}>
+          <Link href={`/products/${product.id}`}>
             <Image
               src={product.images[0].secure_url}
               fill
