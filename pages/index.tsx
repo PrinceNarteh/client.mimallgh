@@ -15,6 +15,16 @@ type IProduct = {
   data: Product[];
 };
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const data = await getProducts();
+
+  return {
+    props: {
+      shops: data,
+    },
+  };
+};
+
 const Home = ({ products }: { products: Product[] }) => {
   const [state, setState] = useState<IProduct[] | null>(null);
 
