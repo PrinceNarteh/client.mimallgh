@@ -2,6 +2,16 @@ import { Container, ProductCard } from "@/components";
 import { CustomLinks } from "@/components/layout";
 import { topDeals } from "@/utils/data";
 import Image from "next/image";
+import { BsFacebook } from "react-icons/bs";
+import { IoMdCall } from "react-icons/io";
+import { MdAddCall } from "react-icons/md";
+import {
+  FaFacebookF,
+  FaWhatsapp,
+  FaTwitter,
+  FaInstagram,
+  FaTiktok,
+} from "react-icons/fa";
 
 const WebStore = () => {
   return (
@@ -27,10 +37,30 @@ const WebStore = () => {
                 quibusdam ipsam beatae incidunt fugiat cupiditate obcaecati
                 sunt, omnis voluptates saepe, autem voluptate harum tempore?
               </p>
-              <div className="grid grid-auto-fit-md">
-                <p>
-                  <span className="font-semibold">Contact:</span> 0201234567
-                </p>
+              <div className="flex justify-evenly">
+                <div className="flex items-center">
+                  <span className="font-semibold mr-3">Contact:</span>
+                  <div className="flex gap-2">
+                    <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
+                      <MdAddCall className="text-white" />
+                    </div>
+                    <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
+                      <FaFacebookF className="text-white" />
+                    </div>
+                    <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
+                      <FaWhatsapp className="text-white" />
+                    </div>
+                    <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
+                      <FaTwitter className="text-white" />
+                    </div>
+                    <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
+                      <FaInstagram className="text-white" />
+                    </div>
+                    <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
+                      <FaTiktok className="text-white" />
+                    </div>
+                  </div>
+                </div>
                 <p>
                   <span className="font-semibold">Map Direction:</span>{" "}
                   0201234567
