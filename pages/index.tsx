@@ -3,46 +3,29 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 
-import { categories, sections, topDeals } from "@/utils/data";
-import _ from "lodash";
-import { useEffect, useState } from "react";
-import { locations } from "@/utils/menus";
+import { getProducts } from "@/services/products";
 import { Product } from "@/types";
+import { categories, topDeals } from "@/utils/data";
+import { locations } from "@/utils/menus";
+import { GetServerSideProps } from "next";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 type IProduct = {
   category: string;
   data: Product[];
-};
+}[];
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const data = await getProducts();
 
   return {
     props: {
-      shops: data,
+      products: data,
     },
   };
 };
 
-const Home = ({ products }: { products: Product[] }) => {
-  const [state, setState] = useState<IProduct[] | null>(null);
-
-  useEffect(() => {
-    if (products) {
-      const productArr = _.chain(products)
-        .groupBy("category")
-        .map((value, key) => ({
-          category: key,
-          data: value,
-        }))
-        .value();
-      setState(productArr);
-    }
-  }, [products]);
-
-  console.log(state);
-
+const Home = ({ products }: { products: IProduct }) => {
   return (
     <div className="">
       <Banner />
@@ -111,16 +94,16 @@ const Home = ({ products }: { products: Product[] }) => {
 
       <section className="my-5 bg-gray-200 pt-5">
         <div className="mx-auto w-11/12">
-          {sections.map((section, idx) => (
+          {products.map((product, idx) => (
             <div key={idx} className="mb-5 flex flex-col">
               <>
                 <div className="relative mb-10 bg-white">
                   <div className="flex h-full flex-col items-start justify-between border-r-2 p-7 sm:flex-row">
                     <h3 className="sh-underline mb-2 text-2xl font-semibold md:text-4xl">
-                      {section.heading}
+                      {product.category}
                     </h3>
                     <Link
-                      href={`/category/${section.link}`}
+                      href={`/category/${product.category}`}
                       className="font-semibold text-orange-500"
                     >
                       Read More
@@ -128,14 +111,8 @@ const Home = ({ products }: { products: Product[] }) => {
                   </div>
                   <div className="w-full overflow-x-scroll">
                     <div className="mb-3 grid w-[1280] grid-flow-col grid-rows-2">
-                      {section.images.map((image, idx) => (
-                        <ProductCard key={idx} image={image.imageUrl} />
-                      ))}
-                      {section.images.map((image, idx) => (
-                        <ProductCard key={idx} image={image.imageUrl} />
-                      ))}
-                      {section.images.map((image, idx) => (
-                        <ProductCard key={idx} image={image.imageUrl} />
+                      {product.data.map((product, idx) => (
+                        <ProductCard key={idx} product={product} />
                       ))}
                     </div>
                   </div>

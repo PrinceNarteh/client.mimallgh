@@ -20,6 +20,6 @@ export type Product = {
   images: {
     id: string;
     public_id: string;
-    secured_url: string;
+    secure_url: string;
   }[];
 };
