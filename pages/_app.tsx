@@ -1,6 +1,9 @@
 import "@/styles/globals.css";
+import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
+
 import localFont from "next/font/local";
+import { Toaster } from "react-hot-toast";
 
 const poppins = localFont({
   src: [
@@ -15,10 +18,16 @@ const poppins = localFont({
   ],
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
     <div className={`${poppins.className}`}>
-      <Component {...pageProps} />;
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
+      <Toaster />
     </div>
   );
 }
