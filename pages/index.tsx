@@ -1,14 +1,14 @@
 import { Banner, ProductCard, TopDeals } from "@/components";
+import { Error } from "@/components/Error";
+import { getProducts } from "@/services/products";
+import { IProduct } from "@/types";
+import { categories, topDeals } from "@/utils/data";
+import { locations } from "@/utils/menus";
+import { capitalize } from "@/utils/utilities";
+import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { getProducts } from "@/services/products";
-import { IProduct, Product } from "@/types";
-import { categories, topDeals } from "@/utils/data";
-import { locations } from "@/utils/menus";
-import { GetServerSideProps } from "next";
-import { capitalize } from "@/utils/utilities";
-import { Error } from "@/components/Error";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 export const getServerSideProps: GetServerSideProps = async () => {

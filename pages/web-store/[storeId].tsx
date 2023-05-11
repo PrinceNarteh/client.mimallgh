@@ -1,21 +1,20 @@
-import { Container, ProductCard } from "@/components";
+import { Container } from "@/components";
+import { Error } from "@/components/Error";
 import { CustomLinks } from "@/components/layout";
-import { topDeals } from "@/utils/data";
-import Image from "next/image";
-import { BsFacebook } from "react-icons/bs";
-import { IoMdCall } from "react-icons/io";
-import { MdAddCall } from "react-icons/md";
-import {
-  FaFacebookF,
-  FaWhatsapp,
-  FaTwitter,
-  FaInstagram,
-  FaTiktok,
-} from "react-icons/fa";
-import { GetServerSideProps } from "next";
 import { getStore } from "@/services/store";
 import { Store } from "@/types";
-import { Error } from "@/components/Error";
+import { capitalize } from "@/utils/utilities";
+import { GetServerSideProps } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTiktok,
+  FaTwitter,
+  FaWhatsapp,
+} from "react-icons/fa";
+import { MdAddCall } from "react-icons/md";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { storeId } = context.query;
@@ -29,6 +28,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const WebStore = ({ store }: { store: Store }) => {
+  console.log(store.products);
   if (!store) return <Error />;
   return (
     <Container>
@@ -87,30 +87,30 @@ const WebStore = ({ store }: { store: Store }) => {
         <div className="sticky top-16 z-20 my-5 border-y bg-white">
           <CustomLinks />
         </div>
-        <div className="mb-10 flex justify-center gap-10 overflow-y-auto pt-5">
-          {store.products.map((product) => (
-            <p>{product.category}</p>
+        <div className="mb-10 grid gap-4 grid-auto-fit-lg">
+          {store.products.map((product, idx) => (
+            <Link key={idx} href={`/category/${product.category}`}>
+              <div
+                className={`group relative h-28 cursor-pointer overflow-hidden rounded-2xl p-5 shadow-lg`}
+              >
+                <Image
+                  src={product.data[0].images[0].secure_url}
+                  className="absolute object-cover duration-500 group-hover:scale-110"
+                  fill={true}
+                  alt=""
+                />
+                <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
+                <div className="relative z-10 flex h-full w-full items-center justify-center">
+                  <h3 className=" text-center text-md text-white">
+                    {capitalize(product.category, "_")}
+                  </h3>
+                </div>
+              </div>
+              <p className="mt-1 text-center text-sm">
+                {product.data.length} ads
+              </p>
+            </Link>
           ))}
-          <div className="flex w-36 flex-col items-center">
-            <div className="h-32 w-32 rounded-full bg-violet-500"></div>
-            <h3>Food</h3>
-            <h4>12 Ads</h4>
-          </div>
-          <div className="flex w-36 flex-col items-center">
-            <div className="h-32 w-32 rounded-full bg-violet-500"></div>
-            <h3>Electronics</h3>
-            <h4>20 Ads</h4>
-          </div>
-          <div className="flex w-36 flex-col items-center">
-            <div className="h-32 w-32 rounded-full bg-violet-500"></div>
-            <h3>Fashion</h3>
-            <h4>100 Ads</h4>
-          </div>
-          <div className="flex w-36 flex-col items-center">
-            <div className="h-32 w-32 rounded-full bg-violet-500"></div>
-            <h3>Services</h3>
-            <h4>50 Ads</h4>
-          </div>
         </div>
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
           <div className="grid-col-12 lg:col-span-8">
