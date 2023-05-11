@@ -1,8 +1,26 @@
 import Link from "next/link";
 import { Container, ProductCard } from "../../components";
 import { sections } from "../../utils/data";
+import { GetServerSideProps } from "next";
+import { getProducts } from "@/services/products";
+import { Product } from "@/types";
 
-const TopDeals = () => {
+type IProduct = {
+  category: string;
+  data: Product[];
+}[];
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const data = await getProducts();
+
+  return {
+    props: {
+      products: data,
+    },
+  };
+};
+
+const TopDeals = ({ products }: { products: IProduct }) => {
   return (
     <Container>
       <div className="mx-auto w-11/12 pt-5">
@@ -24,8 +42,8 @@ const TopDeals = () => {
               </Link>
             </div>
             <div className="mb-3 flex items-center justify-start gap-5 overflow-y-auto py-2 px-7 pb-2">
-              {section.images.map((image, idx) => (
-                <ProductCard key={idx} image={image.imageUrl} />
+              {products[0].data.map((product, idx) => (
+                <ProductCard key={idx} product={product} />
               ))}
             </div>
             <Link

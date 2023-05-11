@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import CartItem from "../../components/CartItem";
-import Container from "../../components/Container";
+import { CartItem, Container } from "@/components";
 
 const Cart = () => {
   return (

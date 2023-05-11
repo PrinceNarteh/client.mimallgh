@@ -29,3 +29,28 @@ export type Product = {
     shopCode: string;
   };
 };
+
+export interface Store {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  shopCode: string;
+  password: string;
+  plainPassword: string;
+  name: string;
+  description: string;
+  location: string;
+  mapDirection: string;
+  phoneNumber: string;
+  alternateNumber: null;
+  whatsappNumber: null;
+  instagramHandle: null;
+  facebookHandle: null;
+  openingTime: string;
+  closingTime: string;
+  image: null;
+  products: {
+    category: string;
+    data: Product[];
+  }[];
+}
