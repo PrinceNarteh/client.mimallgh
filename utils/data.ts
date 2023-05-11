@@ -32,41 +32,49 @@ export const categories = [
   {
     label: "Food",
     link: "food",
+    key: "food",
     image: "/images/food-2.jpg",
   },
   {
     label: "Fashion and Wears",
     link: "fashion-and-wears",
+    key: "fashion_and_wears",
     image: "/images/fashion-and-wears-2.jpg",
   },
   {
     label: "Grocery and General",
     link: "grocery-and-general",
+    key: "grocery_and_general",
     image: "/images/grocery-and-general-4.jpg",
   },
   {
     label: "Health and Wellness",
     link: "health-and-wellness",
+    key: "health_and_wellness",
     image: "/images/health-and-wellness-4.jpg",
   },
   {
     label: "Home and Electrical Appliances",
     link: "home-and-electrical-appliances",
+    key: "home_and_electrical_appliances",
     image: "/images/personal-services-6.jpg",
   },
   {
     label: "Personal Services",
     link: "personal-services",
+    key: "personal_services",
     image: "/images/personal-services-2.jpg",
   },
   {
     label: "Printing and Stationery",
     link: "printing-and-stationery",
+    key: "printing_and_stationery",
     image: "/images/printing-and-stationery-5.jpg",
   },
   {
     label: "Tech",
     link: "tech",
+    key: "tech",
     image: "/images/tech-5.jpg",
   },
 ];

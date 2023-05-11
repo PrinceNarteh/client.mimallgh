@@ -1,4 +1,4 @@
-import { Container } from "@/components";
+import { Container, ProductCard } from "@/components";
 import { getAllProducts } from "@/services/products";
 import { IProduct } from "@/types";
 import { capitalize } from "@/utils/utilities";
@@ -47,33 +47,7 @@ const ProductByCategory = ({ products }: { products: IProductProps }) => {
 
               <div className="flex flex-wrap justify-center gap-10">
                 {products.data[0].data.map((product, idx) => (
-                  <div key={idx} className="h-[260px] w-[190px]">
-                    <Link
-                      href={`/web-store/${product.shop.id}`}
-                      className="mb-1 line-clamp-1 px-1 text-sm"
-                    >
-                      {product.shop.name}
-                    </Link>
-                    <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
-                      <div className="relative h-[190px] w-[190px]">
-                        <Link href={`/products/${idx}`}>
-                          <Image
-                            src={product.images[0].secure_url}
-                            fill
-                            alt=""
-                            sizes="200px"
-                            style={{ objectFit: "cover" }}
-                          />
-                        </Link>
-                      </div>
-                      <div className="px-2 py-1">
-                        <p className="line-clamp-1 text-sm">
-                          Lorem ipsum dolor sit amet.
-                        </p>
-                        <p className="font-semibold">GH¢ 1234.00</p>
-                      </div>
-                    </div>
-                  </div>
+                  <ProductCard product={product} />
                 ))}
               </div>
 
