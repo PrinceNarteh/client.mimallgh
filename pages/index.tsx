@@ -3,17 +3,13 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { getProducts } from "@/services/products";
-import { Product } from "@/types";
+import { IProduct, Product } from "@/types";
 import { categories, topDeals } from "@/utils/data";
 import { locations } from "@/utils/menus";
 import { GetServerSideProps } from "next";
 import { capitalize } from "@/utils/utilities";
+import { Error } from "@/components/Error";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
-
-type IProduct = {
-  category: string;
-  data: Product[];
-}[];
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await getProducts();
@@ -26,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 const Home = ({ products }: { products: IProduct }) => {
-  console.log(products);
+  if (!products) return <Error />;
   return (
     <div className="">
       <Banner />

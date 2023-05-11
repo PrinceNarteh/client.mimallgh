@@ -1,10 +1,33 @@
+import { Container } from "@/components";
+import { getAllProducts } from "@/services/products";
+import { IProduct } from "@/types";
+import { capitalize } from "@/utils/utilities";
+import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Container } from "@/components";
-import { capitalize } from "@/utils/utilities";
+import { useState } from "react";
 
-const ProductByCategory = () => {
+export const getServerSideProps: GetServerSideProps = async () => {
+  const data = await getAllProducts("category=food");
+
+  return {
+    props: {
+      products: data,
+    },
+  };
+};
+
+type IProductProps = {
+  page: number;
+  perPage: number;
+  total: number;
+  totalPages: number;
+  data: IProduct;
+};
+
+const ProductByCategory = ({ products }: { products: IProductProps }) => {
+  const [state, setState] = useState<IProductProps>();
   const { query } = useRouter();
 
   return (
@@ -23,38 +46,35 @@ const ProductByCategory = () => {
               </div>
 
               <div className="flex flex-wrap justify-center gap-10">
-                {Array(16)
-                  .fill(0)
-                  .map((_, idx) => (
-                    <div key={idx} className="h-[260px] w-[190px]">
-                      <Link
-                        href={`/web-store/${idx}`}
-                        className="mb-1 line-clamp-1 px-1 text-xs"
-                      >
-                        Lorem ipsum dolor sit amet.
-                      </Link>
-                      <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
-                        <div className="relative h-[190px] w-[190px]">
-                          <Link href={`/products/${idx}`}>
-                            <Image
-                              src={`/images/${query.categoryId as string}-${
-                                idx % 4 === 0 ? 3 : idx % 4
-                              }.jpg`}
-                              fill
-                              alt=""
-                              style={{ objectFit: "cover" }}
-                            />
-                          </Link>
-                        </div>
-                        <div className="px-2 py-1">
-                          <p className="line-clamp-1 text-sm">
-                            Lorem ipsum dolor sit amet.
-                          </p>
-                          <p className="font-semibold">GH¢ 1234.00</p>
-                        </div>
+                {products.data[0].data.map((product, idx) => (
+                  <div key={idx} className="h-[260px] w-[190px]">
+                    <Link
+                      href={`/web-store/${product.shop.id}`}
+                      className="mb-1 line-clamp-1 px-1 text-sm"
+                    >
+                      {product.shop.name}
+                    </Link>
+                    <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
+                      <div className="relative h-[190px] w-[190px]">
+                        <Link href={`/products/${idx}`}>
+                          <Image
+                            src={product.images[0].secure_url}
+                            fill
+                            alt=""
+                            sizes="200px"
+                            style={{ objectFit: "cover" }}
+                          />
+                        </Link>
+                      </div>
+                      <div className="px-2 py-1">
+                        <p className="line-clamp-1 text-sm">
+                          Lorem ipsum dolor sit amet.
+                        </p>
+                        <p className="font-semibold">GH¢ 1234.00</p>
                       </div>
                     </div>
-                  ))}
+                  </div>
+                ))}
               </div>
 
               <div className="flex items-center justify-center gap-2 bg-white py-5">

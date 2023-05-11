@@ -9,6 +9,11 @@ export enum CategoryType {
   TECH = "tech",
 }
 
+export type IProduct = {
+  category: string;
+  data: Product[];
+}[];
+
 export type Product = {
   id: string;
   title: string;
