@@ -6,7 +6,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
   return (
     <div className="h-[280px] w-[200px] bg-white p-3">
       <Link
-        href={`/web-store/1`}
+        href={`/web-store/${product.shop.id}`}
         className="mb-1 px-1 text-xs font-bold tracking-widest text-pink-500 line-clamp-1"
       >
         {product.shop.name}
