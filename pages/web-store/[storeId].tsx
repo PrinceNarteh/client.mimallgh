@@ -1,5 +1,6 @@
-import { Container } from "@/components";
+import { Container, ProductCard } from "@/components";
 import { Error } from "@/components/Error";
+import ProductList from "@/components/ProductList";
 import { CustomLinks } from "@/components/layout";
 import { getStore } from "@/services/store";
 import { Store } from "@/types";
@@ -48,8 +49,8 @@ const WebStore = ({ store }: { store: Store }) => {
             <div className="-mt-14 space-y-2 pt-2 md:ml-14 md:mt-0">
               <h3 className="text-4xl">{store.name}</h3>
               <p>{store.description}</p>
-              <div className="flex justify-evenly">
-                <div className="flex items-center">
+              <div className="grid gap-5 grid-auto-fit-lg">
+                <div className="flex items-center bg-slate-800">
                   <span className="font-semibold mr-3">Contact:</span>
                   <div className="flex gap-2">
                     <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
@@ -72,14 +73,18 @@ const WebStore = ({ store }: { store: Store }) => {
                     </div>
                   </div>
                 </div>
-                <p>
-                  <span className="font-semibold">Map Direction:</span>{" "}
-                  {store.mapDirection}
-                </p>
-                <p>
-                  <span className="font-semibold">Physical Address:</span>{" "}
-                  {store.location}
-                </p>
+                <div className="bg-red-500">
+                  <p>
+                    <span className="font-semibold">Map Direction:</span>{" "}
+                    {store.mapDirection}
+                  </p>
+                </div>
+                <div className="bg-teal-500">
+                  <p>
+                    <span className="font-semibold">Physical Address:</span>{" "}
+                    {store.location}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -112,33 +117,9 @@ const WebStore = ({ store }: { store: Store }) => {
             </Link>
           ))}
         </div>
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
-          <div className="grid-col-12 lg:col-span-8">
-            <div className="my-5 flex justify-between border-b-2">
-              <h4 className="sh-underline relative md:text-3xl">FOOD</h4>
-            </div>
-            <div className="flex flex-wrap justify-center gap-5">
-              {/* {Array(8)
-                .fill(null)
-                .map((_, idx) => (
-                  <ProductCard
-                    image={`/images/food-${idx + 1}.jpg`}
-                    key={idx}
-                  />
-                ))} */}
-            </div>
-          </div>
-          <div className="grid-col-12 lg:col-span-4">
-            <div className="my-5 flex justify-between border-b-2">
-              <h4 className="sh-underline relative md:text-3xl">Top Deals</h4>
-            </div>
-            <div className="grid place-items-center justify-center grid-auto-fit-xs">
-              {/* {topDeals.map((topDeal, idx) => (
-                <ProductCard image={topDeal.image} key={idx} />
-              ))} */}
-            </div>
-          </div>
-        </div>
+      </div>
+      <div>
+        <ProductList products={store.products} />
       </div>
     </Container>
   );

@@ -38,7 +38,7 @@ export const CustomLinks = () => {
   );
 
   return (
-    <div className="flex justify-between flex-wrap py-3 text-center shadow-md md:divide-y-0 md:divide-x-2 md:text-xl">
+    <div className="flex justify-between flex-wrap py-3 text-center shadow-md md:divide-y-0 md:divide-x-2 md:text-xl z-30">
       {links.map((link, idx) => (
         <Link key={idx} href={link.link} className="px-10 hover:text-pink-500">
           {link.label}
