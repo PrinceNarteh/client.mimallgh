@@ -15,10 +15,10 @@ import {
 import { GetServerSideProps } from "next";
 import { getStore } from "@/services/store";
 import { Store } from "@/types";
+import { Error } from "@/components/Error";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { storeId } = context.query;
-  console.log(storeId);
   const data = await getStore(storeId as string);
 
   return {
@@ -29,6 +29,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const WebStore = ({ store }: { store: Store }) => {
+  if (!store) return <Error />;
   return (
     <Container>
       <div className="mx-auto mb-5 w-11/12">

@@ -2,6 +2,7 @@ export { Banner } from "./Banner";
 export { CartItem } from "./CartItem";
 export { CheckoutContainer } from "./CheckoutContainer";
 export { Container } from "./Container";
+import { Error } from "./Error";
 export { InputField } from "./InputField";
 export { MoreCard } from "./MoreCard";
 export { MovieCard } from "./MovieCard";
