@@ -29,7 +29,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const WebStore = ({ store }: { store: Store }) => {
-  console.log(store.products);
   if (!store) return <Error />;
   return (
     <Container>

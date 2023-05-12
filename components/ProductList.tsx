@@ -33,7 +33,7 @@ const ProductList = ({ products }: { products: IProduct }) => {
                 </div>
                 <div className="w-full overflow-x-scroll">
                   <div className="mb-3 px-5 grid w-[1280] grid-flow-col grid-rows-2">
-                    {product.data.map((product, idx) => (
+                    {product.data.slice(0, 12).map((product, idx) => (
                       <ProductCard key={idx} product={product} />
                     ))}
                   </div>

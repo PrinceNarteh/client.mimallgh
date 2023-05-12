@@ -97,7 +97,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
                         {...{
                           smallImage: {
                             alt: "Wristwatch by Ted Baker London",
-                            isFluidWidth: true,
+                            isFluidWidth: false,
                             src: product.images[currentImg].secure_url,
                           },
                           largeImage: {
