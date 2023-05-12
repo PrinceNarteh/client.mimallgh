@@ -26,7 +26,6 @@ export const getAllProducts = async (search: string = "") => {
 export const getProducts = async () => {
   try {
     const products = await axios.get("/products/category");
-    console.log(products);
     return products.data;
   } catch (error: any) {
     console.log(error.message);

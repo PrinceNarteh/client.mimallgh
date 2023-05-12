@@ -1,15 +1,13 @@
-import { Banner, ProductCard, TopDeals } from "@/components";
+import { Banner } from "@/components";
 import { Error } from "@/components/Error";
+import ProductList from "@/components/ProductList";
 import { getProducts } from "@/services/products";
 import { IProduct } from "@/types";
-import { categories, topDeals } from "@/utils/data";
+import { categories } from "@/utils/data";
 import { locations } from "@/utils/menus";
-import { capitalize } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await getProducts();
@@ -90,71 +88,7 @@ const Home = ({ products }: { products: IProduct }) => {
         </div>
       </section>
 
-      <section className="my-5 bg-gray-200 pt-5">
-        <div className="">
-          {products.map((product, idx) => (
-            <div className="w-11/12 mx-auto">
-              <div key={idx} className="mb-5 flex flex-col">
-                <>
-                  <div className="relative mb-10 bg-white">
-                    <div className="flex h-full flex-col items-start justify-between border-r-2 p-7 sm:flex-row">
-                      <h3 className="sh-underline mb-2 text-2xl font-semibold md:text-4xl">
-                        {capitalize(product.category, "_")}
-                      </h3>
-                      <Link
-                        href={`/category/${product.category}`}
-                        className="font-semibold text-orange-500"
-                      >
-                        Read More
-                      </Link>
-                    </div>
-                    <div className="w-full overflow-x-scroll px-10">
-                      <div className="mb-3 grid w-[1280] grid-flow-col justify-evenly grid-rows-2">
-                        {product.data.slice(0, 12).map((product, idx) => (
-                          <ProductCard key={idx} product={product} />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mb-5 bg-white">
-                    <TopDeals topDeals={topDeals} />
-                  </div>
-                  <div className="my-5 bg-white px-5 py-2">
-                    <h3 className="sh-underline mb-2 mt-5 pl-2 text-2xl font-semibold md:text-4xl">
-                      Trending
-                    </h3>
-                    <div className="w-full overflow-x-auto">
-                      <div className="my-5 flex items-center justify-start gap-5 px-5">
-                        {Array(6)
-                          .fill(null)
-                          .map((_, idx) => (
-                            <Link href={"/product-videos/1"} key={idx}>
-                              <div className="w-60 shrink-0">
-                                <div className="overflow-hidden rounded-md">
-                                  <ReactPlayer
-                                    url={"/videos/sea-shore.mp4"}
-                                    width={"100%"}
-                                    height={"100%"}
-                                    loop
-                                    muted
-                                    playing={true}
-                                  />
-                                </div>
-                                <p className="mt-1 line-clamp-1 px-1 text-sm">
-                                  Lorem ipsum dolor sit amet dolor sit amet.
-                                </p>
-                              </div>
-                            </Link>
-                          ))}
-                      </div>
-                    </div>
-                  </div>
-                </>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ProductList products={products} />
     </div>
   );
 };
