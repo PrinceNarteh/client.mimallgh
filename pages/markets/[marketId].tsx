@@ -1,7 +1,7 @@
 import { Container } from "@/components";
 import ProductList from "@/components/ProductList";
 import axios from "@/lib/axios";
-import { getAllProducts } from "@/services/products";
+import { getProducts } from "@/services/products";
 import { IProduct } from "@/types";
 import { categories } from "@/utils/data";
 import { capitalize } from "@/utils/utilities";
@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { marketId } = context.query;
-  const data = await getAllProducts(`location=${marketId}`);
+  const data = await getProducts(`location=${marketId}`);
 
   return {
     props: {
@@ -21,24 +21,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-type IProductProps = {
-  page: number;
-  perPage: number;
-  total: number;
-  totalPages: number;
-  data: IProduct;
-};
-
-const Markets = ({ products }: { products: IProductProps }) => {
-  const [state, setState] = useState<IProductProps>(products);
+const Markets = (products: { products: IProduct }) => {
+  const [state, setState] = useState<IProduct>(products.products);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const { query } = useRouter();
   const market = capitalize(query.marketId as string);
 
+  console.log(state);
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        `/products/?location=${query.marketId}&category=${selectedCategory}`
+        `/products/?location=${query.marketId}&category=${selectedCategory}&categorized=true`
       );
 
       setState(res.data);
@@ -86,7 +80,7 @@ const Markets = ({ products }: { products: IProductProps }) => {
       </section>
 
       <div>
-        <ProductList products={state.data} />
+        <ProductList products={state.data} />{" "}
       </div>
     </Container>
   );
