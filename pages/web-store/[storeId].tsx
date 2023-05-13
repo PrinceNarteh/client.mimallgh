@@ -33,7 +33,7 @@ const WebStore = ({ store }: { store: Store }) => {
   return (
     <Container>
       <div className="mx-auto mb-5 w-11/12">
-        <div className="pb-5">
+        <div className="relative pb-5">
           <div className="relative h-[400px] bg-teal-500">
             <Image
               src={"/images/web-store-banner.jpg"}
@@ -45,11 +45,10 @@ const WebStore = ({ store }: { store: Store }) => {
           </div>
           <div className=" flex flex-col md:flex-row">
             <div className="relative bottom-16 left-10 h-32 w-32 shrink-0 rounded-full bg-red-500"></div>
-            <div className="-mt-14 space-y-2 pt-2 md:ml-14 md:mt-0">
-              <h3 className="text-4xl">{store.name}</h3>
+            <div className="-mt-14 space-y-2 pt-2 w-full md:ml-14 md:mt-0">
               <p>{store.description}</p>
-              <div className="grid gap-5 grid-auto-fit-lg">
-                <div className="flex items-center bg-slate-800">
+              <div className="grid grid-auto-fit-lg gap-3 py-3">
+                <div className="flex items-center">
                   <span className="font-semibold mr-3">Contact:</span>
                   <div className="flex gap-2">
                     <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
@@ -72,13 +71,13 @@ const WebStore = ({ store }: { store: Store }) => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-red-500">
+                <div className="">
                   <p>
                     <span className="font-semibold">Map Direction:</span>{" "}
                     {store.mapDirection}
                   </p>
                 </div>
-                <div className="bg-teal-500">
+                <div className="">
                   <p>
                     <span className="font-semibold">Physical Address:</span>{" "}
                     {store.location}
@@ -87,9 +86,9 @@ const WebStore = ({ store }: { store: Store }) => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="sticky top-16 z-20 my-5 border-y bg-white">
-          <CustomLinks />
+          <div className="sticky top-16 z-20 border-y shadow-md p-1 rounded">
+            <CustomLinks />
+          </div>
         </div>
         <div className="mb-10 grid gap-4 grid-auto-fit-lg">
           {store.products.map((product, idx) => (

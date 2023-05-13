@@ -61,12 +61,6 @@ const ProductDetails = ({ product }: { product: Product }) => {
   return (
     <Container>
       <div className="mx-auto mb-10 w-11/12 pt-5">
-        <Link
-          href={`/web-store/${product.shop.id}`}
-          className="sh-underline mb-5 pl-2 text-2xl font-semibold md:text-4xl cursor-pointer"
-        >
-          {product.shop.name}
-        </Link>
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
           <div className="relative col-span-9 flex flex-col gap-5 md:flex-row">
             <div className="">
@@ -203,6 +197,12 @@ const ProductDetails = ({ product }: { product: Product }) => {
                     </ol>
                   </div>
                 </div>
+                <Link
+                  href={`/web-store/${product.shop.id}`}
+                  className="mb-5 pl-2 text-md font-semibold md:text-md cursor-pointer"
+                >
+                  Visit {product.shop.name} Web Shop
+                </Link>
                 <div className="flex justify-end pr-10">
                   <button className="rounded-lg border border-pink-500 px-5 py-2 text-pink-500 duration-200 hover:bg-pink-500 hover:text-white">
                     Add to Cart

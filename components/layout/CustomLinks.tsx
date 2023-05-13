@@ -24,10 +24,6 @@ const customLinks = [
     label: "Trending",
     link: "/trending",
   },
-  {
-    label: "More",
-    link: "/more",
-  },
 ];
 
 export const CustomLinks = () => {
@@ -38,15 +34,15 @@ export const CustomLinks = () => {
   );
 
   return (
-    <div className="flex justify-between flex-wrap py-3 text-center shadow-md md:divide-y-0 md:divide-x-2 md:text-xl z-30">
+    <div className="grid gap-5 grid-auto-fit-xs gap-y-3 items-center py-2 text-center z-30">
       {links.map((link, idx) => (
         <Link key={idx} href={link.link} className="px-10 hover:text-pink-500">
           {link.label}
         </Link>
       ))}
-      <div className="flex items-center justify-center border-2 border-red-500 rounded-full py-1 px-2">
-        <IoSearchOutline />
-        <input type="text" className="bg-white outline-none" />
+      <div className="flex items-center justify-center border-2 rounded-full border-gray-400 p-2">
+        <IoSearchOutline className="text-gray-800" />
+        <input type="text" className="bg-transparent outline-none w-full" />
       </div>
     </div>
   );
