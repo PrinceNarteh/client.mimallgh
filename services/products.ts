@@ -23,9 +23,14 @@ export const getAllProducts = async (search: string = "") => {
   }
 };
 
-export const getProducts = async () => {
+export const getProducts = async (query: string = "") => {
   try {
-    const products = await axios.get("/products?categorized=true");
+    let products: any;
+    if (query !== "") {
+      products = await axios.get(`/products?categorized=true&${query}`);
+    } else {
+      products = await axios.get("/products?categorized=true");
+    }
     return products.data;
   } catch (error: any) {
     return null;

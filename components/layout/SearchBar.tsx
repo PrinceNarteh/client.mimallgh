@@ -16,8 +16,11 @@ export const SearchBar = () => {
         alt=""
       />
       <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
-      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center">
-        <div className="relative flex w-full max-w-2xl items-center rounded-full border-2 bg-white px-4">
+      <div className="relative z-10 flex h-full w-full items-center justify-between">
+        <div className="bg-white p-1 rounded">
+          <Image src={"/images/logo.png"} width={50} height={100} alt="logo" />
+        </div>
+        <div className="relative flex w-full bg-white max-w-2xl items-center rounded-full border-2 px-5">
           <input
             type="text"
             className="flex-1 p-2 outline-none"
@@ -26,7 +29,7 @@ export const SearchBar = () => {
           <BiSearch className="w-10 shrink-0 text-3xl text-gray-500" />
         </div>
 
-        <div className="absolute right-5 flex items-center space-x-5 text-pink-500">
+        <div className="flex items-center space-x-5 text-pink-500">
           <Link href={"/"}>Home</Link>
           <CiUser className="cursor-pointer text-3xl " />
           <BsHeart className="cursor-pointer text-2xl " />
