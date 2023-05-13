@@ -29,12 +29,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const WebStore = ({ store }: { store: Store }) => {
-  
   if (!store) return <Error />;
   return (
     <Container>
-      <div className="mx-auto mb-5 w-11/12">
-        <div className="relative pb-5">
+      <div className=" relative mx-auto mb-5 w-11/12">
+        <div className="pb-5">
           <div className="relative h-[400px] bg-teal-500">
             <Image
               src={"/images/web-store-banner.jpg"}
@@ -87,7 +86,7 @@ const WebStore = ({ store }: { store: Store }) => {
               </div>
             </div>
           </div>
-          <div className="sticky top-16 z-20 border-y shadow-md p-1 rounded">
+          <div className="sticky top-16 z-20 border-y bg-white shadow-md p-1 rounded">
             <CustomLinks />
           </div>
         </div>
