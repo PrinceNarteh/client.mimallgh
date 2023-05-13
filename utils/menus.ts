@@ -120,10 +120,10 @@ export const locations = [
   { label: "Apewosika", link: "apewosika" },
   { label: "Ayensu", link: "ayensu" },
   { label: "Duakro", link: "duakro" },
-  { label: "KNH", link: "knh" },
+  { label: "KNH/Valco", link: "knh_valco" },
   { label: "Kokoado", link: "kokoado" },
   { label: "Kwasipra", link: "kwasipra" },
-  { label: "New Site", link: "new-site" },
-  { label: "Old Site", link: "old-site" },
+  { label: "New Site", link: "new_site" },
+  { label: "Old Site", link: "old_site" },
   { label: "Science", link: "science" },
 ];

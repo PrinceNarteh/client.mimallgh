@@ -28,7 +28,7 @@ const ProductList = ({ products }: { products: IProduct }) => {
                     href={`/category/${product.category}`}
                     className="font-semibold text-orange-500"
                   >
-                    Read More
+                    See more...
                   </Link>
                 </div>
                 <div className="w-full overflow-x-scroll">
@@ -41,9 +41,17 @@ const ProductList = ({ products }: { products: IProduct }) => {
               </div>
 
               <div className="my-5 bg-white px-5 py-2">
-                <h3 className="sh-underline mb-2 mt-5 pl-2 text-2xl md:text-3xl">
-                  Product Videos
-                </h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="sh-underline mb-2 mt-5 pl-2 text-2xl md:text-3xl">
+                    Product Videos
+                  </h3>
+                  <Link
+                    href={"/product-videos"}
+                    className="cursor-pointer font-bold text-orange-500"
+                  >
+                    See more...
+                  </Link>
+                </div>
                 <div className="w-full overflow-x-auto">
                   <div className="my-5 flex items-center justify-start gap-5 px-5">
                     {Array(6)
@@ -75,9 +83,17 @@ const ProductList = ({ products }: { products: IProduct }) => {
                 <TopDeals topDeals={topDeals} />
               </div>
               <div className="my-5 bg-white px-5 py-2">
-                <h3 className="sh-underline mb-2 mt-5 pl-2 text-2xl md:text-3xl">
-                  Trending
-                </h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="sh-underline mb-2 mt-5 pl-2 text-2xl md:text-3xl">
+                    Trending
+                  </h3>
+                  <Link
+                    href={"/trending"}
+                    className="cursor-pointer font-bold text-orange-500"
+                  >
+                    See more...
+                  </Link>
+                </div>
                 <div className="w-full overflow-x-auto">
                   <div className="my-5 flex items-center justify-start gap-5 px-5">
                     {Array(6)
