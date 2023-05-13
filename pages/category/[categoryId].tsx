@@ -1,15 +1,13 @@
 import { Container, ProductCard } from "@/components";
-import { getAllProducts } from "@/services/products";
+import { getProducts } from "@/services/products";
 import { IProduct } from "@/types";
 import { capitalize } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await getAllProducts("category=food");
+  const data = await getProducts("category=food&perPage=12");
 
   return {
     props: {
@@ -18,17 +16,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-type IProductProps = {
-  page: number;
-  perPage: number;
-  total: number;
-  totalPages: number;
-  data: IProduct;
-};
-
-const ProductByCategory = ({ products }: { products: IProductProps }) => {
-  const [state, setState] = useState<IProductProps>();
+const ProductByCategory = ({ products }: { products: IProduct }) => {
   const { query } = useRouter();
+
+ 
 
   return (
     <Container>

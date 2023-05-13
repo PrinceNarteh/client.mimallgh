@@ -1,8 +1,8 @@
-import { Container } from "@/components";
+import { Container, ProductCard } from "@/components";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   MdContentCopy,
   MdOutlineStar,
@@ -19,7 +19,7 @@ import {
 import { topDeals } from "@/utils/data";
 import { Product } from "@/types";
 import { GetServerSideProps } from "next";
-import { getProduct } from "@/services/products";
+import { getProduct, getProducts } from "@/services/products";
 import Link from "next/link";
 // import { useAppDispatch } from "@/store";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
@@ -57,6 +57,24 @@ const ProductDetails = ({ product }: { product: Product }) => {
   //   //   })
   //   // );
   // };
+
+  const [similarProduct, setSimilarProduct] = useState<
+    {
+      category: string;
+      data: Product[];
+    }[]
+  >([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const products = await getProducts(`category=${product.category}`);
+      setSimilarProduct(products.data);
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(similarProduct);
 
   return (
     <Container>
@@ -238,9 +256,9 @@ const ProductDetails = ({ product }: { product: Product }) => {
           </h3>
           <div className="w-full overflow-x-auto">
             <div className="flex justify-start gap-5 py-4 pt-5">
-              {/* {topDeals.map((topDeal, idx) => (
-                <ProductCard key={idx} image={topDeal.image} />
-              ))} */}
+              {similarProduct[0]?.data.slice(0, 6).map((product, idx) => (
+                <ProductCard key={idx} product={product} />
+              ))}
             </div>
           </div>
         </div>

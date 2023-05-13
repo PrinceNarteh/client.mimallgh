@@ -1,4 +1,4 @@
-import { Container, ProductCard } from "@/components";
+import { Container } from "@/components";
 import { Error } from "@/components/Error";
 import ProductList from "@/components/ProductList";
 import { CustomLinks } from "@/components/layout";
@@ -29,6 +29,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const WebStore = ({ store }: { store: Store }) => {
+  
   if (!store) return <Error />;
   return (
     <Container>
