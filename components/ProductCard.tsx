@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="h-[280px] w-[205px] my-5">
+    <div className="h-[280px] w-[205px] my-5 shrink-0">
       <Link
         href={`/web-store/${product.shop.id}`}
         className="mb-1 px-1 text-sm font-bold tracking-widest text-pink-500 line-clamp-1"

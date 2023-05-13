@@ -10,9 +10,15 @@ export enum CategoryType {
 }
 
 export type IProduct = {
-  category: string;
-  data: Product[];
-}[];
+  total: number;
+  page: number;
+  perPage: number;
+  totalPages: number;
+  data: {
+    category: string;
+    data: Product[];
+  }[];
+};
 
 export type Product = {
   id: string;

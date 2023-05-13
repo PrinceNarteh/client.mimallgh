@@ -58,8 +58,6 @@ const ProductDetails = ({ product }: { product: Product }) => {
   //   // );
   // };
 
-  console.log(product);
-
   return (
     <Container>
       <div className="mx-auto mb-10 w-11/12 pt-5">
@@ -92,23 +90,24 @@ const ProductDetails = ({ product }: { product: Product }) => {
                         </div>
                       ))}
                     </div>
-                    <div className="magnify">
+                    <div className="magnify w-[500px] h-[500px]">
                       <ReactImageMagnify
                         {...{
                           smallImage: {
                             alt: "Wristwatch by Ted Baker London",
-                            isFluidWidth: false,
+                            isFluidWidth: true,
                             src: product.images[currentImg].secure_url,
                           },
                           largeImage: {
                             src: product.images[currentImg].secure_url,
-                            width: 1200,
-                            height: 1800,
+                            width: 640,
+                            height: 600,
                           },
                           enlargedImageContainerDimensions: {
-                            width: "150%",
+                            width: "200%",
                             height: "150%",
                           },
+                          // enlargedImageStyle: { objectFit: "cover" },
                         }}
                       />
                     </div>
@@ -298,6 +297,41 @@ const ProductDetails = ({ product }: { product: Product }) => {
                 </li>
               </ol>
             </dl>
+            <div className="border p-5 mt-5 rounded">
+              <form>
+                <div className="relative z-0 w-full mb-6 group">
+                  <input
+                    type="title"
+                    name="title"
+                    id="title"
+                    className="block py-2.5 px-0 w-full text-sm text-gray-900 pl-1 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required
+                  />
+                  <label
+                    htmlFor="semail"
+                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    Email address
+                  </label>
+                </div>
+                <div className="relative z-0 w-full mb-6 group">
+                  <textarea
+                    name="content"
+                    id="content"
+                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required
+                  />
+                  <label
+                    htmlFor="content"
+                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    content
+                  </label>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
         <div className="mx-auto mt-10 w-10/12">

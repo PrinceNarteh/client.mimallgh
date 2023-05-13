@@ -41,7 +41,6 @@ const Markets = ({ products }: { products: IProductProps }) => {
         `/products/?location=${query.marketId}&category=${selectedCategory}`
       );
 
-      console.log(res);
       setState(res.data);
     };
 

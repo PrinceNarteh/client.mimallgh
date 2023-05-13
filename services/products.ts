@@ -25,10 +25,9 @@ export const getAllProducts = async (search: string = "") => {
 
 export const getProducts = async () => {
   try {
-    const products = await axios.get("/products/category");
+    const products = await axios.get("/products?categorized=true");
     return products.data;
   } catch (error: any) {
-    console.log(error.message);
     return null;
   }
 };
