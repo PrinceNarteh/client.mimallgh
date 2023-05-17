@@ -7,7 +7,7 @@ export const TopDeals = ({ topDeals }: { topDeals: { image: string }[] }) => {
   return (
     <Section label="Top Deals">
       <div className="w-full overflow-y-auto">
-        <div className="flex gap-5 pb-3">
+        <div className="pl-5 flex gap-5 pb-3">
           {topDeals.map((topDeal, idx) => (
             <Link
               key={idx}

@@ -20,13 +20,13 @@ const ProductList = ({ products }: { products: IProduct }) => {
           <div key={idx} className="mb-5 flex flex-col">
             <>
               <div className="relative mb-5 bg-white">
-                <div className="flex h-full flex-col items-start justify-between border-r-2 p-7 sm:flex-row">
-                  <h3 className="sh-underline mb-2 text-2xl font-semibold md:text-4xl">
+                <div className="flex justify-between items-center px-5 pt-2">
+                  <h3 className="sh-underline mb-2 text-lg font-semibold md:text-3xl line-clamp-1">
                     {capitalize(product.category, "_")}
                   </h3>
                   <Link
                     href={`/category/${product.category}`}
-                    className="font-semibold text-orange-500"
+                    className="font-semibold text-orange-500 line-clamp-1"
                   >
                     See more...
                   </Link>
@@ -42,7 +42,7 @@ const ProductList = ({ products }: { products: IProduct }) => {
 
               <div className="my-5 bg-white px-5 py-2">
                 <div className="flex items-center justify-between">
-                  <h3 className="sh-underline mb-2 mt-5 pl-2 text-2xl md:text-3xl">
+                  <h3 className="sh-underline mb-2 mt-5 pl-2 text-xl md:text-3xl">
                     Product Videos
                   </h3>
                   <Link
@@ -84,7 +84,7 @@ const ProductList = ({ products }: { products: IProduct }) => {
               </div>
               <div className="my-5 bg-white px-5 py-2">
                 <div className="flex items-center justify-between">
-                  <h3 className="sh-underline mb-2 mt-5 pl-2 text-2xl md:text-3xl">
+                  <h3 className="sh-underline mb-2 mt-5 pl-2 text-xl md:text-3xl">
                     Trending
                   </h3>
                   <Link

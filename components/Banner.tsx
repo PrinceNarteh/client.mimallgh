@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 
 export const Banner = () => {
   return (
-    <div className="relative mx-auto grid h-96 w-9/12 grid-cols-8 gap-3 overflow-hidden rounded-md bg-white p-3">
+    <div className="relative mx-auto grid h-96 w-full md:w-9/12 grid-cols-8 gap-3 overflow-hidden rounded-md bg-white p-3">
       <div className="col-span-2 flex h-full flex-col justify-between">
         {Array(2)
           .fill(null)

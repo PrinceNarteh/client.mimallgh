@@ -20,7 +20,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 const Home = ({ products }: { products: IProduct }) => {
-  console.log(products);
   if (!products) return <Error />;
   return (
     <div className="">
