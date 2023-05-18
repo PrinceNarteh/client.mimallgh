@@ -2,12 +2,15 @@ import { Banner } from "@/components";
 import { Error } from "@/components/Error";
 import ProductList from "@/components/ProductList";
 import { getProducts } from "@/services/products";
+import { allProduct } from "@/store/features/products/productSlice";
+import { useAppDispatch, useAppSelector } from "@/store/store";
 import { IProduct } from "@/types";
 import { categories } from "@/utils/data";
 import { locations } from "@/utils/menus";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await getProducts();
@@ -20,6 +23,17 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 const Home = ({ products }: { products: IProduct }) => {
+  const data = useAppSelector((state) => state.products);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(allProduct(products));
+  }, [data]);
+
+  // console.log(products);
+
+  console.log(data);
+
   if (!products) return <Error />;
   return (
     <div className="">
@@ -87,7 +101,7 @@ const Home = ({ products }: { products: IProduct }) => {
         </div>
       </section>
 
-      <ProductList products={products.data} />
+      <ProductList products={data.data} />
     </div>
   );
 };

@@ -3,11 +3,13 @@ import { MainNavbar, Navbar, SearchBar } from "@/components/layout";
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
+import { Provider } from "react-redux";
 
 import localFont from "next/font/local";
 import { Router } from "next/router";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
+import { store } from "@/store/store";
 
 const poppins = localFont({
   src: [
@@ -38,10 +40,12 @@ export default function App({
   return (
     <div className={`${poppins.className}`}>
       <SessionProvider session={session}>
-        <SearchBar />
-        <Navbar />
-        {loading && <Loader />}
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <SearchBar />
+          <Navbar />
+          {loading && <Loader />}
+          <Component {...pageProps} />
+        </Provider>
       </SessionProvider>
       <Toaster />
     </div>

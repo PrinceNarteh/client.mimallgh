@@ -14,10 +14,12 @@ export type IProduct = {
   page: number;
   perPage: number;
   totalPages: number;
-  data: {
-    category: string;
-    data: Product[];
-  }[];
+  data: CategorizedProducts[];
+};
+
+export type CategorizedProducts = {
+  category: string;
+  data: Product[];
 };
 
 export type Product = {

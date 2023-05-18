@@ -1,13 +1,18 @@
+import axios from "@/lib/axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { CiUser } from "react-icons/ci";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 
 export const SearchBar = () => {
+  const [search, setSearch] = useState("");
   const router = useRouter();
+
+  useEffect(() => {}, [search]);
 
   return (
     <div
