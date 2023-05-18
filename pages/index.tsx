@@ -30,10 +30,6 @@ const Home = ({ products }: { products: IProduct }) => {
     dispatch(allProduct(products));
   }, [data]);
 
-  // console.log(products);
-
-  console.log(data);
-
   if (!products) return <Error />;
   return (
     <div className="">
