@@ -1,0 +1,18 @@
+import axios from "@/lib/axios";
+
+export const login = async (data: {
+  emailOrPhoneNumber: string;
+  password: string;
+}) => {
+  try {
+    const user = await axios.post("/auth/login", data);
+    return user;
+  } catch (error) {}
+};
+
+export const register = async (data: { email: string; password: string }) => {
+  try {
+    const user = await axios.post("/auth/register", data);
+    return user.data;
+  } catch (error) {}
+};
