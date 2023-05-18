@@ -23,14 +23,17 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 const Home = ({ products }: { products: IProduct }) => {
-  const data = useAppSelector((state) => state.products);
+  const store = useAppSelector((state) => state.products);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(allProduct(products));
-  }, [data]);
+  }, [store]);
 
   if (!products) return <Error />;
+
+  console.log(products);
+
   return (
     <div className="">
       <Banner />
@@ -97,7 +100,7 @@ const Home = ({ products }: { products: IProduct }) => {
         </div>
       </section>
 
-      <ProductList products={data.products.data} />
+      <ProductList products={store.products.data} />
     </div>
   );
 };

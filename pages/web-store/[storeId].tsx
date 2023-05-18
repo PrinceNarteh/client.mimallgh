@@ -3,11 +3,14 @@ import { Error } from "@/components/Error";
 import ProductList from "@/components/ProductList";
 import { CustomLinks } from "@/components/layout";
 import { getStore } from "@/services/store";
+import { allShopProducts } from "@/store/features/products/productSlice";
+import { useAppDispatch, useAppSelector } from "@/store/store";
 import { Store } from "@/types";
 import { capitalize } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -23,12 +26,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      store: data,
+      webStore: data,
     },
   };
 };
 
-const WebStore = ({ store }: { store: Store }) => {
+const WebStore = ({ webStore }: { webStore: Store }) => {
+  const store = useAppSelector((state) => state.products);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(allShopProducts(webStore.products));
+  }, [store]);
+
+  console.log(store);
+
   if (!store) return <Error />;
   return (
     <div className="pt-5">
@@ -45,11 +57,11 @@ const WebStore = ({ store }: { store: Store }) => {
           </div>
           <div className=" flex flex-col md:flex-row">
             <div className="relative bottom-8 md:bottom-16 left-5 h-16 w-16 md:h-32 md:w-32 shrink-0 rounded-full bg-red-500"></div>
-            <h3 className="absolute transform translate-x-24 translate-y-0.5 font-bold text-xl">
-              {store.name}
+            <h3 className="absolute transform translate-x-24 translate-y-0.5 font-bold text-xl md:text-3xl md:mt-2 md:translate-x-44">
+              {webStore.name}
             </h3>
-            <div className="-mt-6 space-y-2 pt-2 w-full md:ml-14 md:mt-0">
-              <p>{store.description}</p>
+            <div className="-mt-6 space-y-2 pt-2 w-full md:ml-14 md:mt-12">
+              <p>{webStore.description}</p>
               <div className="grid grid-auto-fit-lg gap-3 py-3">
                 <div className="flex items-center">
                   <span className="font-semibold mr-3">Contact:</span>
@@ -77,13 +89,13 @@ const WebStore = ({ store }: { store: Store }) => {
                 <div className="">
                   <p>
                     <span className="font-semibold">Map Direction:</span>{" "}
-                    {store.mapDirection}
+                    {webStore.mapDirection}
                   </p>
                 </div>
                 <div className="">
                   <p>
                     <span className="font-semibold">Physical Address:</span>{" "}
-                    {store.location}
+                    {webStore.location}
                   </p>
                 </div>
               </div>
@@ -94,11 +106,11 @@ const WebStore = ({ store }: { store: Store }) => {
           </div>
         </div>
         <div className="w-full overflow-x-auto">
-          <div className="flex gap-3">
-            {store.products.map((product, idx) => (
+          <div className="flex gap-4">
+            {store.shopProducts.map((product, idx) => (
               <Link key={idx} href={`/category/${product.category}`}>
                 <div
-                  className={`group relative h-28 w-28 cursor-pointer overflow-hidden rounded-2xl p-5 shadow-lg`}
+                  className={`group relative h-28 w-28 md:w-40 cursor-pointer overflow-hidden rounded-2xl p-5 shadow-lg`}
                 >
                   <Image
                     src={product.data[0].images[0].secure_url}
@@ -122,7 +134,7 @@ const WebStore = ({ store }: { store: Store }) => {
         </div>
       </div>
       <div>
-        <ProductList products={store.products} />
+        <ProductList products={store.shopProducts} />
       </div>
     </div>
   );
