@@ -16,7 +16,7 @@ export const SearchBar = () => {
 
   return (
     <div
-      className={`fixed z-50 w-full cursor-pointer px-5 py-3 gap-2 shadow-lg`}
+      className={`fixed z-50 w-full cursor-pointer px-5 md:py-3 gap-2 shadow-lg`}
     >
       <Image
         src="/images/search-bg.jpg"
@@ -25,8 +25,8 @@ export const SearchBar = () => {
         alt=""
       />
       <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
-      <div className="relative z-10 flex flex-col gap-3 h-full w-full items-center justify-between">
-        <div className="">
+      <div className="relative z-10 flex py-3 flex-col md:flex-row gap-3 h-full w-full items-center justify-between">
+        <div className="md:w-1/3">
           {/* Logo */}
           <div className="p-1 rounded">
             <Image
@@ -38,18 +38,18 @@ export const SearchBar = () => {
           </div>
         </div>
 
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between gap-5 md:gap-28 w-full">
           {/* Search Bar */}
-          <div className="relative flex bg-white max-w-2xl items-center rounded-full border-2 px-2">
+          <div className="relative flex bg-white md:py-1 w-full md:max-w-3xl self-center items-center rounded-full border-2 px-2">
             <input
               type="text"
-              className="outline-none flex-1 py-0.5"
+              className="outline-none flex-1 py-0.5 md:pl-3"
               placeholder="Search for product..."
             />
             <BiSearch className="shrink-0 text-xl text-gray-500" />
           </div>
 
-          <div className="flex items-center justify-end space-x-1 text-2xl text-pink-500">
+          <div className="flex items-center justify-end space-x-1 text-2xl md:text-4xl md:space-x-3 text-pink-500">
             <IoMdHome onClick={() => router.push("/")} />
             <CiUser className="cursor-pointer" />
             <Link href={`/cart`} className="relative">

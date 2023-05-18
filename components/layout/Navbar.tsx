@@ -6,7 +6,7 @@ export const Navbar = () => {
   const { pathname } = useRouter();
 
   return (
-    <div className="container mx-auto pt-24">
+    <div className="container mx-auto pt-24 md:pt-[86px]">
       <div
         className={`flex h-14 w-full items-center justify-between  bg-gray-800 px-5
       `}
