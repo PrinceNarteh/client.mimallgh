@@ -1,32 +1,34 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
+import { HiArrowNarrowRight } from "react-icons/hi";
 
 const customLinks = [
   {
     label: "Home",
     link: "/",
   },
+  // {
+  //   label: "Category",
+  //   link: "/category",
+  // },
+  // {
+  //   label: "Top Deals",
+  //   link: "/top-deals",
+  // },
   {
-    label: "Category",
-    link: "/category",
-  },
-  {
-    label: "Top Deals",
-    link: "/top-deals",
-  },
-  {
-    label: "Product Videos",
+    label: "Videos",
     link: "/product-videos",
   },
-  {
-    label: "Trending",
-    link: "/trending",
-  },
+  // {
+  //   label: "Trending",
+  //   link: "/trending",
+  // },
 ];
 
 export const CustomLinks = () => {
+  const [open, setOpen] = useState(false);
   const { pathname } = useRouter();
 
   const links = customLinks.filter(
@@ -34,15 +36,33 @@ export const CustomLinks = () => {
   );
 
   return (
-    <div className="grid gap-5 grid-auto-fit-xs gap-y-3 items-center py-2 text-center z-30">
+    <div className="flex relative items-center justify-between text-center z-30 overflow-hidden">
       {links.map((link, idx) => (
-        <Link key={idx} href={link.link} className="px-10 hover:text-pink-500">
+        <Link key={idx} href={link.link} className="p-2 hover:text-pink-500">
           {link.label}
         </Link>
       ))}
-      <div className="flex items-center justify-center border-2 rounded-full border-gray-400 p-2">
-        <IoSearchOutline className="text-gray-800" />
-        <input type="text" className="bg-transparent outline-none w-full" />
+      <Link href={""} className="hover:text-pink-500">
+        More
+      </Link>
+      <IoSearchOutline
+        className="text-xl text-gray-800"
+        onClick={() => setOpen(true)}
+      />
+      <div
+        className={`absolute inset-0 flex gap-2 h-full items-center bg-white transform duration-500 
+          ${open ? "translate-x-0" : "translate-x-full"}
+        `}
+      >
+        <input
+          type="text"
+          className={`outline-none border-b-2 border-blue-500 flex-1 p-1 
+          `}
+        />
+        <HiArrowNarrowRight
+          className="text-3xl text-gray-700 shrink-0 m-1"
+          onClick={() => setOpen(false)}
+        />
       </div>
     </div>
   );

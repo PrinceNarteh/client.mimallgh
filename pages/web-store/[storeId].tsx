@@ -34,7 +34,7 @@ const WebStore = ({ store }: { store: Store }) => {
     <Container>
       <div className=" relative mx-auto mb-5 w-11/12">
         <div className="pb-5">
-          <div className="relative h-[400px] bg-teal-500">
+          <div className="relative h-[200px] md:h-[400px] bg-teal-500">
             <Image
               src={"/images/web-store-banner.jpg"}
               fill
@@ -44,8 +44,11 @@ const WebStore = ({ store }: { store: Store }) => {
             />
           </div>
           <div className=" flex flex-col md:flex-row">
-            <div className="relative bottom-16 left-10 h-32 w-32 shrink-0 rounded-full bg-red-500"></div>
-            <div className="-mt-14 space-y-2 pt-2 w-full md:ml-14 md:mt-0">
+            <div className="relative bottom-8 md:bottom-16 left-5 h-16 w-16 md:h-32 md:w-32 shrink-0 rounded-full bg-red-500"></div>
+            <h3 className="absolute transform translate-x-24 translate-y-0.5 font-bold text-xl">
+              {store.name}
+            </h3>
+            <div className="-mt-6 space-y-2 pt-2 w-full md:ml-14 md:mt-0">
               <p>{store.description}</p>
               <div className="grid grid-auto-fit-lg gap-3 py-3">
                 <div className="flex items-center">
@@ -90,30 +93,32 @@ const WebStore = ({ store }: { store: Store }) => {
             <CustomLinks />
           </div>
         </div>
-        <div className="mb-10 grid gap-4 grid-auto-fit-lg">
-          {store.products.map((product, idx) => (
-            <Link key={idx} href={`/category/${product.category}`}>
-              <div
-                className={`group relative h-28 cursor-pointer overflow-hidden rounded-2xl p-5 shadow-lg`}
-              >
-                <Image
-                  src={product.data[0].images[0].secure_url}
-                  className="absolute object-cover duration-500 group-hover:scale-110"
-                  fill={true}
-                  alt=""
-                />
-                <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
-                <div className="relative z-10 flex h-full w-full items-center justify-center">
-                  <h3 className=" text-center text-md text-white">
-                    {capitalize(product.category, "_")}
-                  </h3>
+        <div className="w-full overflow-x-auto">
+          <div className="flex gap-3">
+            {store.products.map((product, idx) => (
+              <Link key={idx} href={`/category/${product.category}`}>
+                <div
+                  className={`group relative h-28 w-28 cursor-pointer overflow-hidden rounded-2xl p-5 shadow-lg`}
+                >
+                  <Image
+                    src={product.data[0].images[0].secure_url}
+                    className="absolute object-cover duration-500 group-hover:scale-110"
+                    fill={true}
+                    alt=""
+                  />
+                  <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
+                  <div className="relative z-10 flex h-full w-full items-center justify-center">
+                    <h3 className=" text-center text-md text-white">
+                      {capitalize(product.category, "_")}
+                    </h3>
+                  </div>
                 </div>
-              </div>
-              <p className="mt-1 text-center text-sm">
-                {product.data.length} ads
-              </p>
-            </Link>
-          ))}
+                <p className="mt-1 text-center text-sm">
+                  {product.data.length} ads
+                </p>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
       <div>
