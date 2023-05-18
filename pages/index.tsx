@@ -101,7 +101,7 @@ const Home = ({ products }: { products: IProduct }) => {
         </div>
       </section>
 
-      <ProductList products={data.data} />
+      <ProductList products={data.products.data} />
     </div>
   );
 };

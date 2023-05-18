@@ -1,12 +1,14 @@
 import { IProduct } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: IProduct = {
-  total: 0,
-  perPage: 10,
-  page: 1,
-  totalPages: 1,
-  data: [],
+const initialState: { products: IProduct } = {
+  products: {
+    total: 0,
+    perPage: 10,
+    page: 1,
+    totalPages: 1,
+    data: [],
+  },
 };
 
 export const ProductSlice = createSlice({
@@ -14,8 +16,7 @@ export const ProductSlice = createSlice({
   initialState,
   reducers: {
     allProduct: (state, action: PayloadAction<IProduct>) => {
-      console.log(action);
-      state = action.payload;
+      state.products = action.payload;
     },
   },
 });
