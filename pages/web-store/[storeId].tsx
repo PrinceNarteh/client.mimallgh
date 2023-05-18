@@ -31,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const WebStore = ({ store }: { store: Store }) => {
   if (!store) return <Error />;
   return (
-    <Container>
+    <div className="pt-5">
       <div className=" relative mx-auto mb-5 w-11/12">
         <div className="pb-5">
           <div className="relative h-[200px] md:h-[400px] bg-teal-500">
@@ -124,7 +124,7 @@ const WebStore = ({ store }: { store: Store }) => {
       <div>
         <ProductList products={store.products} />
       </div>
-    </Container>
+    </div>
   );
 };
 
