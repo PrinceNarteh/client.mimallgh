@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { HiArrowNarrowRight } from "react-icons/hi";
+import { useAppDispatch } from "@/store/store";
+import { allShopProducts } from "@/store/features/products/productSlice";
+import { getProducts } from "@/services/products";
 
 const customLinks = [
   {
@@ -27,9 +30,24 @@ const customLinks = [
   // },
 ];
 
-export const CustomLinks = () => {
+export const CustomLinks = ({ storeId }: { storeId: string }) => {
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
   const { pathname } = useRouter();
+
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getProducts(`storeId=${storeId}&search=${search}`);
+      dispatch(allShopProducts(res.data));
+    };
+
+    if (search !== "") {
+      fetchData();
+    }
+  }, [search]);
 
   const links = customLinks.filter(
     (link) => pathname === "/" || !link.link.startsWith(pathname)
@@ -59,13 +77,20 @@ export const CustomLinks = () => {
           More
         </Link>
       </div>
+
+      {/* Large Screen Input */}
       <div className="hidden md:flex border border-pink-500 rounded-full py-1 px-3">
-        <input type="search" name="" id="" className="outline-none" />
-        <IoSearchOutline
-          className="text-xl text-gray-700 shrink-0 m-1"
-          onClick={() => setOpen(false)}
+        <input
+          type="search"
+          name="search"
+          className="outline-none"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
+        <IoSearchOutline className="text-xl text-gray-700 shrink-0 m-1" />
       </div>
+
+      {/* Small Screen Input */}
       <div className="md:hidden">
         <IoSearchOutline
           className="text-xl text-gray-800"
@@ -77,9 +102,11 @@ export const CustomLinks = () => {
         `}
         >
           <input
-            type="text"
-            className={`outline-none border-b-2 border-blue-500 flex-1 p-1 
-          `}
+            type="search"
+            name="search"
+            className={`outline-none border-b-2 border-blue-500 flex-1 p-1`}
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
           />
           <HiArrowNarrowRight
             className="text-3xl text-gray-700 shrink-0 m-1"

@@ -23,7 +23,7 @@ export const ProductSlice = createSlice({
       state.products = action.payload;
     },
     allShopProducts: (state, action: PayloadAction<CategorizedProducts[]>) => {
-      state.shopProducts = action.payload
+      state.shopProducts = [...action.payload];
     },
   },
 });

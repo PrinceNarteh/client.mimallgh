@@ -1,4 +1,3 @@
-import { Container } from "@/components";
 import { Error } from "@/components/Error";
 import ProductList from "@/components/ProductList";
 import { CustomLinks } from "@/components/layout";
@@ -10,6 +9,7 @@ import { capitalize } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import {
   FaFacebookF,
@@ -32,14 +32,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const WebStore = ({ webStore }: { webStore: Store }) => {
-  const store = useAppSelector((state) => state.products);
+  const store = useAppSelector((state) => state.products.shopProducts);
   const dispatch = useAppDispatch();
+  const {
+    query: { storeId },
+  } = useRouter();
 
   useEffect(() => {
     dispatch(allShopProducts(webStore.products));
-  }, [store]);
+  }, []);
 
   console.log(store);
+
+  if (!webStore) return <Error />;
 
   if (!store) return <Error />;
   return (
@@ -95,19 +100,19 @@ const WebStore = ({ webStore }: { webStore: Store }) => {
                 <div className="">
                   <p>
                     <span className="font-semibold">Physical Address:</span>{" "}
-                    {webStore.location}
+                    {capitalize(webStore.location, "_")}
                   </p>
                 </div>
               </div>
             </div>
           </div>
           <div className="sticky top-16 z-20 border-y bg-white shadow-md p-1 rounded">
-            <CustomLinks />
+            <CustomLinks storeId={storeId as string} />
           </div>
         </div>
         <div className="w-full overflow-x-auto">
           <div className="flex gap-4">
-            {store.shopProducts.map((product, idx) => (
+            {store.map((product, idx) => (
               <Link key={idx} href={`/category/${product.category}`}>
                 <div
                   className={`group relative h-28 w-28 md:w-40 cursor-pointer overflow-hidden rounded-2xl p-5 shadow-lg`}
@@ -134,7 +139,7 @@ const WebStore = ({ webStore }: { webStore: Store }) => {
         </div>
       </div>
       <div>
-        <ProductList products={store.shopProducts} />
+        <ProductList products={store} />
       </div>
     </div>
   );
