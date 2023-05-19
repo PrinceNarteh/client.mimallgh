@@ -1,20 +1,23 @@
 "use client";
 
-import { getAllStores } from "@/services/store";
-import { capitalize, parseShopImageUrl } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import React from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { useQuery } from "react-query";
 
+import { Loader } from "@/components/server/Loader";
+import { getAllStores } from "@/services/store";
+import { capitalize, parseShopImageUrl } from "@/utils";
+
 const ShopCard = () => {
   const { deliveryId } = useParams();
-  const { data: stores } = useQuery({
+  const { data: stores, isLoading } = useQuery({
     queryKey: ["stores"],
     queryFn: getAllStores,
   });
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className="flex flex-wrap justify-center gap-5">
