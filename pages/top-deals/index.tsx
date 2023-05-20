@@ -3,12 +3,9 @@ import { Container, ProductCard } from "../../components";
 import { sections } from "../../utils/data";
 import { GetServerSideProps } from "next";
 import { getProducts } from "@/services/products";
-import { Product } from "@/types";
+import { IProduct, Product } from "@/types";
 
-type IProduct = {
-  category: string;
-  data: Product[];
-}[];
+
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await getProducts();
@@ -25,7 +22,7 @@ const TopDeals = ({ products }: { products: IProduct }) => {
     <Container>
       <div className="mx-auto w-11/12 pt-5">
         <div className="flex justify-between pb-5">
-          <h4 className="sh-underline relative md:text-3xl">Top Deals</h4>
+          <h4 className="sh-underline relative md:text-2xl">Top Deals</h4>
         </div>
 
         {sections.map((section, idx) => (
@@ -42,8 +39,8 @@ const TopDeals = ({ products }: { products: IProduct }) => {
               </Link>
             </div>
             <div className="mb-3 flex items-center justify-start gap-5 overflow-y-auto py-2 px-7 pb-2">
-              {products[0].data.map((product, idx) => (
-                <ProductCard key={idx} product={product} />
+              {products.data.map((product, idx) => (
+                <ProductCard key={idx} product={product.data[0]} />
               ))}
             </div>
             <Link
