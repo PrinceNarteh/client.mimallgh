@@ -3,15 +3,16 @@ import dynamic from "next/dynamic";
 import { Container } from "@/components";
 import { topDeals } from "@/utils/data";
 import Image from "next/image";
+import Link from "next/link";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 const ProductVideoDetails = () => {
   return (
-    <Container>
+    <div>
       <div className="mx-auto w-10/12 py-5">
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-12">
-          <div className="col-span-8">
-            <div className="h-[480px]">
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
+          <div className="col-span-12 lg:col-span-9">
+            <div className="h-[250px] md:h-[400px] lg:h-[480px]">
               <ReactPlayer
                 url={"/videos/sea-shore.mp4"}
                 controls
@@ -104,7 +105,7 @@ const ProductVideoDetails = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-4 space-y-2">
+          <div className="col-span-12 lg:col-span-3 space-y-2">
             <div className="mt-2 mb-5 flex justify-between border-b-2">
               <h4 className="sh-underline relative md:text-3xl">Top Deals</h4>
             </div>
@@ -112,7 +113,7 @@ const ProductVideoDetails = () => {
               {topDeals.map((topDeal, idx) => (
                 <div
                   key={idx}
-                  className="relative h-28 flex-1 basis-28 overflow-hidden rounded"
+                  className="relative lg:shrink-0 h-28 flex-1 basis-28 overflow-hidden rounded"
                 >
                   <Image
                     src={topDeal.image}
@@ -125,8 +126,46 @@ const ProductVideoDetails = () => {
             </div>
           </div>
         </div>
+        <div className="my-5 bg-white px-5 py-2">
+          <div className="flex items-center justify-between">
+            <h3 className="sh-underline mb-2 mt-5 pl-2 text-xl md:text-3xl">
+              Related videos
+            </h3>
+            <Link
+              href={"/trending"}
+              className="cursor-pointer font-bold text-orange-500"
+            >
+              See more...
+            </Link>
+          </div>
+          <div className="w-full overflow-x-auto">
+            <div className="my-5 flex items-center justify-start gap-5 px-5">
+              {Array(6)
+                .fill(null)
+                .map((_, idx) => (
+                  <Link href={"/product-videos/1"} key={idx}>
+                    <div className="w-60 shrink-0">
+                      <div className="overflow-hidden rounded-md">
+                        <ReactPlayer
+                          url={"/videos/sea-shore.mp4"}
+                          width={"100%"}
+                          height={"100%"}
+                          loop
+                          muted
+                          playing={true}
+                        />
+                      </div>
+                      <p className="mt-1 line-clamp-1 px-1 text-sm">
+                        Lorem ipsum dolor sit amet dolor sit amet.
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+            </div>
+          </div>
+        </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
