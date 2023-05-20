@@ -1,8 +1,8 @@
 export const OrderSummary = () => {
   return (
-    <div className="mx-auto w-full max-w-4xl overflow-x-auto rounded-md border border-gray-400 p-5 shadow">
+    <div className="mx-auto w-full max-w-3xl overflow-x-auto rounded-md border border-gray-400 p-5 shadow">
       <div className="w-full space-y-5">
-        <h4 className="sh-underline relative md:text-3xl">Order Summary</h4>
+        <h4 className="sh-underline relative md:text-2xl">Orders</h4>
         <div className="relative overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead className="bg-gray-50 text-xs uppercase text-gray-700">
@@ -73,18 +73,6 @@ export const OrderSummary = () => {
                 <td className="px-6 py-2"></td>
                 <td className="px-6 py-2"></td>
                 <td className="px-6 py-2">$2299</td>
-              </tr>
-              <tr className="bg-white">
-                <th
-                  scope="row"
-                  className="whitespace-nowrap px-6 py-2 font-bold text-gray-900"
-                >
-                  Service Charge
-                </th>
-                <td className="px-6 py-2"></td>
-                <td className="px-6 py-2"></td>
-                <td className="px-6 py-2">$</td>
-                <td className="px-6 py-2">$1</td>
               </tr>
               <tr className="bg-white">
                 <th
