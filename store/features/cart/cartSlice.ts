@@ -74,7 +74,7 @@ export const CartSlice = createSlice({
   },
 });
 
-export default CartSlice.reducer;
+export default CartSlice;
 export const {
   getCartTotal,
   remove,

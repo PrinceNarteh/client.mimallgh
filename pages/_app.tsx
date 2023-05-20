@@ -1,15 +1,19 @@
 import { Loader } from "@/components/Loader";
-import { MainNavbar, Navbar, SearchBar } from "@/components/layout";
+import { Navbar, SearchBar } from "@/components/layout";
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 
+import { store } from "@/store/store";
 import localFont from "next/font/local";
 import { Router, useRouter } from "next/router";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { store } from "@/store/store";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+
+let persistor = persistStore(store);
 
 const poppins = localFont({
   src: [
@@ -42,14 +46,16 @@ export default function App({
     <div className={`${poppins.className}`}>
       <SessionProvider session={session}>
         <Provider store={store}>
-          {!router.pathname.startsWith("/auth") && (
-            <>
-              <SearchBar />
-              <Navbar />
-            </>
-          )}
-          {loading && <Loader />}
-          <Component {...pageProps} />
+          <PersistGate persistor={persistor}>
+            {!router.pathname.startsWith("/auth") && (
+              <>
+                <SearchBar />
+                <Navbar />
+              </>
+            )}
+            {loading && <Loader />}
+            <Component {...pageProps} />
+          </PersistGate>
         </Provider>
       </SessionProvider>
       <Toaster />

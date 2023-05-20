@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { ProductSlice } from "./features/products/productSlice";
-import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
-import storage from "redux-persist/lib/storage";
-import { persistReducer } from "redux-persist";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import { CartSlice } from "./features/cart/cartSlice";
+import { ProductSlice } from "./features/products/productSlice";
 
 const persistConfig = {
   key: "root",
@@ -13,13 +13,13 @@ const persistConfig = {
 };
 
 const reducer = combineReducers({
-  product: ProductSlice.reducer,
+  products: ProductSlice.reducer,
   cart: CartSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 
-const store = configureStore({
+export const store = configureStore({
   reducer: persistedReducer,
 });
 
