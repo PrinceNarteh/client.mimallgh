@@ -21,6 +21,13 @@ import { Product } from "@/types";
 import { GetServerSideProps } from "next";
 import { getProduct, getProducts } from "@/services/products";
 import Link from "next/link";
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper";
+
+import "swiper/css";
+import "swiper/css/pagination";
+
 // import { useAppDispatch } from "@/store";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
@@ -77,13 +84,13 @@ const ProductDetails = ({ product }: { product: Product }) => {
   console.log(similarProduct);
 
   return (
-    <Container>
+    <div>
       <div className="mx-auto mb-10 w-11/12 pt-5">
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
-          <div className="relative col-span-9 flex flex-col gap-5 md:flex-row">
+        <div className="lg:grid gap-5 lg:grid-cols-12">
+          <div className="relative lg:col-span-9 flex flex-col gap-5 md:flex-row">
             <div className="">
               <div className="top-[110px] pb-10 md:sticky">
-                <div className=" h-fit w-[400px] shrink-0 gap-5 ">
+                <div className="hidden md:block h-fit w-[400px] shrink-0">
                   <div className="flex justify-between gap-5">
                     <div className="flex flex-col justify-center gap-3">
                       {product.images.map((image, idx) => (
@@ -125,39 +132,102 @@ const ProductDetails = ({ product }: { product: Product }) => {
                     </div>
                   </div>
                 </div>
-                <div className="h-fit">
-                  <h3 className="sh-underline mt-5 text-2xl">Product Video</h3>
-                  <div className="h-[280px]">
-                    <ReactPlayer
-                      url={"/videos/sea-shore.mp4"}
-                      controls
-                      width={"100%"}
-                      height={"100%"}
-                    />
-                  </div>
-                  <div className="flex h-10 w-full items-center gap-2">
-                    <h6>Share:</h6>
-                    <FacebookShareButton
-                      url={url}
-                      quote="Hello"
-                      className="block"
+                <div className="md:hidden h-fit max-w-full shrink-0">
+                  <div className="col-span-8 md:col-span-4 h-48 md:h-96 overflow-hidden rounded-md">
+                    <Swiper
+                      spaceBetween={30}
+                      centeredSlides={true}
+                      loop={true}
+                      speed={2000}
+                      autoplay={{
+                        delay: 5000,
+                        disableOnInteraction: false,
+                      }}
+                      pagination={{
+                        clickable: true,
+                      }}
+                      navigation={true}
+                      modules={[Autoplay, Pagination]}
                     >
-                      <FacebookIcon size={25} style={{ borderRadius: "50%" }} />
-                    </FacebookShareButton>
-                    <WhatsappShareButton url={url} className="block">
-                      <WhatsappIcon size={25} style={{ borderRadius: "50%" }} />
-                    </WhatsappShareButton>
-                    <MdContentCopy size={20} className="cursor-pointer" />
+                      <SwiperSlide>
+                        <div className="relative h-[368px]">
+                          <Image
+                            src={"/images/bg-1.jpg"}
+                            fill
+                            className="h-full w-full rounded-md object-cover object-center"
+                            alt=""
+                          />
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <div className="relative h-[368px]">
+                          <Image
+                            src={"/images/banner-2.jpg"}
+                            fill
+                            style={{ objectFit: "cover" }}
+                            className="h-full w-full rounded-md object-cover"
+                            alt=""
+                          />
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <div className="relative h-[368px]">
+                          <Image
+                            src={"/images/banner-3.jpg"}
+                            fill
+                            style={{ objectFit: "cover" }}
+                            className="h-full w-full rounded-md object-cover"
+                            alt=""
+                          />
+                        </div>
+                      </SwiperSlide>
+                    </Swiper>
                   </div>
                 </div>
-                <div className="mb-4 flex justify-end">
-                  <button
-                    className="rounded-lg border border-pink-500 px-5 py-2 text-pink-500 duration-200 hover:bg-pink-500 hover:text-white"
-                    // onClick={() => handleAddToCart(data as Product)}
-                  >
-                    Add to Cart
-                  </button>
+                <div className="h-fit">
+                  <div className="hidden md:block">
+                    <h3 className="sh-underline mt-5 text-2xl">
+                      Product Video
+                    </h3>
+                    <div className="h-[280px]">
+                      <ReactPlayer
+                        url={"/videos/sea-shore.mp4"}
+                        controls
+                        width={"100%"}
+                        height={"100%"}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex h-10 my-5 w-full items-center gap-2">
+                    <div className="flex h-10 w-full items-center gap-2">
+                      <h6>Share:</h6>
+                      <FacebookShareButton
+                        url={url}
+                        quote="Hello"
+                        className="block"
+                      >
+                        <FacebookIcon
+                          size={25}
+                          style={{ borderRadius: "50%" }}
+                        />
+                      </FacebookShareButton>
+                      <WhatsappShareButton url={url} className="block">
+                        <WhatsappIcon
+                          size={25}
+                          style={{ borderRadius: "50%" }}
+                        />
+                      </WhatsappShareButton>
+                      <MdContentCopy size={20} className="cursor-pointer" />
+                    </div>
+                    <button
+                      className="rounded-lg shrink-0 border border-pink-500 px-5 py-2 text-pink-500 duration-200 hover:bg-pink-500 hover:text-white"
+                      // onClick={() => handleAddToCart(data as Product)}
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
+                <div className="mb-4 flex justify-end"></div>
                 <div>
                   <h5 className="sh-underline mb-2">Ratings and Reviews</h5>
                   <div className="flex text-2xl text-orange-500">
@@ -221,7 +291,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
                 >
                   Visit {product.shop.name} Web Shop
                 </Link>
-                <div className="flex justify-end pr-10">
+                <div className="flex justify-end pr-10 mt-3">
                   <button className="rounded-lg border border-pink-500 px-5 py-2 text-pink-500 duration-200 hover:bg-pink-500 hover:text-white">
                     Add to Cart
                   </button>
@@ -229,29 +299,29 @@ const ProductDetails = ({ product }: { product: Product }) => {
               </div>
             </div>
           </div>
-          <div className="grid-col-12 lg:col-span-3">
+          <div className="w-full overflow-y-auto lg:col-span-3">
             <div className="mt-2 mb-5 flex justify-between border-b-2">
               <h4 className="sh-underline relative md:text-3xl">Top Deals</h4>
             </div>
-            <div className="flex flex-wrap gap-3">
-              {topDeals.map((topDeal, idx) => (
-                <div
-                  key={idx}
-                  className="relative h-28 flex-1 basis-28 overflow-hidden rounded"
-                >
-                  <Image
-                    src={topDeal.image}
-                    fill
-                    alt=""
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-              ))}
+            <div className="w-full">
+              <div className="flex flex-nowrap lg:flex-wrap md:justify-center w-full p-5 gap-5">
+                {topDeals.map((topDeal, idx) => (
+                  <Link
+                    key={idx}
+                    href={`/products/${idx}`}
+                    className="cursor-pointer "
+                  >
+                    <div className="relative h-24 w-32 flex-1 overflow-hidden rounded-lg shadow-md">
+                      <Image src={topDeal.image} fill alt="" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-        <div className="mt-10 px-7 pb-5">
-          <h3 className="sh-underline text-2xl font-semibold">
+        <div className="mt-10 pb-5">
+          <h3 className="sh-underline text-xl md:text-2xl font-semibold">
             Compare with similar items
           </h3>
           <div className="w-full overflow-x-auto">
@@ -262,8 +332,8 @@ const ProductDetails = ({ product }: { product: Product }) => {
             </div>
           </div>
         </div>
-        <div className="mx-auto w-10/12 space-y-5">
-          <h3 className="sh-underline mt-5 text-2xl">
+        <div className="px-2 mx-auto md:w-10/12 space-y-5">
+          <h3 className="sh-underline mt-5 text-xl md:text-2xl">
             Customers Reviews and Rating
           </h3>
           <div>
@@ -352,7 +422,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
             </div>
           </div>
         </div>
-        <div className="mx-auto mt-10 w-10/12">
+        <div className="px-2 mx-auto mt-10 md:w-10/12">
           <h3 className="sh-underline my-5 text-2xl">
             Frequently Asked Question
           </h3>
@@ -382,7 +452,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
           </div>
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
