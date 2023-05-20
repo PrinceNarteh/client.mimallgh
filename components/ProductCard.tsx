@@ -4,10 +4,10 @@ import Link from "next/link";
 
 export const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="h-[200px] w-[130px] my-5 shrink-0 md:h-[230px] md:w-[205px]">
+    <div className="h-[200px] w-[120px] my-5 shrink-0 md:h-[230px] md:w-[205px]">
       <Link
         href={`/web-store/${product.shop.id}`}
-        className="mb-1 px-1 text-sm font-bold tracking-widest text-pink-500 line-clamp-1"
+        className="mb-1 px-1 text-xs md:text-sm font-bold tracking-widest text-pink-500 line-clamp-1"
       >
         {product.shop.name}
       </Link>
@@ -24,8 +24,10 @@ export const ProductCard = ({ product }: { product: Product }) => {
           </Link>
         </div>
         <div className="px-2 py-1 bg-white">
-          <p className="text-sm line-clamp-1">{product.title}</p>
-          <p className="font-semibold text-center">GH¢{product.price}</p>
+          <p className="text-xs md:text-sm line-clamp-1">{product.title}</p>
+          <p className="font-semibold text-center text-sm md:text-base">
+            GH¢{product.price}
+          </p>
         </div>
       </div>
     </div>
