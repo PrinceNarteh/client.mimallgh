@@ -121,12 +121,12 @@ export const locations = [
 ];
 
 export const otherLocations = [
-  { label: "Science", link: "science" },
   { label: "Ayensu", link: "ayensu" },
   { label: "Duakro", link: "duakro" },
   { label: "KNH/Valco", link: "knh_valco" },
   { label: "Kokoado", link: "kokoado" },
   { label: "Kwasipra", link: "kwasipra" },
+  { label: "Science", link: "science" },
   { label: "New Site", link: "new_site" },
   { label: "Old Site", link: "old_site" },
   { label: "Science", link: "science" },

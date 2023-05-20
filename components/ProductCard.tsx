@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="h-[280px] w-[205px] my-5 shrink-0">
+    <div className="h-[200px] w-[130px] my-5 shrink-0 md:h-[230px] md:w-[205px]">
       <Link
         href={`/web-store/${product.shop.id}`}
         className="mb-1 px-1 text-sm font-bold tracking-widest text-pink-500 line-clamp-1"
@@ -12,7 +12,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
         {product.shop.name}
       </Link>
       <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
-        <div className="relative h-[210px] w-full">
+        <div className="relative h-[130px] md:h-[160px] w-full">
           <Link href={`/products/${product.id}`}>
             <Image
               src={product.images[0].secure_url}

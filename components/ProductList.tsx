@@ -31,8 +31,8 @@ const ProductList = ({ products }: { products: IProduct }) => {
                     See more...
                   </Link>
                 </div>
-                <div className="w-full overflow-x-scroll">
-                  <div className="px-5 w-[1280] flex gap-5">
+                <div className="w-full h-fit overflow-x-scroll">
+                  <div className="px-5 flex gap-5">
                     {product.data.slice(0, 6).map((product, idx) => (
                       <ProductCard key={idx} product={product} />
                     ))}
