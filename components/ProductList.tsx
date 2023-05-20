@@ -80,7 +80,7 @@ const ProductList = ({ products }: { products: IProduct }) => {
               </div>
 
               <div className="mb-5 bg-white">
-                <TopDeals topDeals={topDeals} />
+                <TopDeals topDeals={topDeals}  />
               </div>
               <div className="my-5 bg-white px-5 py-2">
                 <div className="flex items-center justify-between">

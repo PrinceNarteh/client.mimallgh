@@ -5,7 +5,7 @@ import { Section } from "./Section";
 
 export const TopDeals = ({ topDeals }: { topDeals: { image: string }[] }) => {
   return (
-    <Section label="Top Deals">
+    <Section label="Top Deals" link="/top-deals">
       <div className="w-full overflow-y-auto">
         <div className="pl-5 flex gap-5 md:pb-3">
           {topDeals.map((topDeal, idx) => (
