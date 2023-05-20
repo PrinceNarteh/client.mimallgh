@@ -118,10 +118,10 @@ export const locations = [
   { label: "Select Location", link: "" },
   { label: "Amamoma", link: "amamoma" },
   { label: "Apewosika", link: "apewosika" },
-  { label: "Science", link: "science" },
 ];
 
 export const otherLocations = [
+  { label: "Science", link: "science" },
   { label: "Ayensu", link: "ayensu" },
   { label: "Duakro", link: "duakro" },
   { label: "KNH/Valco", link: "knh_valco" },

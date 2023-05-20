@@ -8,8 +8,8 @@ import "swiper/css/pagination";
 
 export const Banner = () => {
   return (
-    <div className="relative mx-auto grid h-96 w-full md:w-9/12 grid-cols-8 gap-3 overflow-hidden rounded-md bg-white p-3">
-      <div className="col-span-2 flex h-full flex-col justify-between">
+    <div className="relative mx-auto grid h-48 md:h-96 w-full md:w-9/12 grid-cols-8 gap-3 overflow-hidden rounded-md bg-white p-3">
+      <div className="col-span-2 h-full flex-col justify-between hidden md:flex">
         {Array(2)
           .fill(null)
           .map((_, idx) => (
@@ -67,7 +67,7 @@ export const Banner = () => {
             </div>
           ))}
       </div>
-      <div className="col-span-4 h-96 overflow-hidden rounded-md">
+      <div className="col-span-8 md:col-span-4 h-48 md:h-96 overflow-hidden rounded-md">
         <Swiper
           spaceBetween={30}
           centeredSlides={true}
@@ -117,7 +117,7 @@ export const Banner = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="col-span-2 flex h-full flex-col justify-between">
+      <div className="col-span-2  h-full flex-col justify-between hidden md:flex">
         {Array(2)
           .fill(null)
           .map((_, idx) => (
