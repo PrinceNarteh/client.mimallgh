@@ -1,4 +1,3 @@
-import axios from "@/lib/axios";
 import { getProducts } from "@/services/products";
 import { allProduct } from "@/store/features/products/productSlice";
 import { useAppDispatch } from "@/store/store";
@@ -7,10 +6,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
-import { CiUser } from "react-icons/ci";
+import { FaRegUser } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
-import { FaUserAlt } from "react-icons/fa";
 import delivery from "../../assets/svgs/delivery-icon.svg";
 
 export const SearchBar = () => {
@@ -68,20 +66,22 @@ export const SearchBar = () => {
 
           <div className="flex items-center shrink-0 justify-end gap-3 text-2xl md:text-4xl md:space-x-3 text-pink-500">
             <IoMdHome onClick={() => router.push("/")} />
-            <Image
-              src={delivery}
-              alt=""
-              width={30}
-              height={30}
-              className="bg-[rgb(236, 72, 153)]"
-            />
+            <div className="w-10 h-10 md:w-9 md:h-9 flex justify-center items-center">
+              <Image
+                src={delivery}
+                alt=""
+                width={80}
+                height={80}
+                className="bg-[rgb(236, 72, 153)]"
+              />
+            </div>
             <Link href={`/cart`} className="relative">
               <TiShoppingCart className="cursor-pointer" />
               <div className="absolute -right-1.5 -top-1.5 flex h-5  w-5 items-center justify-center rounded-full bg-[red]">
                 <span className="text-[10px] text-white">20</span>
               </div>
             </Link>
-            <FaUserAlt className="cursor-pointer" />
+            <FaRegUser className="cursor-pointer" />
           </div>
         </div>
         {/* Menu */}

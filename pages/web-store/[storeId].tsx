@@ -105,7 +105,7 @@ const WebStore = ({ webStore }: { webStore: Store }) => {
           </div>
         </div>
       </div>
-      <div className="sticky w-11/12 mx-auto top-[100px] md:top-[86px] my-5 bg-red-500 z-20 border-y shadow-md p-1 rounded">
+      <div className="sticky w-11/12 mx-auto top-[100px] md:top-[86px] my-5 bg-white z-20 border-y shadow-md p-1 rounded">
         <CustomLinks storeId={storeId as string} />
       </div>
       <div className="w-11/12 mx-auto overflow-x-auto">
