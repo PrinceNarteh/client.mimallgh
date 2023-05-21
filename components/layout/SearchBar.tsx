@@ -10,6 +10,8 @@ import { BiSearch } from "react-icons/bi";
 import { CiUser } from "react-icons/ci";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
+import { FaUserAlt } from "react-icons/fa";
+import delivery from "../../assets/svgs/delivery-icon.svg";
 
 export const SearchBar = () => {
   const [search, setSearch] = useState("");
@@ -39,7 +41,7 @@ export const SearchBar = () => {
       />
       <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
       <div className="relative z-10 flex py-3 flex-col md:flex-row gap-3 h-full w-full items-center justify-between">
-        <div className="md:w-1/3">
+        <div className="md:w-60">
           {/* Logo */}
           <div className="p-1 rounded">
             <Image
@@ -51,9 +53,9 @@ export const SearchBar = () => {
           </div>
         </div>
 
-        <div className="flex justify-between gap-5 md:gap-28 w-full">
+        <div className="flex justify-between gap-5 w-full">
           {/* Search Bar */}
-          <div className="relative flex bg-white md:py-1 w-full md:max-w-3xl self-center items-center rounded-full border-2 px-2">
+          <div className="relative flex bg-white md:py-1 md:max-w-xl mx-auto w-full flex-1 self-center items-center rounded-full border-2 px-2">
             <input
               type="search"
               className="outline-none flex-1 py-0.5 md:pl-3"
@@ -64,15 +66,22 @@ export const SearchBar = () => {
             <BiSearch className="shrink-0 text-xl text-gray-500" />
           </div>
 
-          <div className="flex items-center justify-end space-x-1 text-2xl md:text-4xl md:space-x-3 text-pink-500">
+          <div className="flex items-center shrink-0 justify-end gap-3 text-2xl md:text-4xl md:space-x-3 text-pink-500">
             <IoMdHome onClick={() => router.push("/")} />
-            <CiUser className="cursor-pointer" />
+            <Image
+              src={delivery}
+              alt=""
+              width={30}
+              height={30}
+              className="bg-[rgb(236, 72, 153)]"
+            />
             <Link href={`/cart`} className="relative">
               <TiShoppingCart className="cursor-pointer" />
               <div className="absolute -right-1.5 -top-1.5 flex h-5  w-5 items-center justify-center rounded-full bg-[red]">
                 <span className="text-[10px] text-white">20</span>
               </div>
             </Link>
+            <FaUserAlt className="cursor-pointer" />
           </div>
         </div>
         {/* Menu */}
