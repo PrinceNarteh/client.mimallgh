@@ -1,6 +1,12 @@
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import deliveryIcon from "../../../assets/svgs/delivery-icon.svg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper";
+
+import "swiper/css";
+import "swiper/css/pagination";
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
@@ -16,23 +22,23 @@ const cards = [
   },
   {
     label: "Grocery And General",
-    link: "grocery_and_general",
+    link: "grocery-and-general",
   },
   {
     label: "Health And Wellness",
-    link: "health_and_wellness",
+    link: "health-and-wellness",
   },
   {
     label: "Home And Electrical Appliances",
-    link: "home_and_electrical_appliances",
+    link: "home-and-electrical-appliances",
   },
   {
     label: "Personal Services",
-    link: "personal_services",
+    link: "personal-services",
   },
   {
     label: "Printing And Stationery",
-    link: "printing_and_stationery",
+    link: "printing-and-stationery",
   },
   {
     label: "Tech",
@@ -43,12 +49,15 @@ const cards = [
 const Delivery = () => {
   return (
     <div>
-      <div className="bg-teal-500 h-32 relative flex justify-center items-center">
-        <div className="absolute bg-[#165474] flex justify-between items-center pr-5 h-16 w-11/12 mx-auto -bottom-8">
+      <div className="h-24 relative flex justify-center items-center bg-[url('/images/delivery-banner.jpg')]">
+        <div className="absolute bg-[#165474] z-10 flex justify-between items-center pr-5 h-16 w-11/12 mx-auto -bottom-8">
           <div className="bg-white h-full w-80 rounded-r-full flex items-center p-5">
-            <h5 className="font-bold text-lg">OHEMAA'S DELIVERY</h5>
+            <Image src={deliveryIcon} alt="" width={50} height={50} />
+            <h5 className="ml-3 font-bold text-lg text-[#165474]">
+              OHEMAA'S DELIVERY
+            </h5>
           </div>
-          <div className="text-white space-x-5 text-lg">
+          <div className="text-white space-x-10 text-lg">
             <Link href="/">Home</Link>
             <Link href="#">Services</Link>
             <Link href="#">Working Hours</Link>
@@ -59,12 +68,63 @@ const Delivery = () => {
           </div>
         </div>
       </div>
-      <div className="h-screen text-[#165474]"></div>
+      <div className="h-60 md:h-[calc(100vh_-_96px)]">
+        <Swiper
+          spaceBetween={0}
+          centeredSlides={true}
+          loop={true}
+          speed={2000}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Autoplay, Pagination]}
+        >
+          <SwiperSlide>
+            <div className="relative h-60 md:h-[calc(100vh_-_96px)]">
+              <Image
+                src={"/images/bg-1.jpg"}
+                fill
+                className="h-full w-full object-cover object-center"
+                alt=""
+              />
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="relative h-60 md:h-[calc(100vh_-_96px)]">
+              <Image
+                src={"/images/banner-2.jpg"}
+                fill
+                style={{ objectFit: "cover" }}
+                className="h-full w-full object-cover"
+                alt=""
+              />
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="relative h-60 md:h-[calc(100vh_-_96px)]">
+              <Image
+                src={"/images/banner-3.jpg"}
+                fill
+                style={{ objectFit: "cover" }}
+                className="h-full w-full object-cover"
+                alt=""
+              />
+            </div>
+          </SwiperSlide>
+        </Swiper>
+      </div>
       <div className=" bg-gray-300">
         <div className="flex flex-col justify-center w-11/12 mx-auto mb-32">
-          <div className="bg-white p-5 w-full mx-auto text-center -translate-y-16 ">
-            <h3 className="text-4xl font-bold underline mb-2">What We Do</h3>
-            <p className="text-3xl">
+          <div className="bg-white p-5 z-10 w-full mx-auto text-center -translate-y-16 ">
+            <h3 className="text-2xl md:text-4xl font-bold underline mb-2">
+              What We Do
+            </h3>
+            <p className="text-xl md:text-3xl">
               We <span className="text-orange-500 font-bold">CONNECT</span> you
               to Sellers, you{" "}
               <span className="text-orange-500 font-bold">ORDER</span>, We{" "}
@@ -80,7 +140,7 @@ const Delivery = () => {
                 </h4>
                 <div className="flex justify-center w-[250px] h-[240px] bg-slate-500">
                   <Image
-                    src="/images/fashion-and-wears-2.jpg"
+                    src={`/images/${card.link}-2.jpg`}
                     alt=""
                     width="250"
                     height={250}
@@ -100,22 +160,77 @@ const Delivery = () => {
           </div>
         </div>
 
-        <div className="bg-white p-5 w-11/12 mx-auto text-center -translate-y-16 text-blue-500 shadow-md">
-          <h3 className="text-4xl font-bold mb-2">OTHER SERVICES</h3>
+        <div className="bg-white p-4 w-11/12 mx-auto text-center -translate-y-16 text-blue-500 shadow-md">
+          <h3 className="text-xl md:text-4xl font-bold mb-2">OTHER SERVICES</h3>
         </div>
 
         <div className="flex flex-col justify-center w-11/12 mx-auto mb-32">
           <div className="flex flex-wrap gap-10 justify-center">
-            <div className="w-72 h-72 bg-teal-400"></div>
-            <div className="w-72 h-72 bg-teal-400"></div>
-            <div className="w-72 h-72 bg-teal-400"></div>
-            <div className="w-72 h-72 bg-teal-400"></div>
+            <div
+              className="w-72 flex flex-col justify-end p-4 h-80 bg-[url('/images/delivery-cooperate.jpg')]"
+              style={{
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+              }}
+            >
+              <Link
+                href="/"
+                className="w-full bg-[#165474] text-center text-white py-2"
+              >
+                Cooperate Delivery
+              </Link>
+            </div>
+            <div
+              className="w-72 flex flex-col justify-end p-4 h-80 bg-[url('/images/delivery-personal.jpg')]"
+              style={{
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+              }}
+            >
+              <Link
+                href="/"
+                className="w-full bg-[#165474] text-center text-white py-2"
+              >
+                Personal Delivery
+              </Link>
+            </div>
+            <div
+              className="w-72 flex flex-col justify-end p-4 h-80 bg-[url('/images/delivery-pick-ups.jpg')]"
+              style={{
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+              }}
+            >
+              <Link
+                href="/"
+                className="w-full bg-[#165474] text-center text-white py-2"
+              >
+                Pick ups & Drop off
+              </Link>
+            </div>
+            <div
+              className="w-72 flex flex-col justify-end p-4 h-80 bg-[url('/images/delivery-errands.jpg')]"
+              style={{
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+              }}
+            >
+              <Link
+                href="/"
+                className="w-full bg-[#165474] text-center text-white py-2"
+              >
+                Errands
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className="bg-white p-5 w-6/12 mx-auto flex justify-evenly text-2xl font-bold text-center -translate-y-16 text-blue-500 shadow-md">
-          <p>Call: 024 123 4567</p>
-          <p>Call: 050 123 4567</p>
+        <div className="bg-white p-5 w-6/12 mx-auto  text-xl md:text-2xl font-bold text-center -translate-y-16 text-blue-500 shadow-md">
+          <p className="mb-2">Call:</p>
+          <div className="flex flex-col md:flex-row justify-evenly">
+            <p> 024 123 4567</p>
+            <p>050 123 4567</p>
+          </div>
         </div>
       </div>
 
