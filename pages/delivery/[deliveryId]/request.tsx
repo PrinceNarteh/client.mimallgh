@@ -1,9 +1,42 @@
 import DeliveryFormLayout from "@/components/DeliveryFormLayout";
+import {
+  addInfo,
+  useDeliverySelector,
+} from "@/store/features/delivery/deliverySlice";
+import { useAppDispatch } from "@/store/store";
+import { Delivery } from "@/types";
+import { useRouter } from "next/router";
 import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { CgRadioCheck } from "react-icons/cg";
 
 const DeliveryForm = () => {
+  const dispatch = useAppDispatch();
+  const { delivery } = useDeliverySelector();
+  const router = useRouter();
+
+  const {
+    getValues,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: delivery,
+  });
+
+  const submitHandler: SubmitHandler<Delivery> = (data) => {
+    dispatch(
+      addInfo({
+        ...delivery,
+        ...data,
+      })
+    );
+    router.push("/delivery/name/recipient");
+  };
+
+  console.log(errors);
+
   return (
     <DeliveryFormLayout>
       <div className="flex items-center gap-2">
@@ -11,45 +44,54 @@ const DeliveryForm = () => {
         <h3 className="text-xl font-bold sh-underline">Order Form</h3>
       </div>
       <p className="ml-7 text-lg mt-2">Statement of Request</p>
-      <form className="ml-7 mt-3 pr-5 space-y-3">
+      <form
+        className="ml-7 mt-3 space-y-3"
+        onSubmit={handleSubmit(submitHandler)}
+      >
         <div className="flex flex-wrap items-center gap-1">
-          <label htmlFor="" className="w-40 inline-block">
+          <label htmlFor="" className="w-36 inline-block">
             I want you to
           </label>
           <input
             type="text"
             className="flex-1 border border-[#165474] outline-none p-1 rounded"
+            {...register("request", {
+              required: "Request message is required",
+            })}
           />
         </div>
         <div className="flex flex-wrap items-center gap-1">
-          <label htmlFor="" className="w-40 inline-block">
+          <label htmlFor="" className="w-36 inline-block">
             From
           </label>
           <input
             type="text"
             className="flex-1 border border-[#165474] outline-none p-1 rounded"
+            {...register("from")}
           />
         </div>
         <div className="flex flex-wrap items-center gap-1">
-          <label htmlFor="" className="w-40 inline-block">
+          <label htmlFor="" className="w-36 inline-block">
             To
           </label>
           <input
             type="text"
             className="flex-1 border border-[#165474] outline-none p-1 rounded"
+            {...register("to")}
           />
         </div>
         <div className="flex flex-wrap items-center gap-1">
-          <label htmlFor="" className="w-40 inline-block">
+          <label htmlFor="" className="w-36 inline-block">
             Other Details
           </label>
           <input
             type="text"
             className="flex-1 border border-[#165474] outline-none p-1 rounded"
+            {...register("otherDetails")}
           />
         </div>
         <div className="flex flex-wrap items-center gap-1">
-          <div className="w-40 lg:inline-block hidden"></div>
+          <div className="w-36 md:inline-block hidden"></div>
 
           <button
             type="submit"
