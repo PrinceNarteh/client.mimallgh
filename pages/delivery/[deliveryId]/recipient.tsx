@@ -9,6 +9,8 @@ import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { CgRadioCheck } from "react-icons/cg";
+import { BiEdit } from "react-icons/bi";
+import Link from "next/link";
 
 const RecipientForm = () => {
   const dispatch = useAppDispatch();
@@ -36,9 +38,14 @@ const RecipientForm = () => {
 
   return (
     <DeliveryFormLayout>
-      <div className="flex items-center gap-2">
-        <BsFillCheckCircleFill className="text-xl text-green-500" />
-        <h3 className="text-xl font-bold sh-underline">Order Form</h3>
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex  items-center gap-2">
+          <BsFillCheckCircleFill className="text-xl text-green-500" />
+          <h3 className="text-xl font-bold sh-underline">Order Form</h3>
+        </div>
+        <Link href={"/delivery/name/request"}>
+          <BiEdit className="text-pink-500 text-2xl cursor-pointer" />
+        </Link>
       </div>
 
       <div className="space-y-2 mt-4 ml-7">

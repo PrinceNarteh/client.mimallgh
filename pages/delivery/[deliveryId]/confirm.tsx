@@ -10,10 +10,10 @@ import React from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Delivery } from "@/types";
-import { BiEdit } from "react-icons/bi";
 import Link from "next/link";
+import { BiEdit } from "react-icons/bi";
 
-const DeliveryTimeForm = () => {
+const ConfirmDeliveryRequest = () => {
   const dispatch = useAppDispatch();
   const { delivery } = useDeliverySelector();
   const router = useRouter();
@@ -34,7 +34,7 @@ const DeliveryTimeForm = () => {
         ...data,
       })
     );
-    router.push("/delivery/name/confirm");
+    router.push("/delivery/name/time");
   };
   return (
     <DeliveryFormLayout>
@@ -43,7 +43,9 @@ const DeliveryTimeForm = () => {
           <BsFillCheckCircleFill className="text-xl text-green-500" />
           <h3 className="text-xl font-bold sh-underline">Order Form</h3>
         </div>
-        <BiEdit className="text-pink-500 text-2xl cursor-pointer" />
+        <Link href={"/delivery/name/request"}>
+          <BiEdit className="text-pink-500 text-2xl cursor-pointer" />
+        </Link>
       </div>
 
       <div className="space-y-2 mt-4 ml-7">
@@ -69,7 +71,7 @@ const DeliveryTimeForm = () => {
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex items-center justify-between gap-2 my-3">
         <div className="flex  items-center gap-2">
           <BsFillCheckCircleFill className="text-xl text-green-500" />
           <h3 className="text-xl font-bold sh-underline">Recipient Address</h3>
@@ -94,56 +96,41 @@ const DeliveryTimeForm = () => {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 mt-5">
-        <BsFillCheckCircleFill className="text-xl text-green-500" />
-        <h3 className="text-xl font-bold sh-underline">
-          Schedule Delivery Time/Date
-        </h3>
+      <div className="flex items-center justify-between gap-2 my-3">
+        <div className="flex  items-center gap-2">
+          <BsFillCheckCircleFill className="text-xl text-green-500" />
+          <h3 className="text-xl font-bold sh-underline">
+            Schedule Delivery Time/Date
+          </h3>
+        </div>
+        <Link href={"/delivery/name/time"}>
+          <BiEdit className="text-pink-500 text-2xl cursor-pointer" />
+        </Link>
       </div>
-      <form className="ml-7 space-y-2" onSubmit={handleSubmit(submitHandler)}>
-        <div className="flex mt-4 flex-wrap items-center gap-1">
-          <label htmlFor="" className="w-16 md:w-40  inline-block">
-            Now
-          </label>
-          <input
-            type="time"
-            className="flex-1 border border-[#165474] outline-none p-1 rounded"
-            {...register("time", {
-              required: {
-                value: true,
-                message: "Time is required",
-              },
-            })}
-          />
-        </div>
-        <div className="flex flex-wrap items-center gap-1">
-          <label htmlFor="" className="w-16 md:w-40 inline-block">
-            Later
-          </label>
-          <input
-            type="datetime-local"
-            className="flex-1 border border-[#165474] outline-none p-1 rounded"
-            {...register("date", {
-              required: {
-                value: true,
-                message: "Date and Time for delivery is required",
-              },
-            })}
-          />
-        </div>
-        <div className="flex flex-wrap items-center gap-1">
-          <div className="w-40 lg:inline-block hidden"></div>
 
-          <button
-            type="submit"
-            className="bg-pink-500 text-white flex-1 py-2 rounded"
-          >
-            Confirm
-          </button>
+      <div className="space-y-2 mt-4 ml-7">
+        <div className="flex flex-wrap items-center gap-1">
+          <p className="w-40 inline-block font-bold">Time</p>
+          <p>{delivery.time}</p>
         </div>
-      </form>
+        <div className="flex flex-wrap items-center gap-1">
+          <p className="w-40 inline-block font-bold">Date</p>
+          <p>{delivery.date}</p>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-1 mt-4">
+        <div className="w-40 lg:inline-block hidden"></div>
+
+        <button
+          type="submit"
+          className="bg-pink-500 text-white flex-1 py-2 rounded"
+        >
+          Continue
+        </button>
+      </div>
     </DeliveryFormLayout>
   );
 };
 
-export default DeliveryTimeForm;
+export default ConfirmDeliveryRequest;
