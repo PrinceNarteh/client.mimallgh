@@ -1,9 +1,40 @@
 import DeliveryFormLayout from "@/components/DeliveryFormLayout";
-import React from "react";
+import {
+  addInfo,
+  useDeliverySelector,
+} from "@/store/features/delivery/deliverySlice";
+import { useAppDispatch } from "@/store/store";
+import { Delivery } from "@/types";
+import { useRouter } from "next/router";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { CgRadioCheck } from "react-icons/cg";
 
 const RecipientForm = () => {
+  const dispatch = useAppDispatch();
+  const { delivery } = useDeliverySelector();
+  const router = useRouter();
+
+  const {
+    getValues,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: delivery,
+  });
+
+  const submitHandler: SubmitHandler<Delivery> = (data) => {
+    dispatch(
+      addInfo({
+        ...delivery,
+        ...data,
+      })
+    );
+    router.push("/delivery/name/time");
+  };
+
+  console.log(errors);
   return (
     <DeliveryFormLayout>
       <div className="flex items-center gap-2">
@@ -14,19 +45,19 @@ const RecipientForm = () => {
       <div className="space-y-2 mt-4 ml-7">
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">I want you to</p>
-          <p>Pick up my refrigerator</p>
+          <p>{delivery.request}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">From</p>
-          <p>Mosco Mart, UCC</p>
+          <p>{delivery.from}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">To</p>
-          <p>KaKumdo</p>
+          <p>{delivery.to}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">Other Details</p>
-          <p></p>
+          <p>{delivery.otherDetails}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">Delivery Fee</p>
@@ -38,7 +69,7 @@ const RecipientForm = () => {
         <BsFillCheckCircleFill className="text-xl text-green-500" />
         <h3 className="text-xl font-bold sh-underline">Recipient Address</h3>
       </div>
-      <form className="ml-7 space-y-2">
+      <form className="ml-7 space-y-2" onSubmit={handleSubmit(submitHandler)}>
         <div className="flex mt-4 flex-wrap items-center gap-1">
           <label htmlFor="" className="w-40 inline-block">
             Name
@@ -46,6 +77,9 @@ const RecipientForm = () => {
           <input
             type="text"
             className="flex-1 border border-[#165474] outline-none p-1 rounded"
+            {...register("name", {
+              required: true,
+            })}
           />
         </div>
         <div className="flex flex-wrap items-center gap-1">
@@ -55,6 +89,9 @@ const RecipientForm = () => {
           <input
             type="text"
             className="flex-1 border border-[#165474] outline-none p-1 rounded"
+            {...register("location", {
+              required: true,
+            })}
           />
         </div>
         <div className="flex flex-wrap items-center gap-1">
@@ -64,6 +101,9 @@ const RecipientForm = () => {
           <input
             type="text"
             className="flex-1 border border-[#165474] outline-none p-1 rounded"
+            {...register("phoneNumber", {
+              required: true,
+            })}
           />
         </div>
         <div className="flex flex-wrap items-center gap-1">
