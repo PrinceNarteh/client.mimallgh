@@ -50,7 +50,7 @@ const cards = [
 const Delivery = () => {
   return (
     <DeliveryLayout>
-      <div className="transform -translate-y-12">
+      <div className="">
         <div className="h-60 md:h-[calc(100vh_-_96px)]">
           <Swiper
             spaceBetween={0}

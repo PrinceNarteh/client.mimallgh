@@ -13,6 +13,7 @@ import delivery from "../../assets/svgs/delivery-icon.svg";
 
 export const SearchBar = () => {
   const [search, setSearch] = useState("");
+  const [openDelivery, setOpenDelivery] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -66,7 +67,10 @@ export const SearchBar = () => {
 
           <div className="flex items-center shrink-0 justify-end gap-3 text-2xl md:text-4xl md:space-x-3 text-pink-500">
             <IoMdHome onClick={() => router.push("/")} />
-            <div className="w-10 h-10 md:w-9 md:h-9 flex justify-center items-center">
+            <div
+              onClick={() => setOpenDelivery(!openDelivery)}
+              className="relative w-10 h-10 md:w-9 md:h-9 flex justify-center items-center"
+            >
               <Image
                 src={delivery}
                 alt=""
@@ -74,6 +78,29 @@ export const SearchBar = () => {
                 height={80}
                 className="bg-[rgb(236, 72, 153)]"
               />
+              <div
+                className={`${
+                  openDelivery
+                    ? "visible translate-y-0 opacity-100"
+                    : "invisible translate-y-3 opacity-0"
+                } absolute left-0 top-[55px] min-w-max py-2 text-base bg-gray-800 arrow before:left-2 duration-500 transform`}
+              >
+                <Link
+                  href="delivery/winike-dispatch"
+                  className="py-2 px-5 block hover:bg-gray-700"
+                >
+                  WinIke Dispatch
+                </Link>
+                <Link
+                  href="/delivery/god's-way-laundry"
+                  className="py-2 px-5 block hover:bg-gray-700"
+                >
+                  God's Way
+                </Link>
+                <Link href="" className="py-2 px-5 block hover:bg-gray-700">
+                  Hubtel
+                </Link>
+              </div>
             </div>
             <Link href={`/cart`} className="relative">
               <TiShoppingCart className="cursor-pointer" />

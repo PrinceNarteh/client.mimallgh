@@ -31,6 +31,10 @@
   background-color: deeppink;
 }
 
+.arrow {
+  @apply before:absolute before:-top-4 before:w-0 before:h-0 before:border-l-[12px] before:border-l-transparent before:border-b-[16px] before:border-b-gray-800 before:border-r-[12px] before:border-r-transparent;
+}
+
 .magnify img {
   width: 500px;
   height: 100%;

@@ -118,17 +118,17 @@ const ConfirmDeliveryRequest = () => {
 
           <div className="space-y-2 mt-4 ml-7">
             <div className="flex flex-wrap items-center gap-1">
-              <p className="w-28 inline-block font-bold">Time</p>
+              <p className="w-28 md:w-36 inline-block font-bold">Time</p>
               <p>{delivery.time}</p>
             </div>
             <div className="flex flex-wrap items-center gap-1">
-              <p className="w-28 inline-block font-bold">Date</p>
+              <p className="w-28 md:w-36 inline-block font-bold">Date</p>
               <p>{delivery.date}</p>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-1 mt-4">
-            <div className="w-36 lg:inline-block hidden"></div>
+            <div className="w-36 md:w-40 lg:inline-block hidden"></div>
             <button
               type="submit"
               className="bg-pink-500 text-white flex-1 py-2 rounded"
