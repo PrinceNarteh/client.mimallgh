@@ -50,23 +50,23 @@ const ConfirmDeliveryRequest = () => {
 
       <div className="space-y-2 mt-4 ml-7">
         <div className="flex flex-wrap items-center gap-1">
-          <p className="w-40 inline-block font-bold">I want you to</p>
+          <p className="w-36 inline-block font-bold">I want you to</p>
           <p>{delivery.request}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
-          <p className="w-40 inline-block font-bold">From</p>
+          <p className="w-36 inline-block font-bold">From</p>
           <p>{delivery.from}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
-          <p className="w-40 inline-block font-bold">To</p>
+          <p className="w-36 inline-block font-bold">To</p>
           <p>{delivery.to}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
-          <p className="w-40 inline-block font-bold">Other Details</p>
+          <p className="w-36 inline-block font-bold">Other Details</p>
           <p>{delivery.otherDetails}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
-          <p className="w-40 inline-block font-bold">Delivery Fee</p>
+          <p className="w-36 inline-block font-bold">Delivery Fee</p>
           <p>GHC33.50</p>
         </div>
       </div>
@@ -83,15 +83,15 @@ const ConfirmDeliveryRequest = () => {
 
       <div className="space-y-2 mt-4 ml-7">
         <div className="flex flex-wrap items-center gap-1">
-          <p className="w-40 inline-block font-bold">Name</p>
+          <p className="w-36 inline-block font-bold">Name</p>
           <p>{delivery.name}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
-          <p className="w-40 inline-block font-bold">Location</p>
+          <p className="w-36 inline-block font-bold">Location</p>
           <p>{delivery.location}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
-          <p className="w-40 inline-block font-bold">Call Contact</p>
+          <p className="w-36 inline-block font-bold">Call Contact</p>
           <p>{formatPhoneNumber(delivery.phoneNumber)}</p>
         </div>
       </div>
@@ -99,7 +99,7 @@ const ConfirmDeliveryRequest = () => {
       <div className="flex items-center justify-between gap-2 my-3">
         <div className="flex  items-center gap-2">
           <BsFillCheckCircleFill className="text-xl text-green-500" />
-          <h3 className="text-xl font-bold sh-underline">
+          <h3 className="text-md font-bold sh-underline">
             Schedule Delivery Time/Date
           </h3>
         </div>
@@ -110,18 +110,17 @@ const ConfirmDeliveryRequest = () => {
 
       <div className="space-y-2 mt-4 ml-7">
         <div className="flex flex-wrap items-center gap-1">
-          <p className="w-40 inline-block font-bold">Time</p>
+          <p className="w-24 inline-block font-bold">Time</p>
           <p>{delivery.time}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
-          <p className="w-40 inline-block font-bold">Date</p>
+          <p className="w-24 inline-block font-bold">Date</p>
           <p>{delivery.date}</p>
         </div>
       </div>
 
       <div className="flex flex-wrap items-center gap-1 mt-4">
-        <div className="w-40 lg:inline-block hidden"></div>
-
+        <div className="w-36 lg:inline-block hidden"></div>
         <button
           type="submit"
           className="bg-pink-500 text-white flex-1 py-2 rounded"

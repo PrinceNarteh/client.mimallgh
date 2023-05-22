@@ -7,6 +7,7 @@ import { Autoplay, Pagination } from "swiper";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import DeliveryLayout from "@/components/layout/DeliveryLayout";
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
@@ -48,34 +49,7 @@ const cards = [
 
 const Delivery = () => {
   return (
-    <div>
-      <div className="relative">
-        <div className="h-24 relative flex justify-center">
-          <Image
-            src={"/images/delivery-banner.jpg"}
-            fill
-            alt=""
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <div className="relative bg-[#165474] z-10 flex justify-between items-center pr-5 h-12 w-11/12 mx-auto bottom-6">
-          <div className="bg-white h-full w-80 rounded-r-full flex items-center p-5">
-            <Image src={deliveryIcon} alt="" width={50} height={50} />
-            <h5 className="ml-3 font-bold text-lg text-[#165474]">
-              WINIKE DISPATCH
-            </h5>
-          </div>
-          <div className="text-white space-x-10 text-lg">
-            <Link href="/">Home</Link>
-            <Link href="#">Services</Link>
-            <Link href="#">Working Hours</Link>
-            <Link href="#">More</Link>
-          </div>
-          <div className="bg-white py-1 px-4 rounded-full">
-            <input type="text" placeholder="Search all categories..." />
-          </div>
-        </div>
-      </div>
+    <DeliveryLayout>
       <div className="transform -translate-y-12">
         <div className="h-60 md:h-[calc(100vh_-_96px)]">
           <Swiper
@@ -267,7 +241,7 @@ const Delivery = () => {
           <p>Follow Us</p>
         </div>
       </div>
-    </div>
+    </DeliveryLayout>
   );
 };
 
