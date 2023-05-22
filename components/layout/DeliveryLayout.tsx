@@ -23,7 +23,7 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
               WINIKE DISPATCH
             </h5>
           </div>
-          <div className="text-white flex px-2 pl-5 justify-between items-center text-sm py-2 mt-2 w-full">
+          <div className="text-white flex px-2 pl-5 justify-evenly items-center text-sm py-2 mt-2 w-full">
             <Link href="/">Home</Link>
             <Link href="#">Services</Link>
             <Link href="#" className="">

@@ -6,7 +6,7 @@ import { allProduct } from "@/store/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { IProduct } from "@/types";
 import { categories } from "@/utils/data";
-import { locations } from "@/utils/menus";
+import { locations, markets } from "@/utils/menus";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -72,13 +72,13 @@ const Home = ({ products }: { products: IProduct }) => {
           <h4 className="sh-underline relative md:text-3xl">Markets</h4>
           <div className="w-full overflow-x-scroll">
             <div className="flex gap-3 py-4">
-              {locations.slice(1).map((location, idx) => (
+              {markets.slice(1).map((location, idx) => (
                 <Link key={idx} href={`/markets/${location.link}`}>
                   <div
                     className={`group relative h-28 w-52 cursor-pointer overflow-hidden rounded-2xl p-5 shadow-lg`}
                   >
                     <Image
-                      src={"/images/product-1.jpg"}
+                      src={`/images/market-${idx + 1}.jpg`}
                       className="absolute object-cover duration-500 group-hover:scale-110"
                       fill={true}
                       alt=""

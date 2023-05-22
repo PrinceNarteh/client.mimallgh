@@ -114,6 +114,21 @@ export const shopMenus = [
   },
 ];
 
+export const markets = [
+  { label: "Select Location", link: "" },
+  { label: "Amamoma", link: "amamoma" },
+  { label: "Apewosika", link: "apewosika" },
+  { label: "Ayensu", link: "ayensu" },
+  { label: "Duakro", link: "duakro" },
+  { label: "KNH/Valco", link: "knh_valco" },
+  { label: "Kokoado", link: "kokoado" },
+  { label: "Kwasipra", link: "kwasipra" },
+  { label: "Science", link: "science" },
+  { label: "New Site", link: "new_site" },
+  { label: "Old Site", link: "old_site" },
+  { label: "Science", link: "science" },
+];
+
 export const locations = [
   { label: "Select Location", link: "" },
   { label: "Amamoma", link: "amamoma" },
