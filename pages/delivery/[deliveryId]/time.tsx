@@ -45,7 +45,9 @@ const DeliveryTimeForm = () => {
               <BsFillCheckCircleFill className="text-xl text-green-500" />
               <h3 className="text-xl font-bold sh-underline">Order Form</h3>
             </div>
-            <BiEdit className="text-pink-500 text-2xl cursor-pointer" />
+            <Link href={"/delivery/name/request"}>
+              <BiEdit className="text-pink-500 text-2xl cursor-pointer" />
+            </Link>
           </div>
 
           <div className="space-y-2 mt-4 ml-7">
@@ -113,7 +115,7 @@ const DeliveryTimeForm = () => {
             onSubmit={handleSubmit(submitHandler)}
           >
             <div className="flex mt-4 flex-wrap items-center gap-1">
-              <label htmlFor="" className="w-16 md:w-40  inline-block">
+              <label htmlFor="" className="w-28 md:w-40  inline-block">
                 Now
               </label>
               <input
@@ -128,7 +130,7 @@ const DeliveryTimeForm = () => {
               />
             </div>
             <div className="flex flex-wrap items-center gap-1">
-              <label htmlFor="" className="w-16 md:w-40 inline-block">
+              <label htmlFor="" className="w-28 md:w-40 inline-block">
                 Later
               </label>
               <input
@@ -142,7 +144,7 @@ const DeliveryTimeForm = () => {
                 })}
               />
             </div>
-            <div className="flex flex-wrap items-center gap-1">
+            <div className="flex flex-wrap items-center gap-1 pt-2">
               <div className="w-40 lg:inline-block hidden"></div>
 
               <button

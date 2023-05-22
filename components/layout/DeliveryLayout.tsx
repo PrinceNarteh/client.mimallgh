@@ -15,7 +15,7 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div className="bg-[#165474] z-10 py-2 flex flex-col justify-between items-start pr-5 md:h-12 md:w-11/12 mx-auto bottom-6">
+        <div className="bg-[#165474] md:absolute z-10 py-2 flex flex-col justify-between items-start pr-5 md:h-16 md:w-11/12 mx-auto bottom-6 md:-bottom-8">
           <div className="bg-white h-full rounded-r-full flex items-center py-2 px-4">
             <Image src={deliveryIcon} alt="" width={50} height={50} />
             <h5 className="ml-3 font-bold text-lg text-[#165474]">
@@ -35,7 +35,7 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </div>
-      <div className="min-h-[calc(100vh_-_110px)] py-2 bg-gray-200">
+      <div className="min-h-[calc(100vh_-_110px)] py-2 bg-gray-200 md:flex md:justify-center md:items-center p-3">
         {children}
       </div>
     </div>
