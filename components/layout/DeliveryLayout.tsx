@@ -38,7 +38,7 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </div>
-      <div className="min-h-[calc(100vh_-_110px)] md:min-h-[calc(100vh_-_98px)] py-2 bg-gray-200 md:flex md:justify-center md:items-center p-3 cursor-pointer">
+      <div className="min-h-[calc(100vh_-_110px)] md:min-h-[calc(100vh_-_98px)] py-2 bg-gray-200 md:flex md:justify-center md:items-center lg:block md:pt-10 lg:pt-3 p-3 cursor-pointer">
         {children}
       </div>
     </div>
