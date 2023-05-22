@@ -248,6 +248,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
               <h3 className="border-b border-b-gray-400 pb-3 text-2xl font-semibold text-gray-700">
                 {product.title}
               </h3>
+              <p>Other names: </p>
               <p className="mt-2 flex items-start tracking-widest">
                 <span className="text-xl">¢</span>
                 <span className="text-4xl">{product.price}</span>

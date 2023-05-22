@@ -53,10 +53,10 @@ export const SearchBar = () => {
 
         <div className="flex justify-between gap-5 w-full">
           {/* Search Bar */}
-          <div className="relative flex bg-white md:py-1 md:max-w-xl mx-auto w-full flex-1 self-center items-center rounded-full border-2 px-2">
+          <div className="relative flex bg-white md:py-1 md:max-w-xl mx-auto flex-1 self-center items-center rounded-full border-2 px-2">
             <input
               type="search"
-              className="outline-none flex-1 py-0.5 md:pl-3"
+              className="outline-none flex-1 py-0.5 md:pl-3 w-36 md:flex-1"
               placeholder="Search for product..."
               onChange={(e) => setSearch(e.target.value)}
               value={search}

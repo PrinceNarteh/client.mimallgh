@@ -1,9 +1,8 @@
 import DeliveryFormLayout from "@/components/DeliveryFormLayout";
 import React from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import { CgRadioCheck } from "react-icons/cg";
 
-const RecipientForm = () => {
+const DeliveryTimeForm = () => {
   return (
     <DeliveryFormLayout>
       <div className="flex items-center gap-2">
@@ -38,31 +37,44 @@ const RecipientForm = () => {
         <BsFillCheckCircleFill className="text-xl text-green-500" />
         <h3 className="text-xl font-bold sh-underline">Recipient Address</h3>
       </div>
+
+      <div className="space-y-2 mt-4 ml-7">
+        <div className="flex flex-wrap items-center gap-1">
+          <p className="w-40 inline-block font-bold">Name</p>
+          <p>John Doe</p>
+        </div>
+        <div className="flex flex-wrap items-center gap-1">
+          <p className="w-40 inline-block font-bold">Location</p>
+          <p>Kakumdo</p>
+        </div>
+        <div className="flex flex-wrap items-center gap-1">
+          <p className="w-40 inline-block font-bold">Call Contact</p>
+          <p>020 123 4567</p>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-2 mt-5">
+        <BsFillCheckCircleFill className="text-xl text-green-500" />
+        <h3 className="text-xl font-bold sh-underline">
+          Schedule Delivery Time/Date
+        </h3>
+      </div>
       <form className="ml-7 space-y-2">
         <div className="flex mt-4 flex-wrap items-center gap-1">
-          <label htmlFor="" className="w-40 inline-block">
-            Name
+          <label htmlFor="" className="w-16 md:w-40  inline-block">
+            Now
           </label>
           <input
-            type="text"
+            type="time"
             className="flex-1 border border-[#165474] outline-none p-1 rounded"
           />
         </div>
         <div className="flex flex-wrap items-center gap-1">
-          <label htmlFor="" className="w-40 inline-block">
-            Location
+          <label htmlFor="" className="w-16 md:w-40 inline-block">
+            Later
           </label>
           <input
-            type="text"
-            className="flex-1 border border-[#165474] outline-none p-1 rounded"
-          />
-        </div>
-        <div className="flex flex-wrap items-center gap-1">
-          <label htmlFor="" className="w-40 inline-block">
-            Call Contact
-          </label>
-          <input
-            type="text"
+            type="datetime-local"
             className="flex-1 border border-[#165474] outline-none p-1 rounded"
           />
         </div>
@@ -77,14 +89,8 @@ const RecipientForm = () => {
           </button>
         </div>
       </form>
-      <div className="space-y-2 mt-2">
-        <div className="flex items-center gap-2">
-          <CgRadioCheck className="text-xl" />
-          <h3 className="text-lg">Schedule Delivery Time/Date</h3>
-        </div>
-      </div>
     </DeliveryFormLayout>
   );
 };
 
-export default RecipientForm;
+export default DeliveryTimeForm;

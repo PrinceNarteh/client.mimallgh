@@ -47,13 +47,13 @@ export default function App({
       <SessionProvider session={session}>
         <Provider store={store}>
           <PersistGate persistor={persistor}>
-            {!router.pathname.startsWith("/auth") ||
-              (!router.pathname.startsWith("/delivery") && (
-                <>
-                  <SearchBar />
-                  <Navbar />
-                </>
-              ))}
+            {router.pathname.startsWith("/auth") ||
+            !router.pathname.startsWith("/delivery") ? (
+              <>
+                <SearchBar />
+                <Navbar />
+              </>
+            ) : null}
             {loading && <Loader />}
             <Component {...pageProps} />
           </PersistGate>
