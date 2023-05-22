@@ -1,8 +1,39 @@
 import DeliveryFormLayout from "@/components/DeliveryFormLayout";
+import {
+  addInfo,
+  useDeliverySelector,
+} from "@/store/features/delivery/deliverySlice";
+import { useAppDispatch } from "@/store/store";
+import { formatPhoneNumber } from "@/utils/utilities";
+import { useRouter } from "next/router";
 import React from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { Delivery } from "@/types";
 
 const DeliveryTimeForm = () => {
+  const dispatch = useAppDispatch();
+  const { delivery } = useDeliverySelector();
+  const router = useRouter();
+
+  const {
+    getValues,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: delivery,
+  });
+
+  const submitHandler: SubmitHandler<Delivery> = (data) => {
+    dispatch(
+      addInfo({
+        ...delivery,
+        ...data,
+      })
+    );
+    router.push("/delivery/name/time");
+  };
   return (
     <DeliveryFormLayout>
       <div className="flex items-center gap-2">
@@ -13,19 +44,19 @@ const DeliveryTimeForm = () => {
       <div className="space-y-2 mt-4 ml-7">
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">I want you to</p>
-          <p>Pick up my refrigerator</p>
+          <p>{delivery.request}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">From</p>
-          <p>Mosco Mart, UCC</p>
+          <p>{delivery.from}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">To</p>
-          <p>KaKumdo</p>
+          <p>{delivery.to}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">Other Details</p>
-          <p></p>
+          <p>{delivery.otherDetails}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">Delivery Fee</p>
@@ -41,15 +72,15 @@ const DeliveryTimeForm = () => {
       <div className="space-y-2 mt-4 ml-7">
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">Name</p>
-          <p>John Doe</p>
+          <p>{delivery.name}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">Location</p>
-          <p>Kakumdo</p>
+          <p>{delivery.location}</p>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">Call Contact</p>
-          <p>020 123 4567</p>
+          <p>{formatPhoneNumber(delivery.phoneNumber)}</p>
         </div>
       </div>
 
@@ -59,7 +90,7 @@ const DeliveryTimeForm = () => {
           Schedule Delivery Time/Date
         </h3>
       </div>
-      <form className="ml-7 space-y-2">
+      <form className="ml-7 space-y-2" onSubmit={handleSubmit(submitHandler)}>
         <div className="flex mt-4 flex-wrap items-center gap-1">
           <label htmlFor="" className="w-16 md:w-40  inline-block">
             Now
@@ -67,6 +98,7 @@ const DeliveryTimeForm = () => {
           <input
             type="time"
             className="flex-1 border border-[#165474] outline-none p-1 rounded"
+            {...register("time")}
           />
         </div>
         <div className="flex flex-wrap items-center gap-1">
@@ -76,6 +108,7 @@ const DeliveryTimeForm = () => {
           <input
             type="datetime-local"
             className="flex-1 border border-[#165474] outline-none p-1 rounded"
+            {...register("date")}
           />
         </div>
         <div className="flex flex-wrap items-center gap-1">

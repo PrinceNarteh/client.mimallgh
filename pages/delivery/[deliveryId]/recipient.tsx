@@ -34,7 +34,6 @@ const RecipientForm = () => {
     router.push("/delivery/name/time");
   };
 
-  console.log(errors);
   return (
     <DeliveryFormLayout>
       <div className="flex items-center gap-2">
