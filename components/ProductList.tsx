@@ -28,7 +28,7 @@ const ProductList = ({ products }: { products: IProduct }) => {
   };
 
   return (
-    <section className="my-5 bg-gray-200 pt-5">
+    <section className="my-5 bg-gray-300 pt-5">
       <div className="mx-auto w-11/12">
         {products.map((product, idx) => (
           <div key={idx} className="mb-5 flex flex-col">
