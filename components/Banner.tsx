@@ -35,6 +35,7 @@ export const Banner = () => {
                 <SwiperSlide>
                   <div className="relative h-[176px]">
                     <Image
+                      priority
                       src={"/images/bg-1.jpg"}
                       fill
                       className="h-full w-full object-cover"
@@ -86,6 +87,7 @@ export const Banner = () => {
           <SwiperSlide>
             <div className="relative h-[368px]">
               <Image
+                priority
                 src={"/images/bg-1.jpg"}
                 fill
                 className="h-full w-full rounded-md object-cover object-center"
@@ -143,6 +145,7 @@ export const Banner = () => {
                 <SwiperSlide>
                   <div className="relative h-[176px]">
                     <Image
+                      priority
                       src={"/images/bg-1.jpg"}
                       fill
                       className="h-full w-full object-cover"

@@ -1,18 +1,25 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { CartItem, Container } from "@/components";
+import { useCartSelector } from "@/store/features/cart/cartSlice";
 
 const Cart = () => {
   const [checked, setChecked] = useState(false);
+  const { items } = useCartSelector();
 
   return (
     <Container>
       <div className="mx-auto grid w-full max-w-4xl grid-cols-1 gap-y-5 p-7 pb-10 md:grid-cols-7 md:gap-x-5">
         <div className="col-span-4 w-full space-y-5">
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
+          {items.length === 0 ? (
+            <p className="text-gray-700">No Item In Cart</p>
+          ) : (
+            <>
+              {items.map((item, idx) => (
+                <CartItem key={idx} cart={item} />
+              ))}
+            </>
+          )}
         </div>
         <div className="col-span-3 space-y-2  h-fit w-full p-3 shadow-md">
           <div className="space-y-2 rounded border border-gray-400 p-3">

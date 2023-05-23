@@ -15,7 +15,6 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
-// import { addToCart } from "@/features/cart/cartSlice";
 import { topDeals } from "@/utils/data";
 import { Product } from "@/types";
 import { GetServerSideProps } from "next";
@@ -27,8 +26,9 @@ import { Autoplay, Pagination } from "swiper";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import { useAppDispatch } from "@/store/store";
+import { addToCart } from "@/store/features/cart/cartSlice";
 
-// import { useAppDispatch } from "@/store";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const ProductDetails = ({ product }: { product: Product }) => {
   const [currentImg, setCurrentImg] = useState(0);
   const { asPath } = useRouter();
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const origin =
     typeof window !== "undefined" && window.location.origin
       ? window.location.origin
@@ -53,17 +53,19 @@ const ProductDetails = ({ product }: { product: Product }) => {
 
   const url = `${origin}${asPath}`;
 
-  // const handleAddToCart = (product: Product) => {
-  //   console.log(product);
-  //   // dispatch(
-  //   //   addToCart({
-  //   //     id: "123",
-  //   //     title: "Sample Product",
-  //   //     price: 20,
-  //   //     qty: 1,
-  //   //   })
-  //   // );
-  // };
+  const handleAddToCart = (product: Product) => {
+    console.log(product);
+    dispatch(
+      addToCart({
+        image: product.images[0].secure_url,
+        price: product.price,
+        productId: product.id,
+        productName: product.title,
+        quantity: 1,
+        shopId: product.shop.id,
+      })
+    );
+  };
 
   const [similarProduct, setSimilarProduct] = useState<
     {
@@ -221,7 +223,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
                     </div>
                     <button
                       className="rounded-lg shrink-0 border border-pink-500 px-5 py-2 text-pink-500 duration-200 hover:bg-pink-500 hover:text-white"
-                      // onClick={() => handleAddToCart(data as Product)}
+                      onClick={() => handleAddToCart(product)}
                     >
                       Add to Cart
                     </button>
@@ -293,7 +295,10 @@ const ProductDetails = ({ product }: { product: Product }) => {
                   Visit {product.shop.name} Web Shop
                 </Link>
                 <div className="flex justify-end pr-10 mt-3">
-                  <button className="rounded-lg border border-pink-500 px-5 py-2 text-pink-500 duration-200 hover:bg-pink-500 hover:text-white">
+                  <button
+                    onClick={() => handleAddToCart(product)}
+                    className="rounded-lg border border-pink-500 px-5 py-2 text-pink-500 duration-200 hover:bg-pink-500 hover:text-white"
+                  >
                     Add to Cart
                   </button>
                 </div>

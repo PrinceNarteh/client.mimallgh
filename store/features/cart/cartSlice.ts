@@ -1,17 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { useAppSelector } from "@/store/store";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 
-type CartItem = {
+export type ICartItem = {
   productName: string;
   quantity: number;
   price: number;
   productId: string;
   shopId: string;
+  image: string;
 };
 
 type Cart = {
   totalAmount: number;
   totalCount: number;
-  items: CartItem[];
+  items: ICartItem[];
 };
 
 const initialState: Cart = {
@@ -42,28 +45,50 @@ export const CartSlice = createSlice({
       state.totalAmount = parseInt(totalAmount.toFixed(2));
       state.totalCount = totalCount;
     },
-    remove: (state, action) => {
+    addToCart: (state, action: PayloadAction<ICartItem>) => {
+      const { payload } = action;
+      const productExists = state.items.find(
+        (item) => item.productId === payload.productId
+      );
+
+      let newItems: ICartItem[] = [];
+
+      if (productExists) {
+        newItems = state.items.map((item) => {
+          if (item.productId === payload.productId) {
+            return {
+              ...item,
+              quantity: item.quantity + 1,
+            };
+          }
+          return item;
+        });
+      } else {
+        newItems = [...state.items, payload];
+      }
+
+      state.items = newItems;
+    },
+    remove: (state, action: PayloadAction<{ id: string }>) => {
       state.items = state.items.filter(
-        (item) => item.productId !== action.payload
+        (item) => item.productId !== action.payload.id
       );
     },
-    increase: (state, action) => {
+    increase: (state, action: PayloadAction<{ id: string }>) => {
       state.items = state.items.map((item) => {
-        if (item.productId === action.payload) {
-          return { ...item, amount: item.quantity + 1 };
+        if (item.productId === action.payload.id) {
+          return { ...item, quantity: item.quantity + 1 };
         }
         return item;
       });
     },
-    decrease: (state, action) => {
-      state.items = state.items
-        .map((item) => {
-          if (item.productId === action.payload) {
-            return { ...item, amount: item.quantity - 1 };
-          }
-          return item;
-        })
-        .filter((item) => item.quantity !== 0);
+    decrease: (state, action: PayloadAction<{ id: string }>) => {
+      state.items = state.items.map((item) => {
+        if (item.productId === action.payload.id && item.quantity > 1) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      });
     },
     clearCart: (state) => {
       state.items = [];
@@ -75,7 +100,9 @@ export const CartSlice = createSlice({
 });
 
 export default CartSlice;
+export const useCartSelector = () => useAppSelector((state) => state.cart);
 export const {
+  addToCart,
   getCartTotal,
   remove,
   increase,

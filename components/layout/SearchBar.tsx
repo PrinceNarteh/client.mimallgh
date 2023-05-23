@@ -10,12 +10,14 @@ import { FaRegUser } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import delivery from "../../assets/svgs/delivery-icon.svg";
+import { useCartSelector } from "@/store/features/cart/cartSlice";
 
 export const SearchBar = () => {
   const [search, setSearch] = useState("");
   const [openDelivery, setOpenDelivery] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const { items } = useCartSelector();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +35,7 @@ export const SearchBar = () => {
       className={`fixed z-50 w-full cursor-pointer px-5 md:py-3 gap-2 shadow-lg`}
     >
       <Image
+        priority={true}
         src="/images/search-bg.jpg"
         className="absolute object-cover duration-500"
         fill={true}
@@ -48,6 +51,7 @@ export const SearchBar = () => {
               width={100}
               height={50}
               alt="logo"
+              style={{ width: "auto", height: "auto" }}
             />
           </div>
         </div>
@@ -105,7 +109,7 @@ export const SearchBar = () => {
             <Link href={`/cart`} className="relative">
               <TiShoppingCart className="cursor-pointer" />
               <div className="absolute -right-1.5 -top-1.5 flex h-5  w-5 items-center justify-center rounded-full bg-[red]">
-                <span className="text-[10px] text-white">20</span>
+                <span className="text-[10px] text-white">{items.length}</span>
               </div>
             </Link>
             <FaRegUser className="cursor-pointer" />

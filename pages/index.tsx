@@ -52,6 +52,7 @@ const Home = ({ products }: { products: IProduct }) => {
                       className="absolute object-cover duration-500 group-hover:scale-110"
                       fill={true}
                       alt=""
+                      sizes="208px,112px"
                     />
                     <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
                     <div className="relative z-10 flex h-full w-full items-center justify-center">
@@ -81,6 +82,7 @@ const Home = ({ products }: { products: IProduct }) => {
                       src={`/images/market-${idx + 1}.jpg`}
                       className="absolute object-cover duration-500 group-hover:scale-110"
                       fill={true}
+                      sizes="208px,112px"
                       alt=""
                     />
                     <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>

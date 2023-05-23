@@ -4,9 +4,7 @@ import { capitalize } from "@/utils/utilities";
 import Link from "next/link";
 import { ProductCard } from "./ProductCard";
 import { TopDeals } from "./TopDeals";
-import dynamic from "next/dynamic";
-import { useState } from "react";
-const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
+import VideoPlayer from "./VideoPlayer";
 
 type IProduct = {
   category: string;
@@ -14,19 +12,6 @@ type IProduct = {
 }[];
 
 const ProductList = ({ products }: { products: IProduct }) => {
-  const [showControls, setShowControls] = useState(false);
-  const [activePlayer, setActivePlayer] = useState<number | null>(null);
-
-  const handleMouseEnter = (idx: number) => {
-    setShowControls(true);
-    setActivePlayer(idx);
-  };
-
-  const handleMouseLeave = () => {
-    setShowControls(false);
-    setActivePlayer(null);
-  };
-
   return (
     <section className="my-5 bg-gray-300 pt-5">
       <div className="mx-auto w-11/12">
@@ -72,18 +57,9 @@ const ProductList = ({ products }: { products: IProduct }) => {
                       .fill(null)
                       .map((_, idx) => (
                         <Link href={"/product-videos/1"} key={idx}>
-                          <div
-                            onMouseEnter={() => handleMouseEnter(idx)}
-                            onMouseLeave={() => handleMouseLeave()}
-                            className="w-60 shrink-0"
-                          >
+                          <div className="w-60 shrink-0">
                             <div className="overflow-hidden rounded-md">
-                              <ReactPlayer
-                                url={"/videos/sea-shore.mp4"}
-                                width={"100%"}
-                                height={"100%"}
-                                controls={showControls && activePlayer === idx}
-                              />
+                              <VideoPlayer idx={idx} />
                             </div>
                             <p className="mt-1 line-clamp-1 px-1 text-sm">
                               Lorem ipsum dolor sit amet dolor sit amet.
@@ -118,13 +94,7 @@ const ProductList = ({ products }: { products: IProduct }) => {
                         <Link href={"/product-videos/1"} key={idx}>
                           <div className="w-60 shrink-0">
                             <div className="overflow-hidden rounded-md">
-                              <ReactPlayer
-                                url={"/videos/sea-shore.mp4"}
-                                width={"100%"}
-                                height={"100%"}
-                                muted
-                                controls={true}
-                              />
+                              <VideoPlayer idx={idx} />
                             </div>
                             <p className="mt-1 line-clamp-1 px-1 text-sm">
                               Lorem ipsum dolor sit amet dolor sit amet.
