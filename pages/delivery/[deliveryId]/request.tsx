@@ -17,7 +17,6 @@ const DeliveryForm = () => {
   const router = useRouter();
 
   const {
-    getValues,
     register,
     handleSubmit,
     formState: { errors },
@@ -32,7 +31,7 @@ const DeliveryForm = () => {
         ...data,
       })
     );
-    router.push("/delivery/name/recipient");
+    router.push(`/delivery/${router.query.deliveryId}/recipient`);
   };
 
   console.log(errors);

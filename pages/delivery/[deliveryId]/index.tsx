@@ -8,6 +8,7 @@ import { Autoplay, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
+import { useRouter } from "next/router";
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
@@ -48,10 +49,14 @@ const cards = [
 ];
 
 const Delivery = () => {
+  const {
+    query: { deliveryId },
+  } = useRouter();
+
   return (
     <DeliveryLayout>
       <div className="">
-        <div className="h-60 md:h-[calc(100vh_-_96px)]">
+        <div className="h-60 md:h-[500px]">
           <Swiper
             spaceBetween={0}
             centeredSlides={true}
@@ -68,7 +73,7 @@ const Delivery = () => {
             modules={[Autoplay, Pagination]}
           >
             <SwiperSlide>
-              <div className="relative h-60 md:h-[calc(100vh_-_96px)]">
+              <div className="relative h-60 md:h-[500px]">
                 <Image
                   src={"/images/bg-1.jpg"}
                   fill
@@ -78,7 +83,7 @@ const Delivery = () => {
               </div>
             </SwiperSlide>
             <SwiperSlide>
-              <div className="relative h-60 md:h-[calc(100vh_-_96px)]">
+              <div className="relative h-60 md:h-[500px]">
                 <Image
                   src={"/images/banner-2.jpg"}
                   fill
@@ -89,7 +94,7 @@ const Delivery = () => {
               </div>
             </SwiperSlide>
             <SwiperSlide>
-              <div className="relative h-60 md:h-[calc(100vh_-_96px)]">
+              <div className="relative h-60 md:h-[500px]">
                 <Image
                   src={"/images/banner-3.jpg"}
                   fill
@@ -162,7 +167,7 @@ const Delivery = () => {
                   Cooperate Delivery
                 </div>
                 <Link
-                  href="/delivery/name/request"
+                  href={`/delivery/${deliveryId}/request`}
                   className="w-full bg-[#c8b600] text-center text-white py-2"
                 >
                   Order Now
@@ -179,7 +184,7 @@ const Delivery = () => {
                   Personal Delivery
                 </div>
                 <Link
-                  href="/delivery/name/request"
+                  href={`/delivery/${deliveryId}/request`}
                   className="w-full bg-[#c8b600] text-center text-white py-2"
                 >
                   Order Now
@@ -196,7 +201,7 @@ const Delivery = () => {
                   Pick ups & Drop off
                 </div>
                 <Link
-                  href="/delivery/name/request"
+                  href={`/delivery/${deliveryId}/request`}
                   className="w-full bg-[#c8b600] text-center text-white py-2"
                 >
                   Order Now
@@ -213,7 +218,7 @@ const Delivery = () => {
                   Errands
                 </div>
                 <Link
-                  href="/delivery/name/request"
+                  href={`/delivery/${deliveryId}/request`}
                   className="w-full bg-[#c8b600] text-center text-white py-2"
                 >
                   Order Now

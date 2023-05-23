@@ -33,7 +33,7 @@ const RecipientForm = () => {
         ...data,
       })
     );
-    router.push("/delivery/name/time");
+    router.push(`/delivery/${router.query.deliveryId}/time`);
   };
 
   return (

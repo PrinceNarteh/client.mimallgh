@@ -34,7 +34,7 @@ const DeliveryTimeForm = () => {
         ...data,
       })
     );
-    router.push("/delivery/name/confirm");
+    router.push(`/delivery/${router.query.deliveryId}/confirm`);
   };
   return (
     <DeliveryFormLayout>
