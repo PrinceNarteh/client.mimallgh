@@ -13,11 +13,11 @@ export const ProductCard = ({ product }: { product: Product }) => {
       </Link>
       <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
         <div className="relative h-[130px] md:h-[160px] w-full">
-          <Link href={`/products/${product.id}`} className="relative">
+          <Link href={`/products/${product.id}`}>
             <Image
               src={product.images[0].secure_url}
               fill
-              sizes="190px"
+              sizes="190px,160px"
               alt=""
               style={{ objectFit: "cover" }}
             />

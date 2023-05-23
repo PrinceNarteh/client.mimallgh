@@ -40,6 +40,7 @@ export const Banner = () => {
                       fill
                       className="h-full w-full object-cover"
                       alt=""
+                      sizes="200,176"
                       style={{ objectFit: "cover" }}
                     />
                   </div>
@@ -47,20 +48,24 @@ export const Banner = () => {
                 <SwiperSlide>
                   <div className="relative h-[176px]">
                     <Image
+                      priority
                       src={"/images/banner-2.jpg"}
                       fill
                       style={{ objectFit: "cover" }}
                       alt=""
+                      sizes="200,176"
                     />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="relative h-[176px]">
                     <Image
+                      priority
                       src={"/images/product-1.jpg"}
                       fill
                       style={{ objectFit: "cover" }}
                       alt=""
+                      sizes="200,176"
                     />
                   </div>
                 </SwiperSlide>
@@ -103,6 +108,7 @@ export const Banner = () => {
                 style={{ objectFit: "cover" }}
                 className="h-full w-full rounded-md object-cover"
                 alt=""
+                sizes="368"
               />
             </div>
           </SwiperSlide>

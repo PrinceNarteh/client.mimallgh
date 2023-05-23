@@ -63,6 +63,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
         productName: product.title,
         quantity: 1,
         shopId: product.shop.id,
+        shopName: product.shop.name,
       })
     );
   };
@@ -158,6 +159,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
                             fill
                             className="h-full w-full rounded-md object-cover object-center"
                             alt=""
+                            sizes="400px,368px"
                           />
                         </div>
                       </SwiperSlide>
@@ -175,11 +177,11 @@ const ProductDetails = ({ product }: { product: Product }) => {
                       <SwiperSlide>
                         <div className="relative h-[368px]">
                           <Image
-                            src={"/images/banner-3.jpg"}
                             fill
                             style={{ objectFit: "cover" }}
                             className="h-full w-full rounded-md object-cover"
                             alt=""
+                            src={"/images/bg-1.jpg"}
                           />
                         </div>
                       </SwiperSlide>

@@ -8,6 +8,7 @@ export type ICartItem = {
   price: number;
   productId: string;
   shopId: string;
+  shopName: string;
   image: string;
 };
 

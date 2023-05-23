@@ -20,12 +20,16 @@ export const CartItem = ({ cart }: { cart: ICartItem }) => {
         <Image src={cart.image} fill style={{ objectFit: "cover" }} alt="" />
       </div>
       <div className="flex-1 border-l border-l-gray-400 py-2 px-5">
-        <h3 className="line-clamp-1 text-xl font-semibold tracking-wide">
+        <h3 className="line-clamp-1 text-xl font-semibold tracking-wide flex justify-between">
           {cart.productName}
+          <p className="-pl-0 -mt-0 flex items-start tracking-wide">
+            ¢{cart.price}
+          </p>
         </h3>
         <p className="-pl-0 my-3 -mt-0 flex items-start tracking-wide">
-          ¢{cart.price}
+          {cart.shopName}
         </p>
+
         <div className="flex w-full items-center justify-between">
           <div className="-mt-1 flex items-center space-x-2">
             <IoMdArrowDropleft
