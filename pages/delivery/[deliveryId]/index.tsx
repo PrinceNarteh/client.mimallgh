@@ -56,7 +56,7 @@ const Delivery = () => {
   return (
     <DeliveryLayout>
       <div className="">
-        <div className="h-60 md:h-[500px]">
+        <div className="h-60 md:h-[500px] lg:h-[calc(100vh_-_98px)]">
           <Swiper
             spaceBetween={0}
             centeredSlides={true}
@@ -73,7 +73,7 @@ const Delivery = () => {
             modules={[Autoplay, Pagination]}
           >
             <SwiperSlide>
-              <div className="relative h-60 md:h-[500px]">
+              <div className="relative h-60 md:h-[520px] lg:h-[calc(100vh_-_98px)]">
                 <Image
                   src={"/images/bg-1.jpg"}
                   fill
@@ -83,7 +83,7 @@ const Delivery = () => {
               </div>
             </SwiperSlide>
             <SwiperSlide>
-              <div className="relative h-60 md:h-[500px]">
+              <div className="relative h-60 md:h-[520px] lg:h-[calc(100vh_-_98px)]">
                 <Image
                   src={"/images/banner-2.jpg"}
                   fill
@@ -94,7 +94,7 @@ const Delivery = () => {
               </div>
             </SwiperSlide>
             <SwiperSlide>
-              <div className="relative h-60 md:h-[500px]">
+              <div className="relative h-60 md:h-[520px] lg:h-[calc(100vh_-_98px)]">
                 <Image
                   src={"/images/banner-3.jpg"}
                   fill
@@ -108,11 +108,11 @@ const Delivery = () => {
         </div>
         <div className=" bg-gray-300">
           <div className="flex flex-col justify-center w-11/12 mx-auto mb-32">
-            <div className="bg-white p-5 z-10 w-full mx-auto text-center -translate-y-16 ">
-              <h3 className="text-2xl md:text-4xl font-bold underline mb-2">
+            <div className="bg-white p-2 md:p-5 z-10 w-full mx-auto text-center md:-translate-y-16 ">
+              <h3 className="text-xl md:text-4xl font-bold underline md:mb-2">
                 What We Do
               </h3>
-              <p className="text-xl md:text-3xl">
+              <p className="text-lg md:text-3xl">
                 We <span className="text-orange-500 font-bold">CONNECT</span>{" "}
                 you to Sellers, you{" "}
                 <span className="text-orange-500 font-bold">ORDER</span>, We{" "}
@@ -120,7 +120,7 @@ const Delivery = () => {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-10 justify-center">
+            <div className="flex flex-wrap gap-10 justify-center mt-10 md:mt-0">
               {cards.map((card, idx) => (
                 <div key={idx} className="w-[300px] h-[390px] bg-white p-5">
                   <h4 className="pb-3 text-center h-14 flex items-center">
@@ -154,7 +154,7 @@ const Delivery = () => {
             </h3>
           </div>
 
-          <div className="flex flex-col justify-center w-11/12 mx-auto mb-32">
+          <div className="flex flex-col justify-center w-11/12 mx-auto mb-10">
             <div className="flex flex-wrap gap-10 justify-center">
               <div
                 className="w-72 flex flex-col justify-between p-4 h-80 bg-[url('/images/delivery-cooperate.jpg')]"
@@ -227,7 +227,7 @@ const Delivery = () => {
             </div>
           </div>
 
-          <div className="bg-white p-5 w-6/12 mx-auto  text-xl md:text-2xl font-bold text-center  text-blue-500 shadow-md">
+          <div className="bg-white p-2 md:p-5 w-6/12 md:w-7/12 mx-auto  text-xl md:text-2xl font-bold text-center  text-blue-500 shadow-md">
             <p className="mb-2">Call:</p>
             <div className="flex flex-col md:flex-row justify-evenly">
               <p> 024 123 4567</p>

@@ -44,8 +44,8 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </div>
       <div className="bg-gray-300 lg:block cursor-pointer">{children}</div>
-      <footer className="footer relative bg-gray-800 text-white overflow-hidden">
-        <div className="w-11/12 flex flex-col mx-auto text-xl gap-5 pt-40 pb-5">
+      <footer className="footer before:-top-9 before:h-20 relative bg-gray-800 text-white overflow-hidden">
+        <div className="w-11/12 flex flex-col mx-auto text-xl gap-5 pt-28 pb-10">
           <div className="flex justify-evenly gap-5 flex-wrap">
             <p>About us</p>
             <p>Pricing Policies</p>
