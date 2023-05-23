@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ProductCard } from "./ProductCard";
 import { TopDeals } from "./TopDeals";
 import dynamic from "next/dynamic";
+import { useState } from "react";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 type IProduct = {
@@ -13,6 +14,19 @@ type IProduct = {
 }[];
 
 const ProductList = ({ products }: { products: IProduct }) => {
+  const [showControls, setShowControls] = useState(false);
+  const [activePlayer, setActivePlayer] = useState<number | null>(null);
+
+  const handleMouseEnter = (idx: number) => {
+    setShowControls(true);
+    setActivePlayer(idx);
+  };
+
+  const handleMouseLeave = () => {
+    setShowControls(false);
+    setActivePlayer(null);
+  };
+
   return (
     <section className="my-5 bg-gray-200 pt-5">
       <div className="mx-auto w-11/12">
@@ -58,15 +72,17 @@ const ProductList = ({ products }: { products: IProduct }) => {
                       .fill(null)
                       .map((_, idx) => (
                         <Link href={"/product-videos/1"} key={idx}>
-                          <div className="w-60 shrink-0">
+                          <div
+                            onMouseEnter={() => handleMouseEnter(idx)}
+                            onMouseLeave={() => handleMouseLeave()}
+                            className="w-60 shrink-0"
+                          >
                             <div className="overflow-hidden rounded-md">
                               <ReactPlayer
                                 url={"/videos/sea-shore.mp4"}
                                 width={"100%"}
                                 height={"100%"}
-                                loop
-                                muted
-                                playing={true}
+                                controls={showControls && activePlayer === idx}
                               />
                             </div>
                             <p className="mt-1 line-clamp-1 px-1 text-sm">
@@ -80,7 +96,7 @@ const ProductList = ({ products }: { products: IProduct }) => {
               </div>
 
               <div className="mb-5 bg-white">
-                <TopDeals topDeals={topDeals}  />
+                <TopDeals topDeals={topDeals} />
               </div>
               <div className="my-5 bg-white px-5 py-2">
                 <div className="flex items-center justify-between">
@@ -106,9 +122,8 @@ const ProductList = ({ products }: { products: IProduct }) => {
                                 url={"/videos/sea-shore.mp4"}
                                 width={"100%"}
                                 height={"100%"}
-                                loop
                                 muted
-                                playing={true}
+                                controls={true}
                               />
                             </div>
                             <p className="mt-1 line-clamp-1 px-1 text-sm">

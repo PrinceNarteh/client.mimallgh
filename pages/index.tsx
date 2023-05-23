@@ -27,7 +27,7 @@ const Home = ({ products }: { products: IProduct }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(allProduct(products));
+    dispatch(allProduct(products || []));
   }, [store]);
 
   if (!products) return <Error />;

@@ -222,23 +222,13 @@ const Delivery = () => {
             </div>
           </div>
 
-          <div className="bg-white p-5 w-6/12 mx-auto  text-xl md:text-2xl font-bold text-center -translate-y-16 text-blue-500 shadow-md">
+          <div className="bg-white p-5 w-6/12 mx-auto  text-xl md:text-2xl font-bold text-center  text-blue-500 shadow-md">
             <p className="mb-2">Call:</p>
             <div className="flex flex-col md:flex-row justify-evenly">
               <p> 024 123 4567</p>
               <p>050 123 4567</p>
             </div>
           </div>
-        </div>
-
-        <div className="w-11/12 flex mx-auto justify-between text-xl gap-5 py-5">
-          <p>About us</p>
-          <p>Pricing Policies</p>
-          <p>Pricing Policies</p>
-          <p>Customer Service</p>
-          <p>Services</p>
-          <p>Tutorial Videos</p>
-          <p>Follow Us</p>
         </div>
       </div>
     </DeliveryLayout>

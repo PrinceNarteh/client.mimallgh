@@ -46,6 +46,17 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="min-h-[calc(100vh_-_110px)] md:min-h-[calc(100vh_-_98px)] bg-gray-200 md:flex md:justify-center md:items-center lg:block cursor-pointer">
         {children}
       </div>
+      <footer className="footer relative bg-gray-800 text-white">
+        <div className="w-11/12 flex mx-auto justify-between text-xl gap-5 py-40">
+          <p>About us</p>
+          <p>Pricing Policies</p>
+          <p>Pricing Policies</p>
+          <p>Customer Service</p>
+          <p>Services</p>
+          <p>Tutorial Videos</p>
+          <p>Follow Us</p>
+        </div>
+      </footer>
     </div>
   );
 };
