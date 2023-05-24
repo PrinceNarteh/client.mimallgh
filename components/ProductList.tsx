@@ -45,7 +45,9 @@ const ProductList = ({ products }: { products: IProduct }) => {
                     Product Videos
                   </h3>
                   <Link
-                    href={"/product-videos"}
+                    href={`/product-videos/${product.category
+                      .split("_")
+                      .join("-")}`}
                     className="cursor-pointer font-bold text-orange-500"
                   >
                     See more...

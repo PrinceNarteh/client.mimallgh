@@ -24,7 +24,7 @@ const ProductVideoDetails = () => {
               <h3 className="py-1 text-xl font-semibold">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </h3>
-              <div className="flex justify-between pr-5">
+              <div className="flex flex-col md:flex-row gap-3 items-start  md:justify-between pr-5 md:items-center">
                 <div className="flex items-center gap-2">
                   <div className="h-12 w-12 rounded-full bg-red-500"></div>
                   <div>
@@ -32,7 +32,7 @@ const ProductVideoDetails = () => {
                     <p>Old Site</p>
                   </div>
                 </div>
-                <button className="text-sm rounded-lg shrink-0 border border-pink-500 px-3 text-pink-500 duration-200 hover:bg-pink-500 hover:text-white">
+                <button className="text-sm self-end rounded-lg shrink-0 border border-pink-500 px-3 py-1 md:py-2 text-pink-500 duration-200 hover:bg-pink-500 hover:text-white">
                   Shop Now
                 </button>
               </div>
@@ -114,11 +114,11 @@ const ProductVideoDetails = () => {
             <div className="mt-2 mb-5 flex justify-between border-b-2">
               <h4 className="sh-underline relative md:text-3xl">Top Deals</h4>
             </div>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap justify-center gap-3">
               {topDeals.map((topDeal, idx) => (
                 <div
                   key={idx}
-                  className="relative lg:shrink-0 h-28 flex-1 basis-28 overflow-hidden rounded"
+                  className="relative lg:shrink-0 h-28 basis-28 overflow-hidden rounded"
                 >
                   <Image
                     src={topDeal.image}
@@ -149,7 +149,7 @@ const ProductVideoDetails = () => {
                 .fill(null)
                 .map((_, idx) => (
                   <Link href={"/product-videos/1"} key={idx}>
-                    <div className="w-60 shrink-0">
+                    <div className="w-40 md:w-60 shrink-0">
                       <div className="overflow-hidden rounded-md">
                         <VideoPlayer idx={idx} key={idx} />
                       </div>
