@@ -131,18 +131,14 @@ export const markets = [
 
 export const locations = [
   { label: "Select Location", link: "" },
+  { label: "Science", link: "science" },
   { label: "Amamoma", link: "amamoma" },
-  { label: "Apewosika", link: "apewosika" },
-];
-
-export const otherLocations = [
-  { label: "Ayensu", link: "ayensu" },
-  { label: "Duakro", link: "duakro" },
+  { label: "ATL", link: "atl" },
   { label: "KNH/Valco", link: "knh_valco" },
-  { label: "Kokoado", link: "kokoado" },
-  { label: "Kwasipra", link: "kwasipra" },
-  { label: "Science", link: "science" },
-  { label: "New Site", link: "new_site" },
+  { label: "Apewosika", link: "apewosika" },
   { label: "Old Site", link: "old_site" },
-  { label: "Science", link: "science" },
+  { label: "Ayensu", link: "ayensu" },
+  { label: "Kwaprow", link: "kwaprow" },
+  { label: "Kwasipra", link: "kwasipra" },
+  { label: "Duakro", link: "duakro" },
 ];

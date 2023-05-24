@@ -62,7 +62,7 @@ export const SearchBar = () => {
             <input
               type="search"
               className="outline-none flex-1 py-0.5 md:pl-3 w-36 md:flex-1"
-              placeholder="Search for product..."
+              placeholder="Search for shop or product..."
               onChange={(e) => setSearch(e.target.value)}
               value={search}
             />

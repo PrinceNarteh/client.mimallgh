@@ -15,17 +15,19 @@ export const CartItem = ({ cart }: { cart: ICartItem }) => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="flex h-28 w-full rounded bg-gray-300">
+    <div className="flex h-28 w-full rounded bg-gray-200 overflow-hidden">
       <div className="relative w-24 shrink-0">
         <Image src={cart.image} fill style={{ objectFit: "cover" }} alt="" />
       </div>
       <div className="flex-1 border-l border-l-gray-400 py-2 px-5">
-        <h3 className="line-clamp-1 text-xl font-semibold tracking-wide flex justify-between">
-          {cart.productName}
+        <div className="flex justify-between items-center">
+          <h3 className="line-clamp-1 text-xl font-semibold tracking-wide">
+            {cart.productName}
+          </h3>
           <p className="-pl-0 -mt-0 flex items-start tracking-wide">
             ¢{cart.price}
           </p>
-        </h3>
+        </div>
         <p className="-pl-0 my-3 -mt-0 flex items-start tracking-wide">
           {cart.shopName}
         </p>

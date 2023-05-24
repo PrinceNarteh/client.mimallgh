@@ -25,7 +25,13 @@ const Cart = () => {
           <div className="space-y-2 rounded border border-gray-400 p-3">
             <div className="w-full flex items-center justify-between ">
               <h4>Subtotal</h4>
-              <span>¢200</span>
+              <span>
+                ¢
+                {items.reduce(
+                  (amt, currItem) => amt + currItem.quantity * currItem.price,
+                  0
+                )}
+              </span>
             </div>
             <div className="w-full flex items-center justify-between ">
               <h4>Delivery</h4>

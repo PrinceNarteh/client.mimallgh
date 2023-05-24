@@ -14,13 +14,11 @@ export type ICartItem = {
 
 type Cart = {
   totalAmount: number;
-  totalCount: number;
   items: ICartItem[];
 };
 
 const initialState: Cart = {
   totalAmount: 0,
-  totalCount: 0,
   items: [],
 };
 
@@ -29,22 +27,10 @@ export const CartSlice = createSlice({
   initialState,
   reducers: {
     getCartTotal: (state) => {
-      let { totalAmount, totalCount } = state.items.reduce(
-        (cartTotal, cartItem) => {
-          const { price, quantity } = cartItem;
-          const itemTotal = price * quantity;
-
-          cartTotal.totalAmount += itemTotal;
-          cartTotal.totalCount += quantity;
-          return cartTotal;
-        },
-        {
-          totalAmount: 0,
-          totalCount: 0,
-        }
+      state.totalAmount = state.items.reduce(
+        (amt, currItem) => amt + currItem.quantity * currItem.price,
+        0
       );
-      state.totalAmount = parseInt(totalAmount.toFixed(2));
-      state.totalCount = totalCount;
     },
     addToCart: (state, action: PayloadAction<ICartItem>) => {
       const { payload } = action;
