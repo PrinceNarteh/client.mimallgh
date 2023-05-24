@@ -74,8 +74,9 @@ const ProductList = ({ products }: { products: IProduct }) => {
               </div>
 
               <div className="mb-5 bg-white">
-                <TopDeals topDeals={topDeals} />
+                <TopDeals topDeals={topDeals} category={product.category} />
               </div>
+
               <div className="my-5 bg-white px-5 py-2">
                 <div className="flex items-center justify-between">
                   <h3 className="sh-underline mb-2 mt-5 pl-2 text-xl md:text-3xl">

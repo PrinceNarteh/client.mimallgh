@@ -3,9 +3,17 @@ import Link from "next/link";
 import React from "react";
 import { Section } from "./Section";
 
-export const TopDeals = ({ topDeals }: { topDeals: { image: string }[] }) => {
+export const TopDeals = ({
+  topDeals,
+  category,
+}: {
+  topDeals: { image: string }[];
+  category: string;
+}) => {
+  const slug = `${category.split("_").join("-")}`;
+
   return (
-    <Section label="Top Deals" link="/top-deals">
+    <Section label="Top Deals" link={`/top-deals/${slug}`}>
       <div className="w-full overflow-y-auto">
         <div className="pl-5 flex gap-5 md:pb-3">
           {topDeals.map((topDeal, idx) => (

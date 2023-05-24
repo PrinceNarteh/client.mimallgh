@@ -31,7 +31,7 @@ const ProductVideos = () => {
           </div>
         </div>
       </div>
-      <TopDeals topDeals={topDeals} />
+      <TopDeals topDeals={topDeals} category={category as string} />
       <div className="mx-auto w-11/12 py-7">
         <div className="w-full">
           <div className="mt-5">
