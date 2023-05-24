@@ -25,7 +25,7 @@ const ProductByCategory = ({ products }: { products: IProduct }) => {
   return (
     <Container>
       <div className="bg-gray-300 bg-opacity-30">
-        <div className="w-11/12 mx-auto p-5">
+        <div className="md:w-11/12 mx-auto p-3 md:p-5">
           <div className="grid grid-cols-1 gap-5 xl:grid-cols-12">
             <div className="col-span-12 xl:col-span-9 space-y-5">
               <div className="flex items-center bg-white shadow">
