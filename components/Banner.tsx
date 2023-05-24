@@ -10,68 +10,65 @@ export const Banner = () => {
   return (
     <div className="relative mx-auto grid h-48 md:h-96 w-full md:w-9/12 grid-cols-8 gap-3 overflow-hidden rounded-md bg-white p-3">
       <div className="col-span-2 h-full flex-col justify-between hidden md:flex">
-        {Array(2)
-          .fill(null)
-          .map((_, idx) => (
-            <div
-              key={idx}
-              className="h-44 w-full flex-1 basis-40 justify-between overflow-hidden rounded-md"
-            >
-              <Swiper
-                spaceBetween={30}
-                centeredSlides={true}
-                loop={true}
-                speed={2000}
-                autoplay={{
-                  delay: 5000,
-                  disableOnInteraction: false,
-                }}
-                pagination={{
-                  clickable: true,
-                }}
-                navigation={true}
-                modules={[Autoplay, Pagination]}
-              >
-                <SwiperSlide>
-                  <div className="relative h-[176px]">
-                    <Image
-                      priority
-                      src={"/images/bg-1.jpg"}
-                      fill
-                      className="h-full w-full object-cover"
-                      alt=""
-                      sizes="200,176"
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="relative h-[176px]">
-                    <Image
-                      priority
-                      src={"/images/banner-2.jpg"}
-                      fill
-                      style={{ objectFit: "cover" }}
-                      alt=""
-                      sizes="200,176"
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="relative h-[176px]">
-                    <Image
-                      priority
-                      src={"/images/product-1.jpg"}
-                      fill
-                      style={{ objectFit: "cover" }}
-                      alt=""
-                      sizes="200,176"
-                    />
-                  </div>
-                </SwiperSlide>
-              </Swiper>
-            </div>
-          ))}
+        <div className="h-44 w-full flex-1 basis-40 rounded-md">
+          <Swiper
+            spaceBetween={30}
+            centeredSlides={true}
+            loop={true}
+            speed={2000}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Autoplay, Pagination]}
+          >
+            <SwiperSlide>
+              <div className="relative h-[176px]">
+                <Image
+                  priority
+                  src={"/images/bg-1.jpg"}
+                  fill
+                  className="h-full w-full object-cover"
+                  alt=""
+                  sizes="200,176"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="relative h-[176px]">
+                <Image
+                  priority
+                  src={"/images/banner-2.jpg"}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  alt=""
+                  sizes="200,176"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="relative h-[176px]">
+                <Image
+                  priority
+                  src={"/images/product-1.jpg"}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  alt=""
+                  sizes="200,176"
+                />
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+
+        <div className="h-44 relative w-full flex-1 basis-40 rounded-md">
+          <Image src="/images/food-2.jpg" fill alt="" />
+        </div>
       </div>
       <div className="col-span-8 md:col-span-4 h-48 md:h-96 overflow-hidden rounded-md">
         <Swiper
@@ -125,64 +122,66 @@ export const Banner = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="col-span-2  h-full flex-col justify-between hidden md:flex">
-        {Array(2)
-          .fill(null)
-          .map((_, idx) => (
-            <div
-              key={idx}
-              className="h-44 w-full flex-1 basis-40 justify-between overflow-hidden rounded-md"
-            >
-              <Swiper
-                spaceBetween={30}
-                centeredSlides={true}
-                loop={true}
-                speed={2000}
-                autoplay={{
-                  delay: 5000,
-                  disableOnInteraction: false,
-                }}
-                pagination={{
-                  clickable: true,
-                }}
-                navigation={true}
-                modules={[Autoplay, Pagination]}
-              >
-                <SwiperSlide>
-                  <div className="relative h-[176px]">
-                    <Image
-                      priority
-                      src={"/images/bg-1.jpg"}
-                      fill
-                      className="h-full w-full object-cover"
-                      alt=""
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="relative h-[176px]">
-                    <Image
-                      src={"/images/banner-2.jpg"}
-                      fill
-                      style={{ objectFit: "cover" }}
-                      alt=""
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="relative h-[176px]">
-                    <Image
-                      src={"/images/product-1.jpg"}
-                      fill
-                      style={{ objectFit: "cover" }}
-                      alt=""
-                    />
-                  </div>
-                </SwiperSlide>
-              </Swiper>
-            </div>
-          ))}
+      <div className="col-span-2 h-full flex-col justify-between hidden md:flex">
+        <div className="h-44 w-full flex-1 basis-40 rounded-md">
+          <Swiper
+            spaceBetween={30}
+            centeredSlides={true}
+            loop={true}
+            speed={2000}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Autoplay, Pagination]}
+          >
+            <SwiperSlide>
+              <div className="relative h-[176px]">
+                <Image
+                  priority
+                  src={"/images/bg-1.jpg"}
+                  fill
+                  className="h-full w-full object-cover"
+                  alt=""
+                  sizes="200,176"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="relative h-[176px]">
+                <Image
+                  priority
+                  src={"/images/banner-2.jpg"}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  alt=""
+                  sizes="200,176"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="relative h-[176px]">
+                <Image
+                  priority
+                  src={"/images/product-1.jpg"}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  alt=""
+                  sizes="200,176"
+                />
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+
+        <div className="h-44 relative w-full flex-1 basis-40 rounded-md">
+          <Image src="/images/food-1.jpg" fill alt="" />
+        </div>
       </div>
     </div>
   );
