@@ -91,7 +91,7 @@ const ProductList = ({ products }: { products: IProduct }) => {
                     {Array(6)
                       .fill(null)
                       .map((_, idx) => (
-                        <Link href={"/product-videos/1"} key={idx}>
+                        <Link href={`/trending/${idx}`} key={idx}>
                           <div className="w-60 shrink-0">
                             <div className="overflow-hidden rounded-md">
                               <VideoPlayer idx={idx} />

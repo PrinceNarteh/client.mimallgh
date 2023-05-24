@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
-const ProductVideoDetails = () => {
+const TrendingVideoDetails = () => {
   return (
     <div>
       <div className="mx-auto w-10/12 py-5">
@@ -32,9 +32,6 @@ const ProductVideoDetails = () => {
                     <p>Old Site</p>
                   </div>
                 </div>
-                <button className="text-sm rounded-lg shrink-0 border border-pink-500 px-3 text-pink-500 duration-200 hover:bg-pink-500 hover:text-white">
-                  Shop Now
-                </button>
               </div>
             </div>
 
@@ -167,4 +164,4 @@ const ProductVideoDetails = () => {
   );
 };
 
-export default ProductVideoDetails;
+export default TrendingVideoDetails;

@@ -43,7 +43,7 @@ export const SearchBar = () => {
       />
       <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
       <div className="relative z-10 flex py-3 flex-col md:flex-row gap-3 h-full w-full items-center justify-between">
-        <div className="md:w-60">
+        <Link href="/" className="md:w-60">
           {/* Logo */}
           <div className="p-1 rounded">
             <Image
@@ -54,7 +54,7 @@ export const SearchBar = () => {
               style={{ width: "auto", height: "auto" }}
             />
           </div>
-        </div>
+        </Link>
 
         <div className="flex justify-between gap-5 w-full">
           {/* Search Bar */}
