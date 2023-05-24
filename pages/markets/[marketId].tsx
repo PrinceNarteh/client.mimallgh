@@ -46,7 +46,9 @@ const Markets = (products: { products: IProduct }) => {
   return (
     <Container>
       <div className="mx-auto w-11/12 py-5">
-        <h3 className="sh-underline text-3xl">{market} Market</h3>
+        <h3 className="sh-underline text-3xl">
+          {capitalize(market as string, "_")} Market
+        </h3>
       </div>
 
       <section className="mx-auto w-11/12 py-10">
