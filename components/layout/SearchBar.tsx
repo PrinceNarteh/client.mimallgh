@@ -1,34 +1,35 @@
-import { getProducts } from "@/services/products";
-import { allProduct } from "@/store/features/products/productSlice";
+import axios from "@/lib/axios";
+import { useCartSelector } from "@/store/features/cart/cartSlice";
+import {
+  clearSearch,
+  clearSearchResults,
+  setSearch,
+  setSearchResults,
+  useSearchSelector,
+} from "@/store/features/search/searchSlice";
 import { useAppDispatch } from "@/store/store";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { FaRegUser } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import delivery from "../../assets/svgs/delivery-icon.svg";
-import { useCartSelector } from "@/store/features/cart/cartSlice";
 
 export const SearchBar = () => {
-  const [search, setSearch] = useState("");
   const [openDelivery, setOpenDelivery] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { items } = useCartSelector();
+  const { search } = useSearchSelector();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await getProducts(`search=${search}`);
-      dispatch(allProduct(res));
-    };
-
-    if (search !== "") {
-      fetchData();
-    }
-  }, [search]);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const res = await axios.get(`/products?search=${search}`);
+    dispatch(setSearchResults(res.data.data));
+  };
 
   return (
     <div
@@ -58,19 +59,28 @@ export const SearchBar = () => {
 
         <div className="flex justify-between gap-5 w-full">
           {/* Search Bar */}
-          <div className="relative flex bg-white md:py-1 md:max-w-xl mx-auto flex-1 self-center items-center rounded-full border-2 px-2">
+          <form
+            onSubmit={handleSubmit}
+            className="relative flex bg-white md:py-1 md:max-w-xl mx-auto flex-1 self-center items-center rounded-full border-2 px-2"
+          >
             <input
-              type="search"
+              type="text"
               className="outline-none flex-1 py-0.5 md:pl-3 w-36 md:flex-1"
               placeholder="Search for shop or product..."
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => dispatch(setSearch(e.target.value))}
               value={search}
             />
             <BiSearch className="shrink-0 text-xl text-gray-500" />
-          </div>
+          </form>
 
           <div className="flex items-center shrink-0 justify-end gap-3 pr-3 md:pr-0 text-2xl md:text-4xl md:space-x-3 text-pink-500">
-            <IoMdHome onClick={() => router.push("/")} />
+            <IoMdHome
+              onClick={() => {
+                // dispatch(clearSearch());
+                // dispatch(clearSearchResults());
+                router.push("/");
+              }}
+            />
             <div
               onClick={() => setOpenDelivery(!openDelivery)}
               className="relative w-10 h-10 md:w-9 md:h-9 flex justify-center items-center"

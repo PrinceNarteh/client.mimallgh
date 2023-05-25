@@ -42,6 +42,8 @@ export default function App({
     setLoading(false);
   });
 
+  
+
   return (
     <div className={`${poppins.className}`}>
       <SessionProvider session={session}>
