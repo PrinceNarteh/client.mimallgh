@@ -28,6 +28,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { useAppDispatch } from "@/store/store";
 import { addToCart } from "@/store/features/cart/cartSlice";
+import { toast } from "react-hot-toast";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
@@ -54,6 +55,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
   const url = `${origin}${asPath}`;
 
   const handleAddToCart = (product: Product) => {
+    toast.success("Product Added");
     dispatch(
       addToCart({
         image: product.images[0].secure_url,

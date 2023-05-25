@@ -11,8 +11,6 @@ export const Navbar = () => {
 
   // update classList of nav on scroll
   useEffect(() => {
-    const _classList = [];
-
     if (scroll.y > 150 && scroll.y - scroll.lastY > 0) {
       setShow(true);
     } else {
