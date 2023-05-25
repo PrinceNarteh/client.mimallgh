@@ -26,12 +26,11 @@ const TopDealsByCategory = ({ products }: { products: IProduct }) => {
       <div className="bg-gray-300 bg-opacity-30">
         <div className="md:w-11/12 mx-auto p-3 md:p-5">
           <div className="grid grid-cols-1 gap-5 xl:grid-cols-12">
-            <div className="col-span-12 xl:col-span-9 space-y-5">
+            <div className="col-span-12 lg:col-span-8 space-y-5">
               <div className="flex items-center bg-white shadow">
-                <div className="flex-1 py-0.5 pl-5 text-2xl">
+                <div className="flex-1 py-3 pl-5 text-2xl">
                   {capitalize(query.category as string)}
                 </div>
-                <div className="bg-[#ff0000] p-4 text-white">SORT BY</div>
               </div>
 
               <div className="flex flex-wrap justify-center gap-5">
@@ -80,22 +79,95 @@ const TopDealsByCategory = ({ products }: { products: IProduct }) => {
                 <span className="block h-4 w-4 cursor-pointer rounded-full bg-gray-300"></span>
               </div>
             </div>
-            <div className="col-span-12 xl:col-span-3 space-y-5">
+            <div className="col-span-12 lg:col-span-4 space-y-5">
               <div className="pl-5 py-4 font-bold  bg-white shadow">
                 <p className="sh-underline">Top Videos</p>
               </div>
-              <div className="flex flex-wrap justify-center bg-white p-5 gap-5">
-                {topDeals.map((topDeal, idx) => (
-                  <Link
-                    key={idx}
-                    href={`/products/${idx}`}
-                    className="cursor-pointer "
-                  >
-                    <div className="relative h-24 w-32 flex-1 overflow-hidden rounded-lg shadow-md">
-                      <Image src={topDeal.image} fill alt="" />
-                    </div>
-                  </Link>
-                ))}
+              <div className="flex flex-wrap justify-center gap-3">
+                <div className="flex h-28 w-full bg-white shadow-md cursor-pointer">
+                  <div className="w-44 shrink-0 bg-red-500 rounded"></div>
+                  <div className="flex-1 py-1 px-3">
+                    <h3 className="font-semibold line-clamp-2">
+                      Unbranded Granite Towels For Both Sex
+                    </h3>
+                    <p className="text-sm">Shop Name</p>
+                    <p className="text-xs mt-1 font-semibold text-gray-700">
+                      1.2k Views . 2 hours ago
+                    </p>
+                  </div>
+                </div>
+                <div className="flex h-28 w-full bg-white shadow-md cursor-pointer">
+                  <div className="w-44 shrink-0 bg-red-500 rounded"></div>
+                  <div className="flex-1 py-1 px-3">
+                    <h3 className="font-semibold line-clamp-2">
+                      Unbranded Granite Towels For Both Sex
+                    </h3>
+                    <p className="text-sm">Shop Name</p>
+                    <p className="text-xs mt-1 font-semibold text-gray-700">
+                      1.2k Views . 2 hours ago
+                    </p>
+                  </div>
+                </div>
+                <div className="flex h-28 w-full bg-white shadow-md cursor-pointer">
+                  <div className="w-44 shrink-0 bg-red-500 rounded"></div>
+                  <div className="flex-1 py-1 px-3">
+                    <h3 className="font-semibold line-clamp-2">
+                      Unbranded Granite Towels For Both Sex
+                    </h3>
+                    <p className="text-sm">Shop Name</p>
+                    <p className="text-xs mt-1 font-semibold text-gray-700">
+                      1.2k Views . 2 hours ago
+                    </p>
+                  </div>
+                </div>
+                <div className="flex h-28 w-full bg-white shadow-md cursor-pointer">
+                  <div className="w-44 shrink-0 bg-red-500 rounded"></div>
+                  <div className="flex-1 py-1 px-3">
+                    <h3 className="font-semibold line-clamp-2">
+                      Unbranded Granite Towels For Both Sex
+                    </h3>
+                    <p className="text-sm">Shop Name</p>
+                    <p className="text-xs mt-1 font-semibold text-gray-700">
+                      1.2k Views . 2 hours ago
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex h-28 w-full bg-white shadow-md cursor-pointer">
+                <div className="w-44 shrink-0 bg-red-500 rounded"></div>
+                <div className="flex-1 py-1 px-3">
+                  <h3 className="font-semibold line-clamp-2">
+                    Unbranded Granite Towels For Both Sex
+                  </h3>
+                  <p className="text-sm">Shop Name</p>
+                  <p className="text-xs mt-1 font-semibold text-gray-700">
+                    1.2k Views . 2 hours ago
+                  </p>
+                </div>
+              </div>
+              <div className="flex h-28 w-full bg-white shadow-md cursor-pointer">
+                <div className="w-44 shrink-0 bg-red-500 rounded"></div>
+                <div className="flex-1 py-1 px-3">
+                  <h3 className="font-semibold line-clamp-2">
+                    Unbranded Granite Towels For Both Sex
+                  </h3>
+                  <p className="text-sm">Shop Name</p>
+                  <p className="text-xs mt-1 font-semibold text-gray-700">
+                    1.2k Views . 2 hours ago
+                  </p>
+                </div>
+              </div>
+              <div className="flex h-28 w-full bg-white shadow-md cursor-pointer">
+                <div className="w-44 shrink-0 bg-red-500 rounded"></div>
+                <div className="flex-1 py-1 px-3">
+                  <h3 className="font-semibold line-clamp-2">
+                    Unbranded Granite Towels For Both Sex
+                  </h3>
+                  <p className="text-sm">Shop Name</p>
+                  <p className="text-xs mt-1 font-semibold text-gray-700">
+                    1.2k Views . 2 hours ago
+                  </p>
+                </div>
               </div>
             </div>
           </div>
