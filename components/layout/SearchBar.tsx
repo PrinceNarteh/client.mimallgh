@@ -69,7 +69,7 @@ export const SearchBar = () => {
             <BiSearch className="shrink-0 text-xl text-gray-500" />
           </div>
 
-          <div className="flex items-center shrink-0 justify-end gap-3 text-2xl md:text-4xl md:space-x-3 text-pink-500">
+          <div className="flex items-center shrink-0 justify-end gap-3 pr-3 md:pr-0 text-2xl md:text-4xl md:space-x-3 text-pink-500">
             <IoMdHome onClick={() => router.push("/")} />
             <div
               onClick={() => setOpenDelivery(!openDelivery)}

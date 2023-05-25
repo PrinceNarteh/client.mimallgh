@@ -23,7 +23,12 @@ export const TopDeals = ({
               className="cursor-pointer "
             >
               <div className="relative h-24 w-24 md:h-40 md:w-40 shrink-0 overflow-hidden rounded-lg shadow-md">
-                <Image src={topDeal.image} fill alt="" />
+                <Image
+                  src={topDeal.image}
+                  fill
+                  alt=""
+                  sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
+                />
               </div>
             </Link>
           ))}

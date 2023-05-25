@@ -27,8 +27,6 @@ const Markets = (products: { products: IProduct }) => {
   const { query } = useRouter();
   const market = capitalize(query.marketId as string);
 
-  console.log(state);
-
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(

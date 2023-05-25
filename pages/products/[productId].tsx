@@ -54,7 +54,6 @@ const ProductDetails = ({ product }: { product: Product }) => {
   const url = `${origin}${asPath}`;
 
   const handleAddToCart = (product: Product) => {
-    console.log(product);
     dispatch(
       addToCart({
         image: product.images[0].secure_url,
@@ -83,8 +82,6 @@ const ProductDetails = ({ product }: { product: Product }) => {
 
     fetchData();
   }, []);
-
-  console.log(similarProduct);
 
   return (
     <div>

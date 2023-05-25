@@ -42,8 +42,6 @@ const WebStore = ({ webStore }: { webStore: Store }) => {
     dispatch(allShopProducts(webStore.products));
   }, []);
 
-  console.log(store);
-
   if (!webStore) return <Error />;
 
   if (!store) return <Error />;

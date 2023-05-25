@@ -34,8 +34,6 @@ const DeliveryForm = () => {
     router.push(`/delivery/${router.query.deliveryId}/recipient`);
   };
 
-  console.log(errors);
-
   return (
     <DeliveryFormLayout>
       <div className="w-full">

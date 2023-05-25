@@ -34,7 +34,7 @@ export const Banner = () => {
                   fill
                   className="h-full w-full object-cover"
                   alt=""
-                  sizes="200,176"
+                  sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
                   style={{ objectFit: "cover" }}
                 />
               </div>
@@ -47,7 +47,7 @@ export const Banner = () => {
                   fill
                   style={{ objectFit: "cover" }}
                   alt=""
-                  sizes="200,176"
+                  sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
             </SwiperSlide>
@@ -59,7 +59,7 @@ export const Banner = () => {
                   fill
                   style={{ objectFit: "cover" }}
                   alt=""
-                  sizes="200,176"
+                  sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
             </SwiperSlide>
@@ -67,7 +67,12 @@ export const Banner = () => {
         </div>
 
         <div className="h-44 relative w-full flex-1 basis-40 rounded-md">
-          <Image src="/images/food-2.jpg" fill alt="" />
+          <Image
+            src="/images/food-2.jpg"
+            fill
+            alt=""
+            sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
+          />
         </div>
       </div>
       <div className="col-span-8 md:col-span-4 h-48 md:h-96 overflow-hidden rounded-md">
@@ -94,6 +99,7 @@ export const Banner = () => {
                 fill
                 className="h-full w-full rounded-md object-cover object-center"
                 alt=""
+                sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
           </SwiperSlide>
@@ -105,7 +111,7 @@ export const Banner = () => {
                 style={{ objectFit: "cover" }}
                 className="h-full w-full rounded-md object-cover"
                 alt=""
-                sizes="368"
+                sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
           </SwiperSlide>
@@ -117,6 +123,7 @@ export const Banner = () => {
                 style={{ objectFit: "cover" }}
                 className="h-full w-full rounded-md object-cover"
                 alt=""
+                sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
           </SwiperSlide>
@@ -147,7 +154,7 @@ export const Banner = () => {
                   fill
                   className="h-full w-full object-cover"
                   alt=""
-                  sizes="200,176"
+                  sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
                   style={{ objectFit: "cover" }}
                 />
               </div>
@@ -160,7 +167,7 @@ export const Banner = () => {
                   fill
                   style={{ objectFit: "cover" }}
                   alt=""
-                  sizes="200,176"
+                  sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
             </SwiperSlide>
@@ -172,7 +179,7 @@ export const Banner = () => {
                   fill
                   style={{ objectFit: "cover" }}
                   alt=""
-                  sizes="200,176"
+                  sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
             </SwiperSlide>
@@ -180,7 +187,12 @@ export const Banner = () => {
         </div>
 
         <div className="h-44 relative w-full flex-1 basis-40 rounded-md">
-          <Image src="/images/food-1.jpg" fill alt="" />
+          <Image
+            src="/images/food-1.jpg"
+            fill
+            alt=""
+            sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
+          />
         </div>
       </div>
     </div>

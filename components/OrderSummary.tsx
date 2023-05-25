@@ -9,8 +9,6 @@ export const OrderSummary = () => {
     0
   );
 
-  console.log(deliveryCharge);
-
   const totalCharge = totalAmount + deliveryCharge;
 
   return (

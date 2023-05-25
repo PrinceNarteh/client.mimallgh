@@ -6,7 +6,7 @@ import { allProduct } from "@/store/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { IProduct } from "@/types";
 import { categories } from "@/utils/data";
-import { locations, markets } from "@/utils/menus";
+import { markets } from "@/utils/menus";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,8 +32,6 @@ const Home = ({ products }: { products: IProduct }) => {
 
   if (!products) return <Error />;
 
-  console.log(products);
-
   return (
     <div className="">
       <Banner />
@@ -45,17 +43,18 @@ const Home = ({ products }: { products: IProduct }) => {
               {categories.map((category, idx) => (
                 <Link key={idx} href={`/category/${category.link}`}>
                   <div
-                    className={`group relative h-28 w-52 cursor-pointer overflow-hidden rounded-2xl p-5 shadow-lg`}
+                    className={`group relative h-28 w-52 cursor-pointer overflow-hidden rounded-2xl shadow-lg`}
                   >
                     <Image
                       src={category.image}
                       className="absolute object-cover duration-500 group-hover:scale-110"
-                      fill={true}
+                      height={150}
+                      width={250}
                       alt=""
-                      sizes="208px,112px"
+                      style={{ objectFit: "cover" }}
                     />
                     <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
-                    <div className="relative z-10 flex h-full w-full items-center justify-center">
+                    <div className="relative p-5 z-10 flex h-full w-full items-center justify-center">
                       <h3 className=" text-center text-lg text-white">
                         {category.label}
                       </h3>
@@ -76,17 +75,18 @@ const Home = ({ products }: { products: IProduct }) => {
               {markets.slice(1).map((location, idx) => (
                 <Link key={idx} href={`/markets/${location.link}`}>
                   <div
-                    className={`group relative h-28 w-52 cursor-pointer overflow-hidden rounded-2xl p-5 shadow-lg`}
+                    className={`group relative h-28 w-52 cursor-pointer overflow-hidden rounded-2xl shadow-lg`}
                   >
                     <Image
                       src={`/images/market-${idx + 1}.jpg`}
                       className="absolute object-cover duration-500 group-hover:scale-110"
-                      fill={true}
-                      sizes="208px,112px"
+                      width={210}
+                      height={115}
                       alt=""
+                      style={{ objectFit: "cover" }}
                     />
                     <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
-                    <div className="relative z-10 flex h-full w-full items-center justify-center">
+                    <div className="relative p-5 z-10 flex h-full w-full items-center justify-center">
                       <h3 className=" text-center text-lg text-white">
                         {location.label}
                       </h3>

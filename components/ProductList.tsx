@@ -18,8 +18,8 @@ const ProductList = ({ products }: { products: IProduct }) => {
         {products.map((product, idx) => (
           <div key={idx} className="mb-5 flex flex-col">
             <>
-              <div className="relative mb-5 bg-white">
-                <div className="flex justify-between items-center px-5 pt-2">
+              <div className="relative mb-5 bg-white px-5">
+                <div className="flex justify-between items-center pt-2">
                   <h3 className="sh-underline mb-2 text-lg font-semibold md:text-3xl line-clamp-1">
                     {capitalize(product.category, "_")}
                   </h3>
