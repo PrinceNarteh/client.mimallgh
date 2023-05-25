@@ -1,23 +1,15 @@
 import { useAppSelector } from "@/store/store";
+import { ICartItem } from "@/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
-
-export type ICartItem = {
-  productName: string;
-  quantity: number;
-  price: number;
-  productId: string;
-  shopId: string;
-  shopName: string;
-  image: string;
-};
 
 type Cart = {
+  deliveryCharge: number;
   totalAmount: number;
   items: ICartItem[];
 };
 
 const initialState: Cart = {
+  deliveryCharge: 0,
   totalAmount: 0,
   items: [],
 };
@@ -82,6 +74,9 @@ export const CartSlice = createSlice({
     },
     getCartItems: (state) => {
       state.items = state.items;
+    },
+    setDeliveryCharge: (state, action: PayloadAction<number>) => {
+      state.deliveryCharge = action.payload;
     },
   },
 });

@@ -97,7 +97,7 @@ const Cart = () => {
             </div>
           </div>
           <Link
-            href={"/checkout/form"}
+            href={"/checkout/confirm-order"}
             className="block w-full rounded-md bg-pink-500 py-3 text-center font-bold text-white"
           >
             Checkout

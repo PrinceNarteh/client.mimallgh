@@ -1,7 +1,6 @@
+import { OrderSummary } from "@/components";
 import { useRouter } from "next/router";
 import type { FormEvent } from "react";
-import { BsCheckCircleFill, BsCircle } from "react-icons/bs";
-import { CheckoutContainer, OrderSummary } from "@/components";
 
 const Checkout = () => {
   const router = useRouter();

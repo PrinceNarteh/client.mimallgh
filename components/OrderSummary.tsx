@@ -1,4 +1,18 @@
+import { useCartSelector } from "@/store/features/cart/cartSlice";
+import { ICartItem } from "@/types";
+
 export const OrderSummary = () => {
+  const { items, deliveryCharge } = useCartSelector();
+
+  const totalAmount = items.reduce(
+    (amt, item) => amt + item.price * item.quantity,
+    0
+  );
+
+  console.log(deliveryCharge);
+
+  const totalCharge = totalAmount + deliveryCharge;
+
   return (
     <div className="mx-auto w-full max-w-3xl overflow-x-auto rounded-md border border-gray-400 p-5 shadow">
       <div className="w-full space-y-5">
@@ -13,55 +27,34 @@ export const OrderSummary = () => {
                 <th scope="col" className="px-6 py-3">
                   Seller
                 </th>
-                <th scope="col" className="px-6 py-3">
-                  Qty
-                </th>
                 <th scope="col" className="px-6 py-3 text-center">
                   Unit Price (¢)
                 </th>
-                <th scope="col" className="px-6 py-3">
-                  Amt
+                <th scope="col" className="px-6 py-3 text-center">
+                  Qty
+                </th>
+                <th scope="col" className="px-6 py-3 text-center">
+                  Amt (¢)
                 </th>
               </tr>
             </thead>
             <tbody>
-              {}
-              <tr className="border-b bg-white">
-                <th
-                  scope="row"
-                  className="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
-                >
-                  Apple MacBook Pro 17
-                </th>
-                <td className="px-6 py-4">Silver</td>
-                <td className="px-6 py-4">2</td>
-                <td className="px-6 py-4">$2999</td>
-                <td className="px-6 py-4">$2999</td>
-              </tr>
-              <tr className="border-b bg-white">
-                <th
-                  scope="row"
-                  className="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
-                >
-                  Microsoft Surface Pro
-                </th>
-                <td className="px-6 py-4">White</td>
-                <td className="px-6 py-4">10</td>
-                <td className="px-6 py-4">$1999</td>
-                <td className="px-6 py-4">$1999</td>
-              </tr>
-              <tr className="border-b bg-white">
-                <th
-                  scope="row"
-                  className="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
-                >
-                  Magic Mouse 2
-                </th>
-                <td className="px-6 py-4">Black</td>
-                <td className="px-6 py-4">8</td>
-                <td className="px-6 py-4">$99</td>
-                <td className="px-6 py-4">$99</td>
-              </tr>
+              {items.map((cartItem, idx) => (
+                <tr key={idx} className="border-b bg-white">
+                  <th
+                    scope="row"
+                    className="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                  >
+                    {cartItem.productName}
+                  </th>
+                  <td className="px-6 py-4">{cartItem.shopName}</td>
+                  <td className="px-6 py-4 text-center">{cartItem.price}</td>
+                  <td className="px-6 py-4 text-center">{cartItem.quantity}</td>
+                  <td className="px-6 py-4 text-center">
+                    {cartItem.quantity * cartItem.price}
+                  </td>
+                </tr>
+              ))}
               <tr className="bg-white">
                 <th
                   scope="row"
@@ -72,20 +65,22 @@ export const OrderSummary = () => {
                 <td className="px-6 py-2"></td>
                 <td className="px-6 py-2"></td>
                 <td className="px-6 py-2"></td>
-                <td className="px-6 py-2">$2299</td>
+                <td className="px-6 py-2 text-center">{totalAmount}</td>
               </tr>
-              <tr className="bg-white">
-                <th
-                  scope="row"
-                  className="whitespace-nowrap px-6 py-2 font-bold text-gray-900"
-                >
-                  Delivery Charge
-                </th>
-                <td className="px-6 py-2"></td>
-                <td className="px-6 py-2"></td>
-                <td className="px-6 py-2"></td>
-                <td className="px-6 py-2">$99</td>
-              </tr>
+              {deliveryCharge !== 0 ? (
+                <tr className="bg-white">
+                  <th
+                    scope="row"
+                    className="whitespace-nowrap px-6 py-2 font-bold text-gray-900"
+                  >
+                    Delivery Charge
+                  </th>
+                  <td className="px-6 py-2"></td>
+                  <td className="px-6 py-2"></td>
+                  <td className="px-6 py-2"></td>
+                  <td className="px-6 py-2 text-center">{deliveryCharge}</td>
+                </tr>
+              ) : null}
               <tr className="border-y-2 bg-white">
                 <th
                   scope="row"
@@ -96,7 +91,7 @@ export const OrderSummary = () => {
                 <td className="px-6 py-4"></td>
                 <td className="px-6 py-4"></td>
                 <td className="px-6 py-4"></td>
-                <td className="px-6 py-4">$99</td>
+                <td className="px-6 py-4 text-center">{totalCharge}</td>
               </tr>
             </tbody>
           </table>

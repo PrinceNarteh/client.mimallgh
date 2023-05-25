@@ -79,3 +79,13 @@ export type Delivery = {
   time: string;
   date: string;
 };
+
+export type ICartItem = {
+  productName: string;
+  quantity: number;
+  price: number;
+  productId: string;
+  shopId: string;
+  shopName: string;
+  image: string;
+};
