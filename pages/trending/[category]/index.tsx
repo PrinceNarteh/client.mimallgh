@@ -1,9 +1,10 @@
 import React from "react";
 import { Container, MovieCard, TopDeals } from "@/components";
-import { topDeals } from "../../utils/data";
 import { GetServerSideProps } from "next";
 import { getProducts } from "@/services/products";
 import { IProduct } from "@/types";
+import { useRouter } from "next/router";
+import { topDeals } from "@/utils/data";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await getProducts("perPage=1");
@@ -16,6 +17,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 const Trending = ({ trending }: { trending: IProduct }) => {
+  const {
+    query: { category },
+  } = useRouter();
   return (
     <Container>
       <div className="mx-auto w-11/12 py-7">
@@ -32,7 +36,10 @@ const Trending = ({ trending }: { trending: IProduct }) => {
                       ))}
                   </div>
                   <div className="my-5">
-                    <TopDeals topDeals={topDeals} />
+                    <TopDeals
+                      topDeals={topDeals}
+                      category={category as string}
+                    />
                   </div>
                 </div>
               ))}

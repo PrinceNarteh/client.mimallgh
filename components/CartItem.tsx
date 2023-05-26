@@ -1,11 +1,11 @@
 import {
-  ICartItem,
   decrease,
   increase,
   useCartSelector,
   remove,
 } from "@/store/features/cart/cartSlice";
 import { useAppDispatch } from "@/store/store";
+import { ICartItem } from "@/types";
 import Image from "next/image";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
