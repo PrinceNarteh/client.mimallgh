@@ -100,7 +100,7 @@ export const SearchBar = () => {
                 } absolute left-0 top-[55px] min-w-max py-2 text-base bg-gray-800 arrow before:left-2 duration-500 transform`}
               >
                 <Link
-                  href="delivery/winike-dispatch"
+                  href="/delivery/winike-dispatch"
                   className="py-2 px-5 block hover:bg-gray-700"
                 >
                   WinIke Dispatch
@@ -111,7 +111,10 @@ export const SearchBar = () => {
                 >
                   God's Way
                 </Link>
-                <Link href="" className="py-2 px-5 block hover:bg-gray-700">
+                <Link
+                  href="/delivery/hubtel"
+                  className="py-2 px-5 block hover:bg-gray-700"
+                >
                   Hubtel
                 </Link>
               </div>

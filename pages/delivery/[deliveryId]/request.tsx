@@ -5,8 +5,9 @@ import {
 } from "@/store/features/delivery/deliverySlice";
 import { useAppDispatch } from "@/store/store";
 import { Delivery } from "@/types";
+import { fares, getDeliveryFare, towns } from "@/utils/dispatch_fares";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { CgRadioCheck } from "react-icons/cg";
@@ -15,6 +16,10 @@ const DeliveryForm = () => {
   const dispatch = useAppDispatch();
   const { delivery } = useDeliverySelector();
   const router = useRouter();
+  const [destination, setDestination] = useState({
+    from: "",
+    to: "",
+  });
 
   const {
     register,
@@ -51,33 +56,84 @@ const DeliveryForm = () => {
               <label htmlFor="" className="w-36 inline-block">
                 I want you to
               </label>
-              <input
-                type="text"
-                className="flex-1 border border-[#165474] outline-none p-1 rounded"
-                {...register("request", {
-                  required: "Request message is required",
-                })}
-              />
+              <div className="flex-1">
+                <input
+                  type="text"
+                  className=" border w-full border-[#165474] outline-none p-1 rounded"
+                  {...register("request", {
+                    required: "Request message is required",
+                  })}
+                />
+                {errors["request"] && (
+                  <span className="block text-[10px] pl-1 pt-1 text-[red]">
+                    {errors["request"].message}
+                  </span>
+                )}
+              </div>
             </div>
             <div className="flex flex-wrap items-center gap-1">
               <label htmlFor="" className="w-36 inline-block">
                 From
               </label>
-              <input
-                type="text"
-                className="flex-1 border border-[#165474] outline-none p-1 rounded"
-                {...register("from")}
-              />
+              <div className="flex-1">
+                <select
+                  {...register("from", {
+                    required: {
+                      value: true,
+                      message: "Location the item is taken from is required.",
+                    },
+                    onChange: (e) =>
+                      setDestination({
+                        ...destination,
+                        from: e.target.value,
+                      }),
+                  })}
+                  className="border w-full border-[#165474] outline-none p-1 rounded"
+                >
+                  {towns.map((town, idx) => (
+                    <option key={idx} value={town.value}>
+                      {town.label}
+                    </option>
+                  ))}
+                </select>
+                {errors["from"] && (
+                  <span className="block text-[10px] pl-1 pt-1 text-[red]">
+                    {errors["from"].message}
+                  </span>
+                )}
+              </div>
             </div>
             <div className="flex flex-wrap items-center gap-1">
               <label htmlFor="" className="w-36 inline-block">
                 To
               </label>
-              <input
-                type="text"
-                className="flex-1 border border-[#165474] outline-none p-1 rounded"
-                {...register("to")}
-              />
+              <div className="flex-1">
+                <select
+                  {...register("to", {
+                    required: {
+                      value: true,
+                      message: "Location the item is taken to is required.",
+                    },
+                    onChange: (e) =>
+                      setDestination({
+                        ...destination,
+                        to: e.target.value,
+                      }),
+                  })}
+                  className="border w-full border-[#165474] outline-none p-1 rounded"
+                >
+                  {towns.map((town, idx) => (
+                    <option key={idx} value={town.value}>
+                      {town.label}
+                    </option>
+                  ))}
+                </select>
+                {errors["to"] && (
+                  <span className="block text-[10px] pl-1 pt-1 text-[red]">
+                    {errors["to"].message}
+                  </span>
+                )}
+              </div>
             </div>
             <div className="flex flex-wrap items-center gap-1">
               <label htmlFor="" className="w-36 inline-block">
@@ -88,6 +144,16 @@ const DeliveryForm = () => {
                 className="flex-1 border border-[#165474] outline-none p-1 rounded"
                 {...register("otherDetails")}
               />
+            </div>
+            <div className="flex flex-wrap items-center gap-1">
+              <label htmlFor="" className="w-36 inline-block">
+                Delivery Charge
+              </label>
+              <p className="text-right flex-1 font-semibold">
+                {destination.from && destination.to
+                  ? getDeliveryFare(destination.from, destination.to).toFixed(2)
+                  : 0}
+              </p>
             </div>
             <div className="flex flex-wrap items-center gap-1">
               <div className="w-36 md:inline-block hidden"></div>
@@ -103,11 +169,6 @@ const DeliveryForm = () => {
         </div>
 
         <div>
-          <div className="flex flex-wrap items-center gap-1 my-3 ml-7 mr-5">
-            <div className="w-40 text-lg">Delivery Charge</div>
-
-            <p className="text-right flex-1">GHC32.50</p>
-          </div>
           <div className="space-y-2 mt-2">
             <div className="flex items-center gap-2">
               <CgRadioCheck className="text-xl" />

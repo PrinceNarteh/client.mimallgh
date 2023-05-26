@@ -1,4 +1,8 @@
-export const fares = {
+export const fares: {
+  [key: string]: {
+    [key: string]: number;
+  };
+} = {
   uccCampus: {
     abura: 15.0,
     aburaNewTown: 15.0,
@@ -109,6 +113,9 @@ export const towns = [
   { label: "Wiamoa", value: "wiamoa" },
   { label: "Yamoransa", value: "yamoransa" },
 ];
+
+export const getDeliveryFare = (from: string, to: string) =>
+  fares[from][to] ? fares[from][to] : 0;
 
 // *DISPATCH FARES*
 
