@@ -82,37 +82,58 @@ const RecipientForm = () => {
           <label htmlFor="" className="w-40 inline-block">
             Name
           </label>
-          <input
-            type="text"
-            className="flex-1 border border-[#165474] outline-none p-1 rounded"
-            {...register("name", {
-              required: true,
-            })}
-          />
+          <div className="flex-1">
+            <input
+              type="text"
+              className=" border w-full border-[#165474] outline-none p-1 rounded"
+              {...register("name", {
+                required: "Name is required",
+              })}
+            />
+            {errors["name"] && (
+              <span className="block text-[10px] pl-1 pt-1 text-[red]">
+                {errors["name"].message}
+              </span>
+            )}
+          </div>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <label htmlFor="" className="w-40 inline-block">
             Location
           </label>
-          <input
-            type="text"
-            className="flex-1 border border-[#165474] outline-none p-1 rounded"
-            {...register("location", {
-              required: true,
-            })}
-          />
+          <div className="flex-1">
+            <input
+              type="text"
+              className=" border w-full border-[#165474] outline-none p-1 rounded"
+              {...register("location", {
+                required: "Location is required",
+              })}
+            />
+            {errors["location"] && (
+              <span className="block text-[10px] pl-1 pt-1 text-[red]">
+                {errors["location"].message}
+              </span>
+            )}
+          </div>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <label htmlFor="" className="w-40 inline-block">
             Call Contact
           </label>
-          <input
-            type="text"
-            className="flex-1 border border-[#165474] outline-none p-1 rounded"
-            {...register("phoneNumber", {
-              required: true,
-            })}
-          />
+          <div className="flex-1">
+            <input
+              type="text"
+              className=" border w-full border-[#165474] outline-none p-1 rounded"
+              {...register("phoneNumber", {
+                required: "Phone number is required",
+              })}
+            />
+            {errors["phoneNumber"] && (
+              <span className="block text-[10px] pl-1 pt-1 text-[red]">
+                {errors["phoneNumber"].message}
+              </span>
+            )}
+          </div>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <div className="w-40 lg:inline-block hidden"></div>

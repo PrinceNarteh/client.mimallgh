@@ -69,7 +69,7 @@ const DeliveryTimeForm = () => {
             </div>
             <div className="flex flex-wrap items-center gap-1">
               <p className="w-40 inline-block font-bold">Delivery Fee</p>
-              <p>GHC33.50</p>
+              <p>GHC{delivery.price}</p>
             </div>
           </div>
         </div>
