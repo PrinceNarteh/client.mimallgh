@@ -15,6 +15,7 @@ const initialState: {
     location: "",
     time: "",
     date: "",
+    price: 0,
   },
 };
 

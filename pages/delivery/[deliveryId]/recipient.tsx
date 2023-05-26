@@ -11,6 +11,7 @@ import { BsFillCheckCircleFill } from "react-icons/bs";
 import { CgRadioCheck } from "react-icons/cg";
 import { BiEdit } from "react-icons/bi";
 import Link from "next/link";
+import { mapTownLabelToValue } from "@/utils/dispatch_fares";
 
 const RecipientForm = () => {
   const dispatch = useAppDispatch();
@@ -18,13 +19,14 @@ const RecipientForm = () => {
   const router = useRouter();
 
   const {
-    getValues,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: delivery,
   });
+
+  console.log(delivery);
 
   const submitHandler: SubmitHandler<Delivery> = (data) => {
     dispatch(
@@ -67,7 +69,7 @@ const RecipientForm = () => {
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">Delivery Fee</p>
-          <p>GHC33.50</p>
+          <p>GHC{delivery.price}</p>
         </div>
       </div>
 

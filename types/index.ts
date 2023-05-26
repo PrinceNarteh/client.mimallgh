@@ -86,6 +86,7 @@ export type Delivery = {
   location: string;
   time: string;
   date: string;
+  price: number;
 };
 
 export type ICartItem = {

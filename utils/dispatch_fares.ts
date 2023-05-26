@@ -113,9 +113,14 @@ export const towns = [
   { label: "Wiamoa", value: "wiamoa" },
   { label: "Yamoransa", value: "yamoransa" },
 ];
-
 export const getDeliveryFare = (from: string, to: string) =>
   fares[from][to] ? fares[from][to] : 0;
+
+export const mapTownValueToLabel = (value: string) =>
+  towns.find((item) => item.value === value)?.label || "";
+
+export const mapTownLabelToValue = (label: string) =>
+  towns.find((item) => item.label === label)?.value || "";
 
 // *DISPATCH FARES*
 

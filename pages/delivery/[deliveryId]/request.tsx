@@ -5,7 +5,13 @@ import {
 } from "@/store/features/delivery/deliverySlice";
 import { useAppDispatch } from "@/store/store";
 import { Delivery } from "@/types";
-import { fares, getDeliveryFare, towns } from "@/utils/dispatch_fares";
+import {
+  fares,
+  getDeliveryFare,
+  mapTownLabelToValue,
+  towns,
+  mapTownValueToLabel,
+} from "@/utils/dispatch_fares";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -23,17 +29,37 @@ const DeliveryForm = () => {
 
   const {
     register,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: delivery,
+    defaultValues: {
+      ...delivery,
+      from: mapTownLabelToValue(delivery.from),
+      to: mapTownLabelToValue(delivery.to),
+    },
   });
+
+  useEffect(() => {
+    setDestination({
+      from: mapTownLabelToValue(delivery.from),
+      to: mapTownLabelToValue(delivery.to),
+    });
+  }, []);
+
+  const deliveryPrice =
+    destination.from && destination.to
+      ? getDeliveryFare(destination.from, destination.to)
+      : 0;
 
   const submitHandler: SubmitHandler<Delivery> = (data) => {
     dispatch(
       addInfo({
         ...delivery,
         ...data,
+        from: mapTownValueToLabel(data.from),
+        to: mapTownValueToLabel(data.to),
+        price: deliveryPrice,
       })
     );
     router.push(`/delivery/${router.query.deliveryId}/recipient`);
@@ -150,9 +176,7 @@ const DeliveryForm = () => {
                 Delivery Charge
               </label>
               <p className="text-right flex-1 font-semibold">
-                {destination.from && destination.to
-                  ? getDeliveryFare(destination.from, destination.to).toFixed(2)
-                  : 0}
+                {deliveryPrice.toFixed(2)}
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-1">
