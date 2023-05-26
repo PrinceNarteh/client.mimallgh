@@ -1,16 +1,21 @@
-import { Container, ProductCard, TopDeals } from "@/components";
-import { getProducts } from "@/services/products";
-import { IProduct } from "@/types";
+import { Container } from "@/components";
+import { getAllProducts, getProducts } from "@/services/products";
+import { IProduct, IUncategorizedProduct } from "@/types";
 import { topDeals } from "@/utils/data";
 import { capitalize } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await getProducts("category=food&perPage=12");
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { query } = context;
+  // { marketId: 'amamoma', category: 'food' }
+  const data = await getAllProducts(
+    `location=${query.marketId}&category=${query.category}`
+  );
+
+  console.log(data);
 
   return {
     props: {
@@ -19,24 +24,27 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-const ProductByCategory = ({ products }: { products: IProduct }) => {
+const ProductVideosByCategory = ({
+  products,
+}: {
+  products: IUncategorizedProduct;
+}) => {
   const { query } = useRouter();
 
   return (
     <Container>
       <div className="bg-gray-300 bg-opacity-30">
-        <div className="md:w-11/12 mx-auto p-3 md:p-5">
-          <div className="grid grid-cols-1 gap-5 xl:grid-cols-12">
+        <div className="md:w-11/12 mx-auto p-3">
+          <div className="grid grid-cols-1 gap-3 xl:grid-cols-12">
             <div className="col-span-12 xl:col-span-9 space-y-5">
               <div className="flex items-center bg-white shadow">
-                <div className="flex-1 py-0.5 pl-5 text-2xl">
-                  {capitalize(query.categoryId as string, "_")}
+                <div className="flex-1 pl-5 py-3 text-2xl">
+                  {capitalize(query.category as string)}
                 </div>
-                <div className="bg-[#ff0000] p-4 text-white">SORT BY</div>
               </div>
 
-              <div className="flex flex-wrap justify-center gap-5">
-                {products.data[0].data.map((product, idx) => (
+              <div className="flex flex-wrap justify-evenly gap-5">
+                {products.data.map((product, idx) => (
                   <div
                     key={idx}
                     className="h-[200px] w-[150px] my-2 shrink-0 md:h-[230px] md:w-[205px]"
@@ -106,4 +114,4 @@ const ProductByCategory = ({ products }: { products: IProduct }) => {
   );
 };
 
-export default ProductByCategory;
+export default ProductVideosByCategory;

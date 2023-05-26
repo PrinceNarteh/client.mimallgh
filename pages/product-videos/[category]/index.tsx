@@ -17,7 +17,6 @@ const ProductVideos = () => {
               <div className="flex-1 py-0.5 pl-5 text-2xl">
                 {capitalize(category as string)}
               </div>
-              <div className="bg-[#ff0000] px-4 py-2 text-white">SORT BY</div>
             </div>
             <div className="mt-5">
               <div className="grid gap-5 grid-auto-fit-md">

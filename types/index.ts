@@ -9,6 +9,14 @@ export enum CategoryType {
   TECH = "tech",
 }
 
+export type IUncategorizedProduct = {
+  total: number;
+  page: number;
+  perPage: number;
+  totalPages: number;
+  data: Product[];
+};
+
 export type IProduct = {
   total: number;
   page: number;
