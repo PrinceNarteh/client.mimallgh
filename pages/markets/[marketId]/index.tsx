@@ -7,6 +7,7 @@ import { categories } from "@/utils/data";
 import { capitalize } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -23,23 +24,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const Markets = (products: { products: IProduct }) => {
   const [state, setState] = useState<IProduct>(products.products);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const { query } = useRouter();
   const market = capitalize(query.marketId as string);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get(
-        `/products/?location=${query.marketId}&category=${selectedCategory}&categorized=true`
-      );
-
-      setState(res.data);
-    };
-
-    if (selectedCategory) {
-      fetchData();
-    }
-  }, [selectedCategory, axios]);
 
   return (
     <Container>
@@ -52,7 +38,10 @@ const Markets = (products: { products: IProduct }) => {
       <section className="mx-auto w-11/12 py-10">
         <div className="grid gap-5 grid-auto-fit-lg">
           {categories.map((category, idx) => (
-            <div key={idx} onClick={() => setSelectedCategory(category.key)}>
+            <Link
+              href={`/markets/${query.marketId}/${category.link}`}
+              key={idx}
+            >
               <div className="bg-white">
                 <div
                   className={`group relative h-28 cursor-pointer overflow-hidden rounded-2xl p-5 shadow-lg`}
@@ -74,7 +63,7 @@ const Markets = (products: { products: IProduct }) => {
                   300 Sellers | 150 ads
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
