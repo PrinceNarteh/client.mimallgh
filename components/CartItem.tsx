@@ -24,8 +24,9 @@ export const CartItem = ({ cart }: { cart: ICartItem }) => {
           <h3 className="line-clamp-1 text-xl font-semibold tracking-wide">
             {cart.productName}
           </h3>
-          <p className="-pl-0 -mt-0 flex items-start tracking-wide">
-            ¢{cart.price}
+          <p className="-pl-0 -mt-0 tracking-wide">
+            <span className="text-xl">¢</span>
+            {cart.price}
           </p>
         </div>
         <p className="-pl-0 my-3 -mt-0 flex items-start tracking-wide">

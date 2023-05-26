@@ -1,13 +1,32 @@
+import { addToCart } from "@/store/features/cart/cartSlice";
+import { useAppDispatch } from "@/store/store";
 import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
 
 export const ProductCard = ({ product }: { product: Product }) => {
   const navigate = useRouter();
+  const dispatch = useAppDispatch();
 
   const handleNavigate = () => {
     navigate.push(`/products/${product.id}`);
+  };
+
+  const handleAddToCart = () => {
+    toast.success("Product Added");
+    dispatch(
+      addToCart({
+        image: product.images[0].secure_url,
+        price: product.price,
+        productId: product.id,
+        productName: product.title,
+        quantity: 1,
+        shopId: product.shop.id,
+        shopName: product.shop.name,
+      })
+    );
   };
 
   return (
@@ -21,7 +40,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
       <div className="shrink-0 overflow-hidden rounded-md shadow-md px-3 py-2 border">
         <div onClick={() => handleNavigate()} className="cursor-pointer">
           <div className="flex justify-center items-center h-10">
-            <p className="text-sm text-center font-semibold md:text-sm line-clamp-2 ">
+            <p className="text-sm text-center text-[#165474] font-semibold md:text-sm line-clamp-2 ">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Perspiciatis, omnis?
             </p>
@@ -41,7 +60,10 @@ export const ProductCard = ({ product }: { product: Product }) => {
             <span className="text-xl">¢</span>
             {product.price}
           </p>
-          <button className="text-xs border rounded text-pink-500 border-pink-500 px-2 py-1 hover:bg-pink-500 hover:text-white duration-300">
+          <button
+            onClick={() => handleAddToCart()}
+            className="text-xs border rounded text-pink-500 border-pink-500 px-2 py-1 hover:bg-pink-500 hover:text-white duration-300"
+          >
             Add To Cart
           </button>
         </div>

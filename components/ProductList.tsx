@@ -1,6 +1,6 @@
 import { Product } from "@/types";
 import { topDeals } from "@/utils/data";
-import { capitalize } from "@/utils/utilities";
+import { capitalize, slugify } from "@/utils/utilities";
 import Link from "next/link";
 import { ProductCard } from "./ProductCard";
 import { TopDeals } from "./TopDeals";
@@ -19,12 +19,12 @@ const ProductList = ({ products }: { products: IProduct }) => {
           <div key={idx} className="mb-5 flex flex-col">
             <>
               <div className="relative mb-5 bg-white px-5">
-                <div className="flex justify-between items-center pt-5 pl-5">
+                <div className="flex justify-between items-center pt-5 p">
                   <h3 className="sh-underline mb-2 text-lg font-semibold md:text-3xl line-clamp-1">
                     {capitalize(product.category, "_")}
                   </h3>
                   <Link
-                    href={`/category/${product.category}`}
+                    href={`/category/${slugify(product.category)}`}
                     className="font-semibold text-orange-500 line-clamp-1"
                   >
                     See more...
@@ -45,9 +45,7 @@ const ProductList = ({ products }: { products: IProduct }) => {
                     Product Videos
                   </h3>
                   <Link
-                    href={`/product-videos/${product.category
-                      .split("_")
-                      .join("-")}`}
+                    href={`/product-videos/${slugify(product.category)}`}
                     className="cursor-pointer font-bold text-orange-500"
                   >
                     See more...
@@ -83,7 +81,7 @@ const ProductList = ({ products }: { products: IProduct }) => {
                     Trending
                   </h3>
                   <Link
-                    href={"/trending"}
+                    href={`/trending/${slugify(product.category)}`}
                     className="cursor-pointer font-bold text-orange-500"
                   >
                     See more...
@@ -94,7 +92,10 @@ const ProductList = ({ products }: { products: IProduct }) => {
                     {Array(6)
                       .fill(null)
                       .map((_, idx) => (
-                        <Link href={`/trending/${idx}`} key={idx}>
+                        <Link
+                          href={`/trending/${product.category}/${idx}`}
+                          key={idx}
+                        >
                           <div className="w-60 shrink-0">
                             <div className="overflow-hidden rounded-md">
                               <VideoPlayer idx={idx} />

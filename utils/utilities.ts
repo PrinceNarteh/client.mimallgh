@@ -21,3 +21,5 @@ export const formatPhoneNumber = (value: string) => {
     6
   )}-${phoneNumber.slice(6, 10)}`;
 };
+
+export const slugify = (url: string) => url.split("_").join("-");

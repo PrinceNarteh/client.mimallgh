@@ -28,11 +28,8 @@ const ProductByCategory = ({ products }: { products: IProduct }) => {
         <div className="md:w-11/12 mx-auto p-3 md:p-5">
           <div className="grid grid-cols-1 gap-5 xl:grid-cols-12">
             <div className="col-span-12 xl:col-span-9 space-y-5">
-              <div className="flex items-center bg-white shadow">
-                <div className="flex-1 py-0.5 pl-5 text-2xl">
-                  {capitalize(query.categoryId as string, "_")}
-                </div>
-                <div className="bg-[#ff0000] p-4 text-white">SORT BY</div>
+              <div className="flex items-center bg-white shadow py-4 pl-5 text-2xl">
+                {capitalize(query.categoryId as string)}
               </div>
 
               <div className="flex flex-wrap justify-center gap-5">
@@ -85,7 +82,7 @@ const ProductByCategory = ({ products }: { products: IProduct }) => {
               <div className="pl-5 py-4 font-bold  bg-white shadow">
                 <p className="sh-underline">Top Deals</p>
               </div>
-              <div className="flex flex-wrap justify-center bg-white p-5 gap-5">
+              <div className="flex flex-wrap justify-center bg-red-5 bg-white py-5 px-3 gap-3">
                 {topDeals.map((topDeal, idx) => (
                   <Link
                     key={idx}
