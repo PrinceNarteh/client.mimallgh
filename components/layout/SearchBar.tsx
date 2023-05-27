@@ -17,7 +17,7 @@ import { FaRegUser } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import delivery from "../../assets/svgs/delivery-icon.svg";
-import { setDeliveryCompanyName } from "@/store/features/delivery/deliverySlice";
+import { setDeliveryCompanyInfo } from "@/store/features/delivery/deliverySlice";
 
 const deliveryCompanies = [
   {
@@ -38,7 +38,7 @@ export const SearchBar = () => {
   const { search } = useSearchSelector();
 
   const navigate = ({ name, link }: { name: string; link: string }) => {
-    dispatch(setDeliveryCompanyName(name));
+    dispatch(setDeliveryCompanyInfo({ name, link }));
     router.push(`/delivery/${link}`);
   };
 

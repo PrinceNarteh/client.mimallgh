@@ -3,16 +3,14 @@ import Link from "next/link";
 import React from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import deliveryIcon from "../../assets/svgs/delivery-icon.svg";
-import { useRouter } from "next/router";
-import { capitalize } from "@/utils/utilities";
+import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 
 const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
-  const {
-    query: { deliveryId },
-  } = useRouter();
+  const { deliveryCompanyName, deliveryCompanyLink } = useDeliverySelector();
+
   return (
     <div>
-      <div className="relative z-10">
+      <div className="fixed w-full z-50">
         <div className="h-24 hidden relative md:flex justify-center">
           <Image
             src={"/images/delivery-banner.jpg"}
@@ -23,27 +21,50 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
         <div className="bg-[#165474] md:absolute z-10 py-2 flex flex-col md:flex-row justify-between items-start md:items-center pr-5 md:h-16 md:w-11/12 m-auto left-0 right-0 bottom-6 md:-bottom-8">
           <div className="bg-white h-full rounded-r-full flex items-center py-2 px-4 shrink-0">
-            <Image src={deliveryIcon} alt="" width={50} height={50} />
-            <h5 className="ml-3 font-bold text-lg text-[#165474]">
-              {capitalize(deliveryId as string)?.toUpperCase()}
-            </h5>
+            <div className="w-10 h-10 flex justify-center items-center">
+              <Image src={deliveryIcon} alt="" width={50} height={50} />
+            </div>
+            <Link
+              href={`/delivery/${deliveryCompanyLink}`}
+              className="ml-3 font-bold text-lg text-[#165474]"
+            >
+              {deliveryCompanyName.toUpperCase()}
+            </Link>
           </div>
-          <div className="text-white flex px-2 pl-5 justify-evenly items-center text-sm py-2 mt-2 w-full">
-            <Link href="/">Home</Link>
+          <div className="relative text-white flex px-2 pl-5 justify-between items-center text-sm py-2 mt-2 w-full">
+            <Link href={`/delivery/${deliveryCompanyLink}`}>Home</Link>
             <Link href="#">Services</Link>
-            <Link href="#" className="">
+            <Link href="#" className="hidden">
               Working Hours
             </Link>
-            <Link href="#">More</Link>
-            <IoSearchOutline className="text-white text-2xl hidden md:block lg:hidden" />
-          </div>
-
-          <div className="bg-white hidden lg:block py-1 px-4 rounded-full">
-            <input type="text" placeholder="Search all categories..." />
+            <Link href="#" className="md:block">
+              More
+            </Link>
+            <IoSearchOutline className="text-white text-2xl lg:hidden" />
+            <div className="bg-white hidden lg:block py-1 px-4 rounded-full">
+              <input
+                type="text"
+                placeholder="Search all products..."
+                className="outline-none"
+              />
+            </div>
+            <div className="absolute right-0 top-16 bg-[#165474] py-2 arrow before:left-10">
+              <Link href="/" className="block py-2 px-2">
+                Pricing Policy
+              </Link>
+              <Link href="/" className="block py-2 px-2">
+                Working Hours
+              </Link>
+              <Link href="/" className="block py-2 px-2">
+                Promotion Campaign
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-      <div className="bg-gray-300 lg:block cursor-pointer">{children}</div>
+      <div className="bg-gray-300 lg:block cursor-pointer pt-24">
+        {children}
+      </div>
       <footer className="footer before:-top-9 before:h-20 relative bg-gray-800 text-white overflow-hidden">
         <div className="w-11/12 flex flex-col mx-auto text-xl gap-5 pt-28 pb-10">
           <div className="flex justify-evenly gap-5 flex-wrap">

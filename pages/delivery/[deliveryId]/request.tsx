@@ -6,7 +6,6 @@ import {
 import { useAppDispatch } from "@/store/store";
 import { Delivery } from "@/types";
 import {
-  fares,
   getDeliveryFare,
   mapTownLabelToValue,
   towns,
@@ -78,20 +77,20 @@ const DeliveryForm = () => {
             className="ml-7 mt-3 space-y-3"
             onSubmit={handleSubmit(submitHandler)}
           >
-            <div className="flex flex-wrap items-center gap-1">
+            <div className="flex flex-wrap items-start gap-1">
               <label htmlFor="" className="w-36 inline-block">
                 I want you to
               </label>
               <div className="flex-1">
-                <input
-                  type="text"
-                  className=" border w-full border-[#165474] outline-none p-1 rounded"
+                <textarea
+                  placeholder="Eg. Pick up parcel from Rose - 0570879217 at Passport Office, RM 34"
+                  className=" border w-full border-[#165474] outline-none p-1 rounded placeholder:text-sm"
                   {...register("request", {
                     required: "Request message is required",
                   })}
-                />
+                ></textarea>
                 {errors["request"] && (
-                  <span className="block text-[10px] pl-1 pt-1 text-[red]">
+                  <span className="block text-[10px] pl-1 text-[red]">
                     {errors["request"].message}
                   </span>
                 )}
@@ -116,6 +115,7 @@ const DeliveryForm = () => {
                   })}
                   className="border w-full border-[#165474] outline-none p-1 rounded"
                 >
+                  <option value="">Select origin</option>
                   {towns.map((town, idx) => (
                     <option key={idx} value={town.value}>
                       {town.label}
@@ -148,6 +148,7 @@ const DeliveryForm = () => {
                   })}
                   className="border w-full border-[#165474] outline-none p-1 rounded"
                 >
+                  <option value="">Select Destination</option>
                   {towns.map((town, idx) => (
                     <option key={idx} value={town.value}>
                       {town.label}
@@ -161,15 +162,15 @@ const DeliveryForm = () => {
                 )}
               </div>
             </div>
-            <div className="flex flex-wrap items-center gap-1">
-              <label htmlFor="" className="w-36 inline-block">
+            <div className="flex flex-col md:flex-row items-start gap-1">
+              <label htmlFor="" className="inline-block md:w-36">
                 Other Details
               </label>
-              <input
-                type="text"
-                className="flex-1 border border-[#165474] outline-none p-1 rounded"
+              <textarea
+                className="flex-1 w-full border border-[#165474] outline-none p-1 rounded"
+                placeholder="Eg. Parcel Contains Glass screen."
                 {...register("otherDetails")}
-              />
+              ></textarea>
             </div>
             <div className="flex flex-wrap items-center gap-1">
               <label htmlFor="" className="w-36 inline-block">
