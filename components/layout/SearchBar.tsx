@@ -17,6 +17,18 @@ import { FaRegUser } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import delivery from "../../assets/svgs/delivery-icon.svg";
+import { setDeliveryCompanyName } from "@/store/features/delivery/deliverySlice";
+
+const deliveryCompanies = [
+  {
+    name: "WinIke Dispatch",
+    link: "winike-dispatch",
+  },
+  {
+    name: "God's Way",
+    link: "gods-way",
+  },
+];
 
 export const SearchBar = () => {
   const [openDelivery, setOpenDelivery] = useState(false);
@@ -24,6 +36,11 @@ export const SearchBar = () => {
   const dispatch = useAppDispatch();
   const { items } = useCartSelector();
   const { search } = useSearchSelector();
+
+  const navigate = ({ name, link }: { name: string; link: string }) => {
+    dispatch(setDeliveryCompanyName(name));
+    router.push(`/delivery/${link}`);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,24 +116,14 @@ export const SearchBar = () => {
                     : "invisible translate-y-3 opacity-0"
                 } absolute left-0 top-[55px] min-w-max py-2 text-base bg-gray-800 arrow before:left-2 duration-500 transform`}
               >
-                <Link
-                  href="/delivery/winike-dispatch"
-                  className="py-2 px-5 block hover:bg-gray-700"
-                >
-                  WinIke Dispatch
-                </Link>
-                <Link
-                  href="/delivery/god's-way-laundry"
-                  className="py-2 px-5 block hover:bg-gray-700"
-                >
-                  God's Way
-                </Link>
-                <Link
-                  href="/delivery/hubtel"
-                  className="py-2 px-5 block hover:bg-gray-700"
-                >
-                  Hubtel
-                </Link>
+                {deliveryCompanies.map((deliveryCompany, idx) => (
+                  <div
+                    onClick={() => navigate(deliveryCompany)}
+                    className="py-2 px-5 block hover:bg-gray-700"
+                  >
+                    {deliveryCompany.name}
+                  </div>
+                ))}
               </div>
             </div>
             <Link href={`/cart`} className="relative">

@@ -3,8 +3,10 @@ import { Delivery } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: {
+  shopName: string;
   delivery: Delivery;
 } = {
+  shopName: "",
   delivery: {
     request: "",
     from: "",
@@ -26,10 +28,13 @@ const DeliverySlice = createSlice({
     addInfo: (state, action: PayloadAction<Delivery>) => {
       state.delivery = action.payload;
     },
+    setDeliveryCompanyName: (state, action: PayloadAction<string>) => {
+      state.shopName = action.payload;
+    },
   },
 });
 
 export const useDeliverySelector = () =>
   useAppSelector((state) => state.delivery);
-export const { addInfo } = DeliverySlice.actions;
+export const { addInfo, setDeliveryCompanyName } = DeliverySlice.actions;
 export default DeliverySlice;
