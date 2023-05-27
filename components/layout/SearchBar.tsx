@@ -118,6 +118,7 @@ export const SearchBar = () => {
               >
                 {deliveryCompanies.map((deliveryCompany, idx) => (
                   <div
+                    key={idx}
                     onClick={() => navigate(deliveryCompany)}
                     className="py-2 px-5 block hover:bg-gray-700"
                   >

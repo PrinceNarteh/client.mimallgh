@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import deliveryIcon from "../../assets/svgs/delivery-icon.svg";
 import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
@@ -15,6 +15,22 @@ import {
 
 const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
   const { deliveryCompanyName, deliveryCompanyLink } = useDeliverySelector();
+  const [openMenu, setOpenMenu] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: any) => {
+      if (!menuRef.current?.contains(e.target)) {
+        setOpenMenu(false);
+        console.log(menuRef.current);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.addEventListener("mousedown", handler);
+    };
+  });
 
   return (
     <div>
@@ -45,9 +61,9 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
             <Link href="#" className="hidden">
               Working Hours
             </Link>
-            <Link href="#" className="md:block">
+            <span onClick={() => setOpenMenu(!openMenu)} className="md:block">
               More
-            </Link>
+            </span>
             <IoSearchOutline className="text-white text-2xl lg:hidden" />
             <div className="bg-white hidden lg:block py-1 px-4 rounded-full">
               <input
@@ -56,7 +72,12 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
                 className="outline-none"
               />
             </div>
-            <div className="absolute right-0 top-16 bg-[#165474] py-2 arrow before:left-10">
+            <div
+              className={`${
+                openMenu ? "absolute" : "hidden"
+              } rounded right-0 top-16 bg-[#165474] py-2 arrow before:left-10`}
+              ref={menuRef}
+            >
               <Link href="/" className="block py-2 px-2">
                 Pricing Policy
               </Link>
