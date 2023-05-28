@@ -31,7 +31,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
   };
 
   return (
-    <div className="h-[300px] w-[120px] my-5 shrink-0 md:h-[230px] md:w-[205px]">
+    <div className="h-fit w-[120px] my-5 shrink-0 md:h-[230px] md:w-[205px]">
       {/* <Link
         href={`/web-store/${product.shop.id}`}
         className="mb-1 px-1 text-xs md:text-sm font-bold tracking-widest text-pink-500 line-clamp-1"
