@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
+import { TiShoppingCart } from "react-icons/ti";
 
 export const ProductCard = ({ product }: { product: Product }) => {
   const navigate = useRouter();
@@ -55,7 +56,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
             />
           </div>
         </div>
-        <div className="py-1 bg-white flex justify-between">
+        <div className="pb-1  flex justify-between bg-white">
           <p className="text-center text-sm font-semibold text-gray-700 md:text-base">
             <span className="text-xl">¢</span>
             {product.price}
@@ -64,7 +65,8 @@ export const ProductCard = ({ product }: { product: Product }) => {
             onClick={() => handleAddToCart()}
             className="text-xs border rounded text-pink-500 border-pink-500 px-2 py-1 hover:bg-pink-500 hover:text-white duration-300"
           >
-            Add To Cart
+            <TiShoppingCart className="md:hidden" />
+            <span className="hidden md:block">Add To Cart</span>
           </button>
         </div>
       </div>

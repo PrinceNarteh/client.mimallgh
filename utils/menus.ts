@@ -141,4 +141,5 @@ export const locations = [
   { label: "Kwaprow", link: "kwaprow" },
   { label: "Kwasipra", link: "kwasipra" },
   { label: "Duakro", link: "duakro" },
+  { label: "Free Market", link: "free-market" },
 ];

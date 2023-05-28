@@ -14,7 +14,7 @@ export const OrderSummary = () => {
   return (
     <div className="mx-auto w-full max-w-3xl overflow-x-auto rounded-md border border-gray-400 p-5 shadow">
       <div className="w-full space-y-5">
-        <h4 className="sh-underline relative md:text-2xl">Orders</h4>
+        <h4 className="sh-underline relative md:text-2xl">Order</h4>
         <div className="relative overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead className="bg-gray-50 text-xs uppercase text-gray-700">
