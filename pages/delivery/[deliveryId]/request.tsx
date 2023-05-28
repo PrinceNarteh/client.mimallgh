@@ -77,90 +77,95 @@ const DeliveryForm = () => {
             className="ml-7 mt-3 space-y-3"
             onSubmit={handleSubmit(submitHandler)}
           >
-            <div className="flex flex-wrap items-start gap-1">
-              <label htmlFor="" className="w-36 inline-block">
+            {/* <div className="flex flex-col md:flex-row items-start gap-1">
+              <label htmlFor="" className="inline-block md:w-36">
+                Other Details
+              </label>
+              <textarea
+                className="flex-1 w-full border border-[#165474] outline-none p-1 rounded"
+                placeholder="Eg. Parcel Contains Glass screen."
+                {...register("otherDetails")}
+              ></textarea>
+            </div> */}
+            <div className="flex flex-col md:flex-row items-start gap-1">
+              <label htmlFor="" className="inline-block md:w-36">
                 I want you to
               </label>
-              <div className="flex-1">
-                <textarea
-                  placeholder="Eg. Pick up parcel from Rose - 0570879217 at Passport Office, RM 34"
-                  className=" border w-full border-[#165474] outline-none p-1 rounded placeholder:text-sm"
-                  {...register("request", {
-                    required: "Request message is required",
-                  })}
-                ></textarea>
-                {errors["request"] && (
-                  <span className="block text-[10px] pl-1 text-[red]">
-                    {errors["request"].message}
-                  </span>
-                )}
-              </div>
+              <textarea
+                placeholder="Eg. Pick up parcel from Rose - 0570879217 at Passport Office, RM 34"
+                // className=" border w-full border-[#165474] outline-none p-1 rounded placeholder:text-sm"
+                className="flex-1 w-full border border-[#165474] outline-none p-1 rounded"
+                {...register("request", {
+                  required: "Request message is required",
+                })}
+              ></textarea>
+              {errors["request"] && (
+                <span className="block text-[10px] pl-1 text-[red]">
+                  {errors["request"].message}
+                </span>
+              )}
             </div>
-            <div className="flex flex-wrap items-center gap-1">
-              <label htmlFor="" className="w-36 inline-block">
+            <div className="flex flex-col md:flex-row items-start gap-1">
+              <label htmlFor="" className="md:w-36 inline-block">
                 From
               </label>
-              <div className="flex-1">
-                <select
-                  {...register("from", {
-                    required: {
-                      value: true,
-                      message: "Location the item is taken from is required.",
-                    },
-                    onChange: (e) =>
-                      setDestination({
-                        ...destination,
-                        from: e.target.value,
-                      }),
-                  })}
-                  className="border w-full border-[#165474] outline-none p-1 rounded"
-                >
-                  <option value="">Select origin</option>
-                  {towns.map((town, idx) => (
-                    <option key={idx} value={town.value}>
-                      {town.label}
-                    </option>
-                  ))}
-                </select>
-                {errors["from"] && (
-                  <span className="block text-[10px] pl-1 pt-1 text-[red]">
-                    {errors["from"].message}
-                  </span>
-                )}
-              </div>
+              <select
+                {...register("from", {
+                  required: {
+                    value: true,
+                    message: "Location the item is taken from is required.",
+                  },
+                  onChange: (e) =>
+                    setDestination({
+                      ...destination,
+                      from: e.target.value,
+                    }),
+                })}
+                className="border flex-1 w-full border-[#165474] outline-none p-1 rounded"
+              >
+                <option value="">Select origin</option>
+                {towns.map((town, idx) => (
+                  <option key={idx} value={town.value}>
+                    {town.label}
+                  </option>
+                ))}
+              </select>
+              {errors["from"] && (
+                <span className="block text-[10px] pl-1 pt-1 text-[red]">
+                  {errors["from"].message}
+                </span>
+              )}
             </div>
-            <div className="flex flex-wrap items-center gap-1">
-              <label htmlFor="" className="w-36 inline-block">
+            <div className="flex flex-col md:flex-row items-start gap-1">
+              <label htmlFor="" className="md:w-36 inline-block">
                 To
               </label>
-              <div className="flex-1">
-                <select
-                  {...register("to", {
-                    required: {
-                      value: true,
-                      message: "Location the item is taken to is required.",
-                    },
-                    onChange: (e) =>
-                      setDestination({
-                        ...destination,
-                        to: e.target.value,
-                      }),
-                  })}
-                  className="border w-full border-[#165474] outline-none p-1 rounded"
-                >
-                  <option value="">Select Destination</option>
-                  {towns.map((town, idx) => (
-                    <option key={idx} value={town.value}>
-                      {town.label}
-                    </option>
-                  ))}
-                </select>
-                {errors["to"] && (
-                  <span className="block text-[10px] pl-1 pt-1 text-[red]">
-                    {errors["to"].message}
-                  </span>
-                )}
-              </div>
+              <select
+                {...register("to", {
+                  required: {
+                    value: true,
+                    message: "Location the item is taken to is required.",
+                  },
+                  onChange: (e) =>
+                    setDestination({
+                      ...destination,
+                      to: e.target.value,
+                    }),
+                })}
+                className="flex-1 w-full border border-[#165474] outline-none p-1 rounded"
+              >
+                <option value="">Select Destination</option>
+                {towns.map((town, idx) => (
+                  <option key={idx} value={town.value}>
+                    {town.label}
+                  </option>
+                ))}
+              </select>
+              {errors["to"] && (
+                <span className="block text-[10px] pl-1 pt-1 text-[red]">
+                  {errors["to"].message}
+                </span>
+              )}
             </div>
             <div className="flex flex-col md:flex-row items-start gap-1">
               <label htmlFor="" className="inline-block md:w-36">
