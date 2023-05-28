@@ -9,7 +9,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
 import { useRouter } from "next/router";
-import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
@@ -50,7 +49,6 @@ const cards = [
 ];
 
 const Delivery = () => {
-  const { deliveryCompanyLink } = useDeliverySelector();
   const {
     query: { deliveryId },
   } = useRouter();
@@ -123,50 +121,30 @@ const Delivery = () => {
             </div>
 
             <div className="flex flex-wrap gap-10 justify-center mt-10 md:mt-0">
-              <div className="w-[300px] h-[390px] bg-white p-5">
-                <h4 className="pb-3 justify-center h-14 flex items-center font-semibold text-xl">
-                  Cooked Food
-                </h4>
-                <div className="flex justify-center w-[250px] h-[240px] bg-slate-500">
-                  <Image
-                    src={`/images/food-2.jpg`}
-                    alt=""
-                    width="250"
-                    height={250}
-                    className="object-center object-cover"
-                  />
+              {cards.map((card, idx) => (
+                <div key={idx} className="w-[300px] h-[390px] bg-white p-5">
+                  <h4 className="pb-3 text-center h-14 flex items-center">
+                    Order {card.label} (100 sellers 200 ads)
+                  </h4>
+                  <div className="flex justify-center w-[250px] h-[240px] bg-slate-500">
+                    <Image
+                      src={`/images/${card.link}-2.jpg`}
+                      alt=""
+                      width="250"
+                      height={250}
+                      className="object-center object-cover"
+                    />
+                  </div>
+                  <div className="flex justify-center pt-3">
+                    <Link
+                      href={`/category/${card.link}`}
+                      className="text-white bg-[#c8b600] py-2 w-full text-center"
+                    >
+                      Shop Now
+                    </Link>
+                  </div>
                 </div>
-                <div className="flex justify-center pt-3">
-                  <Link
-                    href={`/delivery/${deliveryCompanyLink}/category/cooked-food`}
-                    className="text-white bg-[#c8b600] py-2 w-full text-center"
-                  >
-                    Shop Now
-                  </Link>
-                </div>
-              </div>
-              <div className="w-[300px] h-[390px] bg-white p-5">
-                <h4 className="pb-3 justify-center h-14 flex items-center font-semibold text-xl">
-                  Whole Food
-                </h4>
-                <div className="flex justify-center w-[250px] h-[240px] bg-slate-500">
-                  <Image
-                    src={`/images/food-2.jpg`}
-                    alt=""
-                    width="250"
-                    height={250}
-                    className="object-center object-cover"
-                  />
-                </div>
-                <div className="flex justify-center pt-3">
-                  <Link
-                    href={`/delivery/${deliveryCompanyLink}/category/whole-food`}
-                    className="text-white bg-[#c8b600] py-2 w-full text-center"
-                  >
-                    Shop Now
-                  </Link>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 

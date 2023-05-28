@@ -42,8 +42,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
         <div onClick={() => handleNavigate()} className="cursor-pointer">
           <div className="flex justify-center items-center h-10">
             <p className="text-sm text-center text-[#165474] font-semibold md:text-sm line-clamp-2 ">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Perspiciatis, omnis?
+              {product.title}
             </p>
           </div>
           <div className="relative h-[50px] overflow-hidden md:h-[100px] rounded-md mx-auto my-3">
