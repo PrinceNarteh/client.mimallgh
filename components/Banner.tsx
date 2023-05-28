@@ -8,9 +8,9 @@ import "swiper/css/pagination";
 
 export const Banner = () => {
   return (
-    <div className="relative mx-auto grid h-48 md:h-96 w-full md:w-9/12 grid-cols-8 gap-3 overflow-hidden rounded-md bg-white p-3">
+    <div className="relative mx-auto grid h-48 md:h-96 w-full md:w-10/12 lg:w-9/12 grid-cols-8 gap-3 overflow-hidden rounded-md bg-white p-3">
       <div className="col-span-2 h-full flex-col justify-between hidden md:flex">
-        <div className="h-44 w-full flex-1 basis-40 rounded-md">
+        <div className="h-44 w-full flex-1 basis-40 rounded-md overflow-hidden">
           <Swiper
             spaceBetween={30}
             centeredSlides={true}
@@ -66,7 +66,7 @@ export const Banner = () => {
           </Swiper>
         </div>
 
-        <div className="h-44 relative w-full flex-1 basis-40 rounded-md">
+        <div className="h-44 relative w-full flex-1 basis-40 rounded-md overflow-hidden">
           <Image
             src="/images/food-2.jpg"
             fill
@@ -129,7 +129,7 @@ export const Banner = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="col-span-2 h-full flex-col justify-between hidden md:flex">
+      <div className="col-span-2 h-full flex-col overflow-hidden justify-between hidden md:flex">
         <div className="h-44 w-full flex-1 basis-40 rounded-md">
           <Swiper
             spaceBetween={30}
@@ -186,7 +186,7 @@ export const Banner = () => {
           </Swiper>
         </div>
 
-        <div className="h-44 relative w-full flex-1 basis-40 rounded-md">
+        <div className="h-44 relative w-full flex-1 basis-40 rounded-md overflow-hidden">
           <Image
             src="/images/food-1.jpg"
             fill
