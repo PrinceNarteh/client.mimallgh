@@ -12,7 +12,6 @@ import {
   FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
-import { SearchBar } from "./SearchBar";
 
 const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
   const { deliveryCompanyName, deliveryCompanyLink } = useDeliverySelector();
@@ -37,9 +36,14 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
     <div>
       <div className="fixed w-full z-50">
         <div className="h-24 hidden relative md:flex justify-center">
-          <SearchBar />
+          <Image
+            src={"/images/delivery-banner.jpg"}
+            fill
+            alt=""
+            style={{ objectFit: "cover" }}
+          />
         </div>
-        <div className="bg-[#165474]  z-10 py-2 flex flex-col pr-5 left-0 right-0 bottom-6 justify-between items-start md:absolute md:flex-row md:items-center md:h-16 m-auto  md:-bottom-10">
+        <div className="bg-[#165474] md:absolute z-10 py-2 flex flex-col md:flex-row justify-between items-start md:items-center pr-5 md:h-16 md:w-11/12 m-auto left-0 right-0 bottom-6 md:-bottom-8">
           <div className="bg-white h-full rounded-r-full flex items-center py-2 px-4 shrink-0">
             <div className="w-10 h-10 flex justify-center items-center">
               <Image src={deliveryIcon} alt="" width={50} height={50} />
@@ -51,7 +55,7 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
               {deliveryCompanyName.toUpperCase()}
             </Link>
           </div>
-          <div className="relative text-white flex px-2 pl-5 justify-evenly items-center text-sm py-2 w-full">
+          <div className="relative text-white flex px-2 pl-5 justify-between items-center text-sm py-2 mt-2 w-full">
             <Link href={`/delivery/${deliveryCompanyLink}`}>Home</Link>
             <Link href="#">Services</Link>
             <Link href="#" className="hidden">
@@ -60,6 +64,14 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
             <span onClick={() => setOpenMenu(!openMenu)} className="md:block">
               More
             </span>
+            <IoSearchOutline className="text-white text-2xl lg:hidden" />
+            <div className="bg-white hidden lg:block py-1 px-4 rounded-full">
+              <input
+                type="text"
+                placeholder="Search all products..."
+                className="outline-none"
+              />
+            </div>
             <div
               className={`${
                 openMenu ? "absolute" : "hidden"
@@ -75,16 +87,6 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
               <Link href="/" className="block py-2 px-2">
                 Promotion Campaign
               </Link>
-            </div>
-          </div>
-          <div>
-            <IoSearchOutline className="text-white text-2xl lg:hidden" />
-            <div className="bg-white hidden lg:block py-1 px-4 rounded-full">
-              <input
-                type="text"
-                placeholder="Search all products..."
-                className="outline-none"
-              />
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 const ProductByCategory = ({ products }: { products: IProduct }) => {
-  const {deliveryCompanyLink} = useDeliverySelector()
+  const { deliveryCompanyLink } = useDeliverySelector();
   const { query } = useRouter();
 
   return (
@@ -39,16 +39,10 @@ const ProductByCategory = ({ products }: { products: IProduct }) => {
                   {products.data[0].data.map((product, idx) => (
                     <div
                       key={idx}
-                      className="h-[200px] w-[150px] my-2 shrink-0 md:h-[230px] md:w-[205px]"
+                      className="h-fit w-[150px] my-2 shrink-0 md:h-fit md:w-[205px]"
                     >
-                      <Link
-                        href={`/delivery/${deliveryCompanyLink}/store/${product.shop.id}`}
-                        className="mb-1 px-1 text-xs md:text-sm font-bold tracking-widest text-pink-500 line-clamp-1"
-                      >
-                        {product.shop.name}
-                      </Link>
                       <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
-                        <div className="relative h-[130px] md:h-[160px] w-full">
+                        <div className="relative h-[130px] md:h-[160px] w-full group overflow-hidden">
                           <Link href={`/products/${product.id}`}>
                             <Image
                               src={product.images[0].secure_url}
@@ -56,8 +50,16 @@ const ProductByCategory = ({ products }: { products: IProduct }) => {
                               sizes="190px"
                               alt=""
                               style={{ objectFit: "cover" }}
+                              className="group-hover:scale-110 duration-500"
                             />
                           </Link>
+                          <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
+                          <div className="relative p-5 z-10 flex h-full w-full items-center justify-center">
+                            <h3 className=" text-center text-lg text-white line-clamp-3">
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Error, voluptatibus.
+                            </h3>
+                          </div>
                         </div>
                         <div className="px-2 py-1 bg-white">
                           <p className="text-xs md:text-sm line-clamp-1">

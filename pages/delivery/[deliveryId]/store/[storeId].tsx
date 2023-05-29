@@ -48,7 +48,7 @@ const WebStore = ({ webStore }: { webStore: Store }) => {
   if (!store) return <Error />;
   return (
     <DeliveryLayout>
-      <div className="relative pt-10">
+      <div className="relative pt-12">
         <div className="px-5 w-11/12 mx-auto relative h-[200px] md:h-[400px] bg-teal-500">
           <Image
             src={"/images/web-store-banner.jpg"}
