@@ -8,3 +8,12 @@ export const getStore = async (storeId: string) => {
     return null;
   }
 };
+
+export const getAllStores = async () => {
+  try {
+    const res = await axios.get(`/shops/all`);
+    return res.data;
+  } catch (error) {
+    return null;
+  }
+};

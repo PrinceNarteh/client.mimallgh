@@ -1,9 +1,9 @@
 import { Container } from "@/components";
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
 import { getProducts } from "@/services/products";
+import { getAllStores } from "@/services/store";
 import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
-import { IProduct } from "@/types";
-import { topDeals } from "@/utils/data";
+import { DeliveryStore } from "@/types";
 import { capitalize } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
@@ -12,18 +12,20 @@ import { useRouter } from "next/router";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await getProducts("category=food&perPage=12");
+  const data = await getAllStores();
 
   return {
     props: {
-      products: data,
+      stores: data,
     },
   };
 };
 
-const ProductByCategory = ({ products }: { products: IProduct }) => {
+const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
   const { deliveryCompanyLink } = useDeliverySelector();
   const { query } = useRouter();
+
+  console.log(stores);
 
   return (
     <DeliveryLayout>
@@ -37,16 +39,16 @@ const ProductByCategory = ({ products }: { products: IProduct }) => {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-5">
-                  {products.data[0].data.map((product, idx) => (
+                  {stores.map((store, idx) => (
                     <Link
-                      href={`/delivery/${deliveryCompanyLink}/store/${product.id}`}
+                      href={`/delivery/${deliveryCompanyLink}/store/${store.id}`}
                       key={idx}
                       className="h-fit w-[150px] my-2 shrink-0 md:h-fit md:w-[205px]"
                     >
                       <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
                         <div className="relative h-[130px] md:h-[160px] w-full group overflow-hidden">
                           <Image
-                            src={product.images[0].secure_url}
+                            src={"/images/food-3.jpg"}
                             fill
                             sizes="190px"
                             alt=""
@@ -63,11 +65,11 @@ const ProductByCategory = ({ products }: { products: IProduct }) => {
                         </div>
                         <div className="px-2 py-1 bg-white">
                           <p className="text-xs md:text-sm line-clamp-1">
-                            {product.title}
+                            {store.name}
                           </p>
                           <p className="text-xs flex gap-1 items-center">
                             <FaMapMarkerAlt size={10} />
-                            {product.shop.name}
+                            {store.location}
                           </p>
                         </div>
                       </div>
