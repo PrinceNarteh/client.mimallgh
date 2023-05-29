@@ -2,7 +2,7 @@ import { Error } from "@/components/Error";
 import ProductList from "@/components/ProductList";
 import { CustomLinks } from "@/components/layout";
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
-import { getStore } from "@/services/store";
+import { getSingleShop, getStore } from "@/services/store";
 import { allShopProducts } from "@/store/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { DeliveryStore, Store } from "@/types";
@@ -24,7 +24,7 @@ import shopNotFound from "../../../../assets/images/store-not-found.png";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { storeId } = context.query;
-  const data = await getStore(storeId as string);
+  const data = await getSingleShop(storeId as string);
 
   return {
     props: {
@@ -43,6 +43,8 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
   useEffect(() => {
     dispatch(allShopProducts(webStore?.products ? webStore.products : []));
   }, []);
+
+  console.log(webStore);
 
   return (
     <DeliveryLayout>
@@ -119,12 +121,6 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
                   key={idx}
                   className="h-[200px] w-[150px] my-2 shrink-0 md:h-[230px] md:w-[205px]"
                 >
-                  <Link
-                    href={`/web-store/${product.shop.id}`}
-                    className="mb-1 px-1 text-xs md:text-sm font-bold tracking-widest text-pink-500 line-clamp-1"
-                  >
-                    {product.shop.name}
-                  </Link>
                   <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
                     <div className="relative h-[130px] md:h-[160px] w-full">
                       <Link href={`/products/${product.id}`}>

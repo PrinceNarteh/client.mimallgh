@@ -17,3 +17,12 @@ export const getAllStores = async () => {
     return null;
   }
 };
+
+export const getSingleShop = async (shopId: string) => {
+  try {
+    const res = await axios.get(`/shops/single/${shopId}`);
+    return res.data;
+  } catch (error) {
+    return null;
+  }
+};
