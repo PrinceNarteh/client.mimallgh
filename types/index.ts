@@ -76,6 +76,28 @@ export interface Store {
   }[];
 }
 
+export interface DeliveryStore {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  shopCode: string;
+  password: string;
+  plainPassword: string;
+  name: string;
+  description: string;
+  location: string;
+  mapDirection: string;
+  phoneNumber: string;
+  alternateNumber: null;
+  whatsappNumber: null;
+  instagramHandle: null;
+  facebookHandle: null;
+  openingTime: string;
+  closingTime: string;
+  image: null;
+  products: Product[];
+}
+
 export type Delivery = {
   request: string;
   from: string;

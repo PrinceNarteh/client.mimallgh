@@ -1,9 +1,9 @@
-import { CategorizedProducts, IProduct } from "@/types";
+import { Product, IProduct } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: {
   products: IProduct;
-  shopProducts: CategorizedProducts[];
+  shopProducts: Product[];
 } = {
   products: {
     total: 0,
@@ -22,7 +22,7 @@ export const ProductSlice = createSlice({
     allProduct: (state, action: PayloadAction<IProduct>) => {
       state.products = action.payload;
     },
-    allShopProducts: (state, action: PayloadAction<CategorizedProducts[]>) => {
+    allShopProducts: (state, action: PayloadAction<Product[]>) => {
       state.shopProducts = [...action.payload];
     },
   },

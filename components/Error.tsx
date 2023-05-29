@@ -5,7 +5,7 @@ import Image from "next/image";
 export const Error = () => {
   return (
     <div className="h-screen grid place-content-center">
-      <Image src={somethingWentWrong} alt="" className="max-w-sm" />
+      <Image priority src={somethingWentWrong} alt="" className="max-w-sm" />
     </div>
   );
 };

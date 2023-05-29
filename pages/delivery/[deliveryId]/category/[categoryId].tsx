@@ -9,6 +9,7 @@ import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await getProducts("category=food&perPage=12");
@@ -37,22 +38,21 @@ const ProductByCategory = ({ products }: { products: IProduct }) => {
 
                 <div className="flex flex-wrap justify-center gap-5">
                   {products.data[0].data.map((product, idx) => (
-                    <div
+                    <Link
+                      href={`/delivery/${deliveryCompanyLink}/store/${product.id}`}
                       key={idx}
                       className="h-fit w-[150px] my-2 shrink-0 md:h-fit md:w-[205px]"
                     >
                       <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
                         <div className="relative h-[130px] md:h-[160px] w-full group overflow-hidden">
-                          <Link href={`/products/${product.id}`}>
-                            <Image
-                              src={product.images[0].secure_url}
-                              fill
-                              sizes="190px"
-                              alt=""
-                              style={{ objectFit: "cover" }}
-                              className="group-hover:scale-110 duration-500"
-                            />
-                          </Link>
+                          <Image
+                            src={product.images[0].secure_url}
+                            fill
+                            sizes="190px"
+                            alt=""
+                            style={{ objectFit: "cover" }}
+                            className="group-hover:scale-110 duration-500"
+                          />
                           <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
                           <div className="relative p-5 z-10 flex h-full w-full items-center justify-center">
                             <h3 className=" text-center text-lg text-white line-clamp-3">
@@ -65,12 +65,13 @@ const ProductByCategory = ({ products }: { products: IProduct }) => {
                           <p className="text-xs md:text-sm line-clamp-1">
                             {product.title}
                           </p>
-                          <p className="font-semibold text-center text-sm md:text-base">
-                            GH¢{product.price}
+                          <p className="text-xs flex gap-1 items-center">
+                            <FaMapMarkerAlt size={10} />
+                            {product.shop.name}
                           </p>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
 
