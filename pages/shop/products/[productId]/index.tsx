@@ -1,4 +1,4 @@
-import { Back, Card } from "@/components";
+import { Back, Card } from "@/components/shop";
 import { getProduct } from "@/services/products";
 import { Product } from "@/types/product";
 import { capitalize } from "@/utils/utilities";

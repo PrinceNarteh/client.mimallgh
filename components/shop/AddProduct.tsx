@@ -11,8 +11,8 @@ import useAxiosAuth from "@/lib/hooks/useAxiosAuth";
 import { Product } from "@/types/product";
 import { categories } from "@/utils/menus";
 import { convertBase64 } from "@/utils/utilities";
-import { deleteProductImage } from "../utils/deleteProductImage";
-import { ICreateProduct } from "../utils/validations";
+import { deleteProductImage } from "../../utils/deleteProductImage";
+import { ICreateProduct } from "../../utils/validations";
 import { Button, Card, InputField, Modal, SelectOption } from "./index";
 import { omit } from "lodash";
 
@@ -26,6 +26,8 @@ const initialValues: ICreateProduct = {
   title: "",
   images: [],
 };
+
+
 
 export const AddProductForm = ({ product }: { product?: Product }) => {
   const data = omit(product, ["shop", "createdAt", "updatedAt"]);

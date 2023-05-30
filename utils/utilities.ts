@@ -23,3 +23,14 @@ export const formatPhoneNumber = (value: string) => {
 };
 
 export const slugify = (url: string) => url.split("_").join("-");
+
+export const convertBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = () => {
+      resolve(fileReader.result as string);
+    };
+  });
+};

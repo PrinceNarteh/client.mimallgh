@@ -1,5 +1,5 @@
-import { Card, Loader } from "@/components";
-import Pagination from "@/components/Pagination";
+import { Card, Loader } from "@/components/shop";
+import Pagination from "@/components/shop/Pagination";
 import useAxiosAuth from "@/lib/hooks/useAxiosAuth";
 import { Product } from "@/types/product";
 import { capitalize } from "@/utils/utilities";

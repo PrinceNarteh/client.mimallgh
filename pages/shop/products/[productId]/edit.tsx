@@ -1,4 +1,4 @@
-import { AddProductForm } from "@/components";
+import { AddProductForm } from "@/components/shop";
 import { getProduct } from "@/services/products";
 import { Product } from "@/types/product";
 import { GetServerSideProps } from "next";
