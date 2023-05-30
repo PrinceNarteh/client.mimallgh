@@ -12,6 +12,7 @@ import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
+import { Layout } from "@/components/shop/Layout";
 
 let persistor = persistStore(store);
 
@@ -42,22 +43,28 @@ export default function App({
     setLoading(false);
   });
 
-  
-
   return (
     <div className={`${poppins.className}`}>
       <SessionProvider session={session}>
         <Provider store={store}>
           <PersistGate persistor={persistor}>
-            {router.pathname.startsWith("/auth") ||
-            !router.pathname.startsWith("/delivery") ? (
+            {router.pathname.startsWith("/shop") ? (
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            ) : (
               <>
-                <SearchBar />
-                <Navbar />
+                {!router.pathname.startsWith("/auth") ||
+                !router.pathname.startsWith("/delivery") ? (
+                  <>
+                    <SearchBar />
+                    <Navbar />
+                  </>
+                ) : null}
+                <Component {...pageProps} />
               </>
-            ) : null}
+            )}
             {loading && <Loader />}
-            <Component {...pageProps} />
           </PersistGate>
         </Provider>
       </SessionProvider>

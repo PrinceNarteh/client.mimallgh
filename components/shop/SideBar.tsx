@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 
 import { IoIosArrowBack } from "react-icons/io";
-import { menus } from "../utils/menus";
+import { menus } from "../../utils/menus";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
@@ -23,7 +23,7 @@ export const SideBar = ({ open }: { open: boolean }) => {
               className="flex items-center justify-center rounded bg-white p-1.5 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
             >
               <Image
-                src={"/logo.png"}
+                src={"/images/logo.png"}
                 alt="logo"
                 width={30}
                 height={30}

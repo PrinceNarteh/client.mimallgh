@@ -8,6 +8,7 @@ declare module "next-auth" {
     lastName: string;
     accessToken: string;
     refreshToken: string;
+    shopCode: string;
   }
   /**
    * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context

@@ -161,7 +161,7 @@ export const categories = [
 export const menus = [
   {
     name: "Dashboard",
-    link: "/",
+    link: "/shop",
     icon: MdOutlineDashboard,
   },
   {
@@ -170,11 +170,11 @@ export const menus = [
     subLinks: [
       {
         name: "Product List",
-        link: "/products",
+        link: "/shop/products",
       },
       {
         name: "Add Product",
-        link: "/products/add-product",
+        link: "/shop/products/add-product",
       },
     ],
   },
@@ -184,7 +184,7 @@ export const menus = [
     subLinks: [
       {
         name: "Order List",
-        link: "/orders",
+        link: "/shop/orders",
       },
     ],
   },
