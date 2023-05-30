@@ -58,14 +58,13 @@ const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
                           <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
                           <div className="relative p-5 z-10 flex h-full w-full items-center justify-center">
                             <h3 className=" text-center text-lg text-white line-clamp-3">
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. Error, voluptatibus.
+                              {store.name}
                             </h3>
                           </div>
                         </div>
                         <div className="px-2 py-1 bg-white">
                           <p className="text-xs md:text-sm line-clamp-1">
-                            {store.name}
+                            {store.description}
                           </p>
                           <p className="text-xs flex gap-1 items-center">
                             <FaMapMarkerAlt size={10} />
@@ -75,15 +74,6 @@ const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
                       </div>
                     </Link>
                   ))}
-                </div>
-
-                <div className="flex items-center justify-center gap-2 bg-white py-5">
-                  <span className="block h-4 w-4 cursor-pointer rounded-full bg-gray-800"></span>
-                  <span className="block h-4 w-4 cursor-pointer rounded-full bg-gray-300"></span>
-                  <span className="block h-4 w-4 cursor-pointer rounded-full bg-gray-300"></span>
-                  <span className="block h-4 w-4 cursor-pointer rounded-full bg-gray-300"></span>
-                  <span className="block h-4 w-4 cursor-pointer rounded-full bg-gray-300"></span>
-                  <span className="block h-4 w-4 cursor-pointer rounded-full bg-gray-300"></span>
                 </div>
               </div>
             </div>
