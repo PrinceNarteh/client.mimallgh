@@ -1,11 +1,12 @@
 import axios from "@/lib/axios";
 
 export const login = async (data: {
-  emailOrPhoneNumber: string;
+  shopCode: string;
   password: string;
 }) => {
   try {
-    const user = await axios.post("/auth/login", data);
+    console.log(data);
+    const user = await axios.post("/shop-auth/login", data);
     return user;
   } catch (error) {}
 };

@@ -7,7 +7,7 @@ export const authOptions: AuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        emailOrPhoneNumber: {
+        shopCode: {
           label: "Username",
           type: "text",
           placeholder: "jsmith",
@@ -15,12 +15,12 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        const { emailOrPhoneNumber, password } = credentials as {
-          emailOrPhoneNumber: string;
+        const { shopCode, password } = credentials as {
+          shopCode: string;
           password: string;
         };
 
-        let user = await login({ emailOrPhoneNumber, password });
+        let user = await login({ shopCode, password });
 
         if (user) {
           return user.data;

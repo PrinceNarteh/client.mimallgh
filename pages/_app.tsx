@@ -54,7 +54,7 @@ export default function App({
               </Layout>
             ) : (
               <>
-                {!router.pathname.startsWith("/auth") ||
+                {!router.pathname.startsWith("/auth") &&
                 !router.pathname.startsWith("/delivery") ? (
                   <>
                     <SearchBar />
@@ -62,9 +62,9 @@ export default function App({
                   </>
                 ) : null}
                 <Component {...pageProps} />
+                {loading && <Loader />}
               </>
             )}
-            {loading && <Loader />}
           </PersistGate>
         </Provider>
       </SessionProvider>
