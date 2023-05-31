@@ -2,7 +2,7 @@ import { Card, Loader } from "@/components/shop";
 import Pagination from "@/components/shop/Pagination";
 import useAxiosAuth from "@/lib/hooks/useAxiosAuth";
 import { Product } from "@/types/product";
-import { capitalize } from "@/utils/utilities";
+import { capitalize, parseImageUrl } from "@/utils/utilities";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -86,7 +86,7 @@ const ProductList = () => {
     }
   }, [status, axiosAuth, session]);
 
-  const handleClick = (id: string) => router.push(`/products/${id}`);
+  const handleClick = (id: string) => router.push(`/shop/products/${id}`);
 
   if (isLoading) return <Loader />;
 
@@ -134,7 +134,7 @@ const ProductList = () => {
                   <div className="flex items-center gap-5">
                     <div className="relative flex-shrink-0 h-12 w-14 overflow-hidden">
                       <Image
-                        src={product.images[0]?.name}
+                        src={parseImageUrl(product.images[0]?.name, "products")}
                         style={{ objectFit: "cover" }}
                         alt={product.title}
                         sizes="48,56"
@@ -150,7 +150,7 @@ const ProductList = () => {
                   </div>
                 </td>
                 <td className="px-2 text-center">
-                  {capitalize(product.category)}
+                  {capitalize(product.category, "_")}
                 </td>
                 <td className="px-2 text-center">{product.stock} In Stock</td>
                 <td className="px-2 text-center">{product.price}</td>

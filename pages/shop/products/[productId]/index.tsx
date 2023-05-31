@@ -2,7 +2,7 @@ import { Back, Card } from "@/components/shop";
 import axios from "@/lib/axios";
 import { getProduct } from "@/services/products";
 import { Product } from "@/types/product";
-import { capitalize } from "@/utils/utilities";
+import { capitalize, parseImageUrl } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,7 +32,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
           <div className="col-span-5 space-y-3">
             <div className="relative h-[400px] bg-slate-500">
               <Image
-                src={`http://localhost:4000/products/product-image/${images[activeImage].name}`}
+                src={parseImageUrl(images[activeImage].name, "products")}
                 sizes="400"
                 fill
                 style={{ objectFit: "cover" }}
@@ -42,8 +42,6 @@ const ProductDetails = ({ product }: { product: Product }) => {
             </div>
             <div className="flex justify-between gap-3 overflow-x-auto">
               {images.map((image, idx) => {
-                const imgUrl =
-                  "http://localhost:4000/products/product-image/" + image.name;
                 return (
                   <div
                     key={idx}
@@ -51,7 +49,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
                     className="relative h-[100px] w-[100px] shrink-0 cursor-pointer"
                   >
                     <Image
-                      src={imgUrl}
+                      src={parseImageUrl(image.name, "products")}
                       fill
                       style={{ objectFit: "cover" }}
                       alt=""
@@ -83,7 +81,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
         </div>
       </Card>
       <div className="flex justify-end gap-5">
-        <Link href={`/products/${product?.id}/edit`} className="link">
+        <Link href={`/shop/products/${product?.id}/edit`} className="link">
           Edit
         </Link>
         <button className="bg-red-500 py-2 px-4">Delete</button>

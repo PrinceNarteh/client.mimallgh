@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { toast } from "react-hot-toast";
 
@@ -10,6 +10,9 @@ import { omit } from "lodash";
 import { deleteProductImage } from "../../utils/deleteProductImage";
 import { ICreateProduct } from "../../utils/validations";
 import { Button, Card, InputField, Modal, SelectOption } from "./index";
+import { convertBase64, parseImageUrl } from "@/utils/utilities";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import Image from "next/image";
 
 const initialValues: ICreateProduct = {
   brand: "",
@@ -38,41 +41,42 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
   } = useForm<ICreateProduct>({
     defaultValues: product ? data : initialValues,
   });
+  const [images, setImages] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [publicId, setPublicId] = useState("");
   const axiosAuth = useAxiosAuth();
 
-  // const selectedImages = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const files: FileList | null = e.target.files;
-  //   let pickedImages: File[] = [];
-  //   if (files !== null) {
-  //     pickedImages = Array.from(files);
-  //   }
-  //   setImages([...images, ...pickedImages]);
-  // };
+  const selectedImages = (e: ChangeEvent<HTMLInputElement>) => {
+    const files: FileList | null = e.target.files;
+    let pickedImages: File[] = [];
+    if (files !== null) {
+      pickedImages = Array.from(files);
+    }
+    setImages([...images, ...pickedImages]);
+  };
 
-  // function deleteSelectedImage(index: number) {
-  //   const imageCopy = [...images];
-  //   imageCopy.splice(index, 1);
-  //   setImages([...imageCopy]);
-  // }
+  function deleteSelectedImage(index: number) {
+    const imageCopy = [...images];
+    imageCopy.splice(index, 1);
+    setImages([...imageCopy]);
+  }
 
-  // useEffect(() => {
-  //   const getImages = () => {
-  //     const imagesArray: string[] = [];
-  //     images?.map((file) => {
-  //       convertBase64(file)
-  //         .then((res) => {
-  //           imagesArray.push(res);
-  //         })
-  //         .finally(() => {
-  //           setPreviewImages(imagesArray);
-  //         });
-  //     });
-  //   };
-  //   getImages();
-  // }, [images]);
+  useEffect(() => {
+    const getImages = () => {
+      const imagesArray: string[] = [];
+      images?.map((file) => {
+        convertBase64(file)
+          .then((res) => {
+            imagesArray.push(res);
+          })
+          .finally(() => {
+            setPreviewImages(imagesArray);
+          });
+      });
+    };
+    getImages();
+  }, [images]);
 
   const deleteImage = (public_id: string) => {
     setPublicId(public_id);
@@ -114,34 +118,6 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
       console.log(image);
       formData.append("images", image);
     });
-
-    // const files: FileList | null = images;
-    // let pickedImages: File[] = [];
-    // if (files !== null) {
-    //   pickedImages = Array.from(files);
-    // }
-
-    // formData.append("images[]", pickedImages);
-
-    // images.forEach((file: any) => {
-    //   formData.append("files", file);
-    // });
-
-    // const response = await fetch("http://localhost:3000", {
-    //   method: "POST",
-    //   body: formData,
-    // });
-
-    //   brand: "",
-    // category: "food",
-    // description: "",
-    // discountPercentage: 0,
-    // price: 0,
-    // stock: 0,
-    // title: "",
-    // images: [],
-
-    console.log(data);
 
     try {
       if (productId) {
@@ -264,7 +240,7 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
                 >
                   Product Images
                 </label>
-                {/* <div className="flex gap-5 overflow-x-auto py-3">
+                <div className="flex gap-5 overflow-x-auto py-3">
                   {getValues()?.images.map((image, index) => (
                     <div
                       key={index}
@@ -272,21 +248,19 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
                     >
                       <AiOutlineCloseCircle
                         onClick={() => {}}
-                        className="absolute -right-2 -top-2 z-0 cursor-pointer rounded-full bg-white text-2xl text-orange-500"
+                        className="absolute -right-2 -top-2 cursor-pointer rounded-full bg-white text-2xl text-orange-500 z-20"
                       />
-                      <div className="overflow-hidden">
-                        <Image
-                          src={"/images/food-1.jpg"}
-                          style={{ objectFit: "contain" }}
-                          alt=""
-                          sizes="128px"
-                          fill
-                          className="rounded"
-                        />
-                      </div>
+                      <Image
+                        src={parseImageUrl(image.name, "products")}
+                        style={{ objectFit: "cover" }}
+                        alt=""
+                        fill
+                        sizes="300px,300px"
+                        className="rounded"
+                      />
                     </div>
                   ))}
-                </div> */}
+                </div>
               </div>
             ) : null}
 
