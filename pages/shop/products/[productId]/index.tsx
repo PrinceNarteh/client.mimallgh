@@ -1,10 +1,12 @@
 import { Back, Card } from "@/components/shop";
+import axios from "@/lib/axios";
 import { getProduct } from "@/services/products";
 import { Product } from "@/types/product";
 import { capitalize } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { productId } = context.query;
@@ -18,7 +20,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const ProductDetails = ({ product }: { product: Product }) => {
-  console.log(product);
+  const [activeImage, setActiveImage] = useState(0);
+  const [images, setImages] = useState(product.images);
+
   return (
     <div className="mx-auto w-11/12 space-y-3 pb-5 py-10">
       <Back />
@@ -28,7 +32,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
           <div className="col-span-5 space-y-3">
             <div className="relative h-[400px] bg-slate-500">
               <Image
-                src={product?.images[0]?.secure_url as string}
+                src={`http://localhost:4000/products/product-image/${images[activeImage].name}`}
                 sizes="400"
                 fill
                 style={{ objectFit: "cover" }}
@@ -37,19 +41,24 @@ const ProductDetails = ({ product }: { product: Product }) => {
               />
             </div>
             <div className="flex justify-between gap-3 overflow-x-auto">
-              {product?.images.map((image, idx) => (
-                <div
-                  key={idx}
-                  className="relative h-[100px] w-[100px] shrink-0"
-                >
-                  <Image
-                    src={image.secure_url}
-                    fill
-                    style={{ objectFit: "cover" }}
-                    alt=""
-                  />
-                </div>
-              ))}
+              {images.map((image, idx) => {
+                const imgUrl =
+                  "http://localhost:4000/products/product-image/" + image.name;
+                return (
+                  <div
+                    key={idx}
+                    onClick={() => setActiveImage(idx)}
+                    className="relative h-[100px] w-[100px] shrink-0 cursor-pointer"
+                  >
+                    <Image
+                      src={imgUrl}
+                      fill
+                      style={{ objectFit: "cover" }}
+                      alt=""
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="col-span-7 px-5">
@@ -62,7 +71,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
             <Item label="Brand" value={`${(product?.brand as string) || ""}`} />
             <Item
               label="Category"
-              value={`${capitalize((product?.category as string) || "")}`}
+              value={`${capitalize((product?.category as string) || "", "_")}`}
               dark
             />
             <Item label="Shop" value={`${product?.shop.name || ""}`} />

@@ -205,7 +205,7 @@ export const createProductDto = z.object({
   description: z
     .string({ required_error: "Description is required" })
     .min(2, "Description should be 2 or more characters"),
-  discountPercentage: z.number().gte(0, "Price cannot be negative").optional(),
+  discountPercentage: z.number().gte(0, "Price cannot be negative").default(0),
   price: z
     .number({ required_error: "Price is required" })
     .gte(0, "Price cannot be negative"),
@@ -214,8 +214,7 @@ export const createProductDto = z.object({
     .gte(0, "Price cannot be negative"),
   images: z.array(
     z.object({
-      public_id: z.string(),
-      secure_url: z.string(),
+      name: z.string(),
     })
   ),
 });

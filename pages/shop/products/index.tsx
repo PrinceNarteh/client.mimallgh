@@ -134,7 +134,7 @@ const ProductList = () => {
                   <div className="flex items-center gap-5">
                     <div className="relative flex-shrink-0 h-12 w-14 overflow-hidden">
                       <Image
-                        src={product.images[0]?.secure_url}
+                        src={product.images[0]?.name}
                         style={{ objectFit: "cover" }}
                         alt={product.title}
                         sizes="48,56"
