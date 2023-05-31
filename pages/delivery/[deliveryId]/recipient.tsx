@@ -26,8 +26,6 @@ const RecipientForm = () => {
     defaultValues: delivery,
   });
 
-  console.log(delivery);
-
   const submitHandler: SubmitHandler<Delivery> = (data) => {
     dispatch(
       addInfo({

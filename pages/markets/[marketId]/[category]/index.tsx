@@ -2,7 +2,7 @@ import { Container } from "@/components";
 import { getAllProducts, getProducts } from "@/services/products";
 import { IProduct, IUncategorizedProduct } from "@/types";
 import { topDeals } from "@/utils/data";
-import { capitalize } from "@/utils/utilities";
+import { capitalize, parseImageUrl } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,8 +14,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const data = await getAllProducts(
     `location=${query.marketId}&category=${query.category}`
   );
-
-  console.log(data);
 
   return {
     props: {
@@ -59,7 +57,10 @@ const ProductVideosByCategory = ({
                       <div className="relative h-[130px] md:h-[160px] w-full">
                         <Link href={`/products/${product.id}`}>
                           <Image
-                            src={product.images[0].secure_url}
+                            src={parseImageUrl(
+                              product.images[0].name,
+                              "products"
+                            )}
                             fill
                             sizes="190px"
                             alt=""

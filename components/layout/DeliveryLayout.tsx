@@ -23,7 +23,6 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
     const handler = (e: any) => {
       if (!menuRef.current?.contains(e.target)) {
         setOpenMenu(false);
-        console.log(menuRef.current);
       }
     };
     document.addEventListener("mousedown", handler);

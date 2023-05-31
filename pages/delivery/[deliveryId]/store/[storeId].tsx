@@ -1,11 +1,9 @@
-import { Error } from "@/components/Error";
-import ProductList from "@/components/ProductList";
 import { CustomLinks } from "@/components/layout";
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
-import { getSingleShop, getStore } from "@/services/store";
+import { getSingleShop } from "@/services/store";
 import { allShopProducts } from "@/store/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
-import { DeliveryStore, Store } from "@/types";
+import { DeliveryStore } from "@/types";
 import { capitalize } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
@@ -43,8 +41,6 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
   useEffect(() => {
     dispatch(allShopProducts(webStore?.products ? webStore.products : []));
   }, []);
-
-  console.log(webStore);
 
   return (
     <DeliveryLayout>
@@ -125,7 +121,7 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
                     <div className="relative h-[130px] md:h-[160px] w-full">
                       <Link href={`/products/${product.id}`}>
                         <Image
-                          src={product.images[0].secure_url}
+                          src={product.images[0].name}
                           fill
                           sizes="190px"
                           alt=""

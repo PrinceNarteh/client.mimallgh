@@ -25,7 +25,7 @@ const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
   const { deliveryCompanyLink } = useDeliverySelector();
   const { query } = useRouter();
 
-  console.log(stores);
+  stores;
 
   return (
     <DeliveryLayout>

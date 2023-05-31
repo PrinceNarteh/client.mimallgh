@@ -13,6 +13,7 @@ import { Button, Card, InputField, Modal, SelectOption } from "./index";
 import { convertBase64, parseImageUrl } from "@/utils/utilities";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import Image from "next/image";
+import axios from "@/lib/axios";
 
 const initialValues: ICreateProduct = {
   brand: "",
@@ -23,6 +24,7 @@ const initialValues: ICreateProduct = {
   stock: 0,
   title: "",
   images: [],
+  pickedImages: [],
 };
 
 export const AddProductForm = ({ product }: { product?: Product }) => {
@@ -33,6 +35,7 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
   } = useRouter();
 
   const {
+    reset,
     register,
     formState: { errors },
     setValue,
@@ -41,8 +44,10 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
   } = useForm<ICreateProduct>({
     defaultValues: product ? data : initialValues,
   });
-  const [images, setImages] = useState<File[]>([]);
+  const [productImages, setProductImages] = useState(product?.images || []);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const [pickedImages, setPickedImages] = useState<File[]>([]);
+  const [images, setImages] = useState<File[]>([]);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [publicId, setPublicId] = useState("");
   const axiosAuth = useAxiosAuth();
@@ -53,7 +58,7 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
     if (files !== null) {
       pickedImages = Array.from(files);
     }
-    setImages([...images, ...pickedImages]);
+    setPickedImages([...images, ...pickedImages]);
   };
 
   function deleteSelectedImage(index: number) {
@@ -78,8 +83,8 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
     getImages();
   }, [images]);
 
-  const deleteImage = (public_id: string) => {
-    setPublicId(public_id);
+  const deleteImage = (imageId: string) => {
+    setPublicId(imageId);
     setOpenDialog(true);
   };
 
@@ -88,8 +93,11 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
       const toastId = toast.loading("Loading...");
 
       try {
-        await deleteProductImage(publicId);
-
+        const res = await axios.delete(
+          `/products/${product?.id}/image/${publicId}`
+        );
+        reset(res.data);
+        setImages(res.data.images);
         toast.dismiss(toastId);
         toast.success("Image deleted successfully");
       } catch (error) {
@@ -114,14 +122,19 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
     formData.append("price", data.price);
     formData.append("stock", data.stock);
 
-    Array.from(data.images).forEach((image) => {
-      console.log(image);
-      formData.append("images", image);
-    });
-
     try {
       if (productId) {
-        const res = await axiosAuth.patch(`/products/${productId}`, formData);
+        formData.append("images", JSON.stringify(data.images));
+
+        pickedImages.forEach((image) => {
+          formData.append("newImages", image);
+        });
+
+        const res = await axiosAuth.patch(`/products/${productId}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         if (res.status === 200) {
           toast.success("Product updated successfully");
           push(`/shop/products/${productId}`);
@@ -129,6 +142,9 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
           toast.error("Error updating product");
         }
       } else {
+        Array.from(data.images).forEach((image) => {
+          formData.append("images", image);
+        });
         const res = await axiosAuth.post("/products", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -148,8 +164,6 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
     }
   };
 
-  console.log(errors);
-
   return (
     <div className="mx-auto max-w-4xl pb-5">
       <Card heading={"Add Product"}>
@@ -161,7 +175,6 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
               register={register}
               errors={errors}
             />
-
             <div className="flex flex-col gap-5 md:flex-row">
               <InputField
                 label="Price"
@@ -232,7 +245,8 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
                 {...register("description")}
               />
             </div>
-            {getValues().images.length > 0 ? (
+            {/* Product Images */}
+            {productImages.length > 0 ? (
               <div className="">
                 <label
                   className="mb-2 block bg-light-gray pl-2 capitalize tracking-widest"
@@ -241,13 +255,13 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
                   Product Images
                 </label>
                 <div className="flex gap-5 overflow-x-auto py-3">
-                  {getValues()?.images.map((image, index) => (
+                  {productImages?.map((image, index) => (
                     <div
                       key={index}
                       className="relative h-32 w-32 shrink-0 rounded-md bg-slate-500"
                     >
                       <AiOutlineCloseCircle
-                        onClick={() => {}}
+                        onClick={() => deleteImage(image.id)}
                         className="absolute -right-2 -top-2 cursor-pointer rounded-full bg-white text-2xl text-orange-500 z-20"
                       />
                       <Image
@@ -263,13 +277,13 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
                 </div>
               </div>
             ) : null}
-
+            {/* Selected Images */}
             <div className="">
               <label
                 className="mb-2 block bg-light-gray pl-2 capitalize tracking-widest"
                 htmlFor="user_avatar"
               >
-                Product Image(s)
+                Selected Image(s)
               </label>
               <input
                 className="block w-full cursor-pointer rounded-lg border bg-dark-gray file:border-none file:bg-light-gray file:px-5 file:py-3 file:text-white"
@@ -278,7 +292,8 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
                 type="file"
                 multiple
                 accept=".png, .jpg, .jpeg"
-                {...register("images")}
+                {...register("pickedImages")}
+                onChange={(e) => selectedImages(e)}
               ></input>
             </div>
             <div className="flex gap-5 overflow-x-auto py-3">
@@ -287,7 +302,7 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
                   key={index}
                   className="relative h-32 w-32 shrink-0 rounded-md bg-slate-500"
                 >
-                  {/* <AiOutlineCloseCircle
+                  <AiOutlineCloseCircle
                     onClick={() => deleteSelectedImage(index)}
                     className="absolute -right-2 -top-2 z-10 cursor-pointer rounded-full bg-white text-2xl text-orange-500"
                   />
@@ -300,7 +315,7 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
                       alt=""
                       className="rounded"
                     />
-                  </div> */}
+                  </div>
                 </div>
               ))}
             </div>
@@ -313,15 +328,14 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
             >
               Product Video
             </label>
-            {/* <input
+            <input
               className="block w-full cursor-pointer rounded-lg border bg-dark-gray file:border-none file:bg-light-gray file:px-5 file:py-3 file:text-white"
               aria-describedby="user_avatar_help"
               id="user_avatar"
               type="file"
-              onChange={selectedImages}
               multiple
               accept=".png, .jpg, .jpeg"
-            ></input> */}
+            ></input>
           </div>
           <Button type="submit">{productId ? "Edit" : "Add"} Product</Button>
         </form>

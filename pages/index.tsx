@@ -38,9 +38,6 @@ const Home = ({ products }: { products: IProduct }) => {
   }, [store]);
 
   useEffect(() => {
-    console.log("cleared");
-    // dispatch(clearSearch());
-    // dispatch(clearSearchResults());
     dispatch(clearSearchData());
   }, []);
 

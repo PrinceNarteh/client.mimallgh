@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const ProductDetails = ({ product }: { product: Product }) => {
   const [activeImage, setActiveImage] = useState(0);
-  const [images, setImages] = useState(product.images);
+  const [images, setImages] = useState(product?.images || []);
 
   return (
     <div className="mx-auto w-11/12 space-y-3 pb-5 py-10">
@@ -32,7 +32,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
           <div className="col-span-5 space-y-3">
             <div className="relative h-[400px] bg-slate-500">
               <Image
-                src={parseImageUrl(images[activeImage].name, "products")}
+                src={parseImageUrl(images[activeImage]?.name, "products")}
                 sizes="400"
                 fill
                 style={{ objectFit: "cover" }}

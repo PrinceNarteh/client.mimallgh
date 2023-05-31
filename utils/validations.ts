@@ -214,6 +214,13 @@ export const createProductDto = z.object({
     .gte(0, "Price cannot be negative"),
   images: z.array(
     z.object({
+      id: z.string(),
+      name: z.string(),
+    })
+  ),
+  pickedImages: z.array(
+    z.object({
+      id: z.string(),
       name: z.string(),
     })
   ),
