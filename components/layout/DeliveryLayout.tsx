@@ -50,7 +50,7 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
               {deliveryCompanyName.toUpperCase()}
             </Link>
           </div>
-          <div className="relative text-white flex px-2 pl-5 justify-evenly items-center text-sm py-2 w-full">
+          <div className="relative text-white flex px-2 pl-5 justify-between items-center text-sm py-2 w-full">
             <Link href={`/delivery/${deliveryCompanyLink}`}>Home</Link>
             <Link href="#">Services</Link>
             <Link href="#" className="hidden">
@@ -75,15 +75,15 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
                 Promotion Campaign
               </Link>
             </div>
-          </div>
-          <div>
-            <IoSearchOutline className="text-white text-2xl lg:hidden" />
-            <div className="bg-white hidden lg:block py-1 px-4 rounded-full">
-              <input
-                type="text"
-                placeholder="Search all products..."
-                className="outline-none"
-              />
+            <div>
+              <IoSearchOutline className="text-white text-2xl lg:hidden" />
+              <div className="bg-white hidden lg:block py-1 px-4 rounded-full">
+                <input
+                  type="text"
+                  placeholder="Search all products..."
+                  className="outline-none"
+                />
+              </div>
             </div>
           </div>
         </div>

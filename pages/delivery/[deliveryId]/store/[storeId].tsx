@@ -52,9 +52,9 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
         <div className="relative pt-12">
           <div className="px-5 w-11/12 mx-auto relative h-[200px] md:h-[400px] bg-teal-500">
             <Image
-              src={shopNotFound}
+              src={"/images/web-store-banner-3.jpg"}
               alt=""
-              width={200}
+              fill
               style={{ objectFit: "cover" }}
               className="object-top"
             />
@@ -112,38 +112,40 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
 
           <div>
             <div className="flex flex-wrap justify-center gap-5">
-              {store.map((product, idx) => (
-                <div
-                  key={idx}
-                  className="h-[200px] w-[150px] my-2 shrink-0 md:h-[230px] md:w-[205px]"
-                >
-                  <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
-                    <div className="relative h-[130px] md:h-[160px] w-full">
-                      <Link href={`/products/${product.id}`}>
-                        <Image
-                          src={product.images[0].name}
-                          fill
-                          sizes="190px"
-                          alt=""
-                          style={{ objectFit: "cover" }}
-                        />
-                      </Link>
+              {store.length > 0
+                ? store.map((product, idx) => (
+                    <div
+                      key={idx}
+                      className="h-[200px] w-[150px] my-2 shrink-0 md:h-[230px] md:w-[205px]"
+                    >
+                      <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
+                        <div className="relative h-[130px] md:h-[160px] w-full">
+                          {/* <Link href={`/products/${product.id}`}>
+                            <Image
+                              src={product?.images[0].name}
+                              fill
+                              sizes="190px"
+                              alt=""
+                              style={{ objectFit: "cover" }}
+                            />
+                          </Link> */}
+                        </div>
+                        <div className="px-2 py-1 bg-white">
+                          <p className="text-xs md:text-sm line-clamp-1">
+                            {product.title}
+                          </p>
+                          <p className="font-semibold text-center text-sm md:text-base">
+                            GH¢{product.price}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="px-2 py-1 bg-white">
-                      <p className="text-xs md:text-sm line-clamp-1">
-                        {product.title}
-                      </p>
-                      <p className="font-semibold text-center text-sm md:text-base">
-                        GH¢{product.price}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                  ))
+                : null}
             </div>
           </div>
 
-          <footer className="relative bg-gray-900 overflow-hidden">
+          {/* <footer className="relative bg-gray-900 overflow-hidden">
             <div className="container px-5 pt-24 mx-auto gap-y-16 flex flex-wrap flex-col md:items-center lg:items-start md:flex-row md:flex-nowrap">
               <div className="w-64 h-fit flex-shrink-0 mx-auto text-center md:text-left">
                 <p className="flex title-font font-medium items-center md:justify-center justify-center text-gray-900">
@@ -274,7 +276,7 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
                 </span>
               </div>
             </div>
-          </footer>
+          </footer> */}
         </div>
       )}
     </DeliveryLayout>

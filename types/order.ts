@@ -32,16 +32,12 @@ export interface OrderItem {
       lastName: string;
       email: string;
       phoneNumber: string;
-      image: {
-        id: string;
-        public_id: string;
-        secure_url: string;
-      };
+      image: string;
     };
   };
   product: {
     id: string;
     title: string;
-    images: { id: string; secure_url: string }[];
+    images: { id: string; name: string }[];
   };
 }

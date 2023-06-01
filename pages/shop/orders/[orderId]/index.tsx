@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaRegUser } from "react-icons/fa";
 
 const OrderDetails = () => {
@@ -67,7 +67,7 @@ const OrderDetails = () => {
                       <div className="flex items-center">
                         <Image
                           className="mr-5"
-                          src={item.product.images[0].secure_url}
+                          src={item.product.images[0].name}
                           width={40}
                           height={40}
                           alt="apple"
@@ -119,7 +119,7 @@ const OrderDetails = () => {
               <div className="mr-3">
                 {order[0]?.order.user.image !== null ? (
                   <Image
-                    src={order[0]?.order.user.image.secure_url}
+                    src={order[0]?.order.user.image}
                     width={50}
                     height={50}
                     className="mr-3 rounded-full"
