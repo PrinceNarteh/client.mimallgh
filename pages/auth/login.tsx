@@ -36,7 +36,7 @@ const Login = () => {
         <div className="flex justify-center mb-7">
           <div className="absolute bg-white flex justify-center items-center w-24 h-24 transform -translate-y-20 rounded-full shadow-md">
             <Image
-              src="/logo.png"
+              src="/images/logo.png"
               alt=""
               width={50}
               height={50}

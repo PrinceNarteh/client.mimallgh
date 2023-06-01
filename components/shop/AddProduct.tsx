@@ -2,18 +2,16 @@ import { useRouter } from "next/router";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { toast } from "react-hot-toast";
-
+import axios from "@/lib/axios";
 import useAxiosAuth from "@/lib/hooks/useAxiosAuth";
 import { Product } from "@/types/product";
 import { categories } from "@/utils/menus";
+import { convertBase64, parseImageUrl } from "@/utils/utilities";
 import { omit } from "lodash";
-import { deleteProductImage } from "../../utils/deleteProductImage";
+import Image from "next/image";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import { ICreateProduct } from "../../utils/validations";
 import { Button, Card, InputField, Modal, SelectOption } from "./index";
-import { convertBase64, parseImageUrl } from "@/utils/utilities";
-import { AiOutlineCloseCircle } from "react-icons/ai";
-import Image from "next/image";
-import axios from "@/lib/axios";
 
 const initialValues: ICreateProduct = {
   brand: "",
@@ -38,8 +36,6 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
     reset,
     register,
     formState: { errors },
-    setValue,
-    getValues,
     handleSubmit,
   } = useForm<ICreateProduct>({
     defaultValues: product ? data : initialValues,
@@ -62,15 +58,20 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
   };
 
   function deleteSelectedImage(index: number) {
-    const imageCopy = [...images];
-    imageCopy.splice(index, 1);
-    setImages([...imageCopy]);
+    const imageCopy = [...pickedImages];
+    if (imageCopy.length === 1) {
+      setPickedImages([]);
+      setPreviewImages([]);
+    } else {
+      imageCopy.splice(index, 1);
+      setPickedImages([...imageCopy]);
+    }
   }
 
   useEffect(() => {
     const getImages = () => {
       const imagesArray: string[] = [];
-      images?.map((file) => {
+      pickedImages?.map((file) => {
         convertBase64(file)
           .then((res) => {
             imagesArray.push(res);
@@ -81,7 +82,7 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
       });
     };
     getImages();
-  }, [images]);
+  }, [pickedImages]);
 
   const deleteImage = (imageId: string) => {
     setPublicId(imageId);
@@ -97,7 +98,7 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
           `/products/${product?.id}/image/${publicId}`
         );
         reset(res.data);
-        setImages(res.data.images);
+        setProductImages(res.data.images);
         toast.dismiss(toastId);
         toast.success("Image deleted successfully");
       } catch (error) {
@@ -142,7 +143,7 @@ export const AddProductForm = ({ product }: { product?: Product }) => {
           toast.error("Error updating product");
         }
       } else {
-        Array.from(data.images).forEach((image) => {
+        Array.from(pickedImages).forEach((image) => {
           formData.append("images", image);
         });
         const res = await axiosAuth.post("/products", formData, {

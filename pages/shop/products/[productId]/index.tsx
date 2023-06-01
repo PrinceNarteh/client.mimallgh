@@ -1,12 +1,14 @@
-import { Back, Card } from "@/components/shop";
-import axios from "@/lib/axios";
+import { Back, Card, Modal } from "@/components/shop";
+import useAxiosAuth from "@/lib/hooks/useAxiosAuth";
 import { getProduct } from "@/services/products";
 import { Product } from "@/types/product";
 import { capitalize, parseImageUrl } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { productId } = context.query;
@@ -22,6 +24,36 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const ProductDetails = ({ product }: { product: Product }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [images, setImages] = useState(product?.images || []);
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [productId, setProductId] = useState("");
+  const axiosAuth = useAxiosAuth();
+  const router = useRouter();
+
+  console.log(product);
+
+  const deleteProduct = (imageId: string) => {
+    setProductId(imageId);
+    setOpenDialog(true);
+  };
+
+  async function confirmDelete(choose: boolean) {
+    if (choose) {
+      const toastId = toast.loading("Loading...");
+
+      try {
+        const res = await axiosAuth.delete(`/products/${product?.id}`);
+        toast.dismiss(toastId);
+        toast.success("Image deleted successfully");
+        router.push("/shop/products");
+      } catch (error) {
+        toast.dismiss(toastId);
+      } finally {
+        setOpenDialog(false);
+      }
+    } else {
+      setOpenDialog(false);
+    }
+  }
 
   return (
     <div className="mx-auto w-11/12 space-y-3 pb-5 py-10">
@@ -84,8 +116,19 @@ const ProductDetails = ({ product }: { product: Product }) => {
         <Link href={`/shop/products/${product?.id}/edit`} className="link">
           Edit
         </Link>
-        <button className="bg-red-500 py-2 px-4">Delete</button>
+        <button
+          onClick={() => deleteProduct(product.id)}
+          className="bg-red-500 py-2 px-4"
+        >
+          Delete
+        </button>
       </div>
+      {openDialog ? (
+        <Modal
+          onDialog={confirmDelete}
+          message={openDialog ? `${product.title}` : ""}
+        />
+      ) : null}
     </div>
   );
 };
