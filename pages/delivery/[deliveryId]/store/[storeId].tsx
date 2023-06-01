@@ -4,7 +4,7 @@ import { getSingleShop } from "@/services/store";
 import { allShopProducts } from "@/store/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { DeliveryStore } from "@/types";
-import { capitalize } from "@/utils/utilities";
+import { capitalize, parseImageUrl } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,6 +19,7 @@ import {
 } from "react-icons/fa";
 import { MdAddCall } from "react-icons/md";
 import shopNotFound from "../../../../assets/images/store-not-found.png";
+import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { storeId } = context.query;
@@ -33,6 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
   const store = useAppSelector((state) => state.products.shopProducts);
+  const { deliveryCompanyLink } = useDeliverySelector();
   const dispatch = useAppDispatch();
   const {
     query: { storeId },
@@ -120,15 +122,20 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
                     >
                       <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
                         <div className="relative h-[130px] md:h-[160px] w-full">
-                          {/* <Link href={`/products/${product.id}`}>
+                          <Link
+                            href={`/delivery/${deliveryCompanyLink}/products/${product.id}`}
+                          >
                             <Image
-                              src={product?.images[0].name}
+                              src={parseImageUrl(
+                                product?.images[0].name,
+                                "products"
+                              )}
                               fill
-                              sizes="190px"
+                              sizes="500px"
                               alt=""
                               style={{ objectFit: "cover" }}
                             />
-                          </Link> */}
+                          </Link>
                         </div>
                         <div className="px-2 py-1 bg-white">
                           <p className="text-xs md:text-sm line-clamp-1">

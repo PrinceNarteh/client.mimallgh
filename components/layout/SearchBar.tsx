@@ -1,6 +1,9 @@
 import axios from "@/lib/axios";
 import { useCartSelector } from "@/store/features/cart/cartSlice";
-import { setDeliveryCompanyInfo } from "@/store/features/delivery/deliverySlice";
+import {
+  setDeliveryCompanyInfo,
+  useDeliverySelector,
+} from "@/store/features/delivery/deliverySlice";
 import {
   setSearch,
   setSearchResults,
@@ -29,6 +32,7 @@ const deliveryCompanies = [
 ];
 
 export const SearchBar = () => {
+  const { deliveryCompanyLink } = useDeliverySelector();
   const [openDelivery, setOpenDelivery] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -110,7 +114,10 @@ export const SearchBar = () => {
                 ))}
               </div>
             </div>
-            <Link href={`/cart`} className="relative">
+            <Link
+              href={`/delivery/${deliveryCompanyLink}/cart`}
+              className="relative"
+            >
               <TiShoppingCart className="cursor-pointer" />
               <div className="absolute -right-1.5 -top-1.5 flex h-5  w-5 items-center justify-center rounded-full bg-[red]">
                 <span className="text-[10px] text-white">{items.length}</span>
