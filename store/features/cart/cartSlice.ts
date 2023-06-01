@@ -4,12 +4,14 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type Cart = {
   deliveryCharge: number;
+  deliveryCompany: string;
   totalAmount: number;
   items: ICartItem[];
 };
 
 const initialState: Cart = {
   deliveryCharge: 0,
+  deliveryCompany: "",
   totalAmount: 0,
   items: [],
 };
@@ -71,12 +73,17 @@ export const CartSlice = createSlice({
     },
     clearCart: (state) => {
       state.items = [];
+      state.totalAmount = 0;
     },
     getCartItems: (state) => {
       state.items = state.items;
     },
-    setDeliveryCharge: (state, action: PayloadAction<number>) => {
-      state.deliveryCharge = action.payload;
+    setDeliveryInfo: (
+      state,
+      action: PayloadAction<{ deliveryPrice: number; deliveryCompany: string }>
+    ) => {
+      state.deliveryCharge = action.payload.deliveryPrice;
+      state.deliveryCompany = action.payload.deliveryCompany;
     },
   },
 });
@@ -91,4 +98,5 @@ export const {
   decrease,
   clearCart,
   getCartItems,
+  setDeliveryInfo,
 } = CartSlice.actions;

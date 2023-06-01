@@ -135,11 +135,11 @@ export type Delivery = {
 };
 
 export type ICartItem = {
+  productId: string;
   productName: string;
+  productImage: string;
   quantity: number;
   price: number;
-  productId: string;
-  shopId: string;
   shopName: string;
-  image: string;
+  shopId: string;
 };

@@ -1,10 +1,14 @@
 import { OrderSummary } from "@/components";
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
-import { useCartSelector } from "@/store/features/cart/cartSlice";
+import axios from "@/lib/axios";
+import { clearCart, useCartSelector } from "@/store/features/cart/cartSlice";
+import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
+import { useAppDispatch } from "@/store/store";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import type { FormEvent } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 interface IForm {
   fullName: string;
@@ -20,19 +24,30 @@ const initialValue: IForm = {
 
 const Checkout = () => {
   const router = useRouter();
-  const { data: session } = useSession();
   const { register, handleSubmit } = useForm<IForm>({
     defaultValues: initialValue,
   });
   const { deliveryCharge, items, totalAmount } = useCartSelector();
+  const dispatch = useAppDispatch();
+  const { deliveryCompanyLink } = useDeliverySelector();
 
-  const submitHandler: SubmitHandler<IForm> = (data) => {
-    console.log({
+  const submitHandler: SubmitHandler<IForm> = async (data) => {
+    const deliveryData = {
       deliveryCharge,
       items,
       totalAmount,
       ...data,
-    });
+    };
+
+    try {
+      await axios.post("/delivery", deliveryData);
+      toast.success("Order successfully placed");
+      dispatch(clearCart());
+      router.push(`/delivery/${deliveryCompanyLink}/`);
+    } catch (error) {
+      toast.error("Error placing order");
+    }
+
     // router
     //   .push("/checkout/delivery-service")
     //   .catch((error) => console.log(error));
