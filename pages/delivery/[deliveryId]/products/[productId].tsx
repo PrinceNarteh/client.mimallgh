@@ -60,7 +60,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
     toast.success("Product Added");
     dispatch(
       addToCart({
-        image: product.images[0].name,
+        productImage: product.images[0].name,
         price: product.price,
         productId: product.id,
         productName: product.title,
