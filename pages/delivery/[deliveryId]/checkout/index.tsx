@@ -1,18 +1,41 @@
 import { OrderSummary } from "@/components";
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
+import { useCartSelector } from "@/store/features/cart/cartSlice";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import type { FormEvent } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+interface IForm {
+  fullName: string;
+  phoneNumber: string;
+  alternatePhoneNumber?: string;
+}
+
+const initialValue: IForm = {
+  fullName: "",
+  phoneNumber: "",
+  alternatePhoneNumber: "",
+};
 
 const Checkout = () => {
   const router = useRouter();
   const { data: session } = useSession();
+  const { register, handleSubmit } = useForm<IForm>({
+    defaultValues: initialValue,
+  });
+  const { deliveryCharge, items, totalAmount } = useCartSelector();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    router
-      .push("/checkout/delivery-service")
-      .catch((error) => console.log(error));
+  const submitHandler: SubmitHandler<IForm> = (data) => {
+    console.log({
+      deliveryCharge,
+      items,
+      totalAmount,
+      ...data,
+    });
+    // router
+    //   .push("/checkout/delivery-service")
+    //   .catch((error) => console.log(error));
   };
 
   return (
@@ -37,7 +60,10 @@ const Checkout = () => {
                 >
                   Address
                 </label>
-                <form onSubmit={handleSubmit} className="mt-5 space-y-3 w-full">
+                <form
+                  onSubmit={handleSubmit(submitHandler)}
+                  className="mt-5 space-y-3 w-full"
+                >
                   <div className="">
                     <label
                       htmlFor="base-input"
@@ -49,6 +75,12 @@ const Checkout = () => {
                       type="text"
                       id="base-input"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2 outline-none w-full"
+                      {...register("fullName", {
+                        required: {
+                          value: true,
+                          message: "Full name is required.",
+                        },
+                      })}
                     />
                   </div>
                   <div className="w-full">
@@ -62,6 +94,12 @@ const Checkout = () => {
                       type="text"
                       id="phone-number"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 outline-none"
+                      {...register("phoneNumber", {
+                        required: {
+                          value: true,
+                          message: "Phone number is required",
+                        },
+                      })}
                     />
                   </div>
                   <div className="w-full">
@@ -75,13 +113,14 @@ const Checkout = () => {
                       type="text"
                       id="alternate-phone-number"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 outline-none"
+                      {...register("alternatePhoneNumber")}
                     />
                   </div>
+                  <button className="block w-full rounded-md bg-pink-500 py-3 text-center font-bold text-white">
+                    Confirm Order
+                  </button>
                 </form>
               </div>
-              <button className="block w-full rounded-md bg-pink-500 py-3 text-center font-bold text-white">
-                Confirm Order
-              </button>
             </div>
           </div>
         </div>
