@@ -58,7 +58,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
     toast.success("Product Added");
     dispatch(
       addToCart({
-        image: product.images[0].secure_url,
+        productImage: product.images[0].name,
         price: product.price,
         productId: product.id,
         productName: product.title,
@@ -102,7 +102,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
                           onMouseEnter={() => setCurrentImg(idx)}
                         >
                           <Image
-                            src={image.secure_url}
+                            src={image.name}
                             alt="product-one"
                             fill
                             style={{ objectFit: "cover" }}
@@ -117,10 +117,10 @@ const ProductDetails = ({ product }: { product: Product }) => {
                           smallImage: {
                             alt: "Wristwatch by Ted Baker London",
                             isFluidWidth: true,
-                            src: product.images[currentImg].secure_url,
+                            src: product.images[currentImg].name,
                           },
                           largeImage: {
-                            src: product.images[currentImg].secure_url,
+                            src: product.images[currentImg].name,
                             width: 640,
                             height: 600,
                           },

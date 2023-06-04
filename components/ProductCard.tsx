@@ -19,7 +19,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
     toast.success("Product Added");
     dispatch(
       addToCart({
-        image: product.images[0].secure_url,
+        productImage: product.images[0].name,
         price: product.price,
         productId: product.id,
         productName: product.title,
@@ -47,7 +47,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
           </div>
           <div className="relative h-[50px] overflow-hidden md:h-[100px] rounded-md mx-auto my-3">
             <Image
-              src={product.images[0].secure_url}
+              src={product.images[0].name}
               fill
               alt=""
               sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"

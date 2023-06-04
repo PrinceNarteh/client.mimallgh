@@ -48,7 +48,7 @@ const ProductByCategory = ({ products }: { products: IProduct }) => {
                       <div className="relative h-[130px] md:h-[160px] w-full">
                         <Link href={`/products/${product.id}`}>
                           <Image
-                            src={product.images[0].secure_url}
+                            src={product.images[0].name}
                             fill
                             sizes="190px"
                             alt=""

@@ -24,7 +24,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
       >
         <div className="relative h-[130px] md:h-[160px] w-full">
           <Image
-            src={product.images[0].secure_url}
+            src={product.images[0].name}
             fill
             alt=""
             sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"

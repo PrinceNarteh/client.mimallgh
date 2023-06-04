@@ -19,7 +19,7 @@ export const CartItem = ({ cart }: { cart: ICartItem }) => {
     <div className="flex h-28 w-full rounded border border-gray-200 bg-gray-200 overflow-hidden">
       <div className="relative w-24 shrink-0">
         <Image
-          src={parseImageUrl(cart.image, "products")}
+          src={parseImageUrl(cart.productImage, "products")}
           fill
           style={{ objectFit: "cover" }}
           alt=""
