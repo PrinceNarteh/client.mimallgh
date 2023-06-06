@@ -66,8 +66,8 @@ const Cart = () => {
                   </label>
                   <select name="" id="" className="border w-full p-2">
                     <option value="">Select Delivery company</option>
-                    <option value="winike">WinIke Dispatch</option>
-                    <option value="godsWay">God's Way Delivery</option>
+                    <option value="winike-dispatch">WinIke Dispatch</option>
+                    <option value="godsway-delivery">God's Way Delivery</option>
                   </select>
                 </div>
                 <div>

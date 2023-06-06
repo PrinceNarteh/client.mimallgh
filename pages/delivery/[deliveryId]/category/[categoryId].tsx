@@ -4,6 +4,7 @@ import { getProducts } from "@/services/products";
 import { getAllStores } from "@/services/store";
 import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 import { DeliveryStore } from "@/types";
+import { parseImageUrl } from "@/utils/utilities";
 import { capitalize } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
@@ -48,7 +49,11 @@ const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
                       <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
                         <div className="relative h-[130px] md:h-[160px] w-full group overflow-hidden">
                           <Image
-                            src={"/images/food-3.jpg"}
+                            src={
+                              store.image
+                                ? parseImageUrl(store.image, "shops")
+                                : "/images/food-3.jpg"
+                            }
                             fill
                             sizes="190px"
                             alt=""

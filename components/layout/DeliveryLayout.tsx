@@ -13,11 +13,17 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { SearchBar } from "./SearchBar";
+import { useRouter } from "next/router";
+
+const deliveryCompanies = ["winike-dispatch", "godsway-delivery"];
 
 const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
   const { deliveryCompanyName, deliveryCompanyLink } = useDeliverySelector();
   const [openMenu, setOpenMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const {
+    query: { deliveryId },
+  } = useRouter();
 
   useEffect(() => {
     const handler = (e: any) => {
@@ -32,13 +38,15 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
     };
   });
 
+  const pageExists = deliveryCompanies.includes(deliveryId as string);
+
   return (
     <div>
       <div className="fixed w-full z-50">
-        <div className="h-24 hidden relative md:flex justify-center">
+        <div className="hidden relative md:flex justify-center">
           <SearchBar />
         </div>
-        <div className="bg-[#165474]  z-10 py-2 flex flex-col pr-5 left-0 right-0 bottom-6 justify-between items-start md:absolute md:flex-row md:items-center md:h-16 m-auto  md:-bottom-10">
+        <div className="bg-[#165474] py-2 flex flex-col pr-5 justify-between items-start md:flex-row md:items-center md:h-16 m-auto">
           <div className="bg-white h-full rounded-r-full flex items-center py-2 px-4 shrink-0">
             <div className="w-10 h-10 flex justify-center items-center">
               <Image src={deliveryIcon} alt="" width={50} height={50} />
@@ -47,7 +55,7 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
               href={`/delivery/${deliveryCompanyLink}`}
               className="ml-3 font-bold text-lg text-[#165474]"
             >
-              {deliveryCompanyName.toUpperCase()}
+              {pageExists ? deliveryCompanyName.toUpperCase() : ""}
             </Link>
           </div>
           <div className="relative text-white flex px-2 pl-5 justify-between items-center text-sm py-2 w-full">
@@ -88,8 +96,8 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </div>
-      <div className="bg-gray-300 lg:block cursor-pointer pt-24">
-        {children}
+      <div className="bg-gray-300 lg:block pt-[112px]">
+        {pageExists ? children : "Page not found"}
       </div>
       {/* <footer className="footer before:-top-9 before:h-20 relative bg-gray-800 text-white overflow-hidden">
         <div className="w-11/12 flex flex-col mx-auto text-xl gap-5 pt-28 pb-10">

@@ -23,8 +23,8 @@ const deliveryCompanies = [
     link: "winike-dispatch",
   },
   {
-    name: "God's Way",
-    link: "gods-way",
+    name: "God's Way Delivery",
+    link: "godsway-delivery",
   },
 ];
 

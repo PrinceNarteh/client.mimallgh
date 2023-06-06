@@ -26,8 +26,8 @@ const deliveryCompanies = [
     link: "winike-dispatch",
   },
   {
-    name: "God's Way",
-    link: "gods-way",
+    name: "God's Way Delivery",
+    link: "godsway-delivery",
   },
 ];
 
@@ -51,9 +51,7 @@ export const SearchBar = () => {
   };
 
   return (
-    <div
-      className={`fixed z-0 w-full cursor-pointer px-5 md:py-1 gap-2 shadow-lg`}
-    >
+    <div className={`z-10 w-full px-5 md:py-1 gap-2 shadow-lg`}>
       <Image
         priority={true}
         src="/images/search-bg.jpg"
@@ -62,7 +60,7 @@ export const SearchBar = () => {
         alt=""
       />
       <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
-      <div className="relative z-10 flex py-3 flex-col md:flex-row gap-3 h-full w-full items-center justify-between">
+      <div className="relative z-50 flex py-3 flex-col md:flex-row gap-3 h-full w-full items-center justify-between">
         <Link href="/" className="md:w-60">
           {/* Logo */}
           <div className="p-1 rounded">
@@ -77,7 +75,7 @@ export const SearchBar = () => {
         </Link>
 
         <div className="flex justify-between gap-5">
-          <div className="flex items-center shrink-0 justify-end gap-3 pr-3 md:pr-0 text-2xl md:text-4xl md:space-x-3 text-pink-500">
+          <div className="relative flex items-center shrink-0 justify-end gap-3 pr-3 md:pr-0 text-2xl md:text-4xl md:space-x-3 text-pink-500">
             <IoMdHome
               onClick={() => {
                 // dispatch(clearSearch());
@@ -87,7 +85,7 @@ export const SearchBar = () => {
             />
             <div
               onClick={() => setOpenDelivery(!openDelivery)}
-              className="relative w-10 h-10 md:w-9 md:h-9 flex justify-center items-center"
+              className=" w-10 h-10 md:w-9 md:h-9 flex justify-center items-center"
             >
               <Image
                 src={delivery}
@@ -101,7 +99,7 @@ export const SearchBar = () => {
                   openDelivery
                     ? "visible translate-y-0 opacity-100"
                     : "invisible translate-y-3 opacity-0"
-                } absolute left-0 top-[55px] min-w-max py-2 text-base bg-gray-800 arrow before:left-2 duration-500 transform`}
+                } absolute -right-4 top-[55px] min-w-max py-2 text-base bg-gray-800 arrow before:right-20 duration-500 transform`}
               >
                 {deliveryCompanies.map((deliveryCompany, idx) => (
                   <div
