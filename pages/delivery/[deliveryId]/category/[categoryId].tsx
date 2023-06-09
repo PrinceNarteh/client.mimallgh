@@ -26,8 +26,6 @@ const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
   const { deliveryCompanyLink } = useDeliverySelector();
   const { query } = useRouter();
 
-  stores;
-
   return (
     <DeliveryLayout>
       <Container>
@@ -40,7 +38,7 @@ const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-5">
-                  {stores.map((store, idx) => (
+                  {stores?.map((store, idx) => (
                     <Link
                       href={`/delivery/${deliveryCompanyLink}/store/${store.id}`}
                       key={idx}

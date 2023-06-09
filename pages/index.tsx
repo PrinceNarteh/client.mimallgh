@@ -35,7 +35,7 @@ const Home = ({ products }: { products: IProduct }) => {
 
   useEffect(() => {
     dispatch(allProduct(products || []));
-  }, [store]);
+  }, []);
 
   useEffect(() => {
     dispatch(clearSearchData());

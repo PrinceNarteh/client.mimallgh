@@ -16,6 +16,7 @@ import {
   FaTiktok,
   FaTwitter,
   FaWhatsapp,
+  FaMarker,
 } from "react-icons/fa";
 import { MdAddCall } from "react-icons/md";
 import shopNotFound from "../../../../assets/images/store-not-found.png";
@@ -96,7 +97,9 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
                 <div className="">
                   <p>
                     <span className="font-semibold">Map Direction:</span>{" "}
-                    {webStore.mapDirection}
+                    <a href={webStore.mapDirection}>
+                      <FaMarker />
+                    </a>
                   </p>
                 </div>
                 <div className="">
