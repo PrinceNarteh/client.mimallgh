@@ -16,7 +16,7 @@ import {
   FaTiktok,
   FaTwitter,
   FaWhatsapp,
-  FaMarker,
+  FaLocationArrow,
 } from "react-icons/fa";
 import { MdAddCall } from "react-icons/md";
 import shopNotFound from "../../../../assets/images/store-not-found.png";
@@ -74,9 +74,16 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
                 <div className="flex items-center">
                   <span className="font-semibold mr-3">Contact:</span>
                   <div className="flex gap-2">
-                    <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
-                      <MdAddCall className="text-white" />
-                    </div>
+                    {webStore.phoneNumber ? (
+                      <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
+                        <a
+                          href={`tel:${webStore.phoneNumber}`}
+                          title={webStore.phoneNumber}
+                        >
+                          <MdAddCall className="text-white" />
+                        </a>
+                      </div>
+                    ) : null}
                     <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
                       <FaFacebookF className="text-white" />
                     </div>
@@ -98,7 +105,7 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
                   <p>
                     <span className="font-semibold">Map Direction:</span>{" "}
                     <a href={webStore.mapDirection}>
-                      <FaMarker />
+                      <FaLocationArrow />
                     </a>
                   </p>
                 </div>
