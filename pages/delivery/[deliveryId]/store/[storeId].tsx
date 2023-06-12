@@ -16,7 +16,7 @@ import {
   FaTiktok,
   FaTwitter,
   FaWhatsapp,
-  FaMapPin,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 import { MdAddCall } from "react-icons/md";
 import shopNotFound from "../../../../assets/images/store-not-found.png";
@@ -84,35 +84,56 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
                         </a>
                       </div>
                     ) : null}
-                    <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
-                      <FaFacebookF className="text-white" />
-                    </div>
-                    <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
-                      <FaWhatsapp className="text-white" />
-                    </div>
-                    <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
-                      <FaTwitter className="text-white" />
-                    </div>
-                    <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
-                      <FaInstagram className="text-white" />
-                    </div>
-                    <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
-                      <FaTiktok className="text-white" />
-                    </div>
+                    {webStore.facebookHandle ? (
+                      <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
+                        <a href={webStore.facebookHandle}>
+                          <FaFacebookF className="text-white" />
+                        </a>
+                      </div>
+                    ) : null}
+                    {webStore.whatsappNumber ? (
+                      <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
+                        <a href={webStore.whatsappNumber}>
+                          <FaWhatsapp className="text-white" />
+                        </a>
+                      </div>
+                    ) : null}
+                    {webStore.twitterHandle ? (
+                      <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
+                        <a href={webStore.twitterHandle}>
+                          <FaTwitter className="text-white" />
+                        </a>
+                      </div>
+                    ) : null}
+                    {webStore.instagramHandle ? (
+                      <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
+                        <a href={webStore.instagramHandle}>
+                          <FaInstagram className="text-white" />
+                        </a>
+                      </div>
+                    ) : null}
+                    {webStore.tiktokHandle ? (
+                      <div className="w-7 h-7 bg-gray-800 rounded-full flex justify-center items-center cursor-pointer">
+                        <a href={webStore.tiktokHandle}>
+                          <FaTiktok className="text-white" />
+                        </a>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
-                <div className="">
-                  <p>
-                    <span className="font-semibold">Map Direction:</span>{" "}
-                    <a href={webStore.mapDirection}>
-                      <FaMapPin />
-                    </a>
-                  </p>
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold">Map Direction:</span>{" "}
+                  <a
+                    href={webStore.mapDirection}
+                    className="flex items-center gap-1"
+                  >
+                    <FaMapMarkerAlt size={13} />
+                    {capitalize(webStore.location, "_")}
+                  </a>
                 </div>
                 <div className="">
                   <p>
                     <span className="font-semibold">Physical Address:</span>{" "}
-                    {capitalize(webStore.location, "_")}
                   </p>
                 </div>
               </div>

@@ -96,7 +96,7 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </div>
-      <div className="bg-gray-300 lg:block pt-[112px]">
+      <div className="bg-white lg:block pt-[112px]">
         {pageExists ? children : "Page not found"}
       </div>
       {/* <footer className="footer before:-top-9 before:h-20 relative bg-gray-800 text-white overflow-hidden">

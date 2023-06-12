@@ -115,6 +115,8 @@ export interface DeliveryStore {
   whatsappNumber: null;
   instagramHandle: null;
   facebookHandle: null;
+  twitterHandle: null;
+  tiktokHandle: null;
   openingTime: string;
   closingTime: string;
   image: null;

@@ -1,6 +1,7 @@
 import { addToCart } from "@/store/features/cart/cartSlice";
 import { useAppDispatch } from "@/store/store";
 import { Product } from "@/types";
+import { parseImageUrl } from "@/utils/utilities";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -47,7 +48,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
           </div>
           <div className="relative h-[50px] overflow-hidden md:h-[100px] rounded-md mx-auto my-3">
             <Image
-              src={product.images[0].name}
+              src={parseImageUrl(product.images[0].name, "products")}
               fill
               alt=""
               sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
