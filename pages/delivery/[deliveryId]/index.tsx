@@ -1,13 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import { GetServerSideProps } from "next";
 import { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import {} from "../../";
 
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
 import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 import { useRouter } from "next/router";
 import "swiper/css";
 import "swiper/css/pagination";
+import { getDeliveryCompanies } from "@/services/delivery-companies";
+import { IDeliveryCompany } from "@/types/delivery-companies";
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
@@ -47,7 +51,22 @@ const cards = [
   },
 ];
 
-const Delivery = () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { storeId } = context.query;
+  const data = await getDeliveryCompanies();
+
+  return {
+    props: {
+      deliveryCompanies: data,
+    },
+  };
+};
+
+const Delivery = ({
+  deliveryCompanies,
+}: {
+  deliveryCompanies: IDeliveryCompany;
+}) => {
   const { deliveryCompanyLink } = useDeliverySelector();
   const {
     query: { deliveryId },

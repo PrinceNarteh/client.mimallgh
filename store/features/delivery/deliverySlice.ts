@@ -32,10 +32,10 @@ const DeliverySlice = createSlice({
     },
     setDeliveryCompanyInfo: (
       state,
-      action: PayloadAction<{ name: string; link: string }>
+      action: PayloadAction<{ name: string; slug: string }>
     ) => {
       state.deliveryCompanyName = action.payload.name;
-      state.deliveryCompanyLink = action.payload.link;
+      state.deliveryCompanyLink = action.payload.slug;
     },
   },
 });

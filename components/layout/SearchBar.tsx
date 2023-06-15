@@ -5,17 +5,15 @@ import {
   useDeliverySelector,
 } from "@/store/features/delivery/deliverySlice";
 import {
-  setSearch,
   setSearchResults,
   useSearchSelector,
 } from "@/store/features/search/searchSlice";
 import { useAppDispatch } from "@/store/store";
+import { IDeliveryCompany } from "@/types/delivery-companies";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import { BiSearch } from "react-icons/bi";
-import { FaRegUser } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import delivery from "../../assets/svgs/delivery-icon-pink.svg";
@@ -32,6 +30,9 @@ const deliveryCompanies = [
 ];
 
 export const SearchBar = () => {
+  const [deliveryCompanies, setDeliveryCompanies] = useState<
+    IDeliveryCompany[]
+  >([]);
   const { deliveryCompanyLink } = useDeliverySelector();
   const [openDelivery, setOpenDelivery] = useState(false);
   const router = useRouter();
@@ -39,9 +40,9 @@ export const SearchBar = () => {
   const { items } = useCartSelector();
   const { search } = useSearchSelector();
 
-  const navigate = ({ name, link }: { name: string; link: string }) => {
-    dispatch(setDeliveryCompanyInfo({ name, link }));
-    router.push(`/delivery/${link}`);
+  const navigate = ({ name, slug }: IDeliveryCompany) => {
+    dispatch(setDeliveryCompanyInfo({ name, slug }));
+    router.push(`/delivery/${slug}`);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -49,6 +50,17 @@ export const SearchBar = () => {
     const res = await axios.get(`/products?search=${search}`);
     dispatch(setSearchResults(res.data.data));
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get("/delivery-companies");
+      setDeliveryCompanies(res.data);
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(deliveryCompanies);
 
   return (
     <div className={`z-10 w-full px-5 md:py-1 gap-2 shadow-lg`}>
