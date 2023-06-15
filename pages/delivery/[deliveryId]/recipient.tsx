@@ -5,13 +5,12 @@ import {
 } from "@/store/features/delivery/deliverySlice";
 import { useAppDispatch } from "@/store/store";
 import { Delivery } from "@/types";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { BiEdit } from "react-icons/bi";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { CgRadioCheck } from "react-icons/cg";
-import { BiEdit } from "react-icons/bi";
-import Link from "next/link";
-import { mapTownLabelToValue } from "@/utils/dispatch_fares";
 
 const RecipientForm = () => {
   const dispatch = useAppDispatch();

@@ -4,14 +4,13 @@ import {
   useDeliverySelector,
 } from "@/store/features/delivery/deliverySlice";
 import { useAppDispatch } from "@/store/store";
-import { formatPhoneNumber } from "@/utils/utilities";
-import { useRouter } from "next/router";
-import React from "react";
-import { BsFillCheckCircleFill } from "react-icons/bs";
-import { useForm, SubmitHandler } from "react-hook-form";
 import { Delivery } from "@/types";
-import { BiEdit } from "react-icons/bi";
+import { formatPhoneNumber } from "@/utils/utilities";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { BiEdit } from "react-icons/bi";
+import { BsFillCheckCircleFill } from "react-icons/bs";
 
 const DeliveryTimeForm = () => {
   const dispatch = useAppDispatch();

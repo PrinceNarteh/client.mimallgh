@@ -1,6 +1,7 @@
 import { CustomLinks } from "@/components/layout";
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
 import { getSingleShop } from "@/services/store";
+import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 import { allShopProducts } from "@/store/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { DeliveryStore } from "@/types";
@@ -13,14 +14,13 @@ import { useEffect } from "react";
 import {
   FaFacebookF,
   FaInstagram,
+  FaMapMarkerAlt,
   FaTiktok,
   FaTwitter,
   FaWhatsapp,
-  FaMapMarkerAlt,
 } from "react-icons/fa";
 import { MdAddCall } from "react-icons/md";
 import shopNotFound from "../../../../assets/images/store-not-found.png";
-import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { storeId } = context.query;

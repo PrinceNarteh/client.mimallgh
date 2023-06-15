@@ -8,12 +8,12 @@ import { Delivery } from "@/types";
 import {
   getDeliveryFare,
   mapTownLabelToValue,
-  towns,
   mapTownValueToLabel,
+  towns,
 } from "@/utils/dispatch_fares";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { CgRadioCheck } from "react-icons/cg";
 

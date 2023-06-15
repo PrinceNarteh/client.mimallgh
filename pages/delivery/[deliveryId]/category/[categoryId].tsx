@@ -1,11 +1,9 @@
 import { Container } from "@/components";
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
-import { getProducts } from "@/services/products";
 import { getAllStores } from "@/services/store";
 import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 import { DeliveryStore } from "@/types";
-import { parseImageUrl } from "@/utils/utilities";
-import { capitalize } from "@/utils/utilities";
+import { capitalize, parseImageUrl } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";

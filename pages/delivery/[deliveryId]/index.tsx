@@ -1,15 +1,13 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import deliveryIcon from "../../../assets/svgs/delivery-icon.svg";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
+import DeliveryLayout from "@/components/layout/DeliveryLayout";
+import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
+import { useRouter } from "next/router";
 import "swiper/css";
 import "swiper/css/pagination";
-import DeliveryLayout from "@/components/layout/DeliveryLayout";
-import { useRouter } from "next/router";
-import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -

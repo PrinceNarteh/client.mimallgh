@@ -4,10 +4,8 @@ import axios from "@/lib/axios";
 import { clearCart, useCartSelector } from "@/store/features/cart/cartSlice";
 import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 import { useAppDispatch } from "@/store/store";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import type { FormEvent } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 
 interface IForm {
@@ -47,10 +45,6 @@ const Checkout = () => {
     } catch (error) {
       toast.error("Error placing order");
     }
-
-    // router
-    //   .push("/checkout/delivery-service")
-    //   .catch((error) => console.log(error));
   };
 
   return (

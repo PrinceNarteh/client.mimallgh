@@ -35,7 +35,6 @@ const ConfirmDeliveryRequest = () => {
       })
     );
     router.push("/delivery/name/time");
-    router.push("/delivery/name/time");
   };
   return (
     <DeliveryFormLayout>
