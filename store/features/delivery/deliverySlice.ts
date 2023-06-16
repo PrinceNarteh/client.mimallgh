@@ -4,7 +4,7 @@ import { IDeliveryCompany } from "@/types/delivery-companies";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: {
-  deliveryCompany: IDeliveryCompany;
+  deliveryCompany: IDeliveryCompany | null;
   delivery: Delivery;
 } = {
   deliveryCompany: {

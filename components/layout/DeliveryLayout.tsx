@@ -14,6 +14,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { MdAddCall } from "react-icons/md";
 import deliveryIcon from "../../assets/svgs/delivery-icon.svg";
 import { SearchBar } from "./SearchBar";
+import pageNotFound from "../../assets/images/page-not-found.png";
 
 const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
   const { deliveryCompany } = useDeliverySelector();
@@ -92,7 +93,15 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </div>
-      <div className="bg-white lg:block pt-[112px]">{children}</div>
+      <div className="bg-white lg:block pt-[112px]">
+        {deliveryCompany ? (
+          children
+        ) : (
+          <div className="h-[calc(100vh_-_98px)] flex justify-center items-center bg-gray-300">
+            <Image src={pageNotFound} alt="" />
+          </div>
+        )}
+      </div>
       {/* <footer className="footer before:-top-9 before:h-20 relative bg-gray-800 text-white overflow-hidden">
         <div className="w-11/12 flex flex-col mx-auto text-xl gap-5 pt-28 pb-10">
           <div className="flex justify-evenly gap-5 flex-wrap">
