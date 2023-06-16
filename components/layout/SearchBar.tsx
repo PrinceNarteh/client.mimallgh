@@ -1,7 +1,7 @@
 import axios from "@/lib/axios";
 import { useCartSelector } from "@/store/features/cart/cartSlice";
 import {
-  setDeliveryCompanyInfo,
+  setDeliveryCompany,
   useDeliverySelector,
 } from "@/store/features/delivery/deliverySlice";
 import {
@@ -33,16 +33,16 @@ export const SearchBar = () => {
   const [deliveryCompanies, setDeliveryCompanies] = useState<
     IDeliveryCompany[]
   >([]);
-  const { deliveryCompanyLink } = useDeliverySelector();
+  const { deliveryCompany } = useDeliverySelector();
   const [openDelivery, setOpenDelivery] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { items } = useCartSelector();
   const { search } = useSearchSelector();
 
-  const navigate = ({ name, slug }: IDeliveryCompany) => {
-    dispatch(setDeliveryCompanyInfo({ name, slug }));
-    router.push(`/delivery/${slug}`);
+  const navigate = (deliveryCompany: IDeliveryCompany) => {
+    dispatch(setDeliveryCompany(deliveryCompany));
+    router.push(`/delivery/${deliveryCompany.slug}`);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -125,7 +125,7 @@ export const SearchBar = () => {
               </div>
             </div>
             <Link
-              href={`/delivery/${deliveryCompanyLink}/cart`}
+              href={`/delivery/${deliveryCompany?.slug}/cart`}
               className="relative"
             >
               <TiShoppingCart className="cursor-pointer" />

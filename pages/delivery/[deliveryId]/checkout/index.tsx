@@ -27,7 +27,7 @@ const Checkout = () => {
   });
   const { deliveryCharge, items, totalAmount } = useCartSelector();
   const dispatch = useAppDispatch();
-  const { deliveryCompanyLink } = useDeliverySelector();
+  const { deliveryCompany } = useDeliverySelector();
 
   const submitHandler: SubmitHandler<IForm> = async (data) => {
     const deliveryData = {
@@ -41,7 +41,7 @@ const Checkout = () => {
       await axios.post("/delivery", deliveryData);
       toast.success("Order successfully placed");
       dispatch(clearCart());
-      router.push(`/delivery/${deliveryCompanyLink}/`);
+      router.push(`/delivery/${deliveryCompany.slug}/`);
     } catch (error) {
       toast.error("Error placing order");
     }

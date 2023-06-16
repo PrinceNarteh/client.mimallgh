@@ -8,3 +8,12 @@ export const getDeliveryCompanies = async () => {
     return null;
   }
 };
+
+export const getDeliveryCompany = async (slug: string) => {
+  try {
+    const companies = await axios.get(`/delivery-companies/slug/${slug}`);
+    return companies.data;
+  } catch (error) {
+    return null;
+  }
+};

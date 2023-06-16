@@ -35,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
   const store = useAppSelector((state) => state.products.shopProducts);
-  const { deliveryCompanyLink } = useDeliverySelector();
+  const { deliveryCompany } = useDeliverySelector();
   const dispatch = useAppDispatch();
   const {
     query: { storeId },
@@ -154,7 +154,7 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
                       <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
                         <div className="relative h-[130px] md:h-[160px] w-full">
                           <Link
-                            href={`/delivery/${deliveryCompanyLink}/products/${product.id}`}
+                            href={`/delivery/${deliveryCompany.slug}/products/${product.id}`}
                           >
                             <Image
                               src={parseImageUrl(

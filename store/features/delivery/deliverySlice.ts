@@ -1,14 +1,22 @@
 import { useAppSelector } from "@/store/store";
 import { Delivery } from "@/types";
+import { IDeliveryCompany } from "@/types/delivery-companies";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: {
-  deliveryCompanyName: string;
-  deliveryCompanyLink: string;
+  deliveryCompany: IDeliveryCompany;
   delivery: Delivery;
 } = {
-  deliveryCompanyName: "",
-  deliveryCompanyLink: "",
+  deliveryCompany: {
+    id: "",
+    name: "",
+    phoneNumber: "",
+    slug: "",
+    whatsappNumber: "",
+    alternatePhoneNumber: "",
+    location: "",
+    images: [],
+  },
   delivery: {
     request: "",
     from: "",
@@ -30,17 +38,13 @@ const DeliverySlice = createSlice({
     addInfo: (state, action: PayloadAction<Delivery>) => {
       state.delivery = action.payload;
     },
-    setDeliveryCompanyInfo: (
-      state,
-      action: PayloadAction<{ name: string; slug: string }>
-    ) => {
-      state.deliveryCompanyName = action.payload.name;
-      state.deliveryCompanyLink = action.payload.slug;
+    setDeliveryCompany: (state, action: PayloadAction<IDeliveryCompany>) => {
+      state.deliveryCompany = action.payload;
     },
   },
 });
 
 export const useDeliverySelector = () =>
   useAppSelector((state) => state.delivery);
-export const { addInfo, setDeliveryCompanyInfo } = DeliverySlice.actions;
+export const { addInfo, setDeliveryCompany } = DeliverySlice.actions;
 export default DeliverySlice;

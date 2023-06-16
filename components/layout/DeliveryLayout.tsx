@@ -1,10 +1,9 @@
+import axios from "@/lib/axios";
+import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 import Image from "next/image";
 import Link from "next/link";
-import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
-import { IoSearchOutline } from "react-icons/io5";
-import deliveryIcon from "../../assets/svgs/delivery-icon.svg";
-import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
-import { MdAddCall } from "react-icons/md";
+import { useRouter } from "next/router";
+import React, { useEffect, useRef, useState } from "react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -12,13 +11,13 @@ import {
   FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
+import { IoSearchOutline } from "react-icons/io5";
+import { MdAddCall } from "react-icons/md";
+import deliveryIcon from "../../assets/svgs/delivery-icon.svg";
 import { SearchBar } from "./SearchBar";
-import { useRouter } from "next/router";
-
-const deliveryCompanies = ["winike-dispatch", "godsway-delivery"];
 
 const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
-  const { deliveryCompanyName, deliveryCompanyLink } = useDeliverySelector();
+  const { deliveryCompany } = useDeliverySelector();
   const [openMenu, setOpenMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const {
@@ -38,7 +37,13 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
     };
   });
 
-  const pageExists = deliveryCompanies.includes(deliveryId as string);
+  useEffect(() => {
+    const fetchCompany = async () => {
+      const res = await axios.get(`/delivery-companies/slug/${deliveryId}`);
+      console.log(res);
+    };
+    fetchCompany();
+  }, []);
 
   return (
     <div>
@@ -52,14 +57,14 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
               <Image src={deliveryIcon} alt="" width={50} height={50} />
             </div>
             <Link
-              href={`/delivery/${deliveryCompanyLink}`}
+              href={`/delivery/${deliveryCompany?.slug}`}
               className="ml-3 font-bold text-lg text-[#165474]"
             >
-              {pageExists ? deliveryCompanyName.toUpperCase() : ""}
+              {deliveryCompany?.name.toUpperCase()}
             </Link>
           </div>
           <div className="relative text-white flex px-2 pl-5 justify-between items-center text-sm py-2 w-full">
-            <Link href={`/delivery/${deliveryCompanyLink}`}>Home</Link>
+            <Link href={`/delivery/${deliveryCompany?.slug}`}>Home</Link>
             <Link href="#">Services</Link>
             <Link href="#" className="hidden">
               Working Hours
@@ -96,9 +101,7 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </div>
-      <div className="bg-white lg:block pt-[112px]">
-        {pageExists ? children : "Page not found"}
-      </div>
+      <div className="bg-white lg:block pt-[112px]">{children}</div>
       {/* <footer className="footer before:-top-9 before:h-20 relative bg-gray-800 text-white overflow-hidden">
         <div className="w-11/12 flex flex-col mx-auto text-xl gap-5 pt-28 pb-10">
           <div className="flex justify-evenly gap-5 flex-wrap">

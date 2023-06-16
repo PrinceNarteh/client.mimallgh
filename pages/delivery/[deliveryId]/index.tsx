@@ -1,76 +1,51 @@
 import Image from "next/image";
 import Link from "next/link";
-import { GetServerSideProps } from "next";
 import { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {} from "../../";
 
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
-import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
+import {
+  useDeliverySelector,
+  setDeliveryCompany,
+} from "@/store/features/delivery/deliverySlice";
 import { useRouter } from "next/router";
 import "swiper/css";
 import "swiper/css/pagination";
-import { getDeliveryCompanies } from "@/services/delivery-companies";
+import { GetServerSideProps } from "next";
 import { IDeliveryCompany } from "@/types/delivery-companies";
+import { useAppDispatch } from "@/store/store";
+import { useEffect } from "react";
+import { getDeliveryCompany } from "@/services/delivery-companies";
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
 
-const cards = [
-  {
-    label: "Fashion And Wears",
-    link: "fashion-and-wears",
-  },
-  {
-    label: "Food",
-    link: "food",
-  },
-  {
-    label: "Grocery And General",
-    link: "grocery-and-general",
-  },
-  {
-    label: "Health And Wellness",
-    link: "health-and-wellness",
-  },
-  {
-    label: "Home And Electrical Appliances",
-    link: "home-and-electrical-appliances",
-  },
-  {
-    label: "Personal Services",
-    link: "personal-services",
-  },
-  {
-    label: "Printing And Stationery",
-    link: "printing-and-stationery",
-  },
-  {
-    label: "Tech",
-    link: "tech",
-  },
-];
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { storeId } = context.query;
-  const data = await getDeliveryCompanies();
+  const { deliveryId } = context.query;
+  const data = await getDeliveryCompany(deliveryId as string);
 
   return {
     props: {
-      deliveryCompanies: data,
+      deliveryCompany: data,
     },
   };
 };
 
 const Delivery = ({
-  deliveryCompanies,
+  deliveryCompany: company,
 }: {
-  deliveryCompanies: IDeliveryCompany;
+  deliveryCompany: IDeliveryCompany;
 }) => {
-  const { deliveryCompanyLink } = useDeliverySelector();
+  const { deliveryCompany } = useDeliverySelector();
+  const dispatch = useAppDispatch();
   const {
     query: { deliveryId },
   } = useRouter();
+
+  useEffect(() => {
+    dispatch(setDeliveryCompany(company));
+  }, []);
 
   return (
     <DeliveryLayout>
@@ -154,7 +129,7 @@ const Delivery = ({
               </div>
               <div className="flex justify-center pt-3">
                 <Link
-                  href={`/delivery/${deliveryCompanyLink}/category/cooked-food`}
+                  href={`/delivery/${deliveryCompany?.slug}/category/cooked-food`}
                   className="text-white bg-[#c8b600] py-2 w-full text-center"
                 >
                   Shop Now
@@ -176,7 +151,7 @@ const Delivery = ({
               </div>
               <div className="flex justify-center pt-3">
                 <Link
-                  href={`/delivery/${deliveryCompanyLink}/category/whole-food`}
+                  href={`/delivery/${deliveryCompany?.slug}/category/whole-food`}
                   className="text-white bg-[#c8b600] py-2 w-full text-center"
                 >
                   Shop Now
@@ -266,7 +241,7 @@ const Delivery = ({
         <div className="bg-white p-2 md:p-5 w-6/12 md:w-7/12 mx-auto  text-xl md:text-2xl font-bold text-center  text-blue-500 shadow-md">
           <p className="mb-2">Call:</p>
           <div className="flex flex-col md:flex-row justify-evenly">
-            <p> 024 123 4567</p>
+            <p>020 123 4567</p>
             <p>050 123 4567</p>
           </div>
         </div>
