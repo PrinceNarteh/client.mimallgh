@@ -29,8 +29,6 @@ const ProductDetails = ({ product }: { product: Product }) => {
   const axiosAuth = useAxiosAuth();
   const router = useRouter();
 
-  console.log(product);
-
   const deleteProduct = (imageId: string) => {
     setProductId(imageId);
     setOpenDialog(true);

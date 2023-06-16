@@ -1,4 +1,3 @@
-import axios from "@/lib/axios";
 import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,14 +35,6 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
       document.addEventListener("mousedown", handler);
     };
   });
-
-  useEffect(() => {
-    const fetchCompany = async () => {
-      const res = await axios.get(`/delivery-companies/slug/${deliveryId}`);
-      console.log(res);
-    };
-    fetchCompany();
-  }, []);
 
   return (
     <div>

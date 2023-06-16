@@ -43,6 +43,8 @@ const Delivery = ({
     query: { deliveryId },
   } = useRouter();
 
+  console.log(company);
+
   useEffect(() => {
     dispatch(setDeliveryCompany(company));
   }, []);

@@ -60,8 +60,6 @@ export const SearchBar = () => {
     fetchData();
   }, []);
 
-  console.log(deliveryCompanies);
-
   return (
     <div className={`z-10 w-full px-5 md:py-1 gap-2 shadow-lg`}>
       <Image
