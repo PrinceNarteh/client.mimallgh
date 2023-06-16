@@ -15,8 +15,9 @@ import "swiper/css/pagination";
 import { GetServerSideProps } from "next";
 import { IDeliveryCompany } from "@/types/delivery-companies";
 import { useAppDispatch } from "@/store/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getDeliveryCompany } from "@/services/delivery-companies";
+import { parseImageUrl } from "@/utils/utilities";
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
@@ -38,6 +39,7 @@ const Delivery = ({
   deliveryCompany: IDeliveryCompany;
 }) => {
   const { deliveryCompany } = useDeliverySelector();
+  const [slider, setSlider] = useState<{ id: string; name: string }[]>([]);
   const dispatch = useAppDispatch();
   const {
     query: { deliveryId },
@@ -47,7 +49,8 @@ const Delivery = ({
 
   useEffect(() => {
     dispatch(setDeliveryCompany(company));
-  }, []);
+    setSlider(company.images);
+  }, [company, dispatch, setDeliveryCompany]);
 
   return (
     <DeliveryLayout>
@@ -67,17 +70,19 @@ const Delivery = ({
           navigation={true}
           modules={[Autoplay, Pagination]}
         >
-          <SwiperSlide>
-            <div className="relative h-60 md:h-[520px] lg:h-[calc(100vh_-_97px)]">
-              <Image
-                src={`/images/${deliveryId}-0.jpg`}
-                fill
-                className="h-full w-full object-fill md:object-fill object-center"
-                alt=""
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
+          {slider.map((image, index) => (
+            <SwiperSlide key={index}>
+              <div className="relative h-60 md:h-[520px] lg:h-[calc(100vh_-_97px)]">
+                <Image
+                  src={parseImageUrl(image.name, "delivery-companies")}
+                  fill
+                  className="h-full w-full object-fill md:object-fill object-center"
+                  alt=""
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+          {/* <SwiperSlide>
             <div className="relative h-60 md:h-[520px] lg:h-[calc(100vh_-_97px)]">
               <Image
                 src={`/images/${deliveryId}-1.jpg`}
@@ -98,7 +103,7 @@ const Delivery = ({
                 alt=""
               />
             </div>
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
       </div>
       <div className=" bg-gray-300">

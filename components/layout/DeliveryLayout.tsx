@@ -55,7 +55,7 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
               {deliveryCompany?.name.toUpperCase()}
             </Link>
           </div>
-          <div className="relative text-white flex px-2 pl-5 justify-between items-center text-sm py-2 w-full">
+          <div className="relative text-white flex px-2 pl-5 justify-around items-center text-sm py-2 w-full">
             <Link href={`/delivery/${deliveryCompany?.slug}`}>Home</Link>
             <Link href="#">Services</Link>
             <Link href="#" className="hidden">
