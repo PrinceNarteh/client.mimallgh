@@ -1,9 +1,8 @@
 import { addToCart } from "@/store/features/cart/cartSlice";
 import { useAppDispatch } from "@/store/store";
 import { Product } from "@/types";
-import { parseImageUrl } from "@/utils/utilities";
+import { parseProductImageUrl } from "@/utils/utilities";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import { TiShoppingCart } from "react-icons/ti";
@@ -11,9 +10,12 @@ import { TiShoppingCart } from "react-icons/ti";
 export const ProductCard = ({ product }: { product: Product }) => {
   const navigate = useRouter();
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const handleNavigate = () => {
-    navigate.push(`/products/${product.id}`);
+    navigate.push(
+      `/delivery/${router.query.deliveryId}/products/${product.id}`
+    );
   };
 
   const handleAddToCart = () => {
@@ -48,7 +50,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
           </div>
           <div className="relative h-[50px] overflow-hidden md:h-[100px] rounded-md mx-auto my-3">
             <Image
-              src={parseImageUrl(product.images[0].name, "products")}
+              src={parseProductImageUrl(product.images[0].name)}
               fill
               alt=""
               sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"

@@ -5,7 +5,7 @@ import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 import { allShopProducts } from "@/store/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { DeliveryStore } from "@/types";
-import { capitalize, parseImageUrl } from "@/utils/utilities";
+import { capitalize, parseProductImageUrl } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -154,12 +154,11 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
                       <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
                         <div className="relative h-[130px] md:h-[160px] w-full">
                           <Link
-                            href={`/delivery/${deliveryCompany.slug}/products/${product.id}`}
+                            href={`/delivery/${deliveryCompany?.slug}/products/${product.id}`}
                           >
                             <Image
-                              src={parseImageUrl(
-                                product?.images[0].name,
-                                "products"
+                              src={parseProductImageUrl(
+                                product?.images[0].name
                               )}
                               fill
                               sizes="500px"

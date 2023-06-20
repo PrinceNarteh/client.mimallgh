@@ -29,7 +29,7 @@ import "swiper/css/pagination";
 import { useAppDispatch } from "@/store/store";
 import { addToCart } from "@/store/features/cart/cartSlice";
 import { toast } from "react-hot-toast";
-import { parseImageUrl } from "@/utils/utilities";
+import { parseProductImageUrl } from "@/utils/utilities";
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
@@ -47,7 +47,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const ProductDetails = ({ product }: { product: Product }) => {
   const [currentImg, setCurrentImg] = useState(0);
-  const { asPath } = useRouter();
+  const { asPath, query } = useRouter();
   const dispatch = useAppDispatch();
   const origin =
     typeof window !== "undefined" && window.location.origin
@@ -104,7 +104,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
                           onMouseEnter={() => setCurrentImg(idx)}
                         >
                           <Image
-                            src={parseImageUrl(image.name, "products")}
+                            src={parseProductImageUrl(image.name)}
                             alt="product-one"
                             fill
                             style={{ objectFit: "cover" }}
@@ -119,15 +119,13 @@ const ProductDetails = ({ product }: { product: Product }) => {
                           smallImage: {
                             alt: "Wristwatch by Ted Baker London",
                             isFluidWidth: true,
-                            src: parseImageUrl(
-                              product.images[currentImg].name,
-                              "products"
+                            src: parseProductImageUrl(
+                              product.images[currentImg].name
                             ),
                           },
                           largeImage: {
-                            src: parseImageUrl(
-                              product.images[currentImg].name,
-                              "products"
+                            src: parseProductImageUrl(
+                              product.images[currentImg].name
                             ),
                             width: 800,
                             height: 800,
@@ -298,7 +296,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
                   </div>
                 </div> */}
                 <Link
-                  href={`/web-store/${product.shop.id}`}
+                  href={`/delivery/${query.deliveryId}/store/${product.shop.id}`}
                   className="my-5 block pl-2 text-md font-semibold md:text-md cursor-pointer"
                 >
                   Visit {product.shop.name} Web Shop
