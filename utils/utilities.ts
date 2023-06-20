@@ -35,6 +35,14 @@ export const convertBase64 = (file: File): Promise<string> => {
   });
 };
 
-export const parseImageUrl = (imageName: string, entity: string) => {
-  return `${process.env.NEXT_PUBLIC_BASE_URL}/${entity}/image/${imageName}`;
+export const parseDeliveryImageUrl = (imageName: string) => {
+  return `https://api.mimallgh.com/delivery-companies/image/${imageName}`;
+};
+
+export const parseProductImageUrl = (imageName: string) => {
+  return `https://api.mimallgh.com/products/image/${imageName}`;
+};
+
+export const parseShopImageUrl = (imageName: string) => {
+  return `https://api.mimallgh.com/shops/image/${imageName}`;
 };

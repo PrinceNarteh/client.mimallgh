@@ -17,7 +17,7 @@ import { IDeliveryCompany } from "@/types/delivery-companies";
 import { useAppDispatch } from "@/store/store";
 import { useEffect, useState } from "react";
 import { getDeliveryCompany } from "@/services/delivery-companies";
-import { parseImageUrl } from "@/utils/utilities";
+import { parseDeliveryImageUrl } from "@/utils/utilities";
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
@@ -74,7 +74,7 @@ const Delivery = ({
             <SwiperSlide key={index}>
               <div className="relative h-60 md:h-[520px] lg:h-[calc(100vh_-_97px)]">
                 <Image
-                  src={parseImageUrl(image.name, "delivery-companies")}
+                  src={parseDeliveryImageUrl(image.name)}
                   fill
                   className="h-full w-full object-fill md:object-fill object-center"
                   alt=""
