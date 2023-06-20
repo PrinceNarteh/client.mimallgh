@@ -49,7 +49,7 @@ const Delivery = ({
 
   useEffect(() => {
     dispatch(setDeliveryCompany(company));
-    setSlider(company.images);
+    setSlider(company?.images);
   }, [company, dispatch, setDeliveryCompany]);
 
   return (
@@ -70,7 +70,7 @@ const Delivery = ({
           navigation={true}
           modules={[Autoplay, Pagination]}
         >
-          {slider.map((image, index) => (
+          {slider?.map((image, index) => (
             <SwiperSlide key={index}>
               <div className="relative h-60 md:h-[520px] lg:h-[calc(100vh_-_97px)]">
                 <Image
@@ -82,28 +82,6 @@ const Delivery = ({
               </div>
             </SwiperSlide>
           ))}
-          {/* <SwiperSlide>
-            <div className="relative h-60 md:h-[520px] lg:h-[calc(100vh_-_97px)]">
-              <Image
-                src={`/images/${deliveryId}-1.jpg`}
-                fill
-                style={{ objectFit: "cover" }}
-                className="h-full w-full object-fill md:object-fill object-center"
-                alt=""
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="relative h-60 md:h-[520px] lg:h-[calc(100vh_-_97px)]">
-              <Image
-                src={`/images/${deliveryId}-2.jpg`}
-                fill
-                style={{ objectFit: "cover" }}
-                className="h-full w-full object-fill md:object-fill object-center"
-                alt=""
-              />
-            </div>
-          </SwiperSlide> */}
         </Swiper>
       </div>
       <div className=" bg-gray-300">
