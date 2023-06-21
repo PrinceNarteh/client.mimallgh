@@ -41,7 +41,7 @@ const Checkout = () => {
       await axios.post("/delivery", deliveryData);
       toast.success("Order successfully placed");
       dispatch(clearCart());
-      router.push(`/delivery/${deliveryCompany.slug}/`);
+      router.push(`/delivery/${deliveryCompany?.slug}/`);
     } catch (error) {
       toast.error("Error placing order");
     }

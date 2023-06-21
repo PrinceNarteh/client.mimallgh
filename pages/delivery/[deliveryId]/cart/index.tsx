@@ -3,13 +3,13 @@ import DeliveryLayout from "@/components/layout/DeliveryLayout";
 import { useCartSelector } from "@/store/features/cart/cartSlice";
 import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 import { useAppDispatch } from "@/store/store";
+import calculatePrice from "@/utils/calculatePrice";
 import { getDeliveryFare, towns } from "@/utils/dispatch_fares";
-import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { setDeliveryInfo } from "../../../../store/features/cart/cartSlice";
-import { useRouter } from "next/router";
-import calculatePrice from "@/utils/calculatePrice";
+import axios from "@/lib/axios";
 
 interface IDelivery {
   deliveryCompany: string;
@@ -17,8 +17,8 @@ interface IDelivery {
 }
 
 const Cart = () => {
-  const { deliveryCompanyLink } = useDeliverySelector();
-  // const [deliveryPrice, setDeliveryPrice] = useState(0);
+  const { deliveryCompany } = useDeliverySelector();
+  const [deliveryCompanies, setDeliveryCompanies] = useState([]);
   const [deliveryData, setDeliveryData] = useState({
     company: "",
     destination: "",
@@ -48,8 +48,19 @@ const Cart = () => {
         deliveryCompany: deliveryData.company,
       })
     );
-    router.push(`/delivery/${deliveryCompanyLink}/checkout`);
+    router.push(`/delivery/${deliveryCompany?.slug}/checkout`);
   };
+
+  useEffect(() => {
+    const fetchDeliveryCompanies = async () => {
+      const res = await axios("delivery-companies");
+      setDeliveryCompanies(res.data);
+    };
+
+    fetchDeliveryCompanies();
+  }, []);
+
+  console.log(deliveryCompanies);
 
   return (
     <DeliveryLayout>
@@ -106,7 +117,9 @@ const Cart = () => {
                       })}
                     >
                       <option value="">Select Delivery company</option>
-                      <option value="WinIke Dispatch">WinIke Dispatch</option>
+                      {deliveryCompanies.map((company, idx) => (
+                        <option value={company.id}>{company.name}</option>
+                      ))}
                       <option value="God's Way Delivery">
                         God's Way Delivery
                       </option>

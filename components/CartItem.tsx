@@ -6,7 +6,7 @@ import {
 } from "@/store/features/cart/cartSlice";
 import { useAppDispatch } from "@/store/store";
 import { ICartItem } from "@/types";
-import { parseImageUrl } from "@/utils/utilities";
+import { parseProductImageUrl } from "@/utils/utilities";
 import Image from "next/image";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
@@ -19,7 +19,7 @@ export const CartItem = ({ cart }: { cart: ICartItem }) => {
     <div className="flex h-28 w-full rounded border border-gray-200 bg-gray-200 overflow-hidden">
       <div className="relative w-24 shrink-0">
         <Image
-          src={parseImageUrl(cart.productImage, "products")}
+          src={parseProductImageUrl(cart.productImage)}
           fill
           style={{ objectFit: "cover" }}
           alt=""
