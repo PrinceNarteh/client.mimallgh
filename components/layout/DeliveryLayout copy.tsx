@@ -3,7 +3,10 @@ import Link from "next/link";
 import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import deliveryIcon from "../../assets/svgs/delivery-icon.svg";
-import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
+import {
+  useDeliverySelector,
+  setCompanies,
+} from "@/store/features/delivery/deliverySlice";
 import { MdAddCall } from "react-icons/md";
 import {
   FaFacebookF,
@@ -12,9 +15,10 @@ import {
   FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
+import axios from "@/lib/axios";
 
 const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
-  const { deliveryCompanyName, deliveryCompanyLink } = useDeliverySelector();
+  const { deliveryCompany } = useDeliverySelector();
   const [openMenu, setOpenMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -30,6 +34,15 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
       document.addEventListener("mousedown", handler);
     };
   });
+
+  useEffect(() => {
+    const fetchDeliveryCompanies = async () => {
+      const res = await axios("delivery-companies");
+      setCompanies(res.data);
+    };
+
+    fetchDeliveryCompanies();
+  }, []);
 
   return (
     <div>
@@ -48,14 +61,14 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
               <Image src={deliveryIcon} alt="" width={50} height={50} />
             </div>
             <Link
-              href={`/delivery/${deliveryCompanyLink}`}
+              href={`/delivery/${deliveryCompany?.name}`}
               className="ml-3 font-bold text-lg text-[#165474]"
             >
-              {deliveryCompanyName.toUpperCase()}
+              {deliveryCompany?.name.toUpperCase()}
             </Link>
           </div>
           <div className="relative text-white flex px-2 pl-5 justify-between items-center text-sm py-2 mt-2 w-full">
-            <Link href={`/delivery/${deliveryCompanyLink}`}>Home</Link>
+            <Link href={`/delivery/${deliveryCompany?.slug}`}>Home</Link>
             <Link href="#">Services</Link>
             <Link href="#" className="hidden">
               Working Hours

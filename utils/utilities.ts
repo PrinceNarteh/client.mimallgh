@@ -1,6 +1,7 @@
 export const capitalize = (word: string, split: string = "-") => {
   if (!word) return;
   if (word === "knh_valco") return "KNH/Valco";
+  if (word === "new_site") return "New Site";
 
   return word
     .split(split)

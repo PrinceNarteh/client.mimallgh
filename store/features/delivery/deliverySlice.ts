@@ -6,6 +6,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: {
   deliveryCompany: IDeliveryCompany | null;
   delivery: Delivery;
+  companies: IDeliveryCompany[];
 } = {
   deliveryCompany: {
     id: "",
@@ -29,6 +30,7 @@ const initialState: {
     date: "",
     price: 0,
   },
+  companies: [],
 };
 
 const DeliverySlice = createSlice({
@@ -41,10 +43,13 @@ const DeliverySlice = createSlice({
     setDeliveryCompany: (state, action: PayloadAction<IDeliveryCompany>) => {
       state.deliveryCompany = action.payload;
     },
+    setCompanies: (state, action: PayloadAction<IDeliveryCompany[]>) => {
+      state.companies = action.payload;
+    },
   },
 });
 
 export const useDeliverySelector = () =>
   useAppSelector((state) => state.delivery);
-export const { addInfo, setDeliveryCompany } = DeliverySlice.actions;
+export const { addInfo, setDeliveryCompany, setCompanies } = DeliverySlice.actions;
 export default DeliverySlice;

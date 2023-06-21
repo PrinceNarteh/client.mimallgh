@@ -1,6 +1,9 @@
 import axios from "@/lib/axios";
 import { useCartSelector } from "@/store/features/cart/cartSlice";
-import { setDeliveryCompanyInfo } from "@/store/features/delivery/deliverySlice";
+import {
+  setDeliveryCompany,
+  useDeliverySelector,
+} from "@/store/features/delivery/deliverySlice";
 import {
   setSearch,
   setSearchResults,
@@ -16,28 +19,19 @@ import { FaRegUser } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import delivery from "../../assets/svgs/delivery-icon.svg";
-
-const deliveryCompanies = [
-  {
-    name: "WinIke Dispatch",
-    link: "winike-dispatch",
-  },
-  {
-    name: "God's Way Delivery",
-    link: "godsway-delivery",
-  },
-];
+import { IDeliveryCompany } from "../../types/delivery-companies";
 
 export const SearchBar = () => {
   const [openDelivery, setOpenDelivery] = useState(false);
+  const { deliveryCompany, companies } = useDeliverySelector();
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { items } = useCartSelector();
   const { search } = useSearchSelector();
 
-  const navigate = ({ name, link }: { name: string; link: string }) => {
-    dispatch(setDeliveryCompanyInfo({ name, link }));
-    router.push(`/delivery/${link}`);
+  const navigate = (company: IDeliveryCompany) => {
+    dispatch(setDeliveryCompany(company));
+    router.push(`/delivery/${company.slug}`);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -93,7 +87,7 @@ export const SearchBar = () => {
               onClick={() => {
                 // dispatch(clearSearch());
                 // dispatch(clearSearchResults());
-                router.push("/");
+                router.push(`/delivery/${deliveryCompany?.slug}`);
               }}
             />
             <div
@@ -114,7 +108,7 @@ export const SearchBar = () => {
                     : "invisible translate-y-3 opacity-0"
                 } absolute left-0 top-[55px] min-w-max py-2 text-base bg-gray-800 arrow before:left-2 duration-500 transform`}
               >
-                {deliveryCompanies.map((deliveryCompany, idx) => (
+                {companies.map((deliveryCompany, idx) => (
                   <div
                     key={idx}
                     onClick={() => navigate(deliveryCompany)}

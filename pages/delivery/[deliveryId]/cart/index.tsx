@@ -1,5 +1,6 @@
 import { CartItem } from "@/components";
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
+import axios from "@/lib/axios";
 import { useCartSelector } from "@/store/features/cart/cartSlice";
 import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 import { useAppDispatch } from "@/store/store";
@@ -9,7 +10,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { setDeliveryInfo } from "../../../../store/features/cart/cartSlice";
-import axios from "@/lib/axios";
+import { IDeliveryCompany } from "@/types/delivery-companies";
 
 interface IDelivery {
   deliveryCompany: string;
@@ -18,7 +19,9 @@ interface IDelivery {
 
 const Cart = () => {
   const { deliveryCompany } = useDeliverySelector();
-  const [deliveryCompanies, setDeliveryCompanies] = useState([]);
+  const [deliveryCompanies, setDeliveryCompanies] = useState<
+    IDeliveryCompany[]
+  >([]);
   const [deliveryData, setDeliveryData] = useState({
     company: "",
     destination: "",
@@ -51,14 +54,7 @@ const Cart = () => {
     router.push(`/delivery/${deliveryCompany?.slug}/checkout`);
   };
 
-  useEffect(() => {
-    const fetchDeliveryCompanies = async () => {
-      const res = await axios("delivery-companies");
-      setDeliveryCompanies(res.data);
-    };
-
-    fetchDeliveryCompanies();
-  }, []);
+  
 
   console.log(deliveryCompanies);
 

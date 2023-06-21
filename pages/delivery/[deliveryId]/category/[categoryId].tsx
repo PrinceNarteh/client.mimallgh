@@ -3,7 +3,7 @@ import DeliveryLayout from "@/components/layout/DeliveryLayout";
 import { getAllStores } from "@/services/store";
 import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 import { DeliveryStore } from "@/types";
-import { capitalize, parseImageUrl } from "@/utils/utilities";
+import { capitalize, parseShopImageUrl } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
-  const { deliveryCompanyLink } = useDeliverySelector();
+  const { deliveryCompany } = useDeliverySelector();
   const { query } = useRouter();
 
   return (
@@ -38,7 +38,7 @@ const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
                 <div className="flex flex-wrap justify-center gap-5">
                   {stores?.map((store, idx) => (
                     <Link
-                      href={`/delivery/${deliveryCompanyLink}/store/${store.id}`}
+                      href={`/delivery/${deliveryCompany?.slug}/store/${store.id}`}
                       key={idx}
                       className="h-fit w-[150px] my-2 shrink-0 md:h-fit md:w-[205px]"
                     >
@@ -47,7 +47,7 @@ const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
                           <Image
                             src={
                               store.image
-                                ? parseImageUrl(store.image, "shops")
+                                ? parseShopImageUrl(store.image)
                                 : "/images/food-3.jpg"
                             }
                             fill
@@ -69,7 +69,7 @@ const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
                           </p>
                           <p className="text-xs flex gap-1 items-center">
                             <FaMapMarkerAlt size={10} />
-                            {store.location}
+                            {capitalize(store.location)}
                           </p>
                         </div>
                       </div>
