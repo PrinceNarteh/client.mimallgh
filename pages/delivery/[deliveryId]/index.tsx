@@ -5,21 +5,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import {} from "../../";
 
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
+import { getDeliveryCompany } from "@/services/delivery-companies";
 import {
-  useDeliverySelector,
   setDeliveryCompany,
-  setCompanies,
+  useDeliverySelector,
 } from "@/store/features/delivery/deliverySlice";
+import { useAppDispatch } from "@/store/store";
+import { IDeliveryCompany } from "@/types/delivery-companies";
+import { parseDeliveryImageUrl } from "@/utils/utilities";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { GetServerSideProps } from "next";
-import { IDeliveryCompany } from "@/types/delivery-companies";
-import { useAppDispatch } from "@/store/store";
-import { useEffect, useState } from "react";
-import { getDeliveryCompany } from "@/services/delivery-companies";
-import { parseDeliveryImageUrl } from "@/utils/utilities";
-import axios from "@/lib/axios";
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
@@ -47,22 +45,10 @@ const Delivery = ({
     query: { deliveryId },
   } = useRouter();
 
-  console.log(company);
-
   useEffect(() => {
     dispatch(setDeliveryCompany(company));
     setSlider(company?.images);
   }, [company, dispatch, setDeliveryCompany]);
-
-  useEffect(() => {
-    const fetchDeliveryCompanies = async () => {
-      const res = await axios("/delivery-companies");
-      console.log(res);
-      setCompanies(res.data);
-    };
-
-    fetchDeliveryCompanies();
-  }, []);
 
   return (
     <DeliveryLayout>

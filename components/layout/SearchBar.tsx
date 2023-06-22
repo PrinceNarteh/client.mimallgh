@@ -38,15 +38,6 @@ export const SearchBar = () => {
     dispatch(setSearchResults(res.data.data));
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get("/delivery-companies");
-      dispatch(setCompanies(res.data));
-    };
-    console.log("called");
-    fetchData();
-  }, []);
-
   return (
     <div className={`z-10 w-full px-5 md:py-1 gap-2 shadow-lg`}>
       <Image

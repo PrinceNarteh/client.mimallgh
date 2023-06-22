@@ -16,11 +16,13 @@ import { IoSearchOutline } from "react-icons/io5";
 import { MdAddCall } from "react-icons/md";
 import deliveryIcon from "../../assets/svgs/delivery-icon.svg";
 import axios from "@/lib/axios";
+import { useAppDispatch } from "@/store/store";
 
 const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
   const { deliveryCompany, companies } = useDeliverySelector();
   const [openMenu, setOpenMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const handler = (e: any) => {
@@ -38,9 +40,8 @@ const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get("/delivery-companies");
-      setCompanies(res.data);
+      dispatch(setCompanies(res.data));
     };
-
     fetchData();
   }, []);
 
