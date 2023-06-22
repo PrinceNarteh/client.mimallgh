@@ -8,6 +8,7 @@ import DeliveryLayout from "@/components/layout/DeliveryLayout";
 import {
   useDeliverySelector,
   setDeliveryCompany,
+  setCompanies,
 } from "@/store/features/delivery/deliverySlice";
 import { useRouter } from "next/router";
 import "swiper/css";
@@ -18,6 +19,7 @@ import { useAppDispatch } from "@/store/store";
 import { useEffect, useState } from "react";
 import { getDeliveryCompany } from "@/services/delivery-companies";
 import { parseDeliveryImageUrl } from "@/utils/utilities";
+import axios from "@/lib/axios";
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
@@ -51,6 +53,16 @@ const Delivery = ({
     dispatch(setDeliveryCompany(company));
     setSlider(company?.images);
   }, [company, dispatch, setDeliveryCompany]);
+
+  useEffect(() => {
+    const fetchDeliveryCompanies = async () => {
+      const res = await axios("/delivery-companies");
+      console.log(res);
+      setCompanies(res.data);
+    };
+
+    fetchDeliveryCompanies();
+  }, []);
 
   return (
     <DeliveryLayout>

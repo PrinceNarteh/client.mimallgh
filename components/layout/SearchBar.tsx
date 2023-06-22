@@ -3,6 +3,7 @@ import { useCartSelector } from "@/store/features/cart/cartSlice";
 import {
   setDeliveryCompany,
   useDeliverySelector,
+  setCompanies,
 } from "@/store/features/delivery/deliverySlice";
 import {
   setSearchResults,
@@ -18,22 +19,8 @@ import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import delivery from "../../assets/svgs/delivery-icon-pink.svg";
 
-const deliveryCompanies = [
-  {
-    name: "WinIke Dispatch",
-    link: "winike-dispatch",
-  },
-  {
-    name: "God's Way Delivery",
-    link: "godsway-delivery",
-  },
-];
-
 export const SearchBar = () => {
-  const [deliveryCompanies, setDeliveryCompanies] = useState<
-    IDeliveryCompany[]
-  >([]);
-  const { deliveryCompany } = useDeliverySelector();
+  const { deliveryCompany, companies } = useDeliverySelector();
   const [openDelivery, setOpenDelivery] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -54,9 +41,9 @@ export const SearchBar = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get("/delivery-companies");
-      setDeliveryCompanies(res.data);
+      dispatch(setCompanies(res.data));
     };
-
+    console.log("called");
     fetchData();
   }, []);
 
@@ -111,13 +98,13 @@ export const SearchBar = () => {
                     : "invisible translate-y-3 opacity-0"
                 } absolute -right-4 top-[55px] min-w-max py-2 text-base bg-gray-800 arrow before:right-20 duration-500 transform`}
               >
-                {deliveryCompanies.map((deliveryCompany, idx) => (
+                {companies.map((company, idx) => (
                   <div
                     key={idx}
-                    onClick={() => navigate(deliveryCompany)}
+                    onClick={() => navigate(company)}
                     className="py-2 px-5 block hover:bg-gray-700"
                   >
-                    {deliveryCompany.name}
+                    {company.name}
                   </div>
                 ))}
               </div>

@@ -44,6 +44,7 @@ const DeliverySlice = createSlice({
       state.deliveryCompany = action.payload;
     },
     setCompanies: (state, action: PayloadAction<IDeliveryCompany[]>) => {
+      console.log(action.payload);
       state.companies = action.payload;
     },
   },
@@ -51,5 +52,6 @@ const DeliverySlice = createSlice({
 
 export const useDeliverySelector = () =>
   useAppSelector((state) => state.delivery);
-export const { addInfo, setDeliveryCompany, setCompanies } = DeliverySlice.actions;
+export const { addInfo, setDeliveryCompany, setCompanies } =
+  DeliverySlice.actions;
 export default DeliverySlice;

@@ -1,16 +1,14 @@
 import { CartItem } from "@/components";
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
-import axios from "@/lib/axios";
 import { useCartSelector } from "@/store/features/cart/cartSlice";
 import { useDeliverySelector } from "@/store/features/delivery/deliverySlice";
 import { useAppDispatch } from "@/store/store";
 import calculatePrice from "@/utils/calculatePrice";
 import { getDeliveryFare, towns } from "@/utils/dispatch_fares";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { setDeliveryInfo } from "../../../../store/features/cart/cartSlice";
-import { IDeliveryCompany } from "@/types/delivery-companies";
 
 interface IDelivery {
   deliveryCompany: string;
@@ -19,13 +17,11 @@ interface IDelivery {
 
 const Cart = () => {
   const { deliveryCompany } = useDeliverySelector();
-  const [deliveryCompanies, setDeliveryCompanies] = useState<
-    IDeliveryCompany[]
-  >([]);
   const [deliveryData, setDeliveryData] = useState({
     company: "",
     destination: "",
   });
+  const { companies } = useDeliverySelector();
   const { items } = useCartSelector();
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -54,9 +50,7 @@ const Cart = () => {
     router.push(`/delivery/${deliveryCompany?.slug}/checkout`);
   };
 
-  
-
-  console.log(deliveryCompanies);
+  console.log(companies);
 
   return (
     <DeliveryLayout>
@@ -113,12 +107,11 @@ const Cart = () => {
                       })}
                     >
                       <option value="">Select Delivery company</option>
-                      {deliveryCompanies.map((company, idx) => (
-                        <option value={company.id}>{company.name}</option>
+                      {companies?.map((company, idx) => (
+                        <option key={idx} value={company.id}>
+                          {company.name}
+                        </option>
                       ))}
-                      <option value="God's Way Delivery">
-                        God's Way Delivery
-                      </option>
                     </select>
                     {errors["deliveryCompany"] && (
                       <span className="block text-[12px] pl-1 text-[red]">
