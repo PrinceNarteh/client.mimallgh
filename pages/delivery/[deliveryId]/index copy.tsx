@@ -9,6 +9,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import DeliveryLayout from "@/components/layout/DeliveryLayout";
 import { useRouter } from "next/router";
+import { BsWhatsapp } from "react-icons/bs";
+import { FiPhoneCall } from "react-icons/fi";
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
@@ -228,10 +230,16 @@ const Delivery = () => {
           </div>
 
           <div className="bg-white p-2 md:p-5 w-6/12 md:w-7/12 mx-auto  text-xl md:text-2xl font-bold text-center  text-blue-500 shadow-md">
-            <p className="mb-2">Call:</p>
+            <p className="mb-2">Contact:</p>
             <div className="flex flex-col md:flex-row justify-evenly">
-              <p> 024 123 4567</p>
-              <p>050 123 4567</p>
+              <div>
+                <FiPhoneCall />
+                <span>024 123 4567</span>
+              </div>
+              <div>
+                <BsWhatsapp />
+                <span>024 123 4567</span>
+              </div>
             </div>
           </div>
         </div>

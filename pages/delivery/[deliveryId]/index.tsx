@@ -18,6 +18,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
+import { FiPhoneCall } from "react-icons/fi";
+import { BsWhatsapp } from "react-icons/bs";
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
@@ -221,11 +223,17 @@ const Delivery = ({
           </div>
         </div>
 
-        <div className="bg-white p-2 md:p-5 w-6/12 md:w-7/12 mx-auto  text-xl md:text-2xl font-bold text-center  text-blue-500 shadow-md">
-          <p className="mb-2">Call:</p>
-          <div className="flex flex-col md:flex-row justify-evenly">
-            <p>020 123 4567</p>
-            <p>050 123 4567</p>
+        <div className="bg-white p-2 md:p-5 w-5/12 md:w-7/12 lg:w-5/12 mx-auto  text-xl md:text-2xl font-bold text-center  text-blue-500 shadow-md">
+          <p className="mb-2">Contact:</p>
+          <div className="flex flex-col gap-x-5 md:flex-row justify-evenly">
+            <div className="flex justify-center items-center gap-2 whitespace-nowrap">
+              <FiPhoneCall />
+              <span>{company.phoneNumber}</span>
+            </div>
+            <div className="flex justify-center items-center gap-2 whitespace-nowrap">
+              <BsWhatsapp />
+              <span>{company.whatsappNumber}</span>
+            </div>
           </div>
         </div>
       </div>
