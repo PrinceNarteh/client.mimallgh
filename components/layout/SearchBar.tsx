@@ -89,7 +89,7 @@ export const SearchBar = () => {
                     : "invisible translate-y-3 opacity-0"
                 } absolute -right-4 top-[55px] min-w-max py-2 text-base bg-gray-800 arrow before:right-20 duration-500 transform`}
               >
-                {companies.map((company, idx) => (
+                {companies?.map((company, idx) => (
                   <div
                     key={idx}
                     onClick={() => navigate(company)}

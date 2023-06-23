@@ -38,7 +38,7 @@ const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
                 <div className="flex flex-wrap justify-center gap-5">
                   {stores?.map((store, idx) => (
                     <Link
-                      href={`/delivery/${deliveryCompany?.slug}/store/${store.id}`}
+                      href={`/delivery/${query.deliveryId}/store/${store.id}`}
                       key={idx}
                       className="h-fit w-[150px] my-2 shrink-0 md:h-fit md:w-[205px]"
                     >

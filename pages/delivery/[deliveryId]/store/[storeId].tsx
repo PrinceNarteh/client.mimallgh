@@ -24,7 +24,10 @@ import shopNotFound from "../../../../assets/images/store-not-found.png";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { storeId } = context.query;
+  console.log(storeId);
   const data = await getSingleShop(storeId as string);
+
+  console.log(data);
 
   return {
     props: {
