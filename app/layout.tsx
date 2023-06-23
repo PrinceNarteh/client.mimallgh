@@ -41,21 +41,17 @@ export default function RootLayout({
         <SessionProvider session={session}>
           <Provider store={store}>
             <PersistGate persistor={persistor}>
-              {pathname.startsWith("/shop") ? (
-                <Layout>{children}</Layout>
-              ) : (
-                <>
-                  {!pathname.startsWith("/auth") &&
-                  !pathname.startsWith("/delivery") ? (
-                    <>
-                      <SearchBar />
-                      <Navbar />
-                    </>
-                  ) : null}
-                  {children}
-                  {loading && <Loader />}
-                </>
-              )}
+              <>
+                {!pathname.startsWith("/auth") &&
+                !pathname.startsWith("/delivery") ? (
+                  <>
+                    <SearchBar />
+                    <Navbar />
+                  </>
+                ) : null}
+                {children}
+                {loading && <Loader />}
+              </>
             </PersistGate>
           </Provider>
         </SessionProvider>
