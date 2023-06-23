@@ -2,7 +2,6 @@
   "name": "mimall_client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://client.mimallgh.com",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,39 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.1.0",
-    "@reduxjs/toolkit": "^1.9.5",
-    "@types/node": "18.16.2",
-    "@types/react": "18.2.0",
-    "@types/react-dom": "18.2.1",
+    "@types/node": "20.3.1",
+    "@types/react": "18.2.13",
+    "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
-    "axios": "^1.4.0",
-    "date-fns": "^2.30.0",
-    "lodash": "^4.17.21",
-    "next": "13.3.1",
-    "next-auth": "^4.22.1",
-    "postcss": "8.4.23",
+    "next": "13.4.7",
+    "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.43.9",
-    "react-hot-toast": "^2.4.1",
-    "react-icons": "^4.8.0",
-    "react-image-magnify": "^2.7.4",
-    "react-player": "^2.12.0",
-    "react-redux": "^8.0.5",
-    "react-share": "^4.4.1",
-    "redux": "^4.2.1",
-    "redux-persist": "^6.0.0",
-    "sharp": "^0.32.1",
-    "swiper": "^9.2.4",
     "tailwindcss": "3.3.2",
-    "typescript": "5.0.4",
-    "zod": "^3.21.4"
-  },
-  "devDependencies": {
-    "@shrutibalasa/tailwind-grid-auto-fit": "^1.1.0",
-    "@types/lodash": "^4.14.194",
-    "@types/react-image-magnify": "^2.7.1",
-    "@types/redux-persist": "^4.3.1"
+    "typescript": "5.1.3"
   }
 }
