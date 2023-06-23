@@ -1,20 +1,13 @@
 "use client";
 
 import { Loader, Navbar, SearchBar } from "@/components";
-import { store } from "@/store/store";
 import { poppins } from "@/utils/fonts";
-import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { Router } from "next/router";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { Provider } from "react-redux";
-import { persistStore } from "redux-persist";
-import { PersistGate } from "redux-persist/integration/react";
 import "./globals.css";
-import NextAuthSessionProvider from "./providers/sessionProvider";
-
-let persistor = persistStore(store);
+import Providers from "./providers";
 
 export const metadata = {
   title: "Create Next App",
@@ -39,23 +32,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <NextAuthSessionProvider>
-          <Provider store={store}>
-            <PersistGate persistor={persistor}>
-              <>
-                {!pathname.startsWith("/auth") &&
-                !pathname.startsWith("/delivery") ? (
-                  <>
-                    <SearchBar />
-                    <Navbar />
-                  </>
-                ) : null}
-                {children}
-                {loading && <Loader />}
-              </>
-            </PersistGate>
-          </Provider>
-        </NextAuthSessionProvider>
+        <Providers>
+          {!pathname.startsWith("/auth") &&
+          !pathname.startsWith("/delivery") ? (
+            <>
+              <SearchBar />
+              <Navbar />
+            </>
+          ) : null}
+          {children}
+          {loading && <Loader />}
+        </Providers>
         <Toaster />
       </body>
     </html>

@@ -1,3 +1,5 @@
+'use client'
+
 import { useAppSelector } from "@/store/store";
 import { ICartItem } from "@/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";

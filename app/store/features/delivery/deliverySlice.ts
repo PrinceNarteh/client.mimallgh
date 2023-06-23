@@ -1,6 +1,6 @@
 import { useAppSelector } from "@/store/store";
 import { Delivery } from "@/types";
-import { IDeliveryCompany } from "@/types/delivery-companies";
+import { IDeliveryCompany } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: {
