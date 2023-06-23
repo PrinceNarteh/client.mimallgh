@@ -1,25 +1,22 @@
 import axios from "@/lib/axios";
-import { useCartSelector } from "@/store/features/cart/cartSlice";
-import {
-  setDeliveryCompany,
-  useDeliverySelector,
-} from "@/store/features/delivery/deliverySlice";
-import {
-  setSearchResults,
-  useSearchSelector,
-} from "@/store/features/search/searchSlice";
-import { useAppDispatch } from "@/store/store";
+import { setDeliveryCompany } from "@/app/store/features/delivery/deliverySlice";
+import { setSearchResults } from "@/app/store/features/search/searchSlice";
+import { useAppDispatch } from "@/app/store/store";
 import { IDeliveryCompany } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import delivery from "../../assets/svgs/delivery-icon-pink.svg";
+import { useCartSelector } from "@/hooks/useCartSelector";
+import { useDeliverySelector } from "@/hooks/useDeliverySelector";
+import { useSearchSelector } from "@/hooks/useSearchSelector";
 
 export const SearchBar = () => {
   const { deliveryCompany, companies } = useDeliverySelector();
+
   const [openDelivery, setOpenDelivery] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -38,14 +35,9 @@ export const SearchBar = () => {
   };
 
   return (
-    <div className={`z-10 w-full px-5 md:py-1 gap-2 shadow-lg`}>
-      <Image
-        priority={true}
-        src="/images/search-bg.jpg"
-        className="absolute object-cover duration-500"
-        fill={true}
-        alt=""
-      />
+    <div
+      className={`relative z-10 w-full px-5 md:py-1 gap-2 shadow-lg bg-[url('/images/search-bg.jpg')] bg-no-repeat bg-cover`}
+    >
       <div className="absolute inset-0 h-full w-full bg-black opacity-60"></div>
       <div className="relative z-50 flex py-3 flex-col md:flex-row gap-3 h-full w-full items-center justify-between">
         <Link href="/" className="md:w-60">

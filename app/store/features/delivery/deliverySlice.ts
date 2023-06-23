@@ -1,4 +1,4 @@
-import { useAppSelector } from "@/store/store";
+import { useAppSelector } from "@/app/store/store";
 import { Delivery } from "@/types";
 import { IDeliveryCompany } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -50,8 +50,7 @@ const DeliverySlice = createSlice({
   },
 });
 
-export const useDeliverySelector = () =>
-  useAppSelector((state) => state.delivery);
+
 export const { addInfo, setDeliveryCompany, setCompanies } =
   DeliverySlice.actions;
 export default DeliverySlice;

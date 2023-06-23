@@ -1,12 +1,12 @@
 import useScrollListener from "@/hooks/useScrollListener";
 import { locations } from "@/utils/menus";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export const Navbar = () => {
   const [show, setShow] = useState(true);
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const scroll = useScrollListener();
 
   // update classList of nav on scroll

@@ -1,4 +1,4 @@
-import { useAppSelector } from "@/store/store";
+import { useAppSelector } from "@/app/store/store";
 import { Product } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -33,7 +33,6 @@ const SearchSlice = createSlice({
   },
 });
 
-export const useSearchSelector = () => useAppSelector((state) => state.search);
 export const {
   clearSearch,
   setSearch,
