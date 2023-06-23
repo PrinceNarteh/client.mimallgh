@@ -1,3 +1,73 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 15px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  background: #f7f4ed;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e0cbcb;
+  border-radius: 100vh;
+  border: 3px solid #f6f7ed;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c0a0b9;
+}
+
+.sh-underline::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 2px;
+  display: block;
+  background-color: deeppink;
+}
+
+.arrow {
+  @apply before:absolute before:-top-4 before:w-0 before:h-0 before:border-l-[12px] before:border-l-transparent before:border-b-[16px] before:border-b-gray-800 before:border-r-[12px] before:border-r-transparent;
+}
+
+.magnify img {
+  width: 500px;
+  height: 100%;
+  object-fit: contain;
+}
+
+@layer components {
+  .link {
+    @apply rounded bg-blue-800 py-2 px-7 font-bold duration-200 hover:scale-105;
+  }
+}
+
+@layer utilities {
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+}
+
+.circle {
+  @apply my-12 mx-1 h-4 w-4 rounded-full bg-gray-500;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: -42px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: #d1d5db;
+  border-radius: 0 0 50% 50%/0 0 100% 100%;
+  transform: scaleX(1.1);
+}
