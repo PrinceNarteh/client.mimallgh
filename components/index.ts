@@ -5,3 +5,5 @@ export { Container } from "./server/Container";
 export { Error } from "./server/Error";
 export { Loader } from "./server/Loader";
 export { ProductList } from "./server/ProductList";
+export { CustomLinks } from "./client/CustomLinks";
+export { DeliveryLayout } from "./client/DeliveryLayout";
