@@ -20,7 +20,7 @@ export const Navbar = () => {
 
   return (
     <div className={`w-full overflow-x-auto bg-gray-800 text-pink-500 pr-5`}>
-      <div className="pt-28 md:pt-[86px] px-5">
+      <div className="px-5">
         <div
           className={`flex h-14 w-full items-center justify-start space-x-5 lg:space-x-7 pr-5`}
         >
