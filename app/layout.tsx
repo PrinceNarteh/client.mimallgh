@@ -1,6 +1,6 @@
 "use client";
 
-import { Loader, SearchBar } from "@/components";
+import { Loader, Navbar, SearchBar } from "@/components";
 import { store } from "@/store/store";
 import { poppins } from "@/utils/fonts";
 import { SessionProvider } from "next-auth/react";
@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import "./globals.css";
+import NextAuthSessionProvider from "./providers/sessionProvider";
 
 let persistor = persistStore(store);
 
@@ -38,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <SessionProvider session={session}>
+        <NextAuthSessionProvider>
           <Provider store={store}>
             <PersistGate persistor={persistor}>
               <>
@@ -54,7 +55,7 @@ export default function RootLayout({
               </>
             </PersistGate>
           </Provider>
-        </SessionProvider>
+        </NextAuthSessionProvider>
         <Toaster />
       </body>
     </html>
