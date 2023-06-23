@@ -1,3 +1,5 @@
+"use client";
+
 import useScrollListener from "@/hooks/useScrollListener";
 import { locations } from "@/utils/menus";
 import Link from "next/link";

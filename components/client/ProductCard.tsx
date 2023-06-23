@@ -1,3 +1,5 @@
+"use client";
+
 import { addToCart } from "@/app/store/features/cart/cartSlice";
 import { useAppDispatch } from "@/app/store/store";
 import { Product } from "@/types";

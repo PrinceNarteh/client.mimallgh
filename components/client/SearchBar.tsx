@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "@/lib/axios";
 import { setDeliveryCompany } from "@/app/store/features/delivery/deliverySlice";
 import { setSearchResults } from "@/app/store/features/search/searchSlice";
