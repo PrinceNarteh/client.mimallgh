@@ -30,16 +30,16 @@ export const topDeals = [
 
 export const categories = [
   {
-    label: "Food",
-    link: "food",
-    key: "food",
-    image: "/images/food-2.jpg",
-  },
-  {
     label: "Fashion and Wears",
     link: "fashion-and-wears",
     key: "fashion_and_wears",
     image: "/images/fashion-and-wears-2.jpg",
+  },
+  {
+    label: "Food",
+    link: "food",
+    key: "food",
+    image: "/images/food-3.jpg",
   },
   {
     label: "Grocery and General",
@@ -51,13 +51,13 @@ export const categories = [
     label: "Health and Wellness",
     link: "health-and-wellness",
     key: "health_and_wellness",
-    image: "/images/health-and-wellness-4.jpg",
+    image: "/images/health-and-wellness-3.jpg",
   },
   {
     label: "Home and Electrical Appliances",
     link: "home-and-electrical-appliances",
     key: "home_and_electrical_appliances",
-    image: "/images/personal-services-6.jpg",
+    image: "/images/home-and-electrical-appliances-1.jpg",
   },
   {
     label: "Personal Services",
@@ -69,13 +69,13 @@ export const categories = [
     label: "Printing and Stationery",
     link: "printing-and-stationery",
     key: "printing_and_stationery",
-    image: "/images/printing-and-stationery-5.jpg",
+    image: "/images/printing-and-stationery-2.jpg",
   },
   {
     label: "Tech",
     link: "tech",
     key: "tech",
-    image: "/images/tech-5.jpg",
+    image: "/images/tech-1.jpeg",
   },
 ];
 
