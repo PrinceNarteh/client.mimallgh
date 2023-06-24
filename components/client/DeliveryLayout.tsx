@@ -1,7 +1,8 @@
+"use client";
+
 import { useDeliverySelector } from "@/hooks/useDeliverySelector";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import {
   FaFacebookF,
@@ -19,7 +20,6 @@ export const DeliveryLayout = ({ children }: { children: React.ReactNode }) => {
   const { deliveryCompany } = useDeliverySelector();
   const [openMenu, setOpenMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const params = useParams();
 
   useEffect(() => {
     const handler = (e: any) => {

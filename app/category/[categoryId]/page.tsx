@@ -1,16 +1,16 @@
-"use client";
+// "use client";
 
 import { Container } from "@/components";
 import { getProducts } from "@/services/products";
 import { IProduct } from "@/types";
-import { capitalize } from "@/utils";
+import { capitalize, parseProductImageUrl } from "@/utils";
 import { topDeals } from "@/utils/data";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const data = await getProducts("category=food&perPage=12");
 
   return {
@@ -21,8 +21,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 const ProductByCategory = ({ products }: { products: IProduct }) => {
-  const params = useParams();
-
   return (
     <Container>
       <div className="bg-gray-300 bg-opacity-30">
@@ -30,7 +28,7 @@ const ProductByCategory = ({ products }: { products: IProduct }) => {
           <div className="grid grid-cols-1 gap-5 xl:grid-cols-12">
             <div className="col-span-12 xl:col-span-9 space-y-5">
               <div className="flex items-center bg-white shadow py-4 pl-5 text-2xl">
-                {capitalize(params.categoryId as string)}
+                {/* {capitalize(params.categoryId as string)} */}
               </div>
 
               <div className="flex flex-wrap justify-center gap-5">
@@ -49,7 +47,7 @@ const ProductByCategory = ({ products }: { products: IProduct }) => {
                       <div className="relative h-[130px] md:h-[160px] w-full">
                         <Link href={`/products/${product.id}`}>
                           <Image
-                            src={product.images[0].name}
+                            src={parseProductImageUrl(product.images[0].name)}
                             fill
                             sizes="190px"
                             alt=""

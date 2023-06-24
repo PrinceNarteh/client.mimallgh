@@ -7,3 +7,4 @@ export { Loader } from "./server/Loader";
 export { ProductList } from "./server/ProductList";
 export { CustomLinks } from "./client/CustomLinks";
 export { DeliveryLayout } from "./client/DeliveryLayout";
+export { CartItem } from "./client/CartItem";

@@ -1,8 +1,6 @@
-import axios from "@/lib/axios";
-
 export const login = async (data: { shopCode: string; password: string }) => {
   try {
-    const res = await fetch("/auth/login", {
+    const res = await fetch(`${process.env.BASE_URl}/auth/login`, {
       method: "POST",
       body: JSON.stringify(data),
     });
@@ -13,7 +11,10 @@ export const login = async (data: { shopCode: string; password: string }) => {
 
 export const register = async (data: { email: string; password: string }) => {
   try {
-    const user = await axios.post("/auth/register", data);
-    return user.data;
+    const user = await fetch(`${process.env.BASE_URl}/auth/register`, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+    return user.json();
   } catch (error) {}
 };
