@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
-const VideoPlayer = ({ idx }: { idx: number }) => {
+export const VideoPlayer = ({ idx }: { idx: number }) => {
   const [showControls, setShowControls] = useState(false);
   const [activePlayer, setActivePlayer] = useState<number | null>(null);
   const [hasWindow, setHasWindow] = useState(false);
