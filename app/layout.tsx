@@ -1,13 +1,11 @@
 "use client";
 
-import { Loader, Navbar, SearchBar } from "@/components";
+import { Navbar, SearchBar } from "@/components";
 import { poppins } from "@/utils/fonts";
 import { usePathname } from "next/navigation";
-import { Router } from "next/router";
-import { useState } from "react";
 import { Toaster } from "react-hot-toast";
-import "./globals.css";
 import Providers from "../components/providers";
+import "./globals.css";
 
 export const metadata = {
   title: "Create Next App",
@@ -19,15 +17,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [loading, setLoading] = useState(false);
   const pathname = usePathname();
-
-  Router.events.on("routeChangeStart", () => {
-    setLoading(true);
-  });
-  Router.events.on("routeChangeComplete", () => {
-    setLoading(false);
-  });
 
   return (
     <html lang="en">
@@ -41,7 +31,6 @@ export default function RootLayout({
             </>
           ) : null}
           {children}
-          {loading && <Loader />}
         </Providers>
         <Toaster />
       </body>
