@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "@/lib/axios";
 import { setDeliveryCompany } from "@/app/store/features/delivery/deliverySlice";
 import { setSearchResults } from "@/app/store/features/search/searchSlice";
 import { useAppDispatch } from "@/app/store/store";
@@ -15,9 +14,11 @@ import delivery from "../../assets/svgs/delivery-icon-pink.svg";
 import { useCartSelector } from "@/hooks/useCartSelector";
 import { useDeliverySelector } from "@/hooks/useDeliverySelector";
 import { useSearchSelector } from "@/hooks/useSearchSelector";
+import { useFetch } from "@/hooks/useFetch";
 
 export const SearchBar = () => {
   const { deliveryCompany, companies } = useDeliverySelector();
+  const { fetchRequest } = useFetch();
 
   const [openDelivery, setOpenDelivery] = useState(false);
   const router = useRouter();
@@ -32,8 +33,8 @@ export const SearchBar = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await axios.get(`/products?search=${search}`);
-    dispatch(setSearchResults(res.data.data));
+    const data = await fetchRequest(`/products?search=${search}`);
+    dispatch(setSearchResults(data));
   };
 
   return (
