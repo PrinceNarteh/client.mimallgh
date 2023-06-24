@@ -57,7 +57,7 @@ export const SearchBar = () => {
         </Link>
 
         <div className="flex justify-between gap-5">
-          <div className="relative flex items-center shrink-0 justify-end gap-3 pr-3 md:pr-0 text-2xl md:text-4xl md:space-x-3 text-pink-500">
+          <div className="relative flex items-center shrink-0 justify-end gap-3 pr-3 md:pr-0 text-2xl md:text-4xl md:space-x-3 text-pink-500 cursor-pointer">
             <IoMdHome
               onClick={() => {
                 // dispatch(clearSearch());
@@ -94,10 +94,7 @@ export const SearchBar = () => {
                 ))}
               </div>
             </div>
-            <Link
-              href={`/delivery/${deliveryCompany?.slug}/cart`}
-              className="relative"
-            >
+            <Link href={`/cart`} className="relative">
               <TiShoppingCart className="cursor-pointer" />
               <div className="absolute -right-1.5 -top-1.5 flex h-5  w-5 items-center justify-center rounded-full bg-[red]">
                 <span className="text-[10px] text-white">{items.length}</span>

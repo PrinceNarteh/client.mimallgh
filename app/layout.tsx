@@ -5,7 +5,7 @@ import { poppins } from "@/utils/fonts";
 import { usePathname } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 import Providers from "../components/providers";
-import "./globals.css";
+import "@/styles/globals.css";
 
 export const metadata = {
   title: "Create Next App",

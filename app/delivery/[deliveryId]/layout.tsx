@@ -15,7 +15,7 @@ import {
 } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdAddCall } from "react-icons/md";
-import "./globals.css";
+import "@/styles/globals.css";
 
 interface Props {
   children: React.ReactNode;
