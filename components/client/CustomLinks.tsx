@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { HiArrowNarrowRight } from "react-icons/hi";
-import { useAppDispatch } from "@/app/store/store";
-import { allShopProducts } from "@/app/store/features/products/productSlice";
+import { useAppDispatch } from "@/store/store";
+import { allShopProducts } from "@/store/features/products/productSlice";
 import { getProducts } from "@/services/products";
 
 const customLinks = [

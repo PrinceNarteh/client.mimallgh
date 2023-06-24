@@ -1,12 +1,11 @@
 "use client";
 
-import { allProduct } from "@/app/store/features/products/productSlice";
-import { clearSearchData } from "@/app/store/features/search/searchSlice";
-import { useAppDispatch, useAppSelector } from "@/app/store/store";
-import { Banner, Error } from "@/components";
-import { ProductList } from "@/components";
+import { Banner, ProductList } from "@/components";
 import { useSearchSelector } from "@/hooks/useSearchSelector";
 import { getProducts } from "@/services/products";
+import { allProduct } from "@/store/features/products/productSlice";
+import { clearSearchData } from "@/store/features/search/searchSlice";
+import { useAppDispatch, useAppSelector } from "@/store/store";
 import { IProduct } from "@/types";
 import { categories } from "@/utils/data";
 import { markets } from "@/utils/menus";

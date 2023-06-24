@@ -11,3 +11,4 @@ export { CartItem } from "./client/CartItem";
 export { OrderSummary } from "./client/OrderSummary";
 export { MovieCard } from "./server/MovieCard";
 export { VideoPlayer } from "./client/VideoPlayer";
+export { TopDeals } from "./client/TopDeals";

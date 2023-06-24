@@ -1,10 +1,6 @@
-import {
-  decrease,
-  increase,
-  remove,
-} from "@/app/store/features/cart/cartSlice";
+import { decrease, increase, remove } from "@/store/features/cart/cartSlice";
 import { useCartSelector } from "@/hooks/useCartSelector";
-import { useAppDispatch } from "@/app/store/store";
+import { useAppDispatch } from "@/store/store";
 import { ICartItem } from "@/types";
 import { parseProductImageUrl } from "@/utils";
 import Image from "next/image";

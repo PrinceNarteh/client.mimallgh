@@ -1,3 +1,3 @@
-import { useAppSelector } from "@/app/store/store";
+import { useAppSelector } from "@/store/store";
 
 export const useCartSelector = () => useAppSelector((state) => state.cart);

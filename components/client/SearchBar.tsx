@@ -1,8 +1,8 @@
 "use client";
 
-import { setDeliveryCompany } from "@/app/store/features/delivery/deliverySlice";
-import { setSearchResults } from "@/app/store/features/search/searchSlice";
-import { useAppDispatch } from "@/app/store/store";
+import { setDeliveryCompany } from "@/store/features/delivery/deliverySlice";
+import { setSearchResults } from "@/store/features/search/searchSlice";
+import { useAppDispatch } from "@/store/store";
 import { IDeliveryCompany } from "@/types";
 import Image from "next/image";
 import Link from "next/link";

@@ -1,4 +1,4 @@
-import { useAppSelector } from "@/app/store/store";
+import { useAppSelector } from "@/store/store";
 
 export const useDeliverySelector = () =>
   useAppSelector((state) => state.delivery);
