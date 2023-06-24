@@ -7,7 +7,7 @@ import { Router } from "next/router";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
-import Providers from "./providers";
+import Providers from "../components/providers";
 
 export const metadata = {
   title: "Create Next App",

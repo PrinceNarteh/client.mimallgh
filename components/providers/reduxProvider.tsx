@@ -2,7 +2,7 @@
 
 import React from "react";
 import { persistStore } from "redux-persist";
-import { store } from "../store/store";
+import { store } from "../../app/store/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
