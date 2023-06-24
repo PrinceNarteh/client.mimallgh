@@ -8,3 +8,4 @@ export { ProductList } from "./server/ProductList";
 export { CustomLinks } from "./client/CustomLinks";
 export { DeliveryLayout } from "./client/DeliveryLayout";
 export { CartItem } from "./client/CartItem";
+export { OrderSummary } from "./client/OrderSummary";
