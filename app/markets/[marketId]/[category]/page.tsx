@@ -1,12 +1,13 @@
+"use client";
+
 import { Container } from "@/components";
-import { getAllProducts, getProducts } from "@/services/products";
-import { IProduct, IUncategorizedProduct } from "@/types";
+import { getAllProducts } from "@/services/products";
+import { capitalize, parseProductImageUrl } from "@/utils";
 import { topDeals } from "@/utils/data";
-import { capitalize, parseImageUrl } from "@/utils/utilities";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useParams } from "next/navigation";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
@@ -27,7 +28,7 @@ const ProductVideosByCategory = ({
 }: {
   products: IUncategorizedProduct;
 }) => {
-  const { query } = useRouter();
+  const params = useParams();
 
   return (
     <Container>
@@ -37,12 +38,12 @@ const ProductVideosByCategory = ({
             <div className="col-span-12 xl:col-span-9 space-y-5">
               <div className="flex items-center bg-white shadow">
                 <div className="flex-1 pl-5 py-3 text-2xl">
-                  {capitalize(query.category as string)}
+                  {capitalize(params.category as string)}
                 </div>
               </div>
 
               <div className="flex flex-wrap justify-evenly gap-5">
-                {products.data.map((product, idx) => (
+                {products?.data.map((product, idx) => (
                   <div
                     key={idx}
                     className="h-[200px] w-[150px] my-2 shrink-0 md:h-[230px] md:w-[205px]"
@@ -57,10 +58,7 @@ const ProductVideosByCategory = ({
                       <div className="relative h-[130px] md:h-[160px] w-full">
                         <Link href={`/products/${product.id}`}>
                           <Image
-                            src={parseImageUrl(
-                              product.images[0].name,
-                              "products"
-                            )}
+                            src={parseProductImageUrl(product.images[0].name)}
                             fill
                             sizes="190px"
                             alt=""
