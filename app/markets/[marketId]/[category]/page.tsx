@@ -2,6 +2,7 @@
 
 import { Container } from "@/components";
 import { getAllProducts } from "@/services/products";
+import { IUnCategorizedProducts } from "@/types";
 import { capitalize, parseProductImageUrl } from "@/utils";
 import { topDeals } from "@/utils/data";
 import { GetServerSideProps } from "next";
@@ -26,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const ProductVideosByCategory = ({
   products,
 }: {
-  products: IUncategorizedProduct;
+  products: IUnCategorizedProducts;
 }) => {
   const params = useParams();
 

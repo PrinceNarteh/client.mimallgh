@@ -23,6 +23,11 @@ export enum CategoryType {
   TECH = "tech",
 }
 
+export type CategorizedProducts = {
+  category: string;
+  data: Product[];
+};
+
 export type IProduct = {
   total: number;
   page: number;
@@ -31,10 +36,13 @@ export type IProduct = {
   data: CategorizedProducts[];
 };
 
-export type CategorizedProducts = {
-  category: string;
+export interface IUnCategorizedProducts {
+  total: number;
+  page: number;
+  perPage: number;
+  totalPages: number;
   data: Product[];
-};
+}
 
 export type Product = {
   id: string;

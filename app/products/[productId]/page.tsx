@@ -7,7 +7,7 @@ import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
   MdContentCopy,
@@ -46,14 +46,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const ProductDetails = ({ product }: { product: Product }) => {
   const [currentImg, setCurrentImg] = useState(0);
-  const { asPath } = useRouter();
+  const pathname = usePathname();
   const dispatch = useAppDispatch();
   const origin =
     typeof window !== "undefined" && window.location.origin
       ? window.location.origin
       : "";
 
-  const url = `${origin}${asPath}`;
+  const url = `${origin}${pathname}`;
 
   const handleAddToCart = (product: Product) => {
     toast.success("Product Added");
@@ -79,8 +79,8 @@ const ProductDetails = ({ product }: { product: Product }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const products = await getProducts(`category=${product.category}`);
-      setSimilarProduct(products.data);
+      const products = await getProducts(`category=${product?.category}`);
+      setSimilarProduct(products?.data);
     };
 
     fetchData();
@@ -96,7 +96,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
                 <div className="hidden md:block h-fit w-[400px] shrink-0">
                   <div className="flex justify-between gap-5">
                     <div className="flex flex-col justify-center gap-3">
-                      {product.images.map((image, idx) => (
+                      {product?.images.map((image, idx) => (
                         <div
                           key={idx}
                           className="relative h-20 w-20 cursor-pointer rounded border border-gray-400"
@@ -118,10 +118,10 @@ const ProductDetails = ({ product }: { product: Product }) => {
                           smallImage: {
                             alt: "Wristwatch by Ted Baker London",
                             isFluidWidth: true,
-                            src: product.images[currentImg].name,
+                            src: product?.images[currentImg].name,
                           },
                           largeImage: {
-                            src: product.images[currentImg].name,
+                            src: product?.images[currentImg].name,
                             width: 640,
                             height: 600,
                           },
@@ -250,18 +250,18 @@ const ProductDetails = ({ product }: { product: Product }) => {
             </div>
             <div className="min-h-96">
               <h3 className="border-b border-b-gray-400 pb-3 text-2xl font-semibold text-gray-700">
-                {product.title}
+                {product?.title}
               </h3>
               <p>Other names: </p>
               <p className="mt-2 flex items-start tracking-widest">
                 <span className="text-xl">¢</span>
-                <span className="text-4xl">{product.price}</span>
+                <span className="text-4xl">{product?.price}</span>
               </p>
               <span className="mb-2 block text-gray-500">
                 Store Price: GH¢122.00
               </span>
               <div className="text-gray-500">
-                <p>{product.description}</p>
+                <p>{product?.description}</p>
                 <div className="pl-5">
                   <div className="my-5">
                     <h3 className="font-bold">About This Item</h3>
@@ -291,10 +291,10 @@ const ProductDetails = ({ product }: { product: Product }) => {
                   </div>
                 </div>
                 <Link
-                  href={`/web-store/${product.shop.id}`}
+                  href={`/web-store/${product?.shop?.id}`}
                   className="mb-5 pl-2 text-md font-semibold md:text-md cursor-pointer"
                 >
-                  Visit {product.shop.name} Web Shop
+                  Visit {product?.shop?.name} Web Shop
                 </Link>
                 <div className="flex justify-end pr-10 mt-3">
                   <button
@@ -334,9 +334,12 @@ const ProductDetails = ({ product }: { product: Product }) => {
           </h3>
           <div className="w-full overflow-x-auto">
             <div className="flex justify-start gap-5 py-4 pt-5">
-              {similarProduct[0]?.data.slice(0, 6).map((product, idx) => (
-                <ProductCard key={idx} product={product} />
-              ))}
+              {similarProduct &&
+                similarProduct[0]?.data
+                  .slice(0, 6)
+                  .map((product, idx) => (
+                    <ProductCard key={idx} product={product} />
+                  ))}
             </div>
           </div>
         </div>
