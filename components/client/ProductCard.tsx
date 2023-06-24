@@ -1,7 +1,7 @@
 "use client";
 
-import { addToCart } from "@/app/store/features/cart/cartSlice";
-import { useAppDispatch } from "@/app/store/store";
+import { addToCart } from "@/store/features/cart/cartSlice";
+import { useAppDispatch } from "@/store/store";
 import { Product } from "@/types";
 import { parseProductImageUrl } from "@/utils";
 import Image from "next/image";
