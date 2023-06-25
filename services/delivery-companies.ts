@@ -9,10 +9,11 @@ export const getDeliveryCompanies = async () => {
 
 export const getDeliveryCompany = async (slug: string) => {
   try {
-    const companies = await fetch(
+    const company = await fetch(
       `${process.env.BASE_URL}/delivery-companies/slug/${slug}`
     );
-    return await companies.json();
+    console.log(process.env.BASE_URL);
+    return await company.json();
   } catch (error) {
     return null;
   }

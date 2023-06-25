@@ -1,4 +1,6 @@
-import { useAppDispatch } from "@/app/store/store";
+"use client";
+
+import { useAppDispatch } from "@/store/store";
 import { CartItem } from "@/components";
 import { useCartSelector } from "@/hooks/useCartSelector";
 import { useDeliverySelector } from "@/hooks/useDeliverySelector";
@@ -7,7 +9,7 @@ import { getDeliveryFare, towns } from "@/utils/dispatch-fares";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { setDeliveryCompany } from "../store/features/delivery/deliverySlice";
+import { setDeliveryCompany } from "@/store/features/delivery/deliverySlice";
 
 interface IDelivery {
   deliveryCompany: string;
