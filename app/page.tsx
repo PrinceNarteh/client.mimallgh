@@ -28,6 +28,7 @@ const Home = ({ products }: { products: IProduct }) => {
   const store = useAppSelector((state) => state.products.products);
   const dispatch = useAppDispatch();
   const { searchResults } = useSearchSelector();
+  
 
   useEffect(() => {
     dispatch(allProduct(products || []));
@@ -37,7 +38,9 @@ const Home = ({ products }: { products: IProduct }) => {
     dispatch(clearSearchData());
   }, []);
 
-  // if (!products) return <Error />;
+  
+
+  console.log("Loading");
 
   return (
     <main className="">

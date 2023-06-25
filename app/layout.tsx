@@ -1,11 +1,15 @@
 "use client";
 
 import { Navbar, SearchBar } from "@/components";
+import { useFetch } from "@/hooks/useFetch";
+import { setCompanies } from "@/store/features/delivery/deliverySlice";
+import { useAppDispatch } from "@/store/store";
+import "@/styles/globals.css";
 import { poppins } from "@/utils/fonts";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import Providers from "../components/providers";
-import "@/styles/globals.css";
 
 export const metadata = {
   title: "Create Next App",
@@ -18,6 +22,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const { fetchRequest } = useFetch();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const fetchCompanies = async () => {
+      const companies = await fetchRequest("/delivery-companies");
+      console.log(companies);
+      dispatch(setCompanies(companies));
+    };
+    fetchCompanies();
+  }, []);
 
   return (
     <html lang="en">

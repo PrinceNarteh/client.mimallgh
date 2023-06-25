@@ -16,15 +16,21 @@ import {
 import { IoSearchOutline } from "react-icons/io5";
 import { MdAddCall } from "react-icons/md";
 import "@/styles/globals.css";
+import { useParams } from "next/navigation";
 
 interface Props {
   children: React.ReactNode;
 }
 
 export default function DeliveryLayout({ children }: Props) {
-  const { deliveryCompany } = useDeliverySelector();
+  const { companies } = useDeliverySelector();
   const [openMenu, setOpenMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { deliveryId } = useParams();
+
+  const deliveryCompany = companies?.find(
+    (company) => company.slug === deliveryId
+  );
 
   return (
     <main>

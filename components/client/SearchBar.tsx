@@ -1,5 +1,9 @@
 "use client";
 
+import { useCartSelector } from "@/hooks/useCartSelector";
+import { useDeliverySelector } from "@/hooks/useDeliverySelector";
+import { useFetch } from "@/hooks/useFetch";
+import { useSearchSelector } from "@/hooks/useSearchSelector";
 import { setDeliveryCompany } from "@/store/features/delivery/deliverySlice";
 import { setSearchResults } from "@/store/features/search/searchSlice";
 import { useAppDispatch } from "@/store/store";
@@ -11,13 +15,9 @@ import { useState } from "react";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import delivery from "../../assets/svgs/delivery-icon-pink.svg";
-import { useCartSelector } from "@/hooks/useCartSelector";
-import { useDeliverySelector } from "@/hooks/useDeliverySelector";
-import { useSearchSelector } from "@/hooks/useSearchSelector";
-import { useFetch } from "@/hooks/useFetch";
 
 export const SearchBar = () => {
-  const { deliveryCompany, companies } = useDeliverySelector();
+  const { companies } = useDeliverySelector();
   const { fetchRequest } = useFetch();
 
   const [openDelivery, setOpenDelivery] = useState(false);
@@ -60,8 +60,6 @@ export const SearchBar = () => {
           <div className="relative flex items-center shrink-0 justify-end gap-3 pr-3 md:pr-0 text-2xl md:text-4xl md:space-x-3 text-pink-500 cursor-pointer">
             <IoMdHome
               onClick={() => {
-                // dispatch(clearSearch());
-                // dispatch(clearSearchResults());
                 router.push("/");
               }}
             />
