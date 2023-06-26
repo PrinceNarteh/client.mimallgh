@@ -14,7 +14,7 @@ export const Banner = () => {
       <div className="col-span-2 h-full flex-col justify-between hidden md:flex">
         <div className="h-44 w-full flex-1 basis-40 rounded-md overflow-hidden">
           <Swiper
-            spaceBetween={30}
+            spaceBetween={0}
             centeredSlides={true}
             loop={true}
             speed={2000}
@@ -70,7 +70,7 @@ export const Banner = () => {
 
         <div className="h-44 relative w-full flex-1 basis-40 rounded-md overflow-hidden">
           <Image
-            src="/images/food-2.jpg"
+            src="/images/slider-4.jpg"
             fill
             alt=""
             sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
@@ -79,7 +79,7 @@ export const Banner = () => {
       </div>
       <div className="col-span-8 md:col-span-4 h-48 md:h-96 overflow-hidden rounded-md">
         <Swiper
-          spaceBetween={30}
+          spaceBetween={0}
           centeredSlides={true}
           loop={true}
           speed={2000}
@@ -134,7 +134,7 @@ export const Banner = () => {
       <div className="col-span-2 h-full flex-col overflow-hidden justify-between hidden md:flex">
         <div className="h-44 w-full flex-1 basis-40 rounded-md">
           <Swiper
-            spaceBetween={30}
+            spaceBetween={0}
             centeredSlides={true}
             loop={true}
             speed={2000}
@@ -190,7 +190,7 @@ export const Banner = () => {
 
         <div className="h-44 relative w-full flex-1 basis-40 rounded-md overflow-hidden">
           <Image
-            src="/images/food-1.jpg"
+            src="/images/slider-5.jpg"
             fill
             alt=""
             sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
