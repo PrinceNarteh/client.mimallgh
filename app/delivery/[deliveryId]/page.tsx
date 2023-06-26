@@ -17,6 +17,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { useAppDispatch } from "@/store/store";
 import { setDeliveryCompany } from "@/store/features/delivery/deliverySlice";
+import { Loader } from "@/components";
 
 // #165474 - navbar
 // #c8b600 -
@@ -34,13 +35,17 @@ const getDeliveryCompany = async (
 const Delivery = () => {
   const { deliveryId } = useParams();
   const dispatch = useAppDispatch();
-  const { data: company } = useQuery({
+  const { data: company, isLoading } = useQuery({
     queryKey: ["delivery-company", deliveryId],
     queryFn: () => getDeliveryCompany(deliveryId),
   });
 
   if (company) {
     dispatch(setDeliveryCompany(company));
+  }
+
+  if (isLoading) {
+    return <Loader />;
   }
 
   if (!company) {
@@ -108,7 +113,7 @@ const Delivery = () => {
                 </h4>
                 <div className="flex justify-center w-[250px] h-[240px] bg-slate-500">
                   <Image
-                    src={`/images/food-2.jpg`}
+                    src={`/images/food-5.jpg`}
                     alt=""
                     width="250"
                     height={250}
@@ -130,7 +135,7 @@ const Delivery = () => {
                 </h4>
                 <div className="flex justify-center w-[250px] h-[240px] bg-slate-500">
                   <Image
-                    src={`/images/food-2.jpg`}
+                    src={`/images/market-6.jpg`}
                     alt=""
                     width="250"
                     height={250}
