@@ -44,7 +44,7 @@ export default function DeliveryLayout({ children }: Props) {
                 href={`/delivery/${deliveryCompany?.slug}`}
                 className="ml-3 font-bold text-lg text-[#165474]"
               >
-                {deliveryCompany?.name.toUpperCase()}
+                {deliveryCompany?.name?.toUpperCase()}
               </Link>
             </div>
             <div className="relative text-white flex px-2 pl-5 justify-around items-center text-sm py-2 w-full">

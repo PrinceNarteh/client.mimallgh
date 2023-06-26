@@ -18,19 +18,11 @@ import "swiper/css/pagination";
 import { useAppDispatch } from "@/store/store";
 import { setDeliveryCompany } from "@/store/features/delivery/deliverySlice";
 import { Loader } from "@/components";
+import { getDeliveryCompany } from "@/queries";
 
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
-
-const getDeliveryCompany = async (
-  queryKey: string
-): Promise<IDeliveryCompany> => {
-  const res = await fetch(
-    `http://localhost:4000/delivery-companies/slug/${queryKey}`
-  );
-  return await res.json();
-};
 
 const Delivery = () => {
   const { deliveryId } = useParams();
@@ -39,6 +31,8 @@ const Delivery = () => {
     queryKey: ["delivery-company", deliveryId],
     queryFn: () => getDeliveryCompany(deliveryId),
   });
+
+  console.log(company);
 
   if (company) {
     dispatch(setDeliveryCompany(company));
