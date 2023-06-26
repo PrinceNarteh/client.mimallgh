@@ -49,3 +49,7 @@ export const parseProductImageUrl = (imageName: string) => {
 export const parseShopImageUrl = (imageName: string) => {
   return `${BASE_URL}/shops/image/${imageName}`;
 };
+
+export const parseShopBannerUrl = (imageName: string) => {
+  return `${BASE_URL}/shops/image/${imageName}`;
+};

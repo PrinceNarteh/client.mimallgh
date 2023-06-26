@@ -80,13 +80,13 @@ export interface Store {
   whatsappNumber: null;
   instagramHandle: null;
   facebookHandle: null;
+  twitterHandle: null;
+  tiktokHandle: null;
   openingTime: string;
   closingTime: string;
-  image: null;
-  products: {
-    category: string;
-    data: Product[];
-  }[];
+  image: string | null;
+  banner: string | null;
+  products: Product[];
 }
 
 export interface DeliveryStore {

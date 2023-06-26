@@ -8,6 +8,7 @@ import { HiArrowNarrowRight } from "react-icons/hi";
 import { useAppDispatch } from "@/store/store";
 import { allShopProducts } from "@/store/features/products/productSlice";
 import { getProducts } from "@/services/products";
+import { usePathname } from "next/navigation";
 
 const customLinks = [
   {
@@ -35,9 +36,7 @@ const customLinks = [
 export const CustomLinks = ({ storeId }: { storeId: string }) => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const { pathname } = useRouter();
-
-  const router = useRouter();
+  const pathname = usePathname();
   const dispatch = useAppDispatch();
 
   useEffect(() => {

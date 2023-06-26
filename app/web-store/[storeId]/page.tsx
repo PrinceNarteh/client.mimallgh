@@ -1,12 +1,11 @@
 "use client";
 
-import { allShopProducts } from "@/app/store/features/products/productSlice";
-import { useAppDispatch, useAppSelector } from "@/app/store/store";
-import { CustomLinks } from "@/components";
+import { CustomLinks, Loader } from "@/components";
 import { useDeliverySelector } from "@/hooks/useDeliverySelector";
 import { getSingleShop } from "@/services/store";
-import { DeliveryStore } from "@/types";
-import { capitalize, parseProductImageUrl } from "@/utils";
+import { allShopProducts } from "@/store/features/products/productSlice";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { capitalize, parseProductImageUrl, parseShopBannerUrl } from "@/utils";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,6 +20,7 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { MdAddCall } from "react-icons/md";
+import { useQuery } from "react-query";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { storeId } = context.query;
@@ -33,15 +33,25 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
+const WebStore = () => {
+  const { storeId } = useParams();
+  const { data: webStore, isLoading } = useQuery({
+    queryKey: ["webStore", storeId],
+    queryFn: () => getSingleShop(storeId),
+  });
   const store = useAppSelector((state) => state.products.shopProducts);
   const { deliveryCompany } = useDeliverySelector();
   const dispatch = useAppDispatch();
-  const params = useParams();
 
   useEffect(() => {
     dispatch(allShopProducts(webStore?.products ? webStore.products : []));
   }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  console.log(webStore);
 
   return (
     <div>
@@ -60,7 +70,11 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
         <div className="relative pt-12">
           <div className="px-5 w-11/12 mx-auto relative h-[200px] md:h-[400px] bg-teal-500">
             <Image
-              src={"/images/web-store-banner-3.jpg"}
+              src={
+                webStore?.banner
+                  ? parseShopBannerUrl(webStore?.banner)
+                  : "/images/web-store-banner-3.jpg"
+              }
               alt=""
               fill
               style={{ objectFit: "cover" }}
@@ -145,7 +159,7 @@ const WebStore = ({ webStore }: { webStore: DeliveryStore }) => {
             </div>
           </div>
           <div className="sticky w-11/12 mx-auto top-[100px] md:top-[86px] my-5 bg-white z-20 border-y shadow-md p-1 rounded">
-            <CustomLinks storeId={params.storeId as string} />
+            <CustomLinks storeId={storeId as string} />
           </div>
 
           <div>

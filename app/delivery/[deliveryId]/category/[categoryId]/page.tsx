@@ -4,24 +4,18 @@ import { Container } from "@/components";
 import { getAllStores } from "@/services/store";
 import { DeliveryStore } from "@/types";
 import { capitalize, parseShopImageUrl } from "@/utils";
-import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { useQuery } from "react-query";
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await getAllStores();
-
-  return {
-    props: {
-      stores: data,
-    },
-  };
-};
-
-const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
+const ProductByCategory = () => {
   const params = useParams();
+  const { data: stores } = useQuery({
+    queryKey: ["stores"],
+    queryFn: getAllStores,
+  });
 
   return (
     <Container>
@@ -36,7 +30,7 @@ const ProductByCategory = ({ stores }: { stores: DeliveryStore[] }) => {
               <div className="flex flex-wrap justify-center gap-5">
                 {stores?.map((store, idx) => (
                   <Link
-                    href={`/delivery/${params.deliveryId}/store/${store.id}`}
+                    href={`/web-store/${store.id}`}
                     key={idx}
                     className="h-fit w-[150px] my-2 shrink-0 md:h-fit md:w-[205px]"
                   >
