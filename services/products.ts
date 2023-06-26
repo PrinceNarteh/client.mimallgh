@@ -1,28 +1,20 @@
-import { IProduct } from "@/types";
+import { CategorizedProducts, IProduct, Product } from "@/types";
 
-export const getProduct = async (productId: string) => {
-  try {
-    const products = await fetch(
-      `${process.env.BASE_URl}/products/${productId}`
-    );
-    return await products.json();
-  } catch (error) {
-    return null;
-  }
+export const getProduct = async (productId: string): Promise<Product> => {
+  const products = await fetch(`${process.env.BASE_URl}/products/${productId}`);
+  return await products.json();
 };
 
-export const getAllProducts = async (search: string = "") => {
-  try {
-    let products: any;
-    if (search) {
-      products = await fetch(`${process.env.BASE_URl}/products?${search}`);
-    } else {
-      products = await fetch(`${process.env.BASE_URl}/products`);
-    }
-    return await products.json();
-  } catch (error) {
-    return null;
+export const getAllProducts = async (
+  search: string = ""
+): Promise<CategorizedProducts> => {
+  let products: any;
+  if (search) {
+    products = await fetch(`${process.env.BASE_URl}/products?${search}`);
+  } else {
+    products = await fetch(`${process.env.BASE_URl}/products`);
   }
+  return await products.json();
 };
 
 export const getProducts = async (query: string = ""): Promise<IProduct> => {

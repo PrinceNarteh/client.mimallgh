@@ -42,16 +42,9 @@ const Cart = () => {
     : 0;
 
   const submitHandler: SubmitHandler<IDelivery> = () => {
-    dispatch(
-      setDeliveryCompany({
-        deliveryPrice,
-        deliveryCompany: deliveryData.company,
-      })
-    );
+    dispatch(setDeliveryCompany(deliveryCompany!));
     router.push(`/delivery/${deliveryCompany?.slug}/checkout`);
   };
-
-  console.log(companies);
 
   return (
     <div className="bg-white">

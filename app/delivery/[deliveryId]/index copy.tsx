@@ -7,7 +7,6 @@ import { Autoplay, Pagination } from "swiper";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import DeliveryLayout from "@/components/layout/DeliveryLayout";
 import { useRouter } from "next/router";
 import { BsWhatsapp } from "react-icons/bs";
 import { FiPhoneCall } from "react-icons/fi";
@@ -56,7 +55,7 @@ const Delivery = () => {
   } = useRouter();
 
   return (
-    <DeliveryLayout>
+    <div>
       <div className="">
         <div className="h-60 md:h-[500px] lg:h-[calc(100vh_-_98px)]">
           <Swiper
@@ -244,7 +243,7 @@ const Delivery = () => {
           </div>
         </div>
       </div>
-    </DeliveryLayout>
+    </div>
   );
 };
 

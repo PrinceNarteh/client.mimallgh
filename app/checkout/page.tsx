@@ -1,8 +1,8 @@
 "use client";
 
 import { OrderSummary } from "@/components";
-import { clearCart } from "@/app/store/features/cart/cartSlice";
-import { useAppDispatch } from "@/app/store/store";
+import { clearCart } from "@/store/features/cart/cartSlice";
+import { useAppDispatch } from "@/store/store";
 import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";

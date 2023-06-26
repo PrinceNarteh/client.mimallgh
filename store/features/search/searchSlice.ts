@@ -1,4 +1,4 @@
-import { useAppSelector } from "@/app/store/store";
+import { useAppSelector } from "@/store/store";
 import { Product } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 

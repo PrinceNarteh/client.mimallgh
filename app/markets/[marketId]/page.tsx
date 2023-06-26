@@ -1,29 +1,23 @@
 "use client";
 
-import { Container, ProductList } from "@/components";
+import { Container, Loader, ProductList } from "@/components";
 import { getProducts } from "@/services/products";
-import { IProduct } from "@/types";
 import { capitalize } from "@/utils";
 import { categories } from "@/utils/data";
-import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useQuery } from "react-query";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { marketId } = context.query;
-  const data = await getProducts(`location=${marketId}`);
-
-  return {
-    props: {
-      products: data,
-    },
-  };
-};
-
-const Markets = (products: { products: IProduct }) => {
+const Markets = () => {
   const params = useParams();
   const market = capitalize(params.marketId as string);
+  const { data: products, isLoading } = useQuery({
+    queryKey: ["market", { location: params.marketId }],
+    queryFn: () => getProducts(`location=${params.marketId}`),
+  });
+
+  if (isLoading) return <Loader />;
 
   return (
     <Container>
@@ -67,7 +61,7 @@ const Markets = (products: { products: IProduct }) => {
       </section>
 
       <div>
-        <ProductList products={products.products?.data} />{" "}
+        <ProductList products={products?.data || []} />{" "}
       </div>
     </Container>
   );

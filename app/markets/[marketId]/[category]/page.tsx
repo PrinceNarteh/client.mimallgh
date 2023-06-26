@@ -1,35 +1,24 @@
 "use client";
 
-import { Container } from "@/components";
+import { Container, Loader } from "@/components";
 import { getAllProducts } from "@/services/products";
 import { IUnCategorizedProducts } from "@/types";
 import { capitalize, parseProductImageUrl } from "@/utils";
 import { topDeals } from "@/utils/data";
-import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useQuery } from "react-query";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { query } = context;
-  // { marketId: 'amamoma', category: 'food' }
-  const data = await getAllProducts(
-    `location=${query.marketId}&category=${query.category}`
-  );
-
-  return {
-    props: {
-      products: data,
-    },
-  };
-};
-
-const ProductVideosByCategory = ({
-  products,
-}: {
-  products: IUnCategorizedProducts;
-}) => {
+const ProductVideosByCategory = () => {
   const params = useParams();
+  const { data: products, isLoading } = useQuery({
+    queryKey: ["product-videos", params.category],
+    queryFn: () =>
+      getAllProducts(`location=${params.marketId}&category=${params.category}`),
+  });
+
+  if (isLoading) return <Loader />;
 
   return (
     <Container>

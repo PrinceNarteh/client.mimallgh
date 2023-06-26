@@ -2,13 +2,11 @@ import { Container, MovieCard } from "@/components";
 import { capitalize } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useParams } from "next/navigation";
 import { topDeals } from "../../../utils/data";
 
 const ProductVideos = () => {
-  const {
-    query: { category },
-  } = useRouter();
+  const { category } = useParams();
 
   return (
     <Container>

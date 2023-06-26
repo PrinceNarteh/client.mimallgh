@@ -1,36 +1,22 @@
 "use client";
 
-import { Container } from "@/components";
+import { Container, Loader } from "@/components";
 import { getProducts } from "@/services/products";
-import { IProduct } from "@/types";
 import { capitalize } from "@/utils";
-import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useQuery } from "react-query";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const query = context.query;
-  const data = await getProducts("category=food&perPage=12");
+const TopDealsByCategory = () => {
+  const params = useParams();
+  const { data: products, isLoading } = useQuery({
+    queryKey: ["products", { category: "food", perPage: 12 }],
+    queryFn: () => getProducts("category=food&perPage=12"),
+  });
 
-  console.log("Hello world");
+  if (isLoading) return <Loader />;
 
-  return {
-    props: {
-      products: data,
-      query,
-    },
-  };
-};
-
-const TopDealsByCategory = ({
-  products,
-  query,
-}: {
-  products: IProduct;
-  query: any;
-}) => {
-  console.log(products);
   return (
     <Container>
       <div className="bg-gray-300 bg-opacity-30">
@@ -39,7 +25,7 @@ const TopDealsByCategory = ({
             <div className="col-span-12 lg:col-span-8 space-y-5">
               <div className="flex items-center bg-white shadow">
                 <div className="flex-1 py-3 pl-5 text-2xl">
-                  {capitalize(query)}
+                  {capitalize(params.category)}
                 </div>
               </div>
 

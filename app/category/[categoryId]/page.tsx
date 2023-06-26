@@ -1,26 +1,21 @@
 // "use client";
 
-import { Container } from "@/components";
+import { Container, Loader } from "@/components";
 import { getProducts } from "@/services/products";
-import { IProduct } from "@/types";
-import { capitalize, parseProductImageUrl } from "@/utils";
+import { parseProductImageUrl } from "@/utils";
 import { topDeals } from "@/utils/data";
-import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useQuery } from "react-query";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const data = await getProducts("category=food&perPage=12");
+const ProductByCategory = () => {
+  const { data: products, isLoading } = useQuery({
+    queryKey: ["products", { category: "food", page: 12 }],
+    queryFn: () => getProducts("category=food&perPage=12"),
+  });
 
-  return {
-    props: {
-      products: data,
-    },
-  };
-};
+  if (isLoading) return <Loader />;
 
-const ProductByCategory = ({ products }: { products: IProduct }) => {
   return (
     <Container>
       <div className="bg-gray-300 bg-opacity-30">

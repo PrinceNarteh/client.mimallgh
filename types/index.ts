@@ -91,8 +91,6 @@ export interface Store {
 
 export interface DeliveryStore {
   id: string;
-  createdAt: string;
-  updatedAt: string;
   shopCode: string;
   password: string;
   plainPassword: string;
