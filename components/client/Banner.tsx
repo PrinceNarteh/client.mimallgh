@@ -32,7 +32,7 @@ export const Banner = () => {
               <div className="relative h-[176px]">
                 <Image
                   priority
-                  src={"/images/bg-1.jpg"}
+                  src={"/images/slider-1.jpg"}
                   fill
                   className="h-full w-full object-cover"
                   alt=""
@@ -45,7 +45,7 @@ export const Banner = () => {
               <div className="relative h-[176px]">
                 <Image
                   priority
-                  src={"/images/banner-2.jpg"}
+                  src={"/images/slider-2.jpg"}
                   fill
                   style={{ objectFit: "cover" }}
                   alt=""
@@ -57,7 +57,7 @@ export const Banner = () => {
               <div className="relative h-[176px]">
                 <Image
                   priority
-                  src={"/images/product-1.jpg"}
+                  src={"/images/slider-3.jpg"}
                   fill
                   style={{ objectFit: "cover" }}
                   alt=""
@@ -97,7 +97,7 @@ export const Banner = () => {
             <div className="relative h-[368px]">
               <Image
                 priority
-                src={"/images/bg-1.jpg"}
+                src={"/images/slider-2.jpg"}
                 fill
                 className="h-full w-full rounded-md object-cover object-center"
                 alt=""
@@ -108,7 +108,7 @@ export const Banner = () => {
           <SwiperSlide>
             <div className="relative h-[368px]">
               <Image
-                src={"/images/banner-2.jpg"}
+                src={"/images/slider-3.jpg"}
                 fill
                 style={{ objectFit: "cover" }}
                 className="h-full w-full rounded-md object-cover"
@@ -120,7 +120,7 @@ export const Banner = () => {
           <SwiperSlide>
             <div className="relative h-[368px]">
               <Image
-                src={"/images/banner-3.jpg"}
+                src={"/images/slider-1.jpg"}
                 fill
                 style={{ objectFit: "cover" }}
                 className="h-full w-full rounded-md object-cover"
@@ -152,7 +152,7 @@ export const Banner = () => {
               <div className="relative h-[176px]">
                 <Image
                   priority
-                  src={"/images/bg-1.jpg"}
+                  src={"/images/slider-3.jpg"}
                   fill
                   className="h-full w-full object-cover"
                   alt=""
@@ -165,7 +165,7 @@ export const Banner = () => {
               <div className="relative h-[176px]">
                 <Image
                   priority
-                  src={"/images/banner-2.jpg"}
+                  src={"/images/slider-1.jpg"}
                   fill
                   style={{ objectFit: "cover" }}
                   alt=""
@@ -177,7 +177,7 @@ export const Banner = () => {
               <div className="relative h-[176px]">
                 <Image
                   priority
-                  src={"/images/product-1.jpg"}
+                  src={"/images/slider-2.jpg"}
                   fill
                   style={{ objectFit: "cover" }}
                   alt=""
