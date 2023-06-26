@@ -13,24 +13,19 @@ import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
+import { useQuery } from "react-query";
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await getProducts();
-
-  return {
-    props: {
-      products: data,
-    },
-  };
-};
-
-const Home = ({ products }: { products: IProduct }) => {
+const Home = () => {
   const store = useAppSelector((state) => state.products.products);
+  const { data: products } = useQuery({
+    queryKey: ["products"],
+    queryFn: () => getProducts(),
+  });
   const dispatch = useAppDispatch();
   const { searchResults } = useSearchSelector();
 
   useEffect(() => {
-    dispatch(allProduct(products || []));
+    dispatch(allProduct(products!));
   }, []);
 
   useEffect(() => {
@@ -112,7 +107,7 @@ const Home = ({ products }: { products: IProduct }) => {
               </div>
             </div>
           </section>
-          <ProductList products={store.data} />
+          <ProductList products={store?.data ? store.data : []} />
         </>
       )}
     </main>

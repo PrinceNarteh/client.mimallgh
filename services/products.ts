@@ -1,3 +1,5 @@
+import { IProduct } from "@/types";
+
 export const getProduct = async (productId: string) => {
   try {
     const products = await fetch(
@@ -23,20 +25,14 @@ export const getAllProducts = async (search: string = "") => {
   }
 };
 
-export const getProducts = async (query: string = "") => {
-  try {
-    let products: any;
-    if (query !== "") {
-      products = await fetch(
-        `${process.env.BASE_URl}/products?categorized=true&${query}`
-      );
-    } else {
-      products = await fetch(
-        `${process.env.BASE_URl}/products?categorized=true`
-      );
-    }
-    return await products.json();
-  } catch (error: any) {
-    return null;
+export const getProducts = async (query: string = ""): Promise<IProduct> => {
+  let products: any;
+  if (query !== "") {
+    products = await fetch(
+      `${process.env.BASE_URl}/products?categorized=true&${query}`
+    );
+  } else {
+    products = await fetch(`${process.env.BASE_URl}/products?categorized=true`);
   }
+  return await products.json();
 };

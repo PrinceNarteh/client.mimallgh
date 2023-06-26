@@ -31,7 +31,6 @@ export const SearchBar = () => {
   const { search } = useSearchSelector();
 
   const navigate = (deliveryCompany: IDeliveryCompany) => {
-    dispatch(setDeliveryCompany(deliveryCompany));
     router.push(`/delivery/${deliveryCompany.slug}`);
   };
 

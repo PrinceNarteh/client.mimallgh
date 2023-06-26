@@ -1,5 +1,4 @@
 import { decrease, increase, remove } from "@/store/features/cart/cartSlice";
-import { useCartSelector } from "@/hooks/useCartSelector";
 import { useAppDispatch } from "@/store/store";
 import { ICartItem } from "@/types";
 import { parseProductImageUrl } from "@/utils";
@@ -8,7 +7,6 @@ import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 
 export const CartItem = ({ cart }: { cart: ICartItem }) => {
-  const store = useCartSelector();
   const dispatch = useAppDispatch();
 
   return (
