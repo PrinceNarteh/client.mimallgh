@@ -3,12 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { DeliverySlider } from "@/components/client/DeliverySlider";
 import { IDeliveryCompany } from "@/types";
 import { useParams } from "next/navigation";
 import { BsWhatsapp } from "react-icons/bs";
 import { FiPhoneCall } from "react-icons/fi";
 import { useQuery } from "react-query/react";
+
+import { Autoplay, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import { parseDeliveryImageUrl } from "@/utils";
+import "swiper/css";
+import "swiper/css/pagination";
 
 // #165474 - navbar
 // #c8b600 -
@@ -18,21 +24,52 @@ const getDeliveryCompany = async (
   queryKey: string
 ): Promise<IDeliveryCompany> => {
   const res = await fetch(
-    `http://localhost:4000/delivery-comspany/slug/${queryKey}`
+    `http://localhost:4000/delivery-companies/slug/${queryKey}`
   );
   return await res.json();
 };
 
 const Delivery = () => {
-  const { deliverId } = useParams();
+  const { deliveryId } = useParams();
   const { data: company } = useQuery({
-    queryKey: ["delivery-company", deliverId],
-    queryFn: ({ queryKey }) => getDeliveryCompany(queryKey[0]),
+    queryKey: ["delivery-company", deliveryId],
+    queryFn: () => getDeliveryCompany(deliveryId),
   });
+
+  console.log(company);
 
   return (
     <>
-      <DeliverySlider images={company?.images} />
+      <div className="h-60 md:h-[500px] lg:h-[calc(100vh_-_98px)]">
+        <Swiper
+          spaceBetween={0}
+          centeredSlides={true}
+          loop={true}
+          speed={2000}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Autoplay, Pagination]}
+        >
+          {company?.images?.map((image, index) => (
+            <SwiperSlide key={index}>
+              <div className="relative h-60 md:h-[520px] lg:h-[calc(100vh_-_97px)]">
+                <Image
+                  src={parseDeliveryImageUrl(image.name)}
+                  fill
+                  className="h-full w-full object-fill md:object-fill object-center"
+                  alt=""
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
       <div className=" bg-gray-300">
         <div className="flex flex-col justify-center w-11/12 mx-auto mb-32">
           <div className="bg-white p-2 md:p-5 z-10 w-full mx-auto text-center md:-translate-y-16 ">

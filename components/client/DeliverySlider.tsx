@@ -1,9 +1,9 @@
-import { useAppDispatch } from "@/store/store";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { parseDeliveryImageUrl } from "@/utils";
-import Image from "next/image";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -15,7 +15,13 @@ interface Props {
 }
 
 export const DeliverySlider = ({ images }: Props) => {
-  const dispatch = useAppDispatch();
+  const [slides, setSlides] = useState<
+    { id: string; name: string }[] | undefined
+  >(undefined);
+
+  useEffect(() => {
+    setSlides(images);
+  }, [images]);
 
   return (
     <div className="h-60 md:h-[500px] lg:h-[calc(100vh_-_98px)]">
@@ -34,7 +40,7 @@ export const DeliverySlider = ({ images }: Props) => {
         navigation={true}
         modules={[Autoplay, Pagination]}
       >
-        {images?.map((image, index) => (
+        {slides?.map((image, index) => (
           <SwiperSlide key={index}>
             <div className="relative h-60 md:h-[520px] lg:h-[calc(100vh_-_97px)]">
               <Image

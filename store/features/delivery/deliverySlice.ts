@@ -42,7 +42,6 @@ const DeliverySlice = createSlice({
       state.deliveryCompany = action.payload;
     },
     setCompanies: (state, action: PayloadAction<IDeliveryCompany[]>) => {
-      console.log(action.payload);
       state.companies = action.payload;
     },
   },

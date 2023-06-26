@@ -43,7 +43,6 @@ export const SearchBar = () => {
   useEffect(() => {
     const fetchCompanies = async () => {
       const companies = await fetchRequest("/delivery-companies");
-      console.log(companies);
       dispatch(setCompanies(companies));
     };
     fetchCompanies();
