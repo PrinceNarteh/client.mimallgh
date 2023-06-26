@@ -4,14 +4,17 @@ import { useCartSelector } from "@/hooks/useCartSelector";
 import { useDeliverySelector } from "@/hooks/useDeliverySelector";
 import { useFetch } from "@/hooks/useFetch";
 import { useSearchSelector } from "@/hooks/useSearchSelector";
-import { setDeliveryCompany } from "@/store/features/delivery/deliverySlice";
+import {
+  setCompanies,
+  setDeliveryCompany,
+} from "@/store/features/delivery/deliverySlice";
 import { setSearchResults } from "@/store/features/search/searchSlice";
 import { useAppDispatch } from "@/store/store";
 import { IDeliveryCompany } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import delivery from "../../assets/svgs/delivery-icon-pink.svg";
@@ -36,6 +39,15 @@ export const SearchBar = () => {
     const data = await fetchRequest(`/products?search=${search}`);
     dispatch(setSearchResults(data));
   };
+
+  useEffect(() => {
+    const fetchCompanies = async () => {
+      const companies = await fetchRequest("/delivery-companies");
+      console.log(companies);
+      dispatch(setCompanies(companies));
+    };
+    fetchCompanies();
+  }, []);
 
   return (
     <div

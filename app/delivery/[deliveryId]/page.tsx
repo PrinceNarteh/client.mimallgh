@@ -3,17 +3,32 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { useDeliverySelector } from "@/hooks/useDeliverySelector";
+import { DeliverySlider } from "@/components/client/DeliverySlider";
+import { IDeliveryCompany } from "@/types";
+import { useParams } from "next/navigation";
 import { BsWhatsapp } from "react-icons/bs";
 import { FiPhoneCall } from "react-icons/fi";
-import { DeliverySlider } from "@/components/client/DeliverySlider";
+import { useQuery } from "react-query/react";
 
 // #165474 - navbar
 // #c8b600 -
 // #c8b600 -
 
+const getDeliveryCompany = async (
+  queryKey: string
+): Promise<IDeliveryCompany> => {
+  const res = await fetch(
+    `http://localhost:4000/delivery-comspany/slug/${queryKey}`
+  );
+  return await res.json();
+};
+
 const Delivery = () => {
-  const { deliveryCompany: company } = useDeliverySelector();
+  const { deliverId } = useParams();
+  const { data: company } = useQuery({
+    queryKey: ["delivery-company", deliverId],
+    queryFn: ({ queryKey }) => getDeliveryCompany(queryKey[0]),
+  });
 
   return (
     <>

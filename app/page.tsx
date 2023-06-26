@@ -28,7 +28,6 @@ const Home = ({ products }: { products: IProduct }) => {
   const store = useAppSelector((state) => state.products.products);
   const dispatch = useAppDispatch();
   const { searchResults } = useSearchSelector();
-  
 
   useEffect(() => {
     dispatch(allProduct(products || []));
@@ -37,8 +36,6 @@ const Home = ({ products }: { products: IProduct }) => {
   useEffect(() => {
     dispatch(clearSearchData());
   }, []);
-
-  
 
   console.log("Loading");
 

@@ -6,7 +6,7 @@ interface IConfig {
 
 export const useFetch = () => {
   const fetchRequest = async (url: string, config: IConfig = {}) => {
-    const res = await fetch(`http://localhost:4000/${url}`, config);
+    const res = await fetch(`http://localhost:4000${url}`, config);
     return await res.json();
   };
 
