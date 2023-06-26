@@ -8,6 +8,7 @@ import { Delivery } from "@/types";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { BiEdit } from "react-icons/bi";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { CgRadioCheck } from "react-icons/cg";
@@ -27,12 +28,14 @@ const RecipientForm = () => {
   });
 
   const submitHandler: SubmitHandler<Delivery> = (data) => {
+    const toastId = toast.loading("Loading...");
     dispatch(
       addInfo({
         ...delivery,
         ...data,
       })
     );
+    toast.dismiss(toastId);
     router.push(`/delivery/${params.deliveryId}/time`);
   };
 
@@ -43,7 +46,7 @@ const RecipientForm = () => {
           <BsFillCheckCircleFill className="text-xl text-green-500" />
           <h3 className="text-xl font-bold sh-underline">Order Form</h3>
         </div>
-        <Link href={"/delivery/name/request"}>
+        <Link href={`/delivery/${params.deliveryId}/request`}>
           <BiEdit className="text-pink-500 text-2xl cursor-pointer" />
         </Link>
       </div>

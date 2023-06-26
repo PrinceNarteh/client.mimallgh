@@ -9,6 +9,7 @@ import { formatPhoneNumber } from "@/utils";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { BiEdit } from "react-icons/bi";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 
@@ -28,12 +29,14 @@ const DeliveryTimeForm = () => {
   });
 
   const submitHandler: SubmitHandler<Delivery> = (data) => {
+    const toastId = toast.loading("Loading...");
     dispatch(
       addInfo({
         ...delivery,
         ...data,
       })
     );
+    toast.dismiss(toastId);
     router.push(`/delivery/${params.deliveryId}/confirm`);
   };
   return (
@@ -45,7 +48,7 @@ const DeliveryTimeForm = () => {
               <BsFillCheckCircleFill className="text-xl text-green-500" />
               <h3 className="text-xl font-bold sh-underline">Order Form</h3>
             </div>
-            <Link href={"/delivery/name/request"}>
+            <Link href={`/delivery/${params.deliveryId}/request`}>
               <BiEdit className="text-pink-500 text-2xl cursor-pointer" />
             </Link>
           </div>
@@ -82,7 +85,7 @@ const DeliveryTimeForm = () => {
                 Recipient Address
               </h3>
             </div>
-            <Link href={"/delivery/name/recipient"}>
+            <Link href={`/delivery/${params.deliveryId}/recipient`}>
               <BiEdit className="text-pink-500 text-2xl cursor-pointer" />
             </Link>
           </div>

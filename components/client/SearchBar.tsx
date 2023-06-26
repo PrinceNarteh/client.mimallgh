@@ -1,29 +1,30 @@
 "use client";
 
 import { useCartSelector } from "@/hooks/useCartSelector";
-import { useDeliverySelector } from "@/hooks/useDeliverySelector";
 import { useFetch } from "@/hooks/useFetch";
 import { useSearchSelector } from "@/hooks/useSearchSelector";
-import {
-  setCompanies,
-  setDeliveryCompany,
-} from "@/store/features/delivery/deliverySlice";
+import { fetchDeliveryCompanies } from "@/queries";
+import { setDeliveryCompany } from "@/store/features/delivery/deliverySlice";
 import { setSearchResults } from "@/store/features/search/searchSlice";
 import { useAppDispatch } from "@/store/store";
 import { IDeliveryCompany } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
+import { useQuery } from "react-query";
 import delivery from "../../assets/svgs/delivery-icon-pink.svg";
 
 export const SearchBar = () => {
-  const { companies } = useDeliverySelector();
-  const { fetchRequest } = useFetch();
-
   const [openDelivery, setOpenDelivery] = useState(false);
+  const { fetchRequest } = useFetch();
+  const { data } = useQuery({
+    queryKey: ["delivery-companies"],
+    queryFn: fetchDeliveryCompanies,
+  });
+
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { items } = useCartSelector();
@@ -39,14 +40,6 @@ export const SearchBar = () => {
     const data = await fetchRequest(`/products?search=${search}`);
     dispatch(setSearchResults(data));
   };
-
-  useEffect(() => {
-    const fetchCompanies = async () => {
-      const companies = await fetchRequest("/delivery-companies");
-      dispatch(setCompanies(companies));
-    };
-    fetchCompanies();
-  }, []);
 
   return (
     <div
@@ -92,7 +85,7 @@ export const SearchBar = () => {
                     : "invisible translate-y-3 opacity-0"
                 } absolute -right-4 top-[55px] min-w-max py-2 text-base bg-gray-800 arrow before:right-20 duration-500 transform`}
               >
-                {companies?.map((company, idx) => (
+                {data?.map((company, idx) => (
                   <div
                     key={idx}
                     onClick={() => navigate(company)}

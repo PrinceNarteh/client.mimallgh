@@ -14,6 +14,7 @@ import {
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { CgRadioCheck } from "react-icons/cg";
 
@@ -53,6 +54,7 @@ const DeliveryForm = () => {
       : 0;
 
   const submitHandler: SubmitHandler<Delivery> = (data) => {
+    const toastId = toast.loading("Loading...");
     dispatch(
       addInfo({
         ...delivery,
@@ -62,6 +64,7 @@ const DeliveryForm = () => {
         price: deliveryPrice,
       })
     );
+    toast.dismiss(toastId);
     router.push(`/delivery/${params.deliveryId}/recipient`);
   };
 

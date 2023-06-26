@@ -23,14 +23,10 @@ interface Props {
 }
 
 export default function DeliveryLayout({ children }: Props) {
-  const { companies } = useDeliverySelector();
   const [openMenu, setOpenMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { deliveryCompany } = useDeliverySelector();
   const { deliveryId } = useParams();
-
-  const deliveryCompany = companies?.find(
-    (company) => company.slug === deliveryId
-  );
 
   return (
     <main>
@@ -89,20 +85,7 @@ export default function DeliveryLayout({ children }: Props) {
             </div>
           </div>
         </div>
-        <div className="bg-white lg:block pt-[112px]">
-          {deliveryCompany ? (
-            children
-          ) : (
-            <div className="h-[calc(100vh_-_98px)] flex justify-center items-center bg-gray-300">
-              <Image
-                src="/images/page-not-found.png"
-                height={500}
-                width={500}
-                alt=""
-              />
-            </div>
-          )}
-        </div>
+        <div className="bg-white lg:block pt-[112px]">{children}</div>
         <footer className="relative bg-gray-900 overflow-hidden">
           <div className="w-11/12 grid md:grid-auto-fit-lg  mx-auto pt-32 pb-5">
             {/* About Us */}

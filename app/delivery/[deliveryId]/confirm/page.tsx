@@ -3,7 +3,7 @@
 import { addInfo } from "@/store/features/delivery/deliverySlice";
 import { useAppDispatch } from "@/store/store";
 import { formatPhoneNumber } from "@/utils";
-import { useRouter } from "next/router";
+import { useParams, useRouter } from "next/navigation";
 import React from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -11,11 +11,13 @@ import { Delivery } from "@/types";
 import Link from "next/link";
 import { BiEdit } from "react-icons/bi";
 import { useDeliverySelector } from "@/hooks/useDeliverySelector";
+import DeliveryFormLayout from "@/components/client/DeliveryFormLayout";
 
 const ConfirmDeliveryRequest = () => {
   const dispatch = useAppDispatch();
   const { delivery } = useDeliverySelector();
   const router = useRouter();
+  const params = useParams();
 
   const {
     getValues,
@@ -33,10 +35,10 @@ const ConfirmDeliveryRequest = () => {
         ...data,
       })
     );
-    router.push("/delivery/name/time");
   };
+
   return (
-    <div>
+    <DeliveryFormLayout>
       <div>
         <div className="flex items-center justify-between gap-2">
           <div className="flex  items-center gap-2">
@@ -131,11 +133,11 @@ const ConfirmDeliveryRequest = () => {
             type="submit"
             className="bg-pink-500 text-white flex-1 py-2 rounded"
           >
-            Continue
+            Send Request
           </button>
         </div>
       </div>
-    </div>
+    </DeliveryFormLayout>
   );
 };
 
