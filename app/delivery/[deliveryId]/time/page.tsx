@@ -1,13 +1,13 @@
-import DeliveryFormLayout from "@/components/DeliveryFormLayout";
-import {
-  addInfo,
-  useDeliverySelector,
-} from "@/store/features/delivery/deliverySlice";
+"use client";
+
+import DeliveryFormLayout from "@/components/client/DeliveryFormLayout";
+import { useDeliverySelector } from "@/hooks/useDeliverySelector";
+import { addInfo } from "@/store/features/delivery/deliverySlice";
 import { useAppDispatch } from "@/store/store";
 import { Delivery } from "@/types";
-import { formatPhoneNumber } from "@/utils/utilities";
+import { formatPhoneNumber } from "@/utils";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useParams, useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { BiEdit } from "react-icons/bi";
 import { BsFillCheckCircleFill } from "react-icons/bs";
@@ -16,6 +16,7 @@ const DeliveryTimeForm = () => {
   const dispatch = useAppDispatch();
   const { delivery } = useDeliverySelector();
   const router = useRouter();
+  const params = useParams();
 
   const {
     getValues,
@@ -33,7 +34,7 @@ const DeliveryTimeForm = () => {
         ...data,
       })
     );
-    router.push(`/delivery/${router.query.deliveryId}/confirm`);
+    router.push(`/delivery/${params.deliveryId}/confirm`);
   };
   return (
     <DeliveryFormLayout>

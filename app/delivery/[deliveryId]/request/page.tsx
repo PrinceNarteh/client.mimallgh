@@ -1,8 +1,8 @@
-import DeliveryFormLayout from "@/components/DeliveryFormLayout";
-import {
-  addInfo,
-  useDeliverySelector,
-} from "@/store/features/delivery/deliverySlice";
+"use client";
+
+import DeliveryFormLayout from "@/components/client/DeliveryFormLayout";
+import { useDeliverySelector } from "@/hooks/useDeliverySelector";
+import { addInfo } from "@/store/features/delivery/deliverySlice";
 import { useAppDispatch } from "@/store/store";
 import { Delivery } from "@/types";
 import {
@@ -10,8 +10,8 @@ import {
   mapTownLabelToValue,
   mapTownValueToLabel,
   towns,
-} from "@/utils/dispatch_fares";
-import { useRouter } from "next/router";
+} from "@/utils/dispatch-fares";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { BsFillCheckCircleFill } from "react-icons/bs";
@@ -20,6 +20,7 @@ import { CgRadioCheck } from "react-icons/cg";
 const DeliveryForm = () => {
   const dispatch = useAppDispatch();
   const { delivery } = useDeliverySelector();
+  const params = useParams();
   const router = useRouter();
   const [destination, setDestination] = useState({
     from: "",
@@ -61,7 +62,7 @@ const DeliveryForm = () => {
         price: deliveryPrice,
       })
     );
-    router.push(`/delivery/${router.query.deliveryId}/recipient`);
+    router.push(`/delivery/${params.deliveryId}/recipient`);
   };
 
   return (

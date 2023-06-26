@@ -1,12 +1,12 @@
-import DeliveryFormLayout from "@/components/DeliveryFormLayout";
-import {
-  addInfo,
-  useDeliverySelector,
-} from "@/store/features/delivery/deliverySlice";
+"use client";
+
+import DeliveryFormLayout from "@/components/client/DeliveryFormLayout";
+import { useDeliverySelector } from "@/hooks/useDeliverySelector";
+import { addInfo } from "@/store/features/delivery/deliverySlice";
 import { useAppDispatch } from "@/store/store";
 import { Delivery } from "@/types";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useParams, useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { BiEdit } from "react-icons/bi";
 import { BsFillCheckCircleFill } from "react-icons/bs";
@@ -16,6 +16,7 @@ const RecipientForm = () => {
   const dispatch = useAppDispatch();
   const { delivery } = useDeliverySelector();
   const router = useRouter();
+  const params = useParams();
 
   const {
     register,
@@ -32,7 +33,7 @@ const RecipientForm = () => {
         ...data,
       })
     );
-    router.push(`/delivery/${router.query.deliveryId}/time`);
+    router.push(`/delivery/${params.deliveryId}/time`);
   };
 
   return (
