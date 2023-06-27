@@ -4,7 +4,7 @@ interface IConfig {
   body?: string;
 }
 
-const BASE_URL = "http://api.mimallgh.com";
+const BASE_URL = "https://api.mimallgh.com";
 
 export const useFetch = () => {
   const fetchRequest = async (url: string, config: IConfig = {}) => {
