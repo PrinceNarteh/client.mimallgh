@@ -1,39 +1,39 @@
 "use client";
 
-import { addInfo } from "@/store/features/delivery/deliverySlice";
-import { useAppDispatch } from "@/store/store";
-import { formatPhoneNumber } from "@/utils";
-import { useParams, useRouter } from "next/navigation";
-import React from "react";
-import { BsFillCheckCircleFill } from "react-icons/bs";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { Delivery } from "@/types";
-import Link from "next/link";
-import { BiEdit } from "react-icons/bi";
-import { useDeliverySelector } from "@/hooks/useDeliverySelector";
 import DeliveryFormLayout from "@/components/client/DeliveryFormLayout";
+import { useDeliverySelector } from "@/hooks/useDeliverySelector";
+import { createDelivery } from "@/services/deliveries";
+import { formatPhoneNumber } from "@/utils";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
+import { BiEdit } from "react-icons/bi";
+import { BsFillCheckCircleFill } from "react-icons/bs";
+import { useMutation } from "react-query";
 
 const ConfirmDeliveryRequest = () => {
-  const dispatch = useAppDispatch();
-  const { delivery } = useDeliverySelector();
-  const router = useRouter();
-  const params = useParams();
-
-  const {
-    getValues,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: delivery,
+  const { delivery, deliveryCompany } = useDeliverySelector();
+  const createDeliveryMutation = useMutation({
+    mutationFn: createDelivery,
   });
+  const router = useRouter();
 
-  const submitHandler: SubmitHandler<Delivery> = (data) => {
-    dispatch(
-      addInfo({
+  const submitRequest = () => {
+    const toastId = toast.loading("Loading...");
+    createDeliveryMutation.mutate(
+      {
         ...delivery,
-        ...data,
-      })
+        deliveryCompany: deliveryCompany?.id!,
+      },
+      {
+        onSuccess() {
+          toast.dismiss(toastId);
+          router.push(`/delivery/${deliveryCompany}/request`);
+        },
+        onError() {
+          toast.dismiss(toastId);
+        },
+      }
     );
   };
 
@@ -90,7 +90,7 @@ const ConfirmDeliveryRequest = () => {
         <div className="space-y-2 mt-4 ml-7">
           <div className="flex flex-wrap items-center gap-1">
             <p className="w-36 inline-block font-bold">Name</p>
-            <p>{delivery.name}</p>
+            <p>{delivery.fullName}</p>
           </div>
           <div className="flex flex-wrap items-center gap-1">
             <p className="w-36 inline-block font-bold">Location</p>
@@ -130,7 +130,8 @@ const ConfirmDeliveryRequest = () => {
         <div className="flex flex-wrap items-center gap-1 mt-4">
           <div className="w-36 md:w-40 lg:inline-block hidden"></div>
           <button
-            type="submit"
+            onClick={() => submitRequest()}
+            type="button"
             className="bg-pink-500 text-white flex-1 py-2 rounded"
           >
             Send Request

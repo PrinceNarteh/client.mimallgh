@@ -70,7 +70,7 @@ const RecipientForm = () => {
         </div>
         <div className="flex flex-wrap items-center gap-1">
           <p className="w-40 inline-block font-bold">Delivery Fee</p>
-          <p>GHC{delivery.price}</p>
+          <p>GHC{delivery.deliveryCharge}</p>
         </div>
       </div>
 
@@ -87,13 +87,13 @@ const RecipientForm = () => {
             <input
               type="text"
               className=" border w-full border-[#165474] outline-none p-1 rounded"
-              {...register("name", {
+              {...register("fullName", {
                 required: "Name is required",
               })}
             />
-            {errors["name"] && (
+            {errors["fullName"] && (
               <span className="block text-[10px] pl-1 pt-1 text-[red]">
-                {errors["name"].message}
+                {errors["fullName"].message}
               </span>
             )}
           </div>

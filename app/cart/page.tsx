@@ -1,17 +1,19 @@
 "use client";
 
-import { useAppDispatch } from "@/store/store";
 import { CartItem } from "@/components";
 import { useCartSelector } from "@/hooks/useCartSelector";
 import { useDeliverySelector } from "@/hooks/useDeliverySelector";
+import emptyCart from "@/public/images/empty-cart.png";
+import { fetchDeliveryCompanies } from "@/queries";
+import { setDeliveryCompany } from "@/store/features/delivery/deliverySlice";
+import { useAppDispatch } from "@/store/store";
 import calculatePrice from "@/utils/calculatePrice";
 import { getDeliveryFare, towns } from "@/utils/dispatch-fares";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { setDeliveryCompany } from "@/store/features/delivery/deliverySlice";
-import Image from "next/image";
-import emptyCart from "@/public/images/empty-cart.png";
+import { useQuery } from "react-query";
 
 interface IDelivery {
   deliveryCompany: string;
@@ -24,7 +26,6 @@ const Cart = () => {
     company: "",
     destination: "",
   });
-  const { companies } = useDeliverySelector();
   const { items } = useCartSelector();
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -37,6 +38,10 @@ const Cart = () => {
       deliveryCompany: "",
       destination: "",
     },
+  });
+  const { data } = useQuery({
+    queryKey: ["delivery-companies"],
+    queryFn: fetchDeliveryCompanies,
   });
 
   const deliveryPrice = deliveryData.destination
@@ -112,7 +117,7 @@ const Cart = () => {
                     })}
                   >
                     <option value="">Select Delivery company</option>
-                    {companies?.map((company, idx) => (
+                    {data?.map((company, idx) => (
                       <option key={idx} value={company.id}>
                         {company.name}
                       </option>

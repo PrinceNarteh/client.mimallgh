@@ -21,12 +21,13 @@ const initialState: {
     from: "",
     to: "",
     otherDetails: "",
-    name: "",
+    fullName: "",
     phoneNumber: "",
     location: "",
     time: "",
     date: "",
-    price: 0,
+    deliveryCharge: 0,
+    deliveryCompany: "",
   },
   companies: [],
 };
@@ -46,7 +47,6 @@ const DeliverySlice = createSlice({
     },
   },
 });
-
 
 export const { addInfo, setDeliveryCompany, setCompanies } =
   DeliverySlice.actions;

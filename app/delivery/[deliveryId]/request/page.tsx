@@ -30,7 +30,6 @@ const DeliveryForm = () => {
 
   const {
     register,
-    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -61,7 +60,7 @@ const DeliveryForm = () => {
         ...data,
         from: mapTownValueToLabel(data.from),
         to: mapTownValueToLabel(data.to),
-        price: deliveryPrice,
+        deliveryCharge: deliveryPrice,
       })
     );
     toast.dismiss(toastId);
