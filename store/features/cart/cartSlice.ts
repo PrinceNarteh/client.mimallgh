@@ -1,4 +1,5 @@
-import { useAppSelector } from "@/store/store";
+"use client";
+
 import { ICartItem } from "@/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
@@ -89,7 +90,6 @@ export const CartSlice = createSlice({
 });
 
 export default CartSlice;
-export const useCartSelector = () => useAppSelector((state) => state.cart);
 export const {
   addToCart,
   getCartTotal,

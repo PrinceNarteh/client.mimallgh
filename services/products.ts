@@ -1,38 +1,30 @@
-import axios from "@/lib/axios";
+import { CategorizedProducts, IProduct, Product } from "@/types";
 
-export const getProduct = async (productId: string) => {
-  try {
-    const products = await axios.get(`/products/${productId}`);
-    return products.data;
-  } catch (error) {
-    return null;
-  }
+export const getProduct = async (productId: string): Promise<Product> => {
+  const products = await fetch(`${process.env.BASE_URl}/products/${productId}`);
+  return await products.json();
 };
 
-export const getAllProducts = async (search: string = "") => {
-  try {
-    let products: any;
-    if (search) {
-      products = await axios.get(`/products?${search}`);
-    } else {
-      products = await axios.get(`/products`);
-    }
-    return products.data;
-  } catch (error) {
-    return null;
+export const getAllProducts = async (
+  search: string = ""
+): Promise<CategorizedProducts> => {
+  let products: any;
+  if (search) {
+    products = await fetch(`${process.env.BASE_URl}/products?${search}`);
+  } else {
+    products = await fetch(`${process.env.BASE_URl}/products`);
   }
+  return await products.json();
 };
 
-export const getProducts = async (query: string = "") => {
-  try {
-    let products: any;
-    if (query !== "") {
-      products = await axios.get(`/products?categorized=true&${query}`);
-    } else {
-      products = await axios.get("/products?categorized=true");
-    }
-    return products.data;
-  } catch (error: any) {
-    return null;
+export const getProducts = async (query: string = ""): Promise<IProduct> => {
+  let products: any;
+  if (query !== "") {
+    products = await fetch(
+      `${process.env.BASE_URl}/products?categorized=true&${query}`
+    );
+  } else {
+    products = await fetch(`${process.env.BASE_URl}/products?categorized=true`);
   }
+  return await products.json();
 };

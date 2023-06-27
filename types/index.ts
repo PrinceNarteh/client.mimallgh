@@ -1,3 +1,17 @@
+export interface IDeliveryCompany {
+  id?: string;
+  name: string;
+  slug: string;
+  location?: string;
+  phoneNumber: string;
+  alternatePhoneNumber?: string;
+  whatsappNumber: string;
+  images: {
+    id: string;
+    name: string;
+  }[];
+}
+
 export enum CategoryType {
   FOOD = "food",
   FASHION_AND_WEARS = "fashion_and_wears",
@@ -9,11 +23,8 @@ export enum CategoryType {
   TECH = "tech",
 }
 
-export type IUncategorizedProduct = {
-  total: number;
-  page: number;
-  perPage: number;
-  totalPages: number;
+export type CategorizedProducts = {
+  category: string;
   data: Product[];
 };
 
@@ -25,10 +36,13 @@ export type IProduct = {
   data: CategorizedProducts[];
 };
 
-export type CategorizedProducts = {
-  category: string;
+export interface IUnCategorizedProducts {
+  total: number;
+  page: number;
+  perPage: number;
+  totalPages: number;
   data: Product[];
-};
+}
 
 export type Product = {
   id: string;
@@ -66,43 +80,17 @@ export interface Store {
   whatsappNumber: null;
   instagramHandle: null;
   facebookHandle: null;
+  twitterHandle: null;
+  tiktokHandle: null;
   openingTime: string;
   closingTime: string;
-  image: null;
-  products: {
-    category: string;
-    data: Product[];
-  }[];
-}
-export interface Store {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  shopCode: string;
-  password: string;
-  plainPassword: string;
-  name: string;
-  description: string;
-  location: string;
-  mapDirection: string;
-  phoneNumber: string;
-  alternateNumber: null;
-  whatsappNumber: null;
-  instagramHandle: null;
-  facebookHandle: null;
-  openingTime: string;
-  closingTime: string;
-  image: null;
-  products: {
-    category: string;
-    data: Product[];
-  }[];
+  image: string | null;
+  banner: string | null;
+  products: Product[];
 }
 
 export interface DeliveryStore {
   id: string;
-  createdAt: string;
-  updatedAt: string;
   shopCode: string;
   password: string;
   plainPassword: string;
@@ -127,13 +115,15 @@ export type Delivery = {
   request: string;
   from: string;
   to: string;
-  otherDetails: string;
-  name: string;
+  otherDetails?: string;
+  alternatePhoneNumber?: string;
+  fullName: string;
   phoneNumber: string;
   location: string;
   time: string;
   date: string;
-  price: number;
+  deliveryCharge: number;
+  deliveryCompany: string;
 };
 
 export type ICartItem = {
@@ -145,3 +135,47 @@ export type ICartItem = {
   shopName: string;
   shopId: string;
 };
+
+export interface IOrder {
+  total: number;
+  page: number;
+  perPage: number;
+  totalPages: number;
+  data: {
+    date: string;
+    user: string;
+    orders: {
+      orderId: string;
+      orderItems: OrderItem[];
+    }[];
+  }[];
+}
+
+export interface OrderItem {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  productId: string;
+  productName: string;
+  quantity: number;
+  price: number;
+  shopName: string;
+  shopId: string;
+  order: {
+    id: string;
+    orderId: string;
+    user: {
+      id: string;
+      firstName: string;
+      lastName: string;
+      email: string;
+      phoneNumber: string;
+      image: string;
+    };
+  };
+  product: {
+    id: string;
+    title: string;
+    images: { id: string; name: string }[];
+  };
+}

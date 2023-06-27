@@ -33,7 +33,6 @@ const SearchSlice = createSlice({
   },
 });
 
-export const useSearchSelector = () => useAppSelector((state) => state.search);
 export const {
   clearSearch,
   setSearch,
