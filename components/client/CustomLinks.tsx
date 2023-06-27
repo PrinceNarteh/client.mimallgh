@@ -42,7 +42,7 @@ export const CustomLinks = ({ storeId }: { storeId: string }) => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getProducts(`storeId=${storeId}&search=${search}`);
-      dispatch(allShopProducts(res.data));
+      dispatch(allShopProducts(res.data as any));
     };
 
     if (search !== "") {

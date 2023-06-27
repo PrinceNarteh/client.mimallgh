@@ -1,14 +1,17 @@
-// "use client";
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useQuery } from "react-query";
 
 import { Container, Loader } from "@/components";
 import { getProducts } from "@/services/products";
-import { parseProductImageUrl } from "@/utils";
+import { capitalize, parseProductImageUrl } from "@/utils";
 import { topDeals } from "@/utils/data";
-import Image from "next/image";
-import Link from "next/link";
-import { useQuery } from "react-query";
 
 const ProductByCategory = () => {
+  const params = useParams();
   const { data: products, isLoading } = useQuery({
     queryKey: ["products", { category: "food", page: 12 }],
     queryFn: () => getProducts("category=food&perPage=12"),
@@ -23,7 +26,7 @@ const ProductByCategory = () => {
           <div className="grid grid-cols-1 gap-5 xl:grid-cols-12">
             <div className="col-span-12 xl:col-span-9 space-y-5">
               <div className="flex items-center bg-white shadow py-4 pl-5 text-2xl">
-                {/* {capitalize(params.categoryId as string)} */}
+                {capitalize(params.categoryId as string)}
               </div>
 
               <div className="flex flex-wrap justify-center gap-5">

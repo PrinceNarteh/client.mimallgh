@@ -1,4 +1,4 @@
-import VideoPlayer from "@/components/VideoPlayer";
+import { VideoPlayer } from "@/components";
 import { topDeals } from "@/utils/data";
 import dynamic from "next/dynamic";
 import Image from "next/image";
