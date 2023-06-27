@@ -72,7 +72,7 @@ const DeliveryTimeForm = () => {
             </div>
             <div className="flex flex-wrap items-center gap-1">
               <p className="w-40 inline-block font-bold">Delivery Fee</p>
-              <p>GHC{delivery.price}</p>
+              <p>GHC{delivery.deliveryCharge}</p>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@ const DeliveryTimeForm = () => {
           <div className="space-y-2 mt-4 ml-7">
             <div className="flex flex-wrap items-center gap-1">
               <p className="w-40 inline-block font-bold">Name</p>
-              <p>{delivery.name}</p>
+              <p>{delivery.fullName}</p>
             </div>
             <div className="flex flex-wrap items-center gap-1">
               <p className="w-40 inline-block font-bold">Location</p>
