@@ -39,8 +39,6 @@ const WebStore = () => {
     return <Loader />;
   }
 
-  console.log(webStore);
-
   return (
     <div>
       {!webStore ? (

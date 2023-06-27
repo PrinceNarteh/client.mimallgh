@@ -3,6 +3,8 @@
 import DeliveryFormLayout from "@/components/client/DeliveryFormLayout";
 import { useDeliverySelector } from "@/hooks/useDeliverySelector";
 import { createDelivery } from "@/services/deliveries";
+import { clearDelivery } from "@/store/features/delivery/deliverySlice";
+import { useAppDispatch } from "@/store/store";
 import { formatPhoneNumber } from "@/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -17,6 +19,7 @@ const ConfirmDeliveryRequest = () => {
     mutationFn: createDelivery,
   });
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const submitRequest = () => {
     const toastId = toast.loading("Loading...");
@@ -28,10 +31,13 @@ const ConfirmDeliveryRequest = () => {
       {
         onSuccess() {
           toast.dismiss(toastId);
+          toast.success("Delivery Request Successfully made!");
+          dispatch(clearDelivery());
           router.push(`/delivery/${deliveryCompany}/request`);
         },
-        onError() {
+        onError(error) {
           toast.dismiss(toastId);
+          toast.error("Error making request");
         },
       }
     );

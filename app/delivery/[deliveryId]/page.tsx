@@ -32,8 +32,6 @@ const Delivery = () => {
     queryFn: () => getDeliveryCompany(deliveryId),
   });
 
-  console.log(company);
-
   if (company) {
     dispatch(setDeliveryCompany(company));
   }

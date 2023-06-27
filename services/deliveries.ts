@@ -2,14 +2,14 @@ import { Delivery } from "@/types";
 
 const BASE_URL = "http://localhost:4000";
 
-export const createDelivery = async (data: Delivery): Promise<any> => {
-  const companies = await fetch(`${BASE_URL}/deliveries`, {
+export const createDelivery = async (body: Delivery): Promise<any> => {
+  const res = await fetch(`${BASE_URL}/deliveries`, {
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(body),
     headers: {
       "Content-Type": "application/json",
     },
   });
-  console.log(await companies.json());
-  return await companies.json();
+  const data = await res.json();
+  return data;
 };

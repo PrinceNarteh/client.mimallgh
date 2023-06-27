@@ -30,8 +30,6 @@ const Home = () => {
     dispatch(clearSearchData());
   }, []);
 
-  console.log("Loading");
-
   return (
     <main className="">
       {searchResults.length > 0 ? (

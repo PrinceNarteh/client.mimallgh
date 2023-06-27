@@ -48,7 +48,6 @@ const Checkout = () => {
       dispatch(clearCart());
       router.push(`/delivery/${deliveryCompany?.slug}/`);
     } catch (error) {
-      console.log(error);
       toast.error("Error placing order");
     }
   };
