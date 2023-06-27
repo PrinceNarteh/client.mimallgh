@@ -115,8 +115,9 @@ export type Delivery = {
   request: string;
   from: string;
   to: string;
-  otherDetails: string;
-  name: string;
+  otherDetails?: string;
+  alternatePhoneNumber?: string;
+  fullName: string;
   phoneNumber: string;
   location: string;
   time: string;

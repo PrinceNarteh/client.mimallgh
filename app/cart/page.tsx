@@ -6,10 +6,12 @@ import { useCartSelector } from "@/hooks/useCartSelector";
 import { useDeliverySelector } from "@/hooks/useDeliverySelector";
 import calculatePrice from "@/utils/calculatePrice";
 import { getDeliveryFare, towns } from "@/utils/dispatch-fares";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { setDeliveryCompany } from "@/store/features/delivery/deliverySlice";
+import Image from "next/image";
+import emptyCart from "@/public/images/empty-cart.png";
 
 interface IDelivery {
   deliveryCompany: string;
@@ -41,6 +43,10 @@ const Cart = () => {
     ? getDeliveryFare("uccCampus", deliveryData.destination)
     : 0;
 
+  const price = calculatePrice(items);
+
+  const totalPrice = deliveryPrice + price;
+
   const submitHandler: SubmitHandler<IDelivery> = () => {
     dispatch(setDeliveryCompany(deliveryCompany!));
     router.push(`/delivery/${deliveryCompany?.slug}/checkout`);
@@ -51,7 +57,16 @@ const Cart = () => {
       <div className="pt-20 mx-auto grid w-full max-w-4xl grid-cols-1 gap-y-5 p-7 pb-10 md:grid-cols-7 md:gap-x-5">
         <div className="col-span-4 w-full space-y-5">
           {items.length === 0 ? (
-            <p className="text-gray-700">No Item In Cart</p>
+            <div className="relative h-full flex flex-col w-full items-center justify-center">
+              <Image
+                src={emptyCart}
+                alt="empty-cart"
+                style={{ width: "auto" }}
+              />
+              <button className="bg-pink-500 py-2 px-5 rounded-full text-white">
+                Shop Now
+              </button>
+            </div>
           ) : (
             <>
               {items.map((item, idx) => (
@@ -150,7 +165,7 @@ const Cart = () => {
           <div className="space-y-2 rounded border border-gray-400 p-3">
             <div className="w-full flex items-center justify-between ">
               <h4>Subtotal</h4>
-              <span>¢{calculatePrice(items)}</span>
+              <span>¢{price}</span>
             </div>
             <div className="w-full flex items-center justify-between ">
               <h4>Delivery</h4>
@@ -158,7 +173,7 @@ const Cart = () => {
             </div>
             <div className="w-full flex border-y py-2 font-bold border-gray-400 items-center justify-between ">
               <h4>Total</h4>
-              <span>¢207.50</span>
+              <span>¢{totalPrice}</span>
             </div>
           </div>
         </div>
