@@ -19,12 +19,7 @@ const DeliveryTimeForm = () => {
   const router = useRouter();
   const params = useParams();
 
-  const {
-    getValues,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: delivery,
   });
 
