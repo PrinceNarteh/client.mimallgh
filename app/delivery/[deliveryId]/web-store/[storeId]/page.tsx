@@ -23,9 +23,9 @@ import { useQuery } from "react-query";
 
 const WebStore = () => {
   const { storeId } = useParams();
+  const dispatch = useAppDispatch();
   const store = useAppSelector((state) => state.products.shopProducts);
   const { deliveryCompany } = useDeliverySelector();
-  const dispatch = useAppDispatch();
   const { data: webStore, isLoading } = useQuery({
     queryKey: ["webStore", storeId],
     queryFn: () => getSingleShop(storeId),
