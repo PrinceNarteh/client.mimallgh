@@ -1,12 +1,11 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-
 import { useParams } from "next/navigation";
 import { BsWhatsapp } from "react-icons/bs";
 import { FiPhoneCall } from "react-icons/fi";
-import { useQuery } from "react-query/react";
 
 import { Loader } from "@/components";
 import DeliverySlider from "@/components/client/Delivery/DeliverySlider";
