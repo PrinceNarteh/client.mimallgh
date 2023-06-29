@@ -4,10 +4,10 @@ import { Container, Loader, ProductList } from "@/components";
 import { getProducts } from "@/services/products";
 import { capitalize } from "@/utils";
 import { categories } from "@/utils/data";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useQuery } from "react-query";
 
 const Markets = () => {
   const params = useParams();

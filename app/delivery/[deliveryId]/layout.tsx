@@ -1,8 +1,4 @@
 "use client";
-
-import deliveryIcon from "@/assets/svgs/delivery-icon.svg";
-import { SearchBar } from "@/components";
-import { useDeliverySelector } from "@/hooks/useDeliverySelector";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -15,8 +11,11 @@ import {
 } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdAddCall } from "react-icons/md";
+
+import deliveryIcon from "@/assets/svgs/delivery-icon.svg";
+import { SearchBar } from "@/components";
+import { useDeliverySelector } from "@/hooks/useDeliverySelector";
 import "@/styles/globals.css";
-import { useParams } from "next/navigation";
 
 interface Props {
   children: React.ReactNode;
@@ -26,7 +25,6 @@ export default function DeliveryLayout({ children }: Props) {
   const [openMenu, setOpenMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const { deliveryCompany } = useDeliverySelector();
-  const { deliveryId } = useParams();
 
   return (
     <main>

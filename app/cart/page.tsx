@@ -9,11 +9,11 @@ import { setDeliveryCompany } from "@/store/features/delivery/deliverySlice";
 import { useAppDispatch } from "@/store/store";
 import calculatePrice from "@/utils/calculatePrice";
 import { getDeliveryFare, towns } from "@/utils/dispatch-fares";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useQuery } from "react-query";
 
 interface IDelivery {
   deliveryCompany: string;

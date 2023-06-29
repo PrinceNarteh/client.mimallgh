@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -14,15 +13,7 @@ interface Props {
   }[];
 }
 
-export const DeliverySlider = ({ images }: Props) => {
-  const [slides, setSlides] = useState<
-    { id: string; name: string }[] | undefined
-  >(undefined);
-
-  useEffect(() => {
-    setSlides(images);
-  }, [images]);
-
+const DeliverySlider = ({ images }: Props) => {
   return (
     <div className="h-60 md:h-[500px] lg:h-[calc(100vh_-_98px)]">
       <Swiper
@@ -40,7 +31,7 @@ export const DeliverySlider = ({ images }: Props) => {
         navigation={true}
         modules={[Autoplay, Pagination]}
       >
-        {slides?.map((image, index) => (
+        {images?.map((image, index) => (
           <SwiperSlide key={index}>
             <div className="relative h-60 md:h-[520px] lg:h-[calc(100vh_-_97px)]">
               <Image
@@ -56,3 +47,5 @@ export const DeliverySlider = ({ images }: Props) => {
     </div>
   );
 };
+
+export default DeliverySlider;

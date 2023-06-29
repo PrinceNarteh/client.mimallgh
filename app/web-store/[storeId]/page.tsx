@@ -19,7 +19,7 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { MdAddCall } from "react-icons/md";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const WebStore = () => {
   const { storeId } = useParams();

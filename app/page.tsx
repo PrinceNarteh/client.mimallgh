@@ -8,10 +8,10 @@ import { clearSearchData } from "@/store/features/search/searchSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { categories } from "@/utils/data";
 import { markets } from "@/utils/menus";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
-import { useQuery } from "react-query";
 
 const Home = () => {
   const store = useAppSelector((state) => state.products.products);

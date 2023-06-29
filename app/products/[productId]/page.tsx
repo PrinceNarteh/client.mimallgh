@@ -28,7 +28,7 @@ import { ProductCard } from "@/components/client/ProductCard";
 import { addToCart } from "@/store/features/cart/cartSlice";
 import { useAppDispatch } from "@/store/store";
 import { toast } from "react-hot-toast";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import "swiper/css";
 import "swiper/css/pagination";
 import { parseProductImageUrl } from "@/utils";
