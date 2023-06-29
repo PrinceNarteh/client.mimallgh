@@ -2,13 +2,12 @@
 
 import { Container, Loader } from "@/components";
 import { getAllProducts } from "@/services/products";
-import { IUnCategorizedProducts } from "@/types";
 import { capitalize, parseProductImageUrl } from "@/utils";
 import { topDeals } from "@/utils/data";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useQuery } from "react-query";
 
 const ProductVideosByCategory = () => {
   const params = useParams();

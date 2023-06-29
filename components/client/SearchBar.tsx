@@ -14,8 +14,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
-import { useQuery } from "react-query";
 import delivery from "../../assets/svgs/delivery-icon-pink.svg";
+import { useQuery } from "@tanstack/react-query";
 
 export const SearchBar = () => {
   const [openDelivery, setOpenDelivery] = useState(false);

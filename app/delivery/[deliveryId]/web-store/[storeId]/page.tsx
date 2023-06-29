@@ -6,6 +6,7 @@ import { getSingleShop } from "@/services/store";
 import { allShopProducts } from "@/store/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { capitalize, parseProductImageUrl, parseShopBannerUrl } from "@/utils";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -19,7 +20,6 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { MdAddCall } from "react-icons/md";
-import { useQuery } from "react-query";
 
 const WebStore = () => {
   const { storeId } = useParams();

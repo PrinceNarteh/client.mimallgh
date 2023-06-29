@@ -1,10 +1,10 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { useQuery } from "react-query";
 
 import { Loader } from "@/components/server/Loader";
 import { getAllStores } from "@/services/store";
