@@ -6,7 +6,7 @@ import { capitalize } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const TopDealsByCategory = () => {
   const params = useParams();

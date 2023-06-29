@@ -4,7 +4,7 @@ import React from "react";
 import ProductCard from "./ProductCard";
 import { Loader } from "@/components/server/Loader";
 import { getProducts } from "@/services/products";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const ProductList = () => {
   const { data: products, isLoading } = useQuery({
