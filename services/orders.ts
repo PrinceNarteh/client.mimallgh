@@ -1,7 +1,7 @@
 import { Delivery } from "@/types";
 
-const BASE_URL = "http://localhost:4000";
-// const BASE_URL = "https://api.mimallgh.com";
+// const BASE_URL = "http://localhost:4000";
+const BASE_URL = "https://api.mimallgh.com";
 
 export interface QuickOrder {
   fullName: string;
