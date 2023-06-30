@@ -3,5 +3,5 @@ export default function (items: any[]) {
     (amt, curItem) => amt + curItem.price * curItem.quantity,
     0
   );
-  return total.toFixed(2);
+  return parseInt(total.toFixed(2), 10);
 }

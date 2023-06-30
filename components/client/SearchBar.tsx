@@ -4,18 +4,17 @@ import { useCartSelector } from "@/hooks/useCartSelector";
 import { useFetch } from "@/hooks/useFetch";
 import { useSearchSelector } from "@/hooks/useSearchSelector";
 import { fetchDeliveryCompanies } from "@/queries";
-import { setDeliveryCompany } from "@/store/features/delivery/deliverySlice";
 import { setSearchResults } from "@/store/features/search/searchSlice";
 import { useAppDispatch } from "@/store/store";
 import { IDeliveryCompany } from "@/types";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { IoMdHome } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import delivery from "../../assets/svgs/delivery-icon-pink.svg";
-import { useQuery } from "@tanstack/react-query";
 
 export const SearchBar = () => {
   const [openDelivery, setOpenDelivery] = useState(false);
@@ -25,6 +24,7 @@ export const SearchBar = () => {
     queryFn: fetchDeliveryCompanies,
   });
 
+  const params = useParams();
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { items } = useCartSelector();
@@ -95,7 +95,10 @@ export const SearchBar = () => {
                 ))}
               </div>
             </div>
-            <Link href={`/cart`} className="relative">
+            <Link
+              href={`/delivery/${params.deliveryId}/cart`}
+              className="relative"
+            >
               <TiShoppingCart className="cursor-pointer" />
               <div className="absolute -right-1.5 -top-1.5 flex h-5  w-5 items-center justify-center rounded-full bg-[red]">
                 <span className="text-[10px] text-white">{items.length}</span>

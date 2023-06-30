@@ -34,7 +34,7 @@ export const fares: {
     yamoransa: 35.0,
   },
   abura: {
-    capeCoastTown: 0,
+    capeCoastTown: 12.0,
     pedu: 0,
   },
   aburaNewTown: {},
