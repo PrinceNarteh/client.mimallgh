@@ -1,6 +1,6 @@
 import { Delivery } from "@/types";
 
-const BASE_URL = "http://localhost:4000";
+const BASE_URL = "https://api.mimallgh.com";
 
 export const createDelivery = async (body: Delivery): Promise<any> => {
   const res = await fetch(`${BASE_URL}/deliveries`, {
