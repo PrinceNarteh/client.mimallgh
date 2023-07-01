@@ -1,5 +1,6 @@
 "use client";
 
+import { ErrorMessage } from "@/components";
 import DeliveryFormLayout from "@/components/client/DeliveryFormLayout";
 import { useDeliverySelector } from "@/hooks/useDeliverySelector";
 import { addInfo } from "@/store/features/delivery/deliverySlice";
@@ -91,11 +92,7 @@ const RecipientForm = () => {
                 required: "Name is required",
               })}
             />
-            {errors["fullName"] && (
-              <span className="block text-[10px] pl-1 pt-1 text-[red]">
-                {errors["fullName"].message}
-              </span>
-            )}
+            <ErrorMessage field="fullName" />
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-1">
@@ -110,11 +107,7 @@ const RecipientForm = () => {
                 required: "Location is required",
               })}
             />
-            {errors["location"] && (
-              <span className="block text-[10px] pl-1 pt-1 text-[red]">
-                {errors["location"].message}
-              </span>
-            )}
+            <ErrorMessage field="location" />
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-1">
@@ -129,11 +122,19 @@ const RecipientForm = () => {
                 required: "Phone number is required",
               })}
             />
-            {errors["phoneNumber"] && (
-              <span className="block text-[10px] pl-1 pt-1 text-[red]">
-                {errors["phoneNumber"].message}
-              </span>
-            )}
+            <ErrorMessage field="phoneNumber" />
+          </div>
+        </div>
+        <div className="flex flex-wrap items-center gap-1">
+          <label htmlFor="" className="w-40 inline-block">
+            Alternate Contact
+          </label>
+          <div className="flex-1">
+            <input
+              type="text"
+              className=" border w-full border-[#165474] outline-none p-1 rounded"
+              {...register("alternatePhoneNumber")}
+            />
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-1">

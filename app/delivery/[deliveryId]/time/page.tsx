@@ -7,19 +7,26 @@ import { useAppDispatch } from "@/store/store";
 import { Delivery } from "@/types";
 import { formatPhoneNumber } from "@/utils";
 import Link from "next/link";
+import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { BiEdit } from "react-icons/bi";
 import { BsFillCheckCircleFill } from "react-icons/bs";
+import { ErrorMessage } from "@/components";
 
 const DeliveryTimeForm = () => {
   const dispatch = useAppDispatch();
+  const [time, setTime] = useState("now");
   const { delivery } = useDeliverySelector();
   const router = useRouter();
   const params = useParams();
 
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
     defaultValues: delivery,
   });
 
@@ -34,6 +41,9 @@ const DeliveryTimeForm = () => {
     toast.dismiss(toastId);
     router.push(`/delivery/${params.deliveryId}/confirm`);
   };
+
+  console.log(errors);
+
   return (
     <DeliveryFormLayout>
       <div className="space-y-5">
@@ -98,6 +108,12 @@ const DeliveryTimeForm = () => {
               <p className="w-40 inline-block font-bold">Call Contact</p>
               <p>{formatPhoneNumber(delivery.phoneNumber)}</p>
             </div>
+            {delivery.alternatePhoneNumber && (
+              <div className="flex flex-wrap items-center gap-1">
+                <p className="w-40 inline-block font-bold">Alternate Contact</p>
+                <p>{formatPhoneNumber(delivery.alternatePhoneNumber)}</p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -114,33 +130,53 @@ const DeliveryTimeForm = () => {
           >
             <div className="flex mt-4 flex-wrap items-center gap-1">
               <label htmlFor="" className="w-28 md:w-40  inline-block">
-                Now
+                Now Or Later
               </label>
-              <input
-                type="time"
+              <select
+                name=""
+                id=""
                 className="flex-1 border border-[#165474] outline-none p-1 rounded"
-                {...register("time", {
-                  required: {
-                    value: true,
-                    message: "Time is required",
-                  },
-                })}
-              />
+                onChange={(e) => setTime(e.target.value)}
+              >
+                <option value="now">Now</option>
+                <option value="later">Later</option>
+              </select>
             </div>
             <div className="flex flex-wrap items-center gap-1">
-              <label htmlFor="" className="w-28 md:w-40 inline-block">
-                Later
-              </label>
-              <input
-                type="datetime-local"
-                className="flex-1 border border-[#165474] outline-none p-1 rounded"
-                {...register("date", {
-                  required: {
-                    value: true,
-                    message: "Date and Time for delivery is required",
-                  },
-                })}
-              />
+              <label htmlFor="" className="w-28 md:w-40 inline-block"></label>
+              {time === "now" ? (
+                <div className="flex-1">
+                  <input
+                    type="time"
+                    className="border border-[#165474] outline-none p-1 rounded w-full"
+                    {...register("time", {
+                      ...(time === "now" && {
+                        required: {
+                          value: true,
+                          message: "Time for delivery is required",
+                        },
+                      }),
+                    })}
+                  />
+                  <ErrorMessage field="time" />
+                </div>
+              ) : (
+                <div className="flex-1">
+                  <input
+                    type="datetime-local"
+                    className="border border-[#165474] outline-none p-1 rounded w-full"
+                    {...register("time", {
+                      ...(time === "later" && {
+                        required: {
+                          value: true,
+                          message: "Date and Time for delivery is required",
+                        },
+                      }),
+                    })}
+                  />
+                  <ErrorMessage field="time" />
+                </div>
+              )}
             </div>
             <div className="flex flex-wrap items-center gap-1 pt-2">
               <div className="w-40 lg:inline-block hidden"></div>

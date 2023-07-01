@@ -2,6 +2,7 @@ export { Banner } from "./client/Banner";
 export { CartItem } from "./client/CartItem";
 export { CustomLinks } from "./client/CustomLinks";
 export { DeliveryLayout } from "./client/DeliveryLayout";
+export { ErrorMessage } from "./client/ErrorMessage";
 export { Navbar } from "./client/Navbar";
 export { OrderSummary } from "./client/OrderSummary";
 export { SearchBar } from "./client/SearchBar";
