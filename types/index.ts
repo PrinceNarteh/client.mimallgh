@@ -53,6 +53,7 @@ export type Product = {
   stock: number;
   brand: string;
   category: string;
+  video: string | null;
   images: {
     id: string;
     name: string;

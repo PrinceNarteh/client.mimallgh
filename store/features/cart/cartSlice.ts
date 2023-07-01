@@ -91,6 +91,7 @@ export const CartSlice = createSlice({
 
 export default CartSlice;
 export const {
+
   addToCart,
   getCartTotal,
   remove,

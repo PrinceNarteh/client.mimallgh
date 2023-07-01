@@ -39,6 +39,8 @@ const WebStore = () => {
     return <Loader />;
   }
 
+  console.log(webStore);
+
   return (
     <div>
       {!webStore ? (
@@ -150,40 +152,36 @@ const WebStore = () => {
 
           <div>
             <div className="flex flex-wrap justify-center gap-5">
-              {store.length > 0
-                ? store.map((product, idx) => (
-                    <div
-                      key={idx}
-                      className="h-[200px] w-[150px] my-2 shrink-0 md:h-[230px] md:w-[205px]"
-                    >
-                      <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
-                        <div className="relative h-[130px] md:h-[160px] w-full">
-                          <Link
-                            href={`/delivery/${deliveryCompany?.slug}/products/${product.id}`}
-                          >
-                            <Image
-                              src={parseProductImageUrl(
-                                product?.images[0].name
-                              )}
-                              fill
-                              sizes="500px"
-                              alt=""
-                              style={{ objectFit: "cover" }}
-                            />
-                          </Link>
-                        </div>
-                        <div className="px-2 py-1 bg-white">
-                          <p className="text-xs md:text-sm line-clamp-1">
-                            {product.title}
-                          </p>
-                          <p className="font-semibold text-center text-sm md:text-base">
-                            GH¢{product.price}
-                          </p>
-                        </div>
-                      </div>
+              {webStore?.products.map((product, idx) => (
+                <div
+                  key={idx}
+                  className="h-[200px] w-[150px] my-2 shrink-0 md:h-[230px] md:w-[205px]"
+                >
+                  <div className="shrink-0 cursor-pointer overflow-hidden rounded-md shadow-md">
+                    <div className="relative h-[130px] md:h-[160px] w-full">
+                      <Link
+                        href={`/delivery/${deliveryCompany?.slug}/products/${product.id}`}
+                      >
+                        <Image
+                          src={parseProductImageUrl(product?.images[0].name)}
+                          fill
+                          sizes="500px"
+                          alt=""
+                          style={{ objectFit: "cover" }}
+                        />
+                      </Link>
                     </div>
-                  ))
-                : null}
+                    <div className="px-2 py-1 bg-white">
+                      <p className="text-xs md:text-sm line-clamp-1">
+                        {product.title}
+                      </p>
+                      <p className="font-semibold text-center text-sm md:text-base">
+                        GH¢{product.price}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

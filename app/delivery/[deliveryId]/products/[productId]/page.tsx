@@ -94,14 +94,14 @@ const ProductDetails = () => {
   } else {
     return (
       <div>
-        <div className="mx-auto mb-10 w-11/12 pt-5">
+        <div className="mx-auto mb-10 w-11/12 pt-10">
           <div className="lg:grid gap-5 lg:grid-cols-12">
             <div className="relative lg:col-span-9 flex flex-col gap-5 md:flex-row">
               <div className="">
                 <div className="top-[110px] pb-10 md:sticky">
                   <div className="hidden md:block h-fit w-[400px] shrink-0">
                     <div className="flex justify-between gap-5">
-                      <div className="flex flex-col justify-center gap-3">
+                      <div className="flex flex-col justify-between gap-3">
                         {product?.images.map((image, idx) => (
                           <div
                             key={idx}
@@ -109,7 +109,7 @@ const ProductDetails = () => {
                             onMouseEnter={() => setCurrentImg(idx)}
                           >
                             <Image
-                              src={image.name}
+                              src={parseProductImageUrl(image.name)}
                               alt="product-one"
                               fill
                               style={{ objectFit: "cover" }}
@@ -199,19 +199,21 @@ const ProductDetails = () => {
                     </div>
                   </div>
                   <div className="h-fit">
-                    <div className="hidden md:block">
-                      <h3 className="sh-underline mt-5 text-2xl">
-                        Product Video
-                      </h3>
-                      <div className="h-[280px]">
-                        <ReactPlayer
-                          url={"/videos/sea-shore.mp4"}
-                          controls
-                          width={"100%"}
-                          height={"100%"}
-                        />
+                    {product?.video && (
+                      <div className="hidden md:block">
+                        <h3 className="sh-underline mt-5 text-2xl">
+                          Product Video
+                        </h3>
+                        <div className="h-[280px]">
+                          <ReactPlayer
+                            url={"/videos/sea-shore.mp4"}
+                            controls
+                            width={"100%"}
+                            height={"100%"}
+                          />
+                        </div>
                       </div>
-                    </div>
+                    )}
                     <div className="flex h-10 my-5 w-full items-center gap-2">
                       <div className="flex h-10 w-full items-center gap-2">
                         <h6>Share:</h6>
@@ -258,7 +260,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
               </div>
-              <div className="min-h-96">
+              <div className="h-fit">
                 <h3 className="border-b border-b-gray-400 pb-3 text-2xl font-semibold text-gray-700">
                   {product?.title}
                 </h3>
@@ -272,37 +274,9 @@ const ProductDetails = () => {
                 </span>
                 <div className="text-gray-500">
                   <p>{product?.description}</p>
-                  <div className="pl-5">
-                    <div className="my-5">
-                      <h3 className="font-bold">About This Item</h3>
-                      <ol className="list-decimal pl-7">
-                        <li>Lorem ipsum dolor sit amet.</li>
-                        <li>Lorem, ipsum dolor.</li>
-                        <li>Lorem ipsum dolor sit.</li>
-                      </ol>
-                    </div>
-
-                    <div className="my-5">
-                      <h3 className="font-bold">Use Occasions</h3>
-                      <ol className="list-decimal pl-7">
-                        <li>Lorem ipsum dolor sit amet.</li>
-                        <li>Lorem, ipsum dolor.</li>
-                        <li>Lorem ipsum dolor sit.</li>
-                      </ol>
-                    </div>
-
-                    <div className="my-5">
-                      <h3 className="font-bold">Warrant & Returns</h3>
-                      <ol className="list-decimal pl-7">
-                        <li>Lorem ipsum dolor sit amet.</li>
-                        <li>Lorem, ipsum dolor.</li>
-                        <li>Lorem ipsum dolor sit.</li>
-                      </ol>
-                    </div>
-                  </div>
                   <Link
-                    href={`/web-store/${product?.shop?.id}`}
-                    className="mb-5 pl-2 text-md font-semibold md:text-md cursor-pointer"
+                    href={`/delivery/${params.deliveryId}/web-store/${product?.shop?.id}`}
+                    className="mt-5 block text-md font-semibold md:text-md cursor-pointer"
                   >
                     Visit {product?.shop?.name} Web Shop
                   </Link>
