@@ -43,7 +43,7 @@ const ConfirmDeliveryRequest = () => {
     );
   };
 
-  let dateAndTime = delivery.time.split("T");
+  let dateAndTime = delivery.dateAndTime.split("T");
 
   return (
     <DeliveryFormLayout>
@@ -131,20 +131,22 @@ const ConfirmDeliveryRequest = () => {
                 <p className="w-28 md:w-36 inline-block font-bold">Date</p>
                 <p>
                   {dateAndTime.length > 1
-                    ? `${new Date(delivery.time).toDateString()} `
+                    ? `${new Date(delivery.dateAndTime).toDateString()} `
                     : `${dateAndTime[0]}`}
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-1">
                 <p className="w-28 md:w-36 inline-block font-bold">Time</p>
-                <p>{new Date(delivery.time).toLocaleTimeString()}</p>
+                <p>{new Date(delivery.dateAndTime).toLocaleTimeString()}</p>
               </div>
             </>
           ) : (
             <div className="flex flex-wrap items-center gap-1">
               <p className="w-28 md:w-36 inline-block font-bold">Time</p>
-              <p>{`${delivery.time} ${
-                parseInt(delivery.time.split(":")[0], 10) < 12 ? "AM" : "PM"
+              <p>{`${delivery.dateAndTime} ${
+                parseInt(delivery.dateAndTime.split(":")[0], 10) < 12
+                  ? "AM"
+                  : "PM"
               }`}</p>
             </div>
           )}

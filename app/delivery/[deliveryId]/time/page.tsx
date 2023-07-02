@@ -42,8 +42,6 @@ const DeliveryTimeForm = () => {
     router.push(`/delivery/${params.deliveryId}/confirm`);
   };
 
-  console.log(errors);
-
   return (
     <DeliveryFormLayout>
       <div className="space-y-5">
@@ -149,7 +147,7 @@ const DeliveryTimeForm = () => {
                   <input
                     type="time"
                     className="border border-[#165474] outline-none p-1 rounded w-full"
-                    {...register("time", {
+                    {...register("dateAndTime", {
                       ...(time === "now" && {
                         required: {
                           value: true,
@@ -165,7 +163,7 @@ const DeliveryTimeForm = () => {
                   <input
                     type="datetime-local"
                     className="border border-[#165474] outline-none p-1 rounded w-full"
-                    {...register("time", {
+                    {...register("dateAndTime", {
                       ...(time === "later" && {
                         required: {
                           value: true,
