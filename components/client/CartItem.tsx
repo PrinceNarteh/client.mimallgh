@@ -1,3 +1,5 @@
+"use client";
+
 import { decrease, increase, remove } from "@/store/features/cart/cartSlice";
 import { useAppDispatch } from "@/store/store";
 import { ICartItem } from "@/types";

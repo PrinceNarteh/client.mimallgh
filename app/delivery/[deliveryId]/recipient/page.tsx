@@ -92,7 +92,7 @@ const RecipientForm = () => {
                 required: "Name is required",
               })}
             />
-            <ErrorMessage field="fullName" />
+            <ErrorMessage field="fullN" />
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-1">
