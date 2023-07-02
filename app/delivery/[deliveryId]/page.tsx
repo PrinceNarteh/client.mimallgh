@@ -51,7 +51,7 @@ const Delivery = () => {
       <>
         <DeliverySlider images={company.images} />
         <div className=" bg-gray-300">
-          <div className="flex flex-col justify-center w-11/12 mx-auto mb-32">
+          <div className="flex flex-col justify-center w-11/12 mx-auto">
             <div className="bg-white p-2 md:p-5 z-10 w-full mx-auto text-center md:-translate-y-16 ">
               <h3 className="text-xl md:text-4xl font-bold underline md:mb-2">
                 What We Do
@@ -64,7 +64,7 @@ const Delivery = () => {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-10 justify-center mt-10 md:mt-0">
+            {/* <div className="flex flex-wrap gap-10 justify-center mt-10 md:mt-0">
               <div className="w-[300px] h-[390px] bg-white p-5">
                 <h4 className="pb-3 justify-center h-14 flex items-center font-semibold text-xl">
                   Cooked Food
@@ -109,14 +109,14 @@ const Delivery = () => {
                   </Link>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
-          <div className="bg-white p-4 w-11/12 mx-auto text-center -translate-y-16 text-blue-500 shadow-md">
+          {/* <div className="bg-white p-4 w-11/12 mx-auto text-center -translate-y-16 text-blue-500 shadow-md">
             <h3 className="text-xl md:text-4xl font-bold mb-2">
               OTHER SERVICES
             </h3>
-          </div>
+          </div> */}
 
           <div className="flex flex-col justify-center w-11/12 mx-auto mb-10">
             <div className="flex flex-wrap gap-10 justify-center">
@@ -187,6 +187,23 @@ const Delivery = () => {
                 >
                   Order Now
                 </Link>
+              </div>
+              <div
+                className="w-72 flex flex-col justify-between p-4 h-80 bg-[url('/images/food-3.jpg')]"
+                style={{
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                }}
+              >
+                <div className="w-full bg-[#165474] text-center text-white py-2">
+                  All Food Vendors On UCC Campus (Telegram Site)
+                </div>
+                <a
+                  href="https://t.me/mimallgh"
+                  className="w-full bg-[#c8b600] text-center text-white py-2"
+                >
+                  Shop Now
+                </a>
               </div>
             </div>
           </div>
