@@ -49,7 +49,6 @@ const Checkout = () => {
     try {
       createQuickOrderMutation.mutate(orderData, {
         onSuccess(data, variables, context) {
-          console.log(data);
           toast.dismiss(toastId);
           toast.success("Order successfully placed");
           // router.push(`/delivery/${deliveryCompany?.slug}/`);
