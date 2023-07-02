@@ -43,6 +43,8 @@ const ConfirmDeliveryRequest = () => {
     );
   };
 
+  let dateAndTime = delivery.dateAndTime.split("T");
+
   return (
     <DeliveryFormLayout>
       <div>
@@ -123,14 +125,31 @@ const ConfirmDeliveryRequest = () => {
         </div>
 
         <div className="space-y-2 mt-4 ml-7">
-          <div className="flex flex-wrap items-center gap-1">
-            <p className="w-28 md:w-36 inline-block font-bold">Time</p>
-            <p>{delivery.time}</p>
-          </div>
-          <div className="flex flex-wrap items-center gap-1">
-            <p className="w-28 md:w-36 inline-block font-bold">Date</p>
-            <p>{delivery.date}</p>
-          </div>
+          {dateAndTime.length > 1 ? (
+            <>
+              <div className="flex flex-wrap items-center gap-1">
+                <p className="w-28 md:w-36 inline-block font-bold">Date</p>
+                <p>
+                  {dateAndTime.length > 1
+                    ? `${new Date(delivery.dateAndTime).toDateString()} `
+                    : `${dateAndTime[0]}`}
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-1">
+                <p className="w-28 md:w-36 inline-block font-bold">Time</p>
+                <p>{new Date(delivery.dateAndTime).toLocaleTimeString()}</p>
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-wrap items-center gap-1">
+              <p className="w-28 md:w-36 inline-block font-bold">Time</p>
+              <p>{`${delivery.dateAndTime} ${
+                parseInt(delivery.dateAndTime.split(":")[0], 10) < 12
+                  ? "AM"
+                  : "PM"
+              }`}</p>
+            </div>
+          )}
         </div>
 
         <div className="flex flex-wrap items-center gap-1 mt-4">

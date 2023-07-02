@@ -1,3 +1,5 @@
+"use client";
+
 import { Delivery, IDeliveryCompany } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -24,8 +26,7 @@ const initialState: {
     fullName: "",
     phoneNumber: "",
     location: "",
-    time: "",
-    date: "",
+    dateAndTime: "",
     deliveryCharge: 0,
     deliveryCompany: "",
   },

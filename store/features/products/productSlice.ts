@@ -1,3 +1,5 @@
+"use client";
+
 import { Product, IProduct } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 

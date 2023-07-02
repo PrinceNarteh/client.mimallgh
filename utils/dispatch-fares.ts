@@ -210,7 +210,6 @@ export const towns = [
   { label: "Master Sam", value: "masterSam" },
   { label: "Mempeasem Barrier", value: "mempeasemBarrier" },
   { label: "Moree", value: "moree" },
-  { label: "Moree", value: "moree" },
   { label: "Ola", value: "ola" },
   { label: "Pedu", value: "pedu" },
   { label: "Petro (Regional Office)", value: "petro" },
