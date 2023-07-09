@@ -20,16 +20,16 @@ const Home = () => {
           </ul>
         </div>
       </nav>
-      <section className="pt-5 h-[calc(100vh_-_68px)] max-w-7xl mx-auto overflow-hidden">
+      <section className="p-5 min-h-[calc(100vh_-_68px)] max-w-7xl mx-auto overflow-hidden">
         <h2 className="text-center text-orange-500 text-3xl font-bold">
           WHAT WE DO
         </h2>
         <h3 className="text-navy-blue text-3xl text-center my-3">
           MiMall eEasy-coms
         </h3>
-        <div className="grid grid-cols-12 gap-5">
-          <div className="col-span-8">
-            <div className="text-justify bg-navy-blue text-white p-5 text-xl rounded">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          <div className="col-span-12 md:col-span-8">
+            <div className="text-justify bg-navy-blue text-white p-5 md:text-xl rounded">
               We connect you to All food and food stuff vendors on UCC campus
               and other Top food vendors from Cape Coast! You buy from them! We
               DELIVER right to your door-step!
@@ -39,40 +39,40 @@ const Home = () => {
               <img
                 src="/images/sec-one-img-one.jpg"
                 alt=""
-                className="rounded"
+                className="rounded object-cover"
               />
               <img
                 src="/images/sec-one-img-two.jpg"
                 alt=""
-                className="rounded"
+                className="rounded object-cover"
               />
               <img
                 src="/images/sec-one-img-three.jpeg"
                 alt=""
-                className="rounded"
+                className="hidden rounded object-cover md:block"
               />
               <img
                 src="/images/sec-one-img-four.jpg"
                 alt=""
-                className="rounded"
+                className="hidden rounded object-cover md:block"
               />
               <img
                 src="/images/sec-one-img-five.jpg"
                 alt=""
-                className="rounded"
+                className="hidden rounded object-cover lg:block"
               />
               <img
                 src="/images/sec-one-img-six.jpg"
                 alt=""
-                className="rounded"
+                className="hidden rounded object-cover lg:block"
               />
             </div>
           </div>
-          <div className="col-span-4 rounded-md overflow-hidden">
+          <div className="max-h-fit hidden bg-red-500 col-span-4 rounded-md overflow-hidden lg:block">
             <img
               src="/images/pexels-kindel-media-6868797.jpg"
               alt=""
-              className="w-full object-cover"
+              className="w-full h-full object-cover"
             />
           </div>
         </div>
