@@ -69,7 +69,7 @@ const Home = () => {
               />
             </div>
           </div>
-          <div className="max-h-fit hidden bg-red-500 col-span-4 rounded-md overflow-hidden lg:block">
+          <div className="max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
             <img
               src="/images/pexels-kindel-media-6868797.jpg"
               alt=""
@@ -87,7 +87,7 @@ const Home = () => {
               MiMall eEasy-coms
             </h3>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-              <div className="max-h-fit hidden bg-red-500 col-span-4 rounded-md overflow-hidden lg:block">
+              <div className="max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
                 <img
                   src="/images/section-two.jpeg"
                   alt=""
@@ -121,22 +121,79 @@ const Home = () => {
                     alt=""
                     className="hidden rounded object-cover md:block"
                   />
-                  {/* <img
-                  src="/images/sec-one-img-five.jpg"
-                  alt=""
-                  className="hidden rounded object-cover lg:block"
-                />
-                <img
-                  src="/images/sec-one-img-six.jpg"
-                  alt=""
-                  className="hidden rounded object-cover lg:block"
-                /> */}
+                  <img
+                    src="/images/sec-one-img-five.jpg"
+                    alt=""
+                    className="hidden rounded object-cover lg:block"
+                  />
+                  <img
+                    src="/images/sec-one-img-six.jpg"
+                    alt=""
+                    className="hidden rounded object-cover lg:block"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </section>
       </div>
+
+      {/* SECTION THREE */}
+      <section className="flex items-center p-5 min-h-screen max-w-7xl mx-auto overflow-hidden">
+        <div>
+          <h3 className="text-navy-blue text-3xl text-center mb-10">
+            MiMall eEasy-coms
+          </h3>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+            <div className="col-span-12 md:col-span-8">
+              <div className="text-justify bg-navy-blue text-white p-5 md:text-xl rounded">
+                b. We connect you to Top sellers in Fashion, Techs, Pharmacy,
+                etc. in and outside campus.
+              </div>
+
+              <div className="grid grid-auto-fit gap-3 mt-5">
+                <img
+                  src="/images/sec-three-img-one.jpg"
+                  alt=""
+                  className="rounded object-cover"
+                />
+                <img
+                  src="/images/sec-three-img-two.jpg"
+                  alt=""
+                  className="rounded object-cover"
+                />
+                <img
+                  src="/images/sec-three-img-three.jpg"
+                  alt=""
+                  className="hidden rounded object-cover md:block"
+                />
+                <img
+                  src="/images/sec-three-img-four.jpg"
+                  alt=""
+                  className="hidden rounded object-cover md:block"
+                />
+                <img
+                  src="/images/sec-three-img-five.jpg"
+                  alt=""
+                  className="hidden rounded object-cover lg:block"
+                />
+                <img
+                  src="/images/sec-three-img-six.jpg"
+                  alt=""
+                  className="hidden rounded object-cover lg:block"
+                />
+              </div>
+            </div>
+            <div className="max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
+              <img
+                src="/images/section-three.png"
+                alt=""
+                className="w-full h-full object-cover object-left"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
