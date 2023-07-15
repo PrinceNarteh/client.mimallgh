@@ -194,6 +194,83 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* SECTION FOUR */}
+      <div className="bg-gray-100">
+        <section className="flex items-center p-5 min-h-screen max-w-7xl mx-auto overflow-hidden">
+          <div>
+            <h3 className="text-navy-blue text-3xl text-center mb-10">
+              MiMall eEasy-coms
+            </h3>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+              <div className="col-span-12 md:col-span-8">
+                <div className="text-justify bg-navy-blue text-white p-5 md:text-xl rounded">
+                  b. We connect you to Top sellers in Fashion, Techs, Pharmacy,
+                  etc. in and outside campus.
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-auto-fit-md gap-3 mt-5">
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-four-img-one.jpg"
+                  alt=""
+                  className=" object-cover"
+                />
+              </div>
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-four-img-two.jpg"
+                  alt=""
+                  className=" object-cover"
+                />
+              </div>
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-four-img-three.jpg"
+                  alt=""
+                  className="hidden  object-cover md:block"
+                />
+              </div>
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-four-img-four.jpg"
+                  alt=""
+                  className="hidden  object-center object-cover md:block"
+                />
+              </div>
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-four-img-five.jpg"
+                  alt=""
+                  className="hidden  object-cover lg:block"
+                />
+              </div>
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-four-img-six.jpg"
+                  alt=""
+                  className="hidden  object-cover lg:block"
+                />
+              </div>
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-four-img-seven.jpg"
+                  alt=""
+                  className="hidden  object-cover lg:block"
+                />
+              </div>
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-four-img-eight.jpg"
+                  alt=""
+                  className="hidden  object-cover lg:block"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
   );
 };
