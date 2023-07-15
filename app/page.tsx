@@ -37,36 +37,48 @@ const Home = () => {
             </div>
 
             <div className="grid grid-auto-fit-md gap-3 mt-5">
-              <img
-                src="/images/sec-one-img-one.jpg"
-                alt=""
-                className="rounded object-cover"
-              />
-              <img
-                src="/images/sec-one-img-two.jpg"
-                alt=""
-                className="rounded object-cover"
-              />
-              <img
-                src="/images/sec-one-img-three.jpeg"
-                alt=""
-                className="hidden rounded object-cover md:block"
-              />
-              <img
-                src="/images/sec-one-img-four.jpg"
-                alt=""
-                className="hidden rounded object-cover md:block"
-              />
-              <img
-                src="/images/sec-one-img-five.jpg"
-                alt=""
-                className="hidden rounded object-cover lg:block"
-              />
-              <img
-                src="/images/sec-one-img-six.jpg"
-                alt=""
-                className="hidden rounded object-cover lg:block"
-              />
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-one-img-one.jpg"
+                  alt=""
+                  className="rounded object-cover"
+                />
+              </div>
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-one-img-three.jpeg"
+                  alt=""
+                  className="rounded object-cover"
+                />
+              </div>
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-one-img-two.jpg"
+                  alt=""
+                  className="hidden rounded object-cover md:block"
+                />
+              </div>
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-one-img-four.jpg"
+                  alt=""
+                  className="hidden rounded object-cover md:block"
+                />
+              </div>
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-one-img-five.jpg"
+                  alt=""
+                  className="hidden rounded object-cover lg:block"
+                />
+              </div>
+              <div className="h-52 rounded overflow-hidden">
+                <img
+                  src="/images/sec-one-img-six.jpg"
+                  alt=""
+                  className="hidden rounded object-cover lg:block"
+                />
+              </div>
             </div>
           </div>
           <div className="max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
@@ -225,42 +237,42 @@ const Home = () => {
                   className=" object-cover"
                 />
               </div>
-              <div className="h-52 rounded overflow-hidden">
+              <div className="h-52 rounded hidden md:block overflow-hidden">
                 <img
                   src="/images/sec-four-img-three.jpg"
                   alt=""
-                  className="hidden  object-cover md:block"
+                  className="object-cover"
                 />
               </div>
-              <div className="h-52 rounded overflow-hidden">
+              <div className="h-52 rounded hidden md:block overflow-hidden">
                 <img
                   src="/images/sec-four-img-four.jpg"
                   alt=""
                   className="hidden  object-center object-cover md:block"
                 />
               </div>
-              <div className="h-52 rounded overflow-hidden">
+              <div className="h-52 rounded hidden md:block overflow-hidden">
                 <img
                   src="/images/sec-four-img-five.jpg"
                   alt=""
                   className="hidden  object-cover lg:block"
                 />
               </div>
-              <div className="h-52 rounded overflow-hidden">
+              <div className="h-52 rounded hidden md:block overflow-hidden">
                 <img
                   src="/images/sec-four-img-six.jpg"
                   alt=""
                   className="hidden  object-cover lg:block"
                 />
               </div>
-              <div className="h-52 rounded overflow-hidden">
+              <div className="h-52 rounded hidden lg:block overflow-hidden">
                 <img
                   src="/images/sec-four-img-seven.jpg"
                   alt=""
                   className="hidden  object-cover lg:block"
                 />
               </div>
-              <div className="h-52 rounded overflow-hidden">
+              <div className="h-52 rounded hidden lg:block overflow-hidden">
                 <img
                   src="/images/sec-four-img-eight.jpg"
                   alt=""
@@ -271,6 +283,38 @@ const Home = () => {
           </div>
         </section>
       </div>
+
+      {/* SECTION FIVE */}
+      <section className="flex items-center py-10 px-5 max-w-7xl mx-auto overflow-hidden">
+        <div>
+          <h3 className="text-navy-blue text-3xl text-center mb-10">
+            MiMall eEasy-coms
+          </h3>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+            <div className="max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
+              <img
+                src="/images/section-five.png"
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="col-span-12 md:col-span-8">
+              <div className="text-justify bg-navy-blue text-white p-5 md:text-xl rounded">
+                b. We connect you to Top sellers in Fashion, Techs, Pharmacy,
+                etc. in and outside campus.
+              </div>
+
+              <div className="mt-5 h-96 overflow-hidden">
+                <img
+                  src="/images/sec-five-img-one.jpg"
+                  alt=""
+                  className="object-center"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
