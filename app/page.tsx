@@ -354,6 +354,22 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* SECTION SEVEN */}
+      <section className="bg-gray-100 py-10">
+        <h3 className="text-orange-500 font-bold text-center text-3xl underline">
+          PARTNERSHIP
+        </h3>
+        <div className="flex justify-center gap-5 mt-10">
+          <div className="w-40 h-40 bg-white border shadow-md">
+            <img src="/images/ucc-src-logo.png" alt="" />
+          </div>
+          <div className="w-40 h-40 bg-white border shadow-md"></div>
+          <div className="w-40 h-40  bg-white border shadow-md flex justify-center items-center">
+            <h3 className="font-bold text-3xl">DC4C</h3>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
