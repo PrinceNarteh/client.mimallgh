@@ -315,6 +315,45 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* SECTION SIX */}
+      <section className="bg-navy-blue py-10 space-y-5">
+        <h3 className="text-orange-500 font-bold text-center text-3xl">
+          TESTIMONIES
+        </h3>
+        <div className="flex justify-center gap-10">
+          <div>
+            <div className="w-60 h-60">
+              <img src="/images/testimonies-one.jpg" alt="" />
+            </div>
+            <div className="text-center text-white">
+              <h3 className="font-bold">Ama Boateng</h3>
+              <p>Level 300 B.ed Accounting</p>
+              <p className="italic">"MiMall is good"</p>
+            </div>
+          </div>
+          <div>
+            <div className="w-60 h-60">
+              <img src="/images/testimonies-two.jpg" alt="" />
+            </div>
+            <div className="text-center text-white">
+              <h3 className="font-bold">Kate Ackan</h3>
+              <p>B.com Finance</p>
+              <p className="italic">"MiHostels Hub..."</p>
+            </div>
+          </div>
+          <div>
+            <div className="w-60 h-60">
+              <img src="/images/testimonies-three.jpg" alt="" />
+            </div>
+            <div className="text-center text-white">
+              <h3 className="font-bold">Mabel Boatemaa</h3>
+              <p>Level 400 B.ed Accounting</p>
+              <p className="italic">"MiMall Kreating is creative"</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
