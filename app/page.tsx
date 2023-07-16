@@ -7,12 +7,7 @@ const Home = () => {
       <nav className="bg-navy-blue py-5">
         <div className="flex justify-between items-center px-10">
           <div className="h-5 relative">
-            <Image
-              fill
-              src="/images/name-logo.png"
-              alt="logo"
-              className="h-5"
-            />
+            <img src="/images/name-logo.png" alt="logo" className="h-5" />
           </div>
           <ul className="flex gap-5 text-white text-lg">
             <li>
@@ -33,15 +28,16 @@ const Home = () => {
         <h2 className="text-center text-orange-500 text-3xl font-bold">
           WHAT WE DO
         </h2>
-        <h3 className="text-navy-blue text-3xl text-center my-3">
-          MiMall eEasy-coms
+        <h3 className="text-navy-blue flex items-center justify-center gap-2 text-3xl text-center my-3">
+          <Number>1</Number> MiMall eEasy-coms
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
           <div className="col-span-12 md:col-span-8">
             <div className="text-justify bg-navy-blue text-white p-5 md:text-xl rounded">
-              We connect you to All food and food stuff vendors on UCC campus
-              and other Top food vendors from Cape Coast! You buy from them! We
-              DELIVER right to your door-step!
+              <span className="text-orange-500">a.</span> We connect you to All
+              food and food stuff vendors on UCC campus and other Top food
+              vendors from Cape Coast! You buy from them! We DELIVER right to
+              your door-step!
             </div>
 
             <div className="grid grid-auto-fit-md gap-3 mt-5">
@@ -110,9 +106,6 @@ const Home = () => {
       <div className="bg-gray-100">
         <section className="flex items-center p-5 min-h-screen max-w-7xl mx-auto overflow-hidden">
           <div>
-            <h3 className="text-navy-blue text-3xl text-center mb-10">
-              MiMall eEasy-coms
-            </h3>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
               <div className="relative max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
                 <Image
@@ -124,8 +117,9 @@ const Home = () => {
               </div>
               <div className="col-span-12 md:col-span-8">
                 <div className="text-justify bg-navy-blue text-white p-5 md:text-xl rounded">
-                  b. We connect you to Top sellers in Fashion, Techs, Pharmacy,
-                  etc. in and outside campus.
+                  <span className="text-orange-500">b.</span> We connect you to
+                  Top sellers in Fashion, Techs, Pharmacy, etc. in and outside
+                  campus.
                 </div>
 
                 <div className="grid grid-auto-fit gap-3 mt-5">
@@ -185,16 +179,20 @@ const Home = () => {
       </div>
 
       {/* SECTION THREE */}
-      <section className="flex items-center p-5 min-h-screen max-w-7xl mx-auto overflow-hidden">
+      <section className="flex items-center px-5 py-10 min-h-screen max-w-7xl mx-auto overflow-hidden">
         <div>
-          <h3 className="text-navy-blue text-3xl text-center mb-10">
-            MiMall eEasy-coms
+          <h3 className="text-navy-blue flex items-center justify-center gap-2 text-3xl text-center my-3">
+            <Number>2</Number> MiHostels Hub
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
             <div className="col-span-12 md:col-span-8">
               <div className="text-justify bg-navy-blue text-white p-5 md:text-xl rounded">
-                b. We connect you to Top sellers in Fashion, Techs, Pharmacy,
-                etc. in and outside campus.
+                In partnership with the SRC-UCC, we give students opportunity to
+                create contents (Pictures & Videos) about their hostels & rooms
+                vacancy post on our telegram platform to help their colleagues
+                hunting for hostels and in return paid per the number of views.
+                This is collective efforts in solving Hostel accessability
+                problems.
               </div>
 
               <div className="grid grid-auto-fit gap-3 mt-5">
@@ -264,14 +262,15 @@ const Home = () => {
       <div className="bg-gray-100">
         <section className="flex items-center p-5 min-h-screen max-w-7xl mx-auto overflow-hidden">
           <div>
-            <h3 className="text-navy-blue text-3xl text-center mb-10">
-              MiMall eEasy-coms
+            <h3 className="text-navy-blue flex items-center justify-center gap-2 text-3xl text-center mb-5">
+              <Number>3</Number> MiMall Kreation
             </h3>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
               <div className="col-span-12 md:col-span-8">
                 <div className="text-justify bg-navy-blue text-white p-5 md:text-xl rounded">
-                  b. We connect you to Top sellers in Fashion, Techs, Pharmacy,
-                  etc. in and outside campus.
+                  <span className="text-orange-500">a.</span> We give your
+                  business competitive advantage with our amazing graphic
+                  designs, artworks, branding and bulk SMS services.
                 </div>
               </div>
             </div>
@@ -348,9 +347,6 @@ const Home = () => {
       {/* SECTION FIVE */}
       <section className="flex items-center py-10 px-5 max-w-7xl mx-auto overflow-hidden">
         <div>
-          <h3 className="text-navy-blue text-3xl text-center mb-10">
-            MiMall eEasy-coms
-          </h3>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
             <div className="relative max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
               <Image
@@ -362,8 +358,9 @@ const Home = () => {
             </div>
             <div className="col-span-12 md:col-span-8">
               <div className="text-justify bg-navy-blue text-white p-5 md:text-xl rounded">
-                b. We connect you to Top sellers in Fashion, Techs, Pharmacy,
-                etc. in and outside campus.
+                <span className="text-orange-500">b.</span> We serve you with
+                the most juicy menus, funny videos and the most powerful
+                motivational contents.
               </div>
 
               <div className="relative mt-5 h-96 overflow-hidden">
@@ -502,5 +499,13 @@ const Home = () => {
     </main>
   );
 };
+
+function Number({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="bg-navy-blue inline-block text-lg w-8 font-bold p-0.5 text-white rounded-full">
+      {children}{" "}
+    </span>
+  );
+}
 
 export default Home;
