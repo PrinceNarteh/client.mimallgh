@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const Home = () => {
@@ -5,7 +6,14 @@ const Home = () => {
     <main className="">
       <nav className="bg-navy-blue py-5">
         <div className="flex justify-between items-center px-10">
-          <img src="/images/name-logo.png" alt="logo" className="h-5" />
+          <div className="h-5 relative">
+            <Image
+              fill
+              src="/images/name-logo.png"
+              alt="logo"
+              className="h-5"
+            />
+          </div>
           <ul className="flex gap-5 text-white text-lg">
             <li>
               <Link href="/">Home</Link>
@@ -37,55 +45,62 @@ const Home = () => {
             </div>
 
             <div className="grid grid-auto-fit-md gap-3 mt-5">
-              <div className="h-52 rounded overflow-hidden">
-                <img
+              <div className="relative h-52 rounded overflow-hidden">
+                <Image
                   src="/images/sec-one-img-one.jpg"
                   alt=""
+                  fill
                   className="rounded object-cover"
                 />
               </div>
-              <div className="h-52 rounded overflow-hidden">
-                <img
+              <div className="relative h-52 rounded overflow-hidden">
+                <Image
+                  fill
                   src="/images/sec-one-img-three.jpeg"
                   alt=""
                   className="rounded object-cover"
                 />
               </div>
-              <div className="h-52 rounded overflow-hidden">
-                <img
+              <div className="relative hidden h-52 rounded overflow-hidden md:block">
+                <Image
+                  fill
                   src="/images/sec-one-img-two.jpg"
                   alt=""
-                  className="hidden rounded object-cover md:block"
+                  className="rounded object-cover"
                 />
               </div>
-              <div className="h-52 rounded overflow-hidden">
-                <img
+              <div className="relative h-52 rounded overflow-hidden hidden md:block">
+                <Image
+                  fill
                   src="/images/sec-one-img-four.jpg"
                   alt=""
-                  className="hidden rounded object-cover md:block"
+                  className="rounded object-cover"
                 />
               </div>
-              <div className="h-52 rounded overflow-hidden">
-                <img
+              <div className="relative h-52 rounded overflow-hidden hidden md:block">
+                <Image
+                  fill
                   src="/images/sec-one-img-five.jpg"
                   alt=""
-                  className="hidden rounded object-cover lg:block"
+                  className="rounded object-cover"
                 />
               </div>
-              <div className="h-52 rounded overflow-hidden">
-                <img
+              <div className="relative h-52 rounded overflow-hidden hidden md:block">
+                <Image
+                  fill
                   src="/images/sec-one-img-six.jpg"
                   alt=""
-                  className="hidden rounded object-cover lg:block"
+                  className="rounded object-cover"
                 />
               </div>
             </div>
           </div>
-          <div className="max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
-            <img
+          <div className="relative max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
+            <Image
+              fill
               src="/images/pexels-kindel-media-6868797.jpg"
               alt=""
-              className="w-full h-full object-cover"
+              className="object-cover"
             />
           </div>
         </div>
@@ -99,8 +114,9 @@ const Home = () => {
               MiMall eEasy-coms
             </h3>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-              <div className="max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
-                <img
+              <div className="relative max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
+                <Image
+                  fill
                   src="/images/section-two.jpeg"
                   alt=""
                   className="w-full h-full object-cover"
@@ -113,36 +129,54 @@ const Home = () => {
                 </div>
 
                 <div className="grid grid-auto-fit gap-3 mt-5">
-                  <img
-                    src="/images/sec-one-img-one.jpg"
-                    alt=""
-                    className="rounded object-cover"
-                  />
-                  <img
-                    src="/images/sec-one-img-two.jpg"
-                    alt=""
-                    className="rounded object-cover"
-                  />
-                  <img
-                    src="/images/sec-one-img-three.jpeg"
-                    alt=""
-                    className="hidden rounded object-cover md:block"
-                  />
-                  <img
-                    src="/images/sec-one-img-four.jpg"
-                    alt=""
-                    className="hidden rounded object-cover md:block"
-                  />
-                  <img
-                    src="/images/sec-one-img-five.jpg"
-                    alt=""
-                    className="hidden rounded object-cover lg:block"
-                  />
-                  <img
-                    src="/images/sec-one-img-six.jpg"
-                    alt=""
-                    className="hidden rounded object-cover lg:block"
-                  />
+                  <div className="relative h-52">
+                    <Image
+                      fill
+                      src="/images/sec-two-img-one.jpg"
+                      alt=""
+                      className="rounded object-cover"
+                    />
+                  </div>
+                  <div className="relative h-52">
+                    <Image
+                      fill
+                      src="/images/sec-two-img-two.jpg"
+                      alt=""
+                      className="rounded object-cover"
+                    />
+                  </div>
+                  <div className="relative h-52 hidden md:block">
+                    <Image
+                      fill
+                      src="/images/sec-two-img-three.png"
+                      alt=""
+                      className="rounded object-cover"
+                    />
+                  </div>
+                  <div className="relative h-52 hidden md:block">
+                    <Image
+                      fill
+                      src="/images/sec-one-img-four.jpg"
+                      alt=""
+                      className="rounded object-cover"
+                    />
+                  </div>
+                  <div className="relative h-52 hidden lg:block">
+                    <Image
+                      fill
+                      src="/images/sec-one-img-five.jpg"
+                      alt=""
+                      className="rounded object-cover"
+                    />
+                  </div>
+                  <div className="relative h-52 hidden lg:block">
+                    <Image
+                      fill
+                      src="/images/sec-one-img-six.jpg"
+                      alt=""
+                      className="rounded object-cover"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -164,40 +198,59 @@ const Home = () => {
               </div>
 
               <div className="grid grid-auto-fit gap-3 mt-5">
-                <img
-                  src="/images/sec-three-img-one.jpg"
-                  alt=""
-                  className="rounded object-cover"
-                />
-                <img
-                  src="/images/sec-three-img-two.jpg"
-                  alt=""
-                  className="rounded object-cover"
-                />
-                <img
-                  src="/images/sec-three-img-three.jpg"
-                  alt=""
-                  className="hidden rounded object-cover md:block"
-                />
-                <img
-                  src="/images/sec-three-img-four.jpg"
-                  alt=""
-                  className="hidden rounded object-cover md:block"
-                />
-                <img
-                  src="/images/sec-three-img-five.jpg"
-                  alt=""
-                  className="hidden rounded object-cover lg:block"
-                />
-                <img
-                  src="/images/sec-three-img-six.jpg"
-                  alt=""
-                  className="hidden rounded object-cover lg:block"
-                />
+                <div className="relative h-52">
+                  <Image
+                    fill
+                    src="/images/sec-three-img-one.jpg"
+                    alt=""
+                    className="rounded object-cover"
+                  />
+                </div>
+                <div className="relative h-52">
+                  <Image
+                    fill
+                    src="/images/sec-three-img-two.jpg"
+                    alt=""
+                    className="rounded object-cover"
+                  />
+                </div>
+                <div className="relative h-52 hidden md:block">
+                  <Image
+                    fill
+                    src="/images/sec-three-img-three.jpg"
+                    alt=""
+                    className="rounded object-cover"
+                  />
+                </div>
+                <div className="relative h-52 hidden md:block">
+                  <Image
+                    fill
+                    src="/images/sec-three-img-four.jpg"
+                    alt=""
+                    className="rounded object-cover"
+                  />
+                </div>
+                <div className="relative h-52 hidden lg:block">
+                  <Image
+                    fill
+                    src="/images/sec-three-img-five.jpg"
+                    alt=""
+                    className="rounded object-cover"
+                  />
+                </div>
+                <div className="relative h-52 hidden md:block">
+                  <Image
+                    fill
+                    src="/images/sec-three-img-six.jpg"
+                    alt=""
+                    className="rounded object-cover"
+                  />
+                </div>
               </div>
             </div>
-            <div className="max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
-              <img
+            <div className="relative max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
+              <Image
+                fill
                 src="/images/section-three.png"
                 alt=""
                 className="w-full h-full object-cover object-left"
@@ -223,57 +276,65 @@ const Home = () => {
               </div>
             </div>
             <div className="grid grid-auto-fit-md gap-3 mt-5">
-              <div className="h-52 rounded overflow-hidden">
-                <img
+              <div className="relative h-52 rounded overflow-hidden">
+                <Image
+                  fill
                   src="/images/sec-four-img-one.jpg"
                   alt=""
                   className=" object-cover"
                 />
               </div>
-              <div className="h-52 rounded overflow-hidden">
-                <img
+              <div className="relative h-52 rounded overflow-hidden">
+                <Image
+                  fill
                   src="/images/sec-four-img-two.jpg"
                   alt=""
                   className=" object-cover"
                 />
               </div>
-              <div className="h-52 rounded hidden md:block overflow-hidden">
-                <img
+              <div className="relative h-52 rounded hidden md:block overflow-hidden">
+                <Image
+                  fill
                   src="/images/sec-four-img-three.jpg"
                   alt=""
                   className="object-cover"
                 />
               </div>
-              <div className="h-52 rounded hidden md:block overflow-hidden">
-                <img
+              <div className="relative h-52 rounded hidden md:block overflow-hidden">
+                <Image
+                  fill
                   src="/images/sec-four-img-four.jpg"
                   alt=""
                   className="hidden  object-center object-cover md:block"
                 />
               </div>
-              <div className="h-52 rounded hidden md:block overflow-hidden">
-                <img
+              <div className="relative h-52 rounded hidden md:block overflow-hidden">
+                <Image
+                  fill
                   src="/images/sec-four-img-five.jpg"
                   alt=""
                   className="hidden  object-cover lg:block"
                 />
               </div>
-              <div className="h-52 rounded hidden md:block overflow-hidden">
-                <img
+              <div className="relative h-52 rounded hidden md:block overflow-hidden">
+                <Image
+                  fill
                   src="/images/sec-four-img-six.jpg"
                   alt=""
                   className="hidden  object-cover lg:block"
                 />
               </div>
-              <div className="h-52 rounded hidden lg:block overflow-hidden">
-                <img
+              <div className="relative h-52 rounded hidden lg:block overflow-hidden">
+                <Image
+                  fill
                   src="/images/sec-four-img-seven.jpg"
                   alt=""
                   className="hidden  object-cover lg:block"
                 />
               </div>
-              <div className="h-52 rounded hidden lg:block overflow-hidden">
-                <img
+              <div className="relative h-52 rounded hidden lg:block overflow-hidden">
+                <Image
+                  fill
                   src="/images/sec-four-img-eight.jpg"
                   alt=""
                   className="hidden  object-cover lg:block"
@@ -291,8 +352,9 @@ const Home = () => {
             MiMall eEasy-coms
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-            <div className="max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
-              <img
+            <div className="relative max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
+              <Image
+                fill
                 src="/images/section-five.png"
                 alt=""
                 className="w-full h-full object-cover"
@@ -304,11 +366,12 @@ const Home = () => {
                 etc. in and outside campus.
               </div>
 
-              <div className="mt-5 h-96 overflow-hidden">
-                <img
+              <div className="relative mt-5 h-96 overflow-hidden">
+                <Image
+                  fill
                   src="/images/sec-five-img-one.jpg"
                   alt=""
-                  className="object-center"
+                  className="object-cover object-top"
                 />
               </div>
             </div>
@@ -323,8 +386,8 @@ const Home = () => {
         </h3>
         <div className="flex justify-center gap-10">
           <div>
-            <div className="w-60 h-60">
-              <img src="/images/testimonies-one.jpg" alt="" />
+            <div className="relative w-60 h-60">
+              <Image fill src="/images/testimonies-one.jpg" alt="" />
             </div>
             <div className="text-center text-white">
               <h3 className="font-bold">Ama Boateng</h3>
@@ -333,8 +396,8 @@ const Home = () => {
             </div>
           </div>
           <div>
-            <div className="w-60 h-60">
-              <img src="/images/testimonies-two.jpg" alt="" />
+            <div className="relative w-60 h-60">
+              <Image fill src="/images/testimonies-two.jpg" alt="" />
             </div>
             <div className="text-center text-white">
               <h3 className="font-bold">Kate Ackan</h3>
@@ -343,8 +406,8 @@ const Home = () => {
             </div>
           </div>
           <div>
-            <div className="w-60 h-60">
-              <img src="/images/testimonies-three.jpg" alt="" />
+            <div className="relative w-60 h-60">
+              <Image fill src="/images/testimonies-three.jpg" alt="" />
             </div>
             <div className="text-center text-white">
               <h3 className="font-bold">Mabel Boatemaa</h3>
@@ -361,15 +424,81 @@ const Home = () => {
           PARTNERSHIP
         </h3>
         <div className="flex justify-center gap-5 mt-10">
-          <div className="w-40 h-40 bg-white border shadow-md">
-            <img src="/images/ucc-src-logo.png" alt="" />
+          <div className="relative w-40 h-40 bg-white border shadow-md">
+            <Image fill src="/images/ucc-src-logo.png" alt="" />
           </div>
-          <div className="w-40 h-40 bg-white border shadow-md"></div>
-          <div className="w-40 h-40  bg-white border shadow-md flex justify-center items-center">
+          <div className="relative w-40 h-40 bg-white border shadow-md"></div>
+          <div className="relative w-40 h-40  bg-white border shadow-md flex justify-center items-center">
             <h3 className="font-bold text-3xl">DC4C</h3>
           </div>
         </div>
       </section>
+
+      {/* SECTION NINE */}
+      <section className="bg-navy-blue py-10">
+        <div className="">
+          <h3 className="text-white font-bold text-center text-3xl underline">
+            Let's get started...
+          </h3>
+          <div className="flex justify-center gap-x-5 gap-y-10 flex-wrap mt-10">
+            <div className="w-60 h-96 flex flex-col gap-3">
+              <h3 className="relative text-orange-500 text-xl text-center font-bold">
+                MiMall eEasy coms
+              </h3>
+              <div className="relative flex-1">
+                <Image
+                  fill
+                  src="/images/pexels-kindel-media-6868797.jpg"
+                  alt=""
+                  className="flex-1 object-cover object-top"
+                />
+              </div>
+              <button className="font-bold text-xl bg-lime-500 text-white py-2">
+                Buy Now
+              </button>
+            </div>
+
+            <div className="w-60 h-96 flex flex-col gap-3">
+              <h3 className="relative text-orange-500 text-xl text-center font-bold">
+                MiHostel Hub
+              </h3>
+              <div className="relative flex-1 flex flex-col">
+                <Image
+                  fill
+                  src="/images/sec-three-img-three.jpg"
+                  alt=""
+                  className="flex-1 object-cover object-top"
+                />
+              </div>
+              <button className="font-bold text-xl bg-lime-500 text-white py-2">
+                Visit Now
+              </button>
+            </div>
+
+            <div className="w-60 h-96 flex flex-col gap-3">
+              <h3 className="relative text-orange-500 text-xl text-center font-bold">
+                MiMall Kreation
+              </h3>
+              <div className="relative flex-1 bg-white">
+                <Image
+                  fill
+                  src="/images/kreation.png"
+                  alt=""
+                  className="flex-1 object-cover"
+                />
+              </div>
+              <button className="font-bold text-xl bg-lime-500 text-white py-2">
+                Visit Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* footer */}
+      <div className="bg-[#12455e] text-center py-3 text-white">
+        Powered by MiMall@2023
+      </div>
     </main>
   );
 };
