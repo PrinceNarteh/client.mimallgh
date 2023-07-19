@@ -11,6 +11,7 @@ module.exports = {
         "dark-gray": "#282e38",
         "light-gray": "#313844",
         "off-white": "#adb5bd",
+        "navy-blue": "#165474",
       },
       animation: {
         loader: "loader 0.6s infinite alternate",

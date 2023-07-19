@@ -77,7 +77,7 @@ const ConfirmDeliveryRequest = () => {
           </div>
           <div className="flex flex-wrap items-center gap-1">
             <p className="w-36 inline-block font-bold">Delivery Fee</p>
-            <p>GHC33.50</p>
+            <p>{delivery.deliveryCharge}</p>
           </div>
         </div>
       </div>
@@ -131,7 +131,7 @@ const ConfirmDeliveryRequest = () => {
                 <p className="w-28 md:w-36 inline-block font-bold">Date</p>
                 <p>
                   {dateAndTime.length > 1
-                    ? `${new Date(delivery.dateAndTime).toDateString()} `
+                    ? `${new Date(delivery.dateAndTime).toDateString()}`
                     : `${dateAndTime[0]}`}
                 </p>
               </div>
