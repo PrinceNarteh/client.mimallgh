@@ -5,11 +5,11 @@ const Home = () => {
   return (
     <main className="">
       <nav className="bg-navy-blue py-5">
-        <div className="flex justify-between items-center px-10">
+        <div className="flex justify-between items-center px-5 md:px-10">
           <div className="h-5 relative">
             <img src="/images/name-logo.png" alt="logo" className="h-5" />
           </div>
-          <ul className="flex gap-5 text-white text-lg">
+          <ul className="flex gap-3 md:gap-5 text-white text-sm md:text-lg">
             <li>
               <Link href="/">Home</Link>
             </li>
@@ -24,7 +24,7 @@ const Home = () => {
         </div>
       </nav>
       {/* SECTION ONE */}
-      <section className="p-5 min-h-[calc(100vh_-_68px)] max-w-7xl mx-auto overflow-hidden">
+      <section className="p-5 lg:min-h-[calc(100vh_-_68px)] max-w-7xl mx-auto overflow-hidden">
         <h2 className="text-center text-orange-500 text-3xl font-bold">
           WHAT WE DO
         </h2>
@@ -104,7 +104,7 @@ const Home = () => {
 
       {/* SECTION TWO */}
       <div className="bg-gray-100">
-        <section className="flex items-center p-5 min-h-screen max-w-7xl mx-auto overflow-hidden">
+        <section className="flex items-center px-5 py-20 lg:min-h-screen max-w-7xl mx-auto overflow-hidden">
           <div>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
               <div className="relative max-h-fit hidden col-span-4 rounded-md overflow-hidden lg:block">
@@ -155,7 +155,7 @@ const Home = () => {
                       className="rounded object-cover"
                     />
                   </div>
-                  <div className="relative h-52 hidden lg:block">
+                  <div className="relative h-52 hidden md:block">
                     <Image
                       fill
                       src="/images/sec-one-img-five.jpg"
@@ -163,7 +163,7 @@ const Home = () => {
                       className="rounded object-cover"
                     />
                   </div>
-                  <div className="relative h-52 hidden lg:block">
+                  <div className="relative h-52 hidden md:block">
                     <Image
                       fill
                       src="/images/sec-one-img-six.jpg"
@@ -179,7 +179,7 @@ const Home = () => {
       </div>
 
       {/* SECTION THREE */}
-      <section className="flex items-center px-5 py-10 min-h-screen max-w-7xl mx-auto overflow-hidden">
+      <section className="flex items-center px-5 py-20 lg:min-h-screen max-w-7xl mx-auto overflow-hidden">
         <div>
           <h3 className="text-navy-blue flex items-center justify-center gap-2 text-3xl text-center my-3">
             <Number>2</Number> MiHostels Hub
@@ -228,7 +228,7 @@ const Home = () => {
                     className="rounded object-cover"
                   />
                 </div>
-                <div className="relative h-52 hidden lg:block">
+                <div className="relative h-52 hidden md:block">
                   <Image
                     fill
                     src="/images/sec-three-img-five.jpg"
@@ -260,7 +260,7 @@ const Home = () => {
 
       {/* SECTION FOUR */}
       <div className="bg-gray-100">
-        <section className="flex items-center p-5 min-h-screen max-w-7xl mx-auto overflow-hidden">
+        <section className="flex items-center px-5 py-20 lg:min-h-screen max-w-7xl mx-auto overflow-hidden">
           <div>
             <h3 className="text-navy-blue flex items-center justify-center gap-2 text-3xl text-center mb-5">
               <Number>3</Number> MiMall Kreation
@@ -304,7 +304,7 @@ const Home = () => {
                   fill
                   src="/images/sec-four-img-four.jpg"
                   alt=""
-                  className="hidden  object-center object-cover md:block"
+                  className="object-center object-cover"
                 />
               </div>
               <div className="relative h-52 rounded hidden md:block overflow-hidden">
@@ -312,7 +312,7 @@ const Home = () => {
                   fill
                   src="/images/sec-four-img-five.jpg"
                   alt=""
-                  className="hidden  object-cover lg:block"
+                  className="object-cover"
                 />
               </div>
               <div className="relative h-52 rounded hidden md:block overflow-hidden">
@@ -320,7 +320,7 @@ const Home = () => {
                   fill
                   src="/images/sec-four-img-six.jpg"
                   alt=""
-                  className="hidden  object-cover lg:block"
+                  className="object-cover"
                 />
               </div>
               <div className="relative h-52 rounded hidden lg:block overflow-hidden">
@@ -328,7 +328,7 @@ const Home = () => {
                   fill
                   src="/images/sec-four-img-seven.jpg"
                   alt=""
-                  className="hidden  object-cover lg:block"
+                  className="object-cover"
                 />
               </div>
               <div className="relative h-52 rounded hidden lg:block overflow-hidden">
@@ -336,7 +336,7 @@ const Home = () => {
                   fill
                   src="/images/sec-four-img-eight.jpg"
                   alt=""
-                  className="hidden  object-cover lg:block"
+                  className="object-cover"
                 />
               </div>
             </div>
@@ -381,35 +381,37 @@ const Home = () => {
         <h3 className="text-orange-500 font-bold text-center text-3xl">
           TESTIMONIES
         </h3>
-        <div className="flex justify-center gap-10">
-          <div>
-            <div className="relative w-60 h-60">
-              <Image fill src="/images/testimonies-one.jpg" alt="" />
+        <div className="w-full overflow-x-auto px-5">
+          <div className="flex justify-start lg:justify-center gap-10">
+            <div>
+              <div className="relative w-60 h-60">
+                <Image fill src="/images/testimonies-one.jpg" alt="" />
+              </div>
+              <div className="text-center text-white">
+                <h3 className="font-bold">Ama Boateng</h3>
+                <p>Level 300 B.ed Accounting</p>
+                <p className="italic">"MiMall is good"</p>
+              </div>
             </div>
-            <div className="text-center text-white">
-              <h3 className="font-bold">Ama Boateng</h3>
-              <p>Level 300 B.ed Accounting</p>
-              <p className="italic">"MiMall is good"</p>
+            <div>
+              <div className="relative w-60 h-60">
+                <Image fill src="/images/testimonies-two.jpg" alt="" />
+              </div>
+              <div className="text-center text-white">
+                <h3 className="font-bold">Kate Ackan</h3>
+                <p>B.com Finance</p>
+                <p className="italic">"MiHostels Hub..."</p>
+              </div>
             </div>
-          </div>
-          <div>
-            <div className="relative w-60 h-60">
-              <Image fill src="/images/testimonies-two.jpg" alt="" />
-            </div>
-            <div className="text-center text-white">
-              <h3 className="font-bold">Kate Ackan</h3>
-              <p>B.com Finance</p>
-              <p className="italic">"MiHostels Hub..."</p>
-            </div>
-          </div>
-          <div>
-            <div className="relative w-60 h-60">
-              <Image fill src="/images/testimonies-three.jpg" alt="" />
-            </div>
-            <div className="text-center text-white">
-              <h3 className="font-bold">Mabel Boatemaa</h3>
-              <p>Level 400 B.ed Accounting</p>
-              <p className="italic">"MiMall Kreating is creative"</p>
+            <div>
+              <div className="relative w-60 h-60">
+                <Image fill src="/images/testimonies-three.jpg" alt="" />
+              </div>
+              <div className="text-center text-white">
+                <h3 className="font-bold">Mabel Boatemaa</h3>
+                <p>Level 400 B.ed Accounting</p>
+                <p className="italic">"MiMall Kreating is creative"</p>
+              </div>
             </div>
           </div>
         </div>
@@ -420,13 +422,17 @@ const Home = () => {
         <h3 className="text-orange-500 font-bold text-center text-3xl underline">
           PARTNERSHIP
         </h3>
-        <div className="flex justify-center gap-5 mt-10">
-          <div className="relative w-40 h-40 bg-white border shadow-md">
-            <Image fill src="/images/ucc-src-logo.png" alt="" />
-          </div>
-          <div className="relative w-40 h-40 bg-white border shadow-md"></div>
-          <div className="relative w-40 h-40  bg-white border shadow-md flex justify-center items-center">
-            <h3 className="font-bold text-3xl">DC4C</h3>
+        <div className="w-full overflow-x-auto">
+          <div className="flex justify-start md:justify-center gap-5 mt-10 px-5">
+            <div className="relative basis-40 h-40 shrink-0 bg-white border shadow-md">
+              <Image fill src="/images/ucc-src-logo.png" alt="" />
+            </div>
+            <div className="relative basis-40 h-40 shrink-0 bg-white border shadow-md">
+              <Image fill src="/images/winike-dispatch.jpeg" alt="" />
+            </div>
+            <div className="relative basis-40 h-40 shrink-0  bg-white border shadow-md flex justify-center items-center">
+              <h3 className="font-bold text-3xl">DC4C</h3>
+            </div>
           </div>
         </div>
       </section>
@@ -437,8 +443,8 @@ const Home = () => {
           <h3 className="text-white font-bold text-center text-3xl underline">
             Let's get started...
           </h3>
-          <div className="flex justify-center gap-x-5 gap-y-10 flex-wrap mt-10">
-            <div className="w-60 h-96 flex flex-col gap-3">
+          <div className="flex justify-center gap-x-5 gap-y-10 flex-wrap mt-10 px-5">
+            <div className="w-[225px] h-96 flex flex-col gap-3">
               <h3 className="relative text-orange-500 text-xl text-center font-bold">
                 MiMall eEasy coms
               </h3>
@@ -455,7 +461,7 @@ const Home = () => {
               </button>
             </div>
 
-            <div className="w-60 h-96 flex flex-col gap-3">
+            <div className="w-[225px] h-96 flex flex-col gap-3">
               <h3 className="relative text-orange-500 text-xl text-center font-bold">
                 MiHostel Hub
               </h3>
@@ -472,7 +478,7 @@ const Home = () => {
               </button>
             </div>
 
-            <div className="w-60 h-96 flex flex-col gap-3">
+            <div className="w-[225px] h-96 flex flex-col gap-3">
               <h3 className="relative text-orange-500 text-xl text-center font-bold">
                 MiMall Kreation
               </h3>
