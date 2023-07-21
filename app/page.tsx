@@ -18,7 +18,7 @@ const Home = () => {
               <Link href="/delivery/winike-dispatch">Delivery</Link>
             </li>
             <li>
-              <Link href="/">Help</Link>
+              <a href="https://wa.me/message/NBARCJPSE3P2B1">Help</a>
             </li>
           </ul>
         </div>
@@ -57,7 +57,7 @@ const Home = () => {
                   className="rounded object-cover"
                 />
               </div>
-              <div className="relative hidden h-52 rounded overflow-hidden md:block">
+              <div className="relative h-52 rounded overflow-hidden hidden md:block">
                 <Image
                   fill
                   src="/images/sec-one-img-two.jpg"
@@ -377,11 +377,11 @@ const Home = () => {
       </section>
 
       {/* SECTION SIX */}
-      <section className="bg-navy-blue py-10 space-y-5">
+      <section className="bg-navy-blue py-10 space-y-5 px-5">
         <h3 className="text-orange-500 font-bold text-center text-3xl">
           TESTIMONIES
         </h3>
-        <div className="w-full overflow-x-auto px-5">
+        <div className="max-w overflow-x-auto no-scrollbar">
           <div className="flex justify-start lg:justify-center gap-10">
             <div>
               <div className="relative w-60 h-60">
@@ -418,12 +418,12 @@ const Home = () => {
       </section>
 
       {/* SECTION SEVEN */}
-      <section className="bg-gray-100 py-10">
+      <section className="bg-gray-100 py-10 px-5">
         <h3 className="text-orange-500 font-bold text-center text-3xl underline">
           PARTNERSHIP
         </h3>
-        <div className="w-full overflow-x-auto">
-          <div className="flex justify-start md:justify-center gap-5 mt-10 px-5">
+        <div className="w-full overflow-x-auto no-scrollbar">
+          <div className="flex justify-start md:justify-center gap-5 mt-10">
             <div className="relative basis-40 h-40 shrink-0 bg-white border shadow-md">
               <Image fill src="/images/ucc-src-logo.png" alt="" />
             </div>
@@ -456,9 +456,12 @@ const Home = () => {
                   className="flex-1 object-cover object-top"
                 />
               </div>
-              <button className="font-bold text-xl bg-lime-500 text-white py-2">
+              <Link
+                href="/delivery/winike-dispatch"
+                className="font-bold text-xl bg-lime-500 text-white py-2 text-center"
+              >
                 Buy Now
-              </button>
+              </Link>
             </div>
 
             <div className="w-[225px] h-96 flex flex-col gap-3">
@@ -473,9 +476,12 @@ const Home = () => {
                   className="flex-1 object-cover object-top"
                 />
               </div>
-              <button className="font-bold text-xl bg-lime-500 text-white py-2">
+              <a
+                href="https://t.me/mihostelshub"
+                className="font-bold text-xl bg-lime-500 text-white py-2 text-center"
+              >
                 Visit Now
-              </button>
+              </a>
             </div>
 
             <div className="w-[225px] h-96 flex flex-col gap-3">
@@ -490,9 +496,12 @@ const Home = () => {
                   className="flex-1 object-cover"
                 />
               </div>
-              <button className="font-bold text-xl bg-lime-500 text-white py-2">
+              <a
+                href="https://t.me/mimallKreations"
+                className="font-bold text-xl bg-lime-500 text-white py-2 text-center"
+              >
                 Visit Now
-              </button>
+              </a>
             </div>
           </div>
         </div>
