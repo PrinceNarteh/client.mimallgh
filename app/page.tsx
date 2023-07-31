@@ -1,5 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
+import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
+
+const testimonies = [
+  {
+    image: "/images/testimonies-one.jpg",
+    name: "Angela Fynn",
+    level: "Level 300, B.Com Accounting - UCC",
+    message:
+      "Shopping is made easier with MiMall. Order from favourite seller and receive it right at your doorstep",
+  },
+  {
+    image: "/images/testimonies-two.jpg",
+    name: "Olivia De-Graft Johnson",
+    level: "Level 300, B.Sc Hospitality Management - UCC",
+    message: "I enjoy great learning Opportunities with MiMall Kreations",
+  },
+  {
+    image: "/images/testimonies-three.jpg",
+    name: "Eva Antwi",
+    level: "Level 300, B.Ed Accounting - UCC",
+    message: "MiMall gives me lot of of options or sellers to choose from",
+  },
+  {
+    image: "/images/testimonies-four.jpeg",
+    name: "Kelvin Osei",
+    level: "Level 300, Bcom Marketing - UCC",
+    message:
+      "Mihostelshub Hub helps me get some coins to sort myself out...All I need to is to post videos of hostels and get paid",
+  },
+];
 
 const Home = () => {
   return (
@@ -28,7 +58,7 @@ const Home = () => {
         <h2 className="text-center text-orange-500 text-3xl font-bold">
           WHAT WE DO
         </h2>
-        <h3 className="text-navy-blue flex items-center justify-center gap-2 text-3xl text-center my-3">
+        <h3 className="text-navy-blue flex items-center justify-center gap-2 text-2xl md:text-3xl text-center my-3">
           <Number>1</Number> MiMall eEasy-coms
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
@@ -52,7 +82,7 @@ const Home = () => {
               <div className="relative h-52 rounded overflow-hidden">
                 <Image
                   fill
-                  src="/images/sec-one-img-three.jpeg"
+                  src="/images/sec-one-img-four.jpg"
                   alt=""
                   className="rounded object-cover"
                 />
@@ -68,7 +98,7 @@ const Home = () => {
               <div className="relative h-52 rounded overflow-hidden hidden md:block">
                 <Image
                   fill
-                  src="/images/sec-one-img-four.jpg"
+                  src="/images/sec-one-img-five.jpg"
                   alt=""
                   className="rounded object-cover"
                 />
@@ -76,7 +106,7 @@ const Home = () => {
               <div className="relative h-52 rounded overflow-hidden hidden md:block">
                 <Image
                   fill
-                  src="/images/sec-one-img-five.jpg"
+                  src="/images/sec-one-img-three.jpeg"
                   alt=""
                   className="rounded object-cover"
                 />
@@ -150,7 +180,7 @@ const Home = () => {
                   <div className="relative h-52 hidden md:block">
                     <Image
                       fill
-                      src="/images/sec-one-img-four.jpg"
+                      src="/images/sec-two-img-four.jpg"
                       alt=""
                       className="rounded object-cover"
                     />
@@ -158,7 +188,7 @@ const Home = () => {
                   <div className="relative h-52 hidden md:block">
                     <Image
                       fill
-                      src="/images/sec-one-img-five.jpg"
+                      src="/images/sec-two-img-five.jpg"
                       alt=""
                       className="rounded object-cover"
                     />
@@ -166,7 +196,7 @@ const Home = () => {
                   <div className="relative h-52 hidden md:block">
                     <Image
                       fill
-                      src="/images/sec-one-img-six.jpg"
+                      src="/images/sec-two-img-six.jpg"
                       alt=""
                       className="rounded object-cover"
                     />
@@ -381,38 +411,11 @@ const Home = () => {
         <h3 className="text-orange-500 font-bold text-center text-3xl">
           TESTIMONIES
         </h3>
-        <div className="max-w overflow-x-auto no-scrollbar">
+        <div className="overflow-x-auto no-scrollbar">
           <div className="flex justify-start lg:justify-center gap-10">
-            <div>
-              <div className="relative w-60 h-60">
-                <Image fill src="/images/testimonies-one.jpg" alt="" />
-              </div>
-              <div className="text-center text-white">
-                <h3 className="font-bold">Ama Boateng</h3>
-                <p>Level 300 B.ed Accounting</p>
-                <p className="italic">"MiMall is good"</p>
-              </div>
-            </div>
-            <div>
-              <div className="relative w-60 h-60">
-                <Image fill src="/images/testimonies-two.jpg" alt="" />
-              </div>
-              <div className="text-center text-white">
-                <h3 className="font-bold">Kate Ackan</h3>
-                <p>B.com Finance</p>
-                <p className="italic">"MiHostels Hub..."</p>
-              </div>
-            </div>
-            <div>
-              <div className="relative w-60 h-60">
-                <Image fill src="/images/testimonies-three.jpg" alt="" />
-              </div>
-              <div className="text-center text-white">
-                <h3 className="font-bold">Mabel Boatemaa</h3>
-                <p>Level 400 B.ed Accounting</p>
-                <p className="italic">"MiMall Kreating is creative"</p>
-              </div>
-            </div>
+            {testimonies.map((testimony, idx) => (
+              <TestimonyCard key={idx} testimony={testimony} />
+            ))}
           </div>
         </div>
       </section>
@@ -520,6 +523,29 @@ function Number({ children }: { children: React.ReactNode }) {
     <span className="bg-navy-blue inline-block text-lg w-8 font-bold p-0.5 text-white rounded-full">
       {children}{" "}
     </span>
+  );
+}
+
+function TestimonyCard({
+  testimony,
+}: {
+  testimony: { image: string; name: string; level: string; message: string };
+}) {
+  return (
+    <div>
+      <div className="relative w-60 h-60 rounded overflow-hidden">
+        <Image fill src={testimony.image} alt="" />
+      </div>
+      <div className="text-center w-60 text-white mt-2">
+        <h3 className="font-bold">{testimony.name}</h3>
+        <p>{testimony.level}</p>
+        <p className="relative italic mt-3">
+          <RiDoubleQuotesL className="inline-block relative -top-1.5" />
+          {testimony.message}
+          <RiDoubleQuotesR className="inline-block relative ml-1 -top-1" />
+        </p>
+      </div>
+    </div>
   );
 }
 
